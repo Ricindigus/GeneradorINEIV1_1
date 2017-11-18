@@ -1,0 +1,22 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.fragments.EditTextFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="n. texto de la pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
+        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
+        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,104 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.fragments.EditSumaFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:id="@+id/editsuma_pregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="n. texto de la pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margenMaterial"
+                android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    app:cardBackgroundColor="@color/greyBluePrimary">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="Descripción"
+                            android:textColor="@color/colorIcons"
+                            android:textStyle="bold" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorIcons"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="Número"
+                            android:textColor="@color/colorIcons"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+                <include layout="@layout/edit_suma_sp_layout" android:id="@+id/editsuma_sp1"/>
+                <include layout="@layout/edit_suma_sp_layout" android:id="@+id/editsuma_sp2"/>
+                <include layout="@layout/edit_suma_sp_layout" android:id="@+id/editsuma_sp3"/>
+                <include layout="@layout/edit_suma_sp_layout" android:id="@+id/editsuma_sp4"/>
+                <include layout="@layout/edit_suma_sp_layout" android:id="@+id/editsuma_sp5"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:layout_marginRight="1dp"
+                        app:cardBackgroundColor="@color/greyBluePrimary">
+                        <TextView
+                            android:id="@+id/editsuma_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorIcons"
+                            android:text="TOTAL"/>
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="2dp">
+                        <TextView
+                            android:id="@+id/editsuma_cantidadTotal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@color/colorIcons"
+                            android:textColor="@color/greyBluePrimaryDark"
+                            android:textStyle="bold"
+                            android:text="0"/>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+

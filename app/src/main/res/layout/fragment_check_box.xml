@@ -1,0 +1,64 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.fragments.CheckBoxFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:id="@+id/check_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="n. texto de la pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margenMaterial">
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp1"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp2"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp3"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp4"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp5"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp6"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp7"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp8"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp9"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp10"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp11"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp12"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp13"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp14"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp15"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp16"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp17"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp18"/>
+            <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp19"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkbox_otro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otro"/>
+                <EditText
+                    android:id="@+id/checkbox_especifique"
+                    android:layout_width="400dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Especifique"
+                    android:paddingLeft="5dp"
+                    android:background="@drawable/sumaedit_edittext_limpio"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

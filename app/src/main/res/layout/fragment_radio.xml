@@ -1,0 +1,111 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.fragments.RadioFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="n. texto de la pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <RadioGroup
+            android:id="@+id/radio_grupo"
+            android:layout_margin="@dimen/margenMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/radio_sp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 1"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 2"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 3"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 4"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 5"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 6"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 7"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 8"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_sp9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 9"
+                android:layout_marginBottom="5dp"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <RadioButton
+                    android:id="@+id/radio_otro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otro"
+                    />
+                <EditText
+                    android:id="@+id/radio_especifique"
+                    android:layout_width="400dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:hint="Especifique"
+                    android:background="@drawable/sumaedit_edittext_limpio"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
