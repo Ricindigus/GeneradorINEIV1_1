@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margenMaterial"
-    tools:context="pe.com.ricindigus.generadorinei.fragments.EditTextFragment">
+    tools:context="pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
             android:textColor="@color/colorIneiPrimary"
             android:textStyle="bold"/>
         <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
-        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
-        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp1"/>
+        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp2"/>
+        <include layout="@layout/edit_text_sp_layout" android:id="@+id/edittext_sp3"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

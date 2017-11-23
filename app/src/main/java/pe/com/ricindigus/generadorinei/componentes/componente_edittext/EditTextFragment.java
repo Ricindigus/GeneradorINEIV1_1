@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.fragments;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import pe.com.ricindigus.generadorinei.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RadioFragment extends Fragment {
+public class EditTextFragment extends Fragment {
 
 
-    public RadioFragment() {
+    public EditTextFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,9 @@ public class RadioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_radio, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_text, container, false);
+
+        return rootView;
     }
 
 }

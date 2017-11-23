@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/margenMaterial"
-    tools:context="pe.com.ricindigus.generadorinei.fragments.EditSumaFragment">
+    tools:context="pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

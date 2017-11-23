@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.fragments;
+package pe.com.ricindigus.generadorinei.componentes.spinner_componente;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import pe.com.ricindigus.generadorinei.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditSumaFragment extends Fragment {
+public class SpinnerFragment extends Fragment {
 
 
-    public EditSumaFragment() {
+    public SpinnerFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class EditSumaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_suma, container, false);
+        return inflater.inflate(R.layout.fragment_spinner, container, false);
     }
 
 }

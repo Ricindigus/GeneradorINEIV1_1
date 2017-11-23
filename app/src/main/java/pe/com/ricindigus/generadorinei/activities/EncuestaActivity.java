@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
-import pe.com.ricindigus.generadorinei.fragments.CheckBoxFragment;
-import pe.com.ricindigus.generadorinei.fragments.EditSumaFragment;
-import pe.com.ricindigus.generadorinei.fragments.EditTextFragment;
-import pe.com.ricindigus.generadorinei.fragments.RadioFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 
 public class EncuestaActivity extends AppCompatActivity {
 
