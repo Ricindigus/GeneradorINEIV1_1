@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment">
+    tools:context="pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,14 +20,13 @@
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LOCALIZACION DE LA EMPRESA"
+                android:text="IDENTIFICACION DE LA EMPRESA Y CONDUCTOR DE LA EMPRESA"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/colorIcons"/>
         </android.support.v7.widget.CardView>
-        <include layout="@layout/caratula_ubi_geografica" android:id="@+id/caratula_geografica"/>
-        <include layout="@layout/caratula_gps" android:id="@+id/caratula_gps"/>
-        <include layout="@layout/caratula_ubi_muestral" android:id="@+id/caratula_muestral"/>
-        <include layout="@layout/caratula_direccion" android:id="@+id/caratula_direccion"/>
+        <include layout="@layout/identificacion_empresa" android:id="@+id/identificacion_empresa"/>
+        <include layout="@layout/identificacion_conductor" android:id="@+id/identificacion_conductor"/>
+        <include layout="@layout/identificacion_informante" android:id="@+id/identificacion_informante"/>
     </LinearLayout>
 </LinearLayout>

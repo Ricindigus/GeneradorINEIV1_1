@@ -12,6 +12,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaF
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 
 public class EncuestaActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private CaratulaFragment caratulaFragment;
+    private IdentificacionFragment identificacionFragment;
 
     private Toolbar toolbar;
     @Override
@@ -36,6 +38,7 @@ public class EncuestaActivity extends AppCompatActivity {
         editTextFragment = new EditTextFragment();
         checkBoxFragment = new CheckBoxFragment();
         caratulaFragment = new CaratulaFragment();
+        identificacionFragment = new IdentificacionFragment();
         radioFragment = new RadioFragment();
 
         fragmentManager = getSupportFragmentManager();
@@ -44,7 +47,7 @@ public class EncuestaActivity extends AppCompatActivity {
 //        fragmentTransaction.replace(R.id.fragment_layout2,editTextFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout3,checkBoxFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout4,radioFragment);
-        fragmentTransaction.replace(R.id.fragment_layout1,caratulaFragment);
+        fragmentTransaction.replace(R.id.fragment_layout1,identificacionFragment);
         fragmentTransaction.commit();
     }
 
