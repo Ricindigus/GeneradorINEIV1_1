@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
@@ -14,6 +16,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaF
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
 
 public class EncuestaActivity extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private FragmentTransaction fragmentTransaction;
     private CaratulaFragment caratulaFragment;
     private IdentificacionFragment identificacionFragment;
+    private VisitasFragment visitasFragment;
 
     private Toolbar toolbar;
     @Override
@@ -32,6 +36,8 @@ public class EncuestaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encuesta);
         toolbar = (Toolbar)findViewById(R.id.encuesta_toolbar);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fragment_visitas_layout);
+        linearLayout.setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
 
         editSumaFragment = new EditSumaFragment();
@@ -40,6 +46,8 @@ public class EncuestaActivity extends AppCompatActivity {
         caratulaFragment = new CaratulaFragment();
         identificacionFragment = new IdentificacionFragment();
         radioFragment = new RadioFragment();
+        visitasFragment = new VisitasFragment();
+
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction =  fragmentManager.beginTransaction();
@@ -47,7 +55,7 @@ public class EncuestaActivity extends AppCompatActivity {
 //        fragmentTransaction.replace(R.id.fragment_layout2,editTextFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout3,checkBoxFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout4,radioFragment);
-        fragmentTransaction.replace(R.id.fragment_layout1,identificacionFragment);
+        fragmentTransaction.replace(R.id.fragment_visitas_layout,visitasFragment);
         fragmentTransaction.commit();
     }
 
