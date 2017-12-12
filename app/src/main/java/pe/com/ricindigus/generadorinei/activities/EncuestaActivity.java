@@ -37,7 +37,7 @@ public class EncuestaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_encuesta);
         toolbar = (Toolbar)findViewById(R.id.encuesta_toolbar);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fragment_visitas_layout);
-        linearLayout.setVisibility(View.VISIBLE);
+//        linearLayout.setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
 
         editSumaFragment = new EditSumaFragment();
@@ -55,7 +55,7 @@ public class EncuestaActivity extends AppCompatActivity {
 //        fragmentTransaction.replace(R.id.fragment_layout2,editTextFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout3,checkBoxFragment);
 //        fragmentTransaction.replace(R.id.fragment_layout4,radioFragment);
-        fragmentTransaction.replace(R.id.fragment_visitas_layout,visitasFragment);
+        fragmentTransaction.replace(R.id.fragment_layout1,identificacionFragment);
         fragmentTransaction.commit();
     }
 

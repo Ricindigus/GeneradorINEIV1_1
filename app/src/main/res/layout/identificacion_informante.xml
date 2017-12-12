@@ -52,11 +52,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="vertical">
-                    <Spinner
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:drawSelectorOnTop="true"
-                        android:entries="@array/item_spinner"/>
+                        android:layout_height="30dp">
+                        <Spinner
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:drawSelectorOnTop="true"
+                            android:entries="@array/cargos_spinner"/>
+                    </android.support.v7.widget.CardView>
                     <EditText
                         android:paddingLeft="10dp"
                         android:layout_marginTop="5dp"

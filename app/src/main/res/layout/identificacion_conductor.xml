@@ -42,14 +42,15 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:background="@color/greyBluePrimary"/>
+                    android:background="@color/greyBluePrimary"
+                    android:layout_marginRight="@dimen/margin5dp"
+                    android:layout_marginLeft="@dimen/margin5dp"/>
                 <EditText
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:layout_marginLeft="10dp"
                     android:text="MORALES RETAMOZO DENIS RICARDO"
                     android:background="@drawable/sumaedit_edittext_limpio"/>
             </LinearLayout>
@@ -78,14 +79,19 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:background="@color/greyBluePrimary"/>
-                <Spinner
+                    android:background="@color/greyBluePrimary"
+                    android:layout_marginRight="@dimen/margin5dp"
+                    android:layout_marginLeft="@dimen/margin5dp"/>
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:layout_marginLeft="10dp"
-                    android:drawSelectorOnTop="true"
-                    android:entries="@array/item_spinner"/>
+                    android:layout_weight="2">
+                    <Spinner
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/sexo_spinner"/>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -112,14 +118,15 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:background="@color/greyBluePrimary"/>
+                    android:background="@color/greyBluePrimary"
+                    android:layout_marginRight="@dimen/margin5dp"
+                    android:layout_marginLeft="@dimen/margin5dp"/>
                 <EditText
                     android:paddingLeft="10dp"
                     android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:layout_marginLeft="10dp"
                     android:text="28"
                     android:background="@drawable/sumaedit_edittext_limpio"/>
             </LinearLayout>
@@ -148,14 +155,19 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:background="@color/greyBluePrimary"/>
-                <Spinner
+                    android:background="@color/greyBluePrimary"
+                    android:layout_marginRight="@dimen/margin5dp"
+                    android:layout_marginLeft="@dimen/margin5dp"/>
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:layout_marginLeft="10dp"
-                    android:drawSelectorOnTop="true"
-                    android:entries="@array/item_spinner"/>
+                    android:layout_weight="2">
+                    <Spinner
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/estudios_spinner"/>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

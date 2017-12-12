@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.modelo.DataSource;
+package pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes;
 
 /**
  * Created by dmorales on 23/11/2017.
