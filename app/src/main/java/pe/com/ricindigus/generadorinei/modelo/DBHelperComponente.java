@@ -16,12 +16,17 @@ public class DBHelperComponente extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_ENCUESTAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_PREGUNTAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_EDITTEXT);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_ENCUESTAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_PREGUNTAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_EDITTEXT);
+        onCreate(sqLiteDatabase);
     }
 }
