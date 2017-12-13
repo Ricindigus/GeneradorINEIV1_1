@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ENCUESTA>
+	<TITULO>ENCUESTA NACIONAL DE CALIDAD 2018</TITULO>
+	<PREGUNTAS>
+		<PREGUNTA>
+			<NUMERO>1</NUMERO>
+			<TEXTO_PREGUNTA>¿Cuánto es tu sueldo?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>2</NUMERO>
+			<TEXTO_PREGUNTA>¿Cuáles fueron tus 3 ultimos trabajos?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>3</NUMERO>
+			<TEXTO_PREGUNTA>¿Cuánto tiempo llevas en tu empresa?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>4</NUMERO>
+			<TEXTO_PREGUNTA>En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>5</NUMERO>
+			<TEXTO_PREGUNTA>¿En qué año implementó la norma técnica o estándar de calidad más importante?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>6</NUMERO>
+			<TEXTO_PREGUNTA>¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>7</NUMERO>
+			<TEXTO_PREGUNTA>Su empresa ¿cuántos establecimientos tiene?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>8</NUMERO>
+			<TEXTO_PREGUNTA>Actualmente, su empresa, ¿cuántas vacantes tiene?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+		<PREGUNTA>
+			<NUMERO>9</NUMERO>
+			<TEXTO_PREGUNTA>Durante el año 2016, en su empresa ¿a cuánto asciende el excedente bruto de operación?</TEXTO_PREGUNTA>
+			<TIPO>1</TIPO>
+		</PREGUNTA>
+	</PREGUNTAS>
+	<EDITTEXTS>
+		<EDITTEXT>
+			<NUMERO>1</NUMERO>
+			<SP1>SOLES</SP1>
+			<VAR1>M1_P1</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>2</NUMERO>
+			<SP1>1er TRABAJO</SP1>
+			<VAR1>M1_P2_1</VAR1>
+			<SP2>2do TRABAJO</SP2>
+			<VAR2>M1_P2_2</VAR2>
+			<SP3>3er TRABAJO</SP3>
+			<VAR3>M1_P2_3</VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>3</NUMERO>
+			<SP1>AÑOS</SP1>
+			<VAR1>M1_P3_1</VAR1>
+			<SP2>MESES</SP2>
+			<VAR2>M1_P3_2</VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>4</NUMERO>
+			<SP1>NUMERO DE TRABAJADORES</SP1>
+			<VAR1>M1_P4</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>5</NUMERO>
+			<SP1>AÑO</SP1>
+			<VAR1>M1_P5</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>6</NUMERO>
+			<SP1>Gasto en S/.</SP1>
+			<VAR1>M1_P6</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>7</NUMERO>
+			<SP1>N° de establecimientos</SP1>
+			<VAR1>M1_P7</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>8</NUMERO>
+			<SP1>Cantidad de vacantes</SP1>
+			<VAR1>M1_P8</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+		<EDITTEXT>
+			<NUMERO>9</NUMERO>
+			<SP1>SOLES</SP1>
+			<VAR1>M1_P9</VAR1>
+			<SP2></SP2>
+			<VAR2></VAR2>
+			<SP3></SP3>
+			<VAR3></VAR3>
+		</EDITTEXT>
+	</EDITTEXTS>
+</ENCUESTA>
+
+
+
+
+
+

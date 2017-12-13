@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_caratula;
+package pe.com.ricindigus.generadorinei.fragments;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import pe.com.ricindigus.generadorinei.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CaratulaFragment extends Fragment {
+public class IdentificacionFragment extends Fragment {
 
 
-    public CaratulaFragment() {
+    public IdentificacionFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class CaratulaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_caratula, container, false);
+        return inflater.inflate(R.layout.fragment_identificacion, container, false);
     }
 
 }

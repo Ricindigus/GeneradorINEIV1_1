@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.modelo;
+package pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

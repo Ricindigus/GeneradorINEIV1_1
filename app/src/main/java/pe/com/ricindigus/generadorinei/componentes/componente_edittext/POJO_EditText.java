@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_caratula;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
 
 import android.content.ContentValues;
 

@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.modelo;
+package pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes;
 
 /**
  * Created by dmorales on 23/11/2017.
@@ -15,7 +15,6 @@ public class SQLConstantesComponente {
     //COLUMNAS ENCUESTAS
     public static final String ID_ENCUESTA = "ID";
     public static final String TITULO_ENCUESTA = "TITULO";
-    public static final String PERIODOS_ENCUESTA = "PERIODO";
 
     //COLUMNAS PREGUNTAS
     public static final String ID_PREGUNTA = "ID";
@@ -36,8 +35,7 @@ public class SQLConstantesComponente {
     public static final String SQL_CREATE_TABLA_ENCUESTAS =
             "CREATE TABLE " + tablaEncuestas + "(" +
                     ID_ENCUESTA + " TEXT PRIMARY KEY," +
-                    TITULO_ENCUESTA + " TEXT," +
-                    PERIODOS_ENCUESTA + " TEXT" + ");"
+                    TITULO_ENCUESTA + " TEXT" + ");"
             ;
 
     public static final String SQL_CREATE_TABLA_PREGUNTAS =
@@ -66,6 +64,20 @@ public class SQLConstantesComponente {
     public static final String SQL_DELETE_ENCUESTAS = "DROP TABLE " + tablaEncuestas;
     public static final String SQL_DELETE_PREGUNTAS = "DROP TABLE " + tablaPreguntas;
     public static final String SQL_DELETE_EDITTEXT = "DROP TABLE " + tablaEditText;
+
+
+    //TRAER TODAS LAS COLUMNAS
+    public static final String[] ALL_COLUMNS_ENCUESTA = {
+            ID_ENCUESTA, TITULO_ENCUESTA
+    };
+
+    public static final String[] ALL_COLUMNS_PREGUNTAS = {
+        ID_PREGUNTA, TEXTO_PREGUNTA, TIPO_PREGUNTA
+    };
+
+    public static final String[] ALL_COLUMNS_EDITTEXT = {
+    EDITTEXT_ID, EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
+    };
 
 
 }

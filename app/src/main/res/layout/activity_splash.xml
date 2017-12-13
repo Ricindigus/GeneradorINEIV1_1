@@ -19,24 +19,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/logoinei"/>
-            <!--<ProgressBar-->
-                <!--android:id="@+id/marco_progreso1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="30dp"/>-->
-            <!--<TextView-->
-                <!--android:id="@+id/splash_mensaje"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text=""-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="@color/colorPrimary"/>-->
-            <!--<ProgressBar-->
-                <!--android:id="@+id/marco_progreso2"-->
-                <!--android:layout_width="500dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>-->
+                android:src="@drawable/logoinei"
+                />
+            <ProgressBar
+                android:id="@+id/marco_progreso1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+            <TextView
+                android:id="@+id/splash_mensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"/>
+            <ProgressBar
+                android:id="@+id/marco_progreso2"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
         </LinearLayout>
     </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
+package pe.com.ricindigus.generadorinei.fragments;
 
 
 import android.os.Bundle;

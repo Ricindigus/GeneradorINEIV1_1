@@ -6,17 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
+import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
+import pe.com.ricindigus.generadorinei.fragments.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
+import pe.com.ricindigus.generadorinei.fragments.VisitasFragment;
 
 public class EncuestaActivity extends AppCompatActivity {
 
