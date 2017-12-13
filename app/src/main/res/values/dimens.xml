@@ -5,4 +5,5 @@
     <dimen name="margenLogin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin5dp">5dp</dimen>
+    <dimen name="textoSmall">15sp</dimen>
 </resources>

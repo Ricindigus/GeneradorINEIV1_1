@@ -69,6 +69,7 @@ public class SplashActivity extends AppCompatActivity {
                 marcos = parser.parseXML(getApplicationContext());
                 usuarios = usuarioParser.parseXML(getApplicationContext());
                 ubigeos = ubigeoPullParser.parseXML(getApplicationContext());
+
             }
             String mensaje = "";
             String mensaje1 = "";
