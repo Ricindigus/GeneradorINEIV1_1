@@ -1,6 +1,8 @@
 package pe.com.ricindigus.generadorinei.fragments;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,11 +16,18 @@ import pe.com.ricindigus.generadorinei.R;
  */
 public class IdentificacionFragment extends Fragment {
 
+    private String idEmpresa;
+    private Context context;
 
     public IdentificacionFragment() {
         // Required empty public constructor
     }
 
+    @SuppressLint("ValidFragment")
+    public IdentificacionFragment(String idEmpresa, Context context) {
+        this.idEmpresa = idEmpresa;
+        this.context = context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

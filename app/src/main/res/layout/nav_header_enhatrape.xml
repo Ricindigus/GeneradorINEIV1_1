@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/inei_fondo_app"
+    android:gravity="bottom">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c91b4379">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/logo_inei_blanco"
+            />
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/colorIcons"
+            android:gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITULO ENCUESTA"
+            android:textSize="@dimen/textoMedium"/>
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/colorIcons"
+            android:gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EN EL PERU 2017"
+            android:textSize="@dimen/textoMedium"/>
+    </LinearLayout>
+</LinearLayout>

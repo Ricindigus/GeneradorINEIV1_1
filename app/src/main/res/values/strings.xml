@@ -5,6 +5,10 @@
     <string name="texto_ingresar">INGRESAR</string>
     <string name="arroba">\@</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
     <string-array name="item_spinner">
         <item>Seleccione...</item>
         <item>item1</item>

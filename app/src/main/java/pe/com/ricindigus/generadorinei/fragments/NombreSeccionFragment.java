@@ -2,39 +2,42 @@ package pe.com.ricindigus.generadorinei.fragments;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import pe.com.ricindigus.generadorinei.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CaratulaFragment extends Fragment {
+public class NombreSeccionFragment extends Fragment {
 
-    private String idEmpresa;
-    private Context context;
+    private TextView txtNombreSeccion;
+    private String nombreSeccion;
 
-    public CaratulaFragment() {
+
+
+    public NombreSeccionFragment() {
         // Required empty public constructor
     }
 
-
     @SuppressLint("ValidFragment")
-    public CaratulaFragment(String idEmpresa, Context context) {
-        this.idEmpresa = idEmpresa;
-        this.context = context;
+    public NombreSeccionFragment(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_caratula, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_nombre_seccion, container, false);
+        txtNombreSeccion = (TextView) rootView.findViewById(R.id.txtNombreSeccion);
+        txtNombreSeccion.setText(nombreSeccion);
+        return rootView;
     }
-
 }

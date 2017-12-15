@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_encuesta_volver"
-        android:title="volver"
-        android:icon="@drawable/volver"
-        app:showAsAction="always"/>
+        android:id="@+id/action_marco"
+        android:orderInCategory="100"
+        android:title="Volver al Marco"
+        app:showAsAction="never" />
     <item
-        android:id="@+id/menu_encuesta_avanzar"
-        android:title="avanzar"
-        android:icon="@drawable/avanzar"
-        app:showAsAction="always"/>
+        android:id="@+id/action_observaciones"
+        android:orderInCategory="100"
+        android:title="Registrar observacion"
+        app:showAsAction="never" />
 </menu>

@@ -22,4 +22,7 @@
         <item name="colorControlNormal">@color/greyBluePrimary</item>
         <item name="colorControlActivated">@color/greyBluePrimaryDark</item>
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
