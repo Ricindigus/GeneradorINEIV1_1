@@ -15,15 +15,17 @@
         android:orientation="vertical">
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/layout_fragment_visita"
+    <!--<LinearLayout-->
+        <!--android:id="@+id/layout_fragment_visita"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:visibility="gone"></LinearLayout>-->
+    <ScrollView
+        android:id="@+id/scrollView_encuesta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone"></LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

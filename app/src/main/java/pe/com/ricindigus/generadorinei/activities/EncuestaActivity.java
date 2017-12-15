@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,24 +43,16 @@ public class EncuestaActivity extends AppCompatActivity {
     private ExpandableListView expListView;
     private HashMap<String, List<String>> listDataChild;
     private ExpandListAdapter listAdapter;
-    private EditTextFragment editTextFragment;
-    private CheckBoxFragment checkBoxFragment;
-    private RadioFragment radioFragment;
-    private EditSumaFragment editSumaFragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private CaratulaFragment caratulaFragment;
-    private IdentificacionFragment identificacionFragment;
-    private VisitasFragment visitasFragment;
     private Button btnAtras;
     private Button btnSiguiente;
-    private LinearLayout linearLayoutContainer;
     private int posicionFragment = 0;
     private Fragment fragmentActual = new Fragment();
     private String idEmpresa = "";
     private Data data;
     private Toolbar toolbar;
-    private LinearLayout lytFragmentVisitas, lytComponente1, lytComponente2, lytComponente3;
+    private LinearLayout lytComponente1, lytComponente2, lytComponente3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +61,6 @@ public class EncuestaActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         btnAtras = (Button) findViewById(R.id.btn_anterior);
         btnSiguiente = (Button) findViewById(R.id.btn_siguiente);
-        lytFragmentVisitas =  (LinearLayout)findViewById(R.id.layout_fragment_visita);
         lytComponente1 =  (LinearLayout)findViewById(R.id.layout_componente1);
         lytComponente2 =  (LinearLayout)findViewById(R.id.layout_componente2);
         lytComponente3 =  (LinearLayout)findViewById(R.id.layout_componente3);
@@ -147,12 +139,11 @@ public class EncuestaActivity extends AppCompatActivity {
         }else{
             fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         }
-        lytFragmentVisitas.setVisibility(View.GONE);
+
         switch (pos){
             case 0:
-                lytFragmentVisitas.setVisibility(View.VISIBLE);
                 fragmentActual = new VisitasFragment(idEmpresa,this);
-                fragmentTransaction.replace(R.id.layout_fragment_visita, fragmentActual);
+                fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
                 break;
             case 1:
                 fragmentActual = new CaratulaFragment(idEmpresa,this);
