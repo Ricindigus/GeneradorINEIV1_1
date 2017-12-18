@@ -9,20 +9,32 @@ public class SQLConstantesComponente {
 
     //TABLAS
     public static final String tablaEncuestas = "encuestas";
-    public static final String tablaPreguntas = "preguntas";
-    public static final String tablaEditText = "editTexts";
+    public static final String tablaEditText = "edittexts";
+    public static final String tablaPaginas = "paginas";
 
     //COLUMNAS ENCUESTAS
-    public static final String ID_ENCUESTA = "ID";
-    public static final String TITULO_ENCUESTA = "TITULO";
+    public static final String ENCUESTA_ID = "ID";
+    public static final String ENCUESTA_TITULO = "TITULO";
 
-    //COLUMNAS PREGUNTAS
-    public static final String ID_PREGUNTA = "ID";
-    public static final String TEXTO_PREGUNTA = "PREGUNTA";
-    public static final String TIPO_PREGUNTA = "TIPO";
+    //COLUMNAS PAGINAS
+    public static final String PAGINA_ID = "ID";
+    public static final String PAGINA_MODULO = "MODULO";
+    public static final String PAGINA_IDP1 = "IDP1";
+    public static final String PAGINA_TP1 = "TIPO1";
+    public static final String PAGINA_IDP2 = "IDP2";
+    public static final String PAGINA_TP2 = "TIPO2";
+    public static final String PAGINA_IDP3 = "IDP3";
+    public static final String PAGINA_TP3 = "TIPO3";
+    public static final String PAGINA_IDP4 = "IDP4";
+    public static final String PAGINA_TP4 = "TIPO4";
+    public static final String PAGINA_IDP5 = "IDP5";
+    public static final String PAGINA_TP5 = "TIPO5";
 
     //COLUMNAS EDIT TEXT
     public static final String EDITTEXT_ID = "ID";
+    public static final String EDITTEXT_MODULO = "MODULO";
+    public static final String EDITTEXT_NUMERO = "NUMERO";
+    public static final String EDITTEXT_PREGUNTA = "PREGUNTA";
     public static final String EDITTEXT_SP1 = "SP1";
     public static final String EDITTEXT_VAR1 = "VAR1";
     public static final String EDITTEXT_SP2 = "SP2";
@@ -30,24 +42,35 @@ public class SQLConstantesComponente {
     public static final String EDITTEXT_SP3 = "SP3";
     public static final String EDITTEXT_VAR3 = "VAR3";
 
-
     //CREACION DE TABLAS (CREATE)
     public static final String SQL_CREATE_TABLA_ENCUESTAS =
             "CREATE TABLE " + tablaEncuestas + "(" +
-                    ID_ENCUESTA + " TEXT PRIMARY KEY," +
-                    TITULO_ENCUESTA + " TEXT" + ");"
+                    ENCUESTA_ID + " TEXT PRIMARY KEY," +
+                    ENCUESTA_TITULO + " TEXT" + ");"
             ;
 
-    public static final String SQL_CREATE_TABLA_PREGUNTAS =
-            "CREATE TABLE " + tablaPreguntas + "(" +
-                    ID_PREGUNTA + " TEXT PRIMARY KEY," +
-                    TEXTO_PREGUNTA + " TEXT," +
-                    TIPO_PREGUNTA + " TEXT" + ");"
+    public static final String SQL_CREATE_TABLA_PAGINAS =
+            "CREATE TABLE " + tablaPaginas + "(" +
+                    PAGINA_ID + " TEXT PRIMARY KEY," +
+                    PAGINA_MODULO + " TEXT," +
+                    PAGINA_IDP1 + " TEXT," +
+                    PAGINA_TP1 + " TEXT," +
+                    PAGINA_IDP2 + " TEXT," +
+                    PAGINA_TP2 + " TEXT," +
+                    PAGINA_IDP3 + " TEXT," +
+                    PAGINA_TP3 + " TEXT," +
+                    PAGINA_IDP4 + " TEXT," +
+                    PAGINA_TP4 + " TEXT," +
+                    PAGINA_IDP5 + " TEXT," +
+                    PAGINA_TP5 + " TEXT" + ");"
             ;
 
     public static final String SQL_CREATE_TABLA_EDITTEXT =
             "CREATE TABLE " + tablaEditText + "(" +
                     EDITTEXT_ID + " TEXT PRIMARY KEY," +
+                    EDITTEXT_MODULO + " TEXT," +
+                    EDITTEXT_NUMERO + " TEXT," +
+                    EDITTEXT_PREGUNTA + " TEXT," +
                     EDITTEXT_SP1 + " TEXT," +
                     EDITTEXT_VAR1 + " TEXT," +
                     EDITTEXT_SP2 + " TEXT," +
@@ -62,21 +85,24 @@ public class SQLConstantesComponente {
 
     //BORRADO DE TABLAS (DELETE)
     public static final String SQL_DELETE_ENCUESTAS = "DROP TABLE " + tablaEncuestas;
-    public static final String SQL_DELETE_PREGUNTAS = "DROP TABLE " + tablaPreguntas;
+    public static final String SQL_DELETE_PAGINAS = "DROP TABLE " + tablaPaginas;
     public static final String SQL_DELETE_EDITTEXT = "DROP TABLE " + tablaEditText;
 
 
     //TRAER TODAS LAS COLUMNAS
     public static final String[] ALL_COLUMNS_ENCUESTA = {
-            ID_ENCUESTA, TITULO_ENCUESTA
+            ENCUESTA_ID, ENCUESTA_TITULO
     };
 
-    public static final String[] ALL_COLUMNS_PREGUNTAS = {
-        ID_PREGUNTA, TEXTO_PREGUNTA, TIPO_PREGUNTA
+    public static final String[] ALL_COLUMNS_PAGINAS = {
+            PAGINA_ID, PAGINA_MODULO , PAGINA_IDP1 , PAGINA_TP1 ,
+            PAGINA_IDP2 , PAGINA_TP2 , PAGINA_IDP3 , PAGINA_TP3 ,
+            PAGINA_IDP4 , PAGINA_TP4 , PAGINA_IDP5 , PAGINA_TP5
     };
 
     public static final String[] ALL_COLUMNS_EDITTEXT = {
-    EDITTEXT_ID, EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
+            EDITTEXT_ID, EDITTEXT_MODULO , EDITTEXT_NUMERO , EDITTEXT_PREGUNTA ,
+            EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
     };
 
 

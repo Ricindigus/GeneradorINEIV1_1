@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.pojos;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
 
 import android.content.ContentValues;
 
@@ -10,6 +10,9 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstante
 
 public class CEditText {
     private String ID;
+    private String MODULO;
+    private String NUMERO;
+    private String PREGUNTA;
     private String SP1;
     private String VAR1;
     private String SP2;
@@ -19,6 +22,9 @@ public class CEditText {
 
     public CEditText() {
         ID = "";
+        MODULO = "";
+        NUMERO = "";
+        PREGUNTA = "";
         SP1 = "";
         VAR1 = "";
         SP2 = "";
@@ -84,8 +90,11 @@ public class CEditText {
     }
 
     public ContentValues toValues(){
-        ContentValues contentValues = new ContentValues(7);
+        ContentValues contentValues = new ContentValues(10);
         contentValues.put(SQLConstantesComponente.EDITTEXT_ID,ID);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_MODULO, MODULO);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_NUMERO, NUMERO);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_PREGUNTA, PREGUNTA);
         contentValues.put(SQLConstantesComponente.EDITTEXT_SP1,SP1);
         contentValues.put(SQLConstantesComponente.EDITTEXT_VAR1,VAR1);
         contentValues.put(SQLConstantesComponente.EDITTEXT_SP2,SP2);
