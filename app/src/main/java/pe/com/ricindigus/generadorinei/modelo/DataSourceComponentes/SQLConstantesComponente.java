@@ -36,10 +36,13 @@ public class SQLConstantesComponente {
     public static final String EDITTEXT_NUMERO = "NUMERO";
     public static final String EDITTEXT_PREGUNTA = "PREGUNTA";
     public static final String EDITTEXT_SP1 = "SP1";
+    public static final String EDITTEXT_HINT1 = "HINT1";
     public static final String EDITTEXT_VAR1 = "VAR1";
     public static final String EDITTEXT_SP2 = "SP2";
+    public static final String EDITTEXT_HINT2 = "HINT2";
     public static final String EDITTEXT_VAR2 = "VAR2";
     public static final String EDITTEXT_SP3 = "SP3";
+    public static final String EDITTEXT_HINT3 = "HINT3";
     public static final String EDITTEXT_VAR3 = "VAR3";
 
     //CREACION DE TABLAS (CREATE)
@@ -72,10 +75,13 @@ public class SQLConstantesComponente {
                     EDITTEXT_NUMERO + " TEXT," +
                     EDITTEXT_PREGUNTA + " TEXT," +
                     EDITTEXT_SP1 + " TEXT," +
+                    EDITTEXT_HINT1 + " TEXT," +
                     EDITTEXT_VAR1 + " TEXT," +
                     EDITTEXT_SP2 + " TEXT," +
+                    EDITTEXT_HINT2 + " TEXT," +
                     EDITTEXT_VAR2 + " TEXT," +
                     EDITTEXT_SP3 + " TEXT," +
+                    EDITTEXT_HINT3 + " TEXT," +
                     EDITTEXT_VAR3 + " TEXT" + ");"
             ;
 
@@ -102,6 +108,7 @@ public class SQLConstantesComponente {
 
     public static final String[] ALL_COLUMNS_EDITTEXT = {
             EDITTEXT_ID, EDITTEXT_MODULO , EDITTEXT_NUMERO , EDITTEXT_PREGUNTA ,
+            EDITTEXT_HINT1, EDITTEXT_HINT2, EDITTEXT_HINT3,
             EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
     };
 

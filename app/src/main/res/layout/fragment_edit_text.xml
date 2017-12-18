@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:padding="@dimen/margenMaterial">
         <TextView
+            android:id="@+id/edittext_pregunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="n. texto de la pregunta"

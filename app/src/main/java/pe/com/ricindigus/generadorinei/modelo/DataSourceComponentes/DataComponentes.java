@@ -111,12 +111,15 @@ public class DataComponentes {
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 cEditText.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_ID)));
-                cEditText.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_MODULO)));
-                cEditText.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_NUMERO)));
-                cEditText.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_PREGUNTA)));
+                cEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_MODULO)));
+                cEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_NUMERO)));
+                cEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_PREGUNTA)));
                 cEditText.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_SP1)));
                 cEditText.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_SP2)));
                 cEditText.setSP3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_SP3)));
+                cEditText.setHINT1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_HINT1)));
+                cEditText.setHINT2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_HINT2)));
+                cEditText.setHINT3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_HINT3)));
                 cEditText.setVAR1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_VAR1)));
                 cEditText.setVAR2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_VAR2)));
                 cEditText.setVAR3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_VAR3)));
