@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:padding="@dimen/margenMaterial">
         <TextView
-            android:id="@+id/check_"
+            android:id="@+id/checkbox_pregunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="n. texto de la pregunta"
@@ -41,6 +41,7 @@
             <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp18"/>
             <include layout="@layout/checkbox_sp_layout" android:id="@+id/checkbox_sp19"/>
             <LinearLayout
+                android:id="@+id/checkbox_lyt_otro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

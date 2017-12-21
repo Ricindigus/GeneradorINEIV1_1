@@ -21,6 +21,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_PAGINAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_EDITTEXT);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_CHECKBOX);
     }
 
     @Override
@@ -29,6 +30,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_PAGINAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_EDITTEXT);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_CHECKBOX);
         onCreate(sqLiteDatabase);
     }
 }

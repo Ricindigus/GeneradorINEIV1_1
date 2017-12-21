@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
@@ -90,31 +91,78 @@ public class LoginActivity extends AppCompatActivity {
         ArrayList<Modulo> modulos = new ArrayList<Modulo>();
         modulos.add(new Modulo("1","MODULO 1"));
         modulos.add(new Modulo("2","MODULO 2"));
+        modulos.add(new Modulo("3","MODULO 3"));
 
         ArrayList<Pagina> paginas = new ArrayList<Pagina>();
-        paginas.add(new Pagina("1","1","0101","1","0102","1","0103","1","","","",""));
-        paginas.add(new Pagina("2","1","0104","1","0105","1","","","","","",""));
-        paginas.add(new Pagina("3","1","0106","1","0107","1","","","","","",""));
-        paginas.add(new Pagina("4","1","0108","1","","","","","","","",""));
-        paginas.add(new Pagina("5","2","0209","1","","","","","","","",""));
+        paginas.add(new Pagina("1","1","01001","1","01002","1","01003","1","","","",""));
+        paginas.add(new Pagina("2","1","01004","1","01005","1","","","","","",""));
+        paginas.add(new Pagina("3","1","01006","1","01007","1","","","","","",""));
+        paginas.add(new Pagina("4","1","01008","1","","","","","","","",""));
+        paginas.add(new Pagina("5","2","02001","1","02002","2","02003","2","","","",""));
+        paginas.add(new Pagina("6","2","02004","2","02005","2","","","","","",""));
+        paginas.add(new Pagina("7","3","03006","2","","","","","","","",""));
+
 
         ArrayList<CEditText> cEditTexts = new ArrayList<CEditText>();
-        cEditTexts.add(new CEditText("0101","01","01","¿Cuánto es tu sueldo?","SOLES","M1_P1","","","",""));
-        cEditTexts.add(new CEditText("0102","01","02","¿Cuáles fueron tus 3 ultimos trabajos?","1er TRABAJO","M1_P2_1","2do TRABAJO","M1_P2_2","3er TRABAJO","M1_P2_3"));
-        cEditTexts.add(new CEditText("0103","01","03","¿Cuánto tiempo llevas en tu empresa?","AÑOS","M1_P3_1","MESES","M1_P3_2","",""));
-        cEditTexts.add(new CEditText("0104","01","04","En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?","NUMERO DE TRABAJADORES","M1_P4","","","",""));
-        cEditTexts.add(new CEditText("0105","01","05","¿En qué año implementó la norma técnica o estándar de calidad más importante?","AÑO","M1_P5","","","",""));
-        cEditTexts.add(new CEditText("0106","01","06","¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?","Gasto en S/.","M1_P6","","","",""));
-        cEditTexts.add(new CEditText("0107","01","07","Su empresa ¿cuántos establecimientos tiene?","N° de establecimientos","M1_P7","","","",""));
-        cEditTexts.add(new CEditText("0108","01","08","Actualmente su empresa, ¿cuántas vacantes tiene?","Cantidad de vacantes","M1_P8","","","",""));
-        cEditTexts.add(new CEditText("0209","02","09","Durante el año 2016, en su empresa ¿a cuánto asciende el excedente bruto de operación?","SOLES","M1_P9","","","",""));
+        cEditTexts.add(new CEditText("01001","01","001","¿Cuánto es tu sueldo?","SOLES","M1_P1","","","",""));
+        cEditTexts.add(new CEditText("01002","01","002","¿Cuáles fueron tus 3 ultimos trabajos?","1er TRABAJO","M1_P2_1","2do TRABAJO","M1_P2_2","3er TRABAJO","M1_P2_3"));
+        cEditTexts.add(new CEditText("01003","01","003","¿Cuánto tiempo llevas en tu empresa?","AÑOS","M1_P3_1","MESES","M1_P3_2","",""));
+        cEditTexts.add(new CEditText("01004","01","004","En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?","NUMERO DE TRABAJADORES","M1_P4","","","",""));
+        cEditTexts.add(new CEditText("01005","01","005","¿En qué año implementó la norma técnica o estándar de calidad más importante?","AÑO","M1_P5","","","",""));
+        cEditTexts.add(new CEditText("01006","01","006","¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?","Gasto en S/.","M1_P6","","","",""));
+        cEditTexts.add(new CEditText("01007","01","007","Su empresa ¿cuántos establecimientos tiene?","N° de establecimientos","M1_P7","","","",""));
+        cEditTexts.add(new CEditText("01008","01","008","Actualmente su empresa, ¿cuántas vacantes tiene?","Cantidad de vacantes","M1_P8","","","",""));
+        cEditTexts.add(new CEditText("02001","02","001","Durante el año 2016, en su empresa ¿a cuánto asciende el excedente bruto de operación?","SOLES","M2_P1","","","",""));
 
+        ArrayList<CCheckBox> cCheckBoxes = new ArrayList<CCheckBox>();
+        cCheckBoxes.add(new CCheckBox("02002","02","002","PREGUNTA DE PRUEBA CHECKBOX1"
+                ,"SUBPREGUNTA CHECKBOX 1","M2_P2_1","SUBPREGUNTA CHECKBOX 2","M2_P2_2"
+                ,"SUBPREGUNTA CHECKBOX 3","M2_P2_3","SUBPREGUNTA CHECKBOX 4","M2_P2_4"
+                ,"SUBPREGUNTA CHECKBOX 5","M2_P2_5","SUBPREGUNTA CHECKBOX 6","M2_P2_6"
+                ,"SUBPREGUNTA CHECKBOX 7","M2_P2_7","SUBPREGUNTA CHECKBOX 8","M2_P2_8"
+                ,"SUBPREGUNTA CHECKBOX 9","M2_P2_9","SUBPREGUNTA CHECKBOX 10","M2_P2_10"
+                ,"SUBPREGUNTA CHECKBOX 11","M2_P2_11","SUBPREGUNTA CHECKBOX 12","M2_P2_12"
+                ,"SUBPREGUNTA CHECKBOX 13","M2_P2_13","SUBPREGUNTA CHECKBOX 14","M2_P2_14"
+                ,"SUBPREGUNTA CHECKBOX 15","M2_P2_15","SUBPREGUNTA CHECKBOX 16","M2_P2_16"
+                ,"SUBPREGUNTA CHECKBOX 17","M2_P2_17","SUBPREGUNTA CHECKBOX 18","M2_P2_18"
+                ,"SUBPREGUNTA CHECKBOX 19","M2_P2_19","M2_P2_ESP"));
+        cCheckBoxes.add(new CCheckBox("02003","02","003","PREGUNTA DE PRUEBA CHECKBOX2"
+                ,"SUBPREGUNTA CHECKBOX 1","M2_P3_1","SUBPREGUNTA CHECKBOX 2","M2_P3_2"
+                ,"SUBPREGUNTA CHECKBOX 3","M2_P3_3","SUBPREGUNTA CHECKBOX 4","M2_P3_4"
+                ,"SUBPREGUNTA CHECKBOX 5","M2_P3_5","SUBPREGUNTA CHECKBOX 6","M2_P3_6"
+                ,"","","","","","","",""
+                ,"","","","","","","",""
+                ,"","","","","","","",""
+                ,"","",""));
+        cCheckBoxes.add(new CCheckBox("02004","02","004","PREGUNTA DE PRUEBA CHECKBOX3"
+                ,"SUBPREGUNTA CHECKBOX 1","M2_P4_1","SUBPREGUNTA CHECKBOX 2","M2_P4_2"
+                ,"SUBPREGUNTA CHECKBOX 3","M2_P4_3","SUBPREGUNTA CHECKBOX 4","M2_P4_4"
+                ,"SUBPREGUNTA CHECKBOX 5","M2_P4_5","SUBPREGUNTA CHECKBOX 6","M2_P4_6"
+                ,"SUBPREGUNTA CHECKBOX 7","M2_P4_7","SUBPREGUNTA CHECKBOX 8","M2_P4_8"
+                ,"","","","","","","",""
+                ,"","","","","","","",""
+                ,"","","","","","","M2_P4_ESP"));
+        cCheckBoxes.add(new CCheckBox("02005","02","005","PREGUNTA DE PRUEBA CHECKBOX4"
+                ,"SUBPREGUNTA CHECKBOX 1","M2_P5_1","SUBPREGUNTA CHECKBOX 2","M2_P5_2"
+                ,"SUBPREGUNTA CHECKBOX 3","M2_P5_3","SUBPREGUNTA CHECKBOX 4","M2_P5_4"
+                ,"SUBPREGUNTA CHECKBOX 5","M2_P5_5","SUBPREGUNTA CHECKBOX 6","M2_P5_6"
+                ,"","","","","","","","","","","",""
+                ,"","","","","","","","","","","",""
+                ,"","",""));
+        cCheckBoxes.add(new CCheckBox("03006","03","001","PREGUNTA DE PRUEBA CHECKBOX5"
+                ,"SUBPREGUNTA CHECKBOX 1","M3_P5_1","SUBPREGUNTA CHECKBOX 2","M3_P5_2"
+                ,"SUBPREGUNTA CHECKBOX 3","M3_P5_3","SUBPREGUNTA CHECKBOX 4","M3_P5_4"
+                ,"SUBPREGUNTA CHECKBOX 5","M3_P5_5","SUBPREGUNTA CHECKBOX 6","M3_P5_6"
+                ,"","","","","","","","","","","",""
+                ,"","","","","","","","","","","",""
+                ,"","",""));
 
         DataComponentes dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         dataComponentes.insertarModulos(modulos);
         dataComponentes.insertarPaginas(paginas);
         dataComponentes.insertarCEditTexts(cEditTexts);
+        dataComponentes.insertarCCheckBoxs(cCheckBoxes);
         dataComponentes.close();
     }
 

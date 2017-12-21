@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheckBox
-    android:id="@+id/checkbox_sp1"
+    android:id="@+id/checkbox_check"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="n. sub pregunta n"

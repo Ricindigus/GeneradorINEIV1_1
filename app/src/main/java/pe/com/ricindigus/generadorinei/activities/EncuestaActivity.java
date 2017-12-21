@@ -29,6 +29,8 @@ import java.util.Map;
 import pe.com.ricindigus.generadorinei.ConstantesGlobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
 import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
@@ -210,6 +212,10 @@ public class EncuestaActivity extends AppCompatActivity {
                     case TipoComponente.EDITTEXT:
                         CEditText cEditText = dataComponentes.getCEditText(ids[i]);
                         fragmentComponente = new EditTextFragment(cEditText,getApplicationContext());
+                        break;
+                    case TipoComponente.CHECKBOX:
+                        CCheckBox cCheckBox = dataComponentes.getCCheckbox(ids[i]);
+                        fragmentComponente = new CheckBoxFragment(cCheckBox,getApplicationContext());
                         break;
                 }
             }else{
