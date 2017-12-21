@@ -1,58 +1,62 @@
 package pe.com.ricindigus.generadorinei.activities;
 
-import android.content.ContentValues;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pe.com.ricindigus.generadorinei.ConstantesGlobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
-import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
+import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
 import pe.com.ricindigus.generadorinei.fragments.IdentificacionFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
 import pe.com.ricindigus.generadorinei.fragments.VisitasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 public class EncuestaActivity extends AppCompatActivity {
     private ArrayList<String> listDataHeader;
     private ExpandableListView expListView;
     private HashMap<String, List<String>> listDataChild;
     private ExpandListAdapter listAdapter;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
     private Button btnAtras;
     private Button btnSiguiente;
+    private int moduloActual = 0;
     private int posicionFragment = 0;
     private Fragment fragmentActual = new Fragment();
+    private Fragment fragmentComponente = new Fragment();
     private String idEmpresa = "";
+    private String nombreSeccionActual = "";
     private Data data;
+    private DataComponentes dataComponentes;
     private Toolbar toolbar;
-    private LinearLayout lytComponente1, lytComponente2, lytComponente3;
+    private LinearLayout lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5;
+    private int numeroPaginasTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,14 @@ public class EncuestaActivity extends AppCompatActivity {
         lytComponente1 =  (LinearLayout)findViewById(R.id.layout_componente1);
         lytComponente2 =  (LinearLayout)findViewById(R.id.layout_componente2);
         lytComponente3 =  (LinearLayout)findViewById(R.id.layout_componente3);
+        lytComponente4 =  (LinearLayout)findViewById(R.id.layout_componente4);
+        lytComponente5 =  (LinearLayout)findViewById(R.id.layout_componente5);
         setSupportActionBar(toolbar);
+
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        numeroPaginasTotal = (int)dataComponentes.getNumeroItemsPaginas() + 3;
+        dataComponentes.close();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -90,8 +101,8 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-                if(posicionFragment + 1 <= 2) posicionFragment++;
-                else if(posicionFragment + 1 == 3) posicionFragment = 0;
+                if(posicionFragment + 1 < numeroPaginasTotal) posicionFragment++;
+                else if(posicionFragment + 1 == numeroPaginasTotal) posicionFragment = 0;
                 setFragmentNombreSeccion(posicionFragment,1);
                 setFragment(posicionFragment,1);
             }
@@ -109,55 +120,104 @@ public class EncuestaActivity extends AppCompatActivity {
 
     public void setFragmentNombreSeccion(int pos,int direccion){
         String nombreSeccion = "";
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(direccion > 0){
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-        }else{
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        switch (pos) {
+            case 0:
+                nombreSeccion = "CONTROL DE VISITAS";
+                break;
+            case 1:
+                nombreSeccion = "CARATULA";
+                break;
+            case 2:
+                nombreSeccion = "IDENTIFICACION";
+                break;
+            default:
+                int numeroDePagina = pos-2;
+                dataComponentes = new DataComponentes(getApplicationContext());
+                dataComponentes.open();
+                String numModulo = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
+                if(Integer.parseInt(numModulo) != moduloActual)nombreSeccion = dataComponentes.getModulo(numModulo).getTITULO();
+                break;
         }
-        switch (pos){
-            case 0:nombreSeccion = "CONTROL DE VISITAS";break;
-            case 1:nombreSeccion = "CARATULA";break;
-            case 2:nombreSeccion = "IDENTIFICACION";break;
-//            case 4:
-//                fragmentActual = new Modulo1Fragment1(idEmpresa,this);
-//                fragmentTransaction.replace(R.id.container_encuesta_enhatrape, fragmentActual);
-//                break;
+        if(!nombreSeccion.equals(nombreSeccionActual)){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(direccion > 0){
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+            }else{
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+            }
+            NombreSeccionFragment nombreSeccionFragment = new NombreSeccionFragment(nombreSeccion);
+            fragmentTransaction.replace(R.id.textoNombreSeccion, nombreSeccionFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            nombreSeccionActual = nombreSeccion;
         }
-        NombreSeccionFragment nombreSeccionFragment = new NombreSeccionFragment(nombreSeccion);
-        fragmentTransaction.replace(R.id.textoNombreSeccion, nombreSeccionFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
     }
 
     public void setFragment(int pos,int direccion){
+        if(pos < 3){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            if(direccion > 0){
+//                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+//            }else{
+//                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//            }
+            switch (pos){
+                case 0:
+                    fragmentActual = new VisitasFragment(idEmpresa,this);
+                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+                    break;
+                case 1:
+                    fragmentActual = new CaratulaFragment(idEmpresa,this);
+                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+                    break;
+                case 2:
+                    fragmentActual = new IdentificacionFragment(idEmpresa,this);
+                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+                    break;
+            }
+            int[] layouts = {R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
+            for (int i = 0; i < layouts.length; i++) {
+                Fragment fragment = new Fragment();
+                fragmentTransaction.replace(layouts[i], fragment);
+            }
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }else{
+            setComponentes(pos-2,direccion);
+        }
+    }
+
+    public void setComponentes(int numeroPagina, int direccion){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(direccion > 0){
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-        }else{
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//        if(direccion > 0){
+//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+//        }else{
+//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//        }
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        String[] ids = {pagina.getIDP1(),pagina.getIDP2(),pagina.getIDP3(),pagina.getIDP4(),pagina.getIDP5()};
+        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5()};
+        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
+        for (int i = 0; i < ids.length; i++) {
+            if(!ids[i].equals("")){
+                int tipo= Integer.parseInt(tipos[i]);
+                switch (tipo){
+                    case TipoComponente.EDITTEXT:
+                        CEditText cEditText = dataComponentes.getCEditText(ids[i]);
+                        fragmentComponente = new EditTextFragment(cEditText,getApplicationContext());
+                        break;
+                }
+            }else{
+                fragmentComponente = new Fragment();
+            }
+            fragmentTransaction.replace(layouts[i], fragmentComponente);
         }
-
-        switch (pos){
-            case 0:
-                fragmentActual = new VisitasFragment(idEmpresa,this);
-                fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                break;
-            case 1:
-                fragmentActual = new CaratulaFragment(idEmpresa,this);
-                fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                break;
-            case 2:
-                fragmentActual = new IdentificacionFragment(idEmpresa,this);
-                fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                break;
-//            case 4:
-//                fragmentActual = new Modulo1Fragment1(idEmpresa,this);
-//                fragmentTransaction.replace(R.id.container_encuesta_enhatrape, fragmentActual);
-//                break;
-        }
+        dataComponentes.close();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -178,7 +238,8 @@ public class EncuestaActivity extends AppCompatActivity {
                 switch (groupPosition){
                     case 0:
                         switch (childPosition){
-                            case 0:setFragment(childPosition,1);posicionFragment = childPosition;break;
+                            case 0:setFragment(childPosition,1);
+                                posicionFragment = childPosition;break;
                             case 1:
                                 posicionFragment = childPosition;setFragment(childPosition,1);
                                 break;
@@ -299,4 +360,29 @@ public class EncuestaActivity extends AppCompatActivity {
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @SuppressLint("NewApi")
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Está seguro que desea volver al marco y salir de la encuesta?")
+                    .setTitle("Aviso")
+                    .setCancelable(false)
+                    .setNegativeButton("No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            })
+                    .setPositiveButton("Sí",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                }
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

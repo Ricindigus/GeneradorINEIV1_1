@@ -14,13 +14,10 @@ public class CEditText {
     private String NUMERO;
     private String PREGUNTA;
     private String SP1;
-    private String HINT1;
     private String VAR1;
     private String SP2;
-    private String HINT2;
     private String VAR2;
     private String SP3;
-    private String HINT3;
     private String VAR3;
 
     public CEditText() {
@@ -34,6 +31,19 @@ public class CEditText {
         VAR2 = "";
         SP3 = "";
         VAR3 = "";
+    }
+
+    public CEditText(String ID, String MODULO, String NUMERO, String PREGUNTA, String SP1, String VAR1, String SP2, String VAR2, String SP3, String VAR3) {
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+        this.PREGUNTA = PREGUNTA;
+        this.SP1 = SP1;
+        this.VAR1 = VAR1;
+        this.SP2 = SP2;
+        this.VAR2 = VAR2;
+        this.SP3 = SP3;
+        this.VAR3 = VAR3;
     }
 
     public String getID() {
@@ -116,29 +126,6 @@ public class CEditText {
         this.PREGUNTA = PREGUNTA;
     }
 
-    public String getHINT1() {
-        return HINT1;
-    }
-
-    public void setHINT1(String HINT1) {
-        this.HINT1 = HINT1;
-    }
-
-    public String getHINT2() {
-        return HINT2;
-    }
-
-    public void setHINT2(String HINT2) {
-        this.HINT2 = HINT2;
-    }
-
-    public String getHINT3() {
-        return HINT3;
-    }
-
-    public void setHINT3(String HINT3) {
-        this.HINT3 = HINT3;
-    }
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(10);
@@ -147,11 +134,10 @@ public class CEditText {
         contentValues.put(SQLConstantesComponente.EDITTEXT_NUMERO, NUMERO);
         contentValues.put(SQLConstantesComponente.EDITTEXT_PREGUNTA, PREGUNTA);
         contentValues.put(SQLConstantesComponente.EDITTEXT_SP1,SP1);
-        contentValues.put(SQLConstantesComponente.EDITTEXT_HINT1,HINT1);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_SP2,SP2);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_SP3,SP3);
         contentValues.put(SQLConstantesComponente.EDITTEXT_VAR1,VAR1);
-        contentValues.put(SQLConstantesComponente.EDITTEXT_HINT2,HINT2);
         contentValues.put(SQLConstantesComponente.EDITTEXT_VAR2,VAR2);
-        contentValues.put(SQLConstantesComponente.EDITTEXT_HINT3,HINT3);
         contentValues.put(SQLConstantesComponente.EDITTEXT_VAR3,VAR3);
         return contentValues;
     }

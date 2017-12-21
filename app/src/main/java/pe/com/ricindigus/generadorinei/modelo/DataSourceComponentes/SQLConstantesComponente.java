@@ -11,10 +11,15 @@ public class SQLConstantesComponente {
     public static final String tablaEncuestas = "encuestas";
     public static final String tablaEditText = "edittexts";
     public static final String tablaPaginas = "paginas";
+    public static final String tablaModulos = "modulos";
 
     //COLUMNAS ENCUESTAS
     public static final String ENCUESTA_ID = "ID";
     public static final String ENCUESTA_TITULO = "TITULO";
+
+    //COLUMNAS MODULOS
+    public static final String MODULO_ID = "ID";
+    public static final String MODULO_TITULO = "TITULO";
 
     //COLUMNAS PAGINAS
     public static final String PAGINA_ID = "ID";
@@ -36,13 +41,10 @@ public class SQLConstantesComponente {
     public static final String EDITTEXT_NUMERO = "NUMERO";
     public static final String EDITTEXT_PREGUNTA = "PREGUNTA";
     public static final String EDITTEXT_SP1 = "SP1";
-    public static final String EDITTEXT_HINT1 = "HINT1";
     public static final String EDITTEXT_VAR1 = "VAR1";
     public static final String EDITTEXT_SP2 = "SP2";
-    public static final String EDITTEXT_HINT2 = "HINT2";
     public static final String EDITTEXT_VAR2 = "VAR2";
     public static final String EDITTEXT_SP3 = "SP3";
-    public static final String EDITTEXT_HINT3 = "HINT3";
     public static final String EDITTEXT_VAR3 = "VAR3";
 
     //CREACION DE TABLAS (CREATE)
@@ -68,6 +70,12 @@ public class SQLConstantesComponente {
                     PAGINA_TP5 + " TEXT" + ");"
             ;
 
+    public static final String SQL_CREATE_TABLA_MODULOS =
+            "CREATE TABLE " + tablaModulos + "(" +
+                    MODULO_ID + " TEXT PRIMARY KEY," +
+                    MODULO_TITULO + " TEXT" + ");"
+            ;
+
     public static final String SQL_CREATE_TABLA_EDITTEXT =
             "CREATE TABLE " + tablaEditText + "(" +
                     EDITTEXT_ID + " TEXT PRIMARY KEY," +
@@ -75,13 +83,10 @@ public class SQLConstantesComponente {
                     EDITTEXT_NUMERO + " TEXT," +
                     EDITTEXT_PREGUNTA + " TEXT," +
                     EDITTEXT_SP1 + " TEXT," +
-                    EDITTEXT_HINT1 + " TEXT," +
                     EDITTEXT_VAR1 + " TEXT," +
                     EDITTEXT_SP2 + " TEXT," +
-                    EDITTEXT_HINT2 + " TEXT," +
                     EDITTEXT_VAR2 + " TEXT," +
                     EDITTEXT_SP3 + " TEXT," +
-                    EDITTEXT_HINT3 + " TEXT," +
                     EDITTEXT_VAR3 + " TEXT" + ");"
             ;
 
@@ -91,6 +96,7 @@ public class SQLConstantesComponente {
 
     //BORRADO DE TABLAS (DELETE)
     public static final String SQL_DELETE_ENCUESTAS = "DROP TABLE " + tablaEncuestas;
+    public static final String SQL_DELETE_MODULOS = "DROP TABLE " + tablaModulos;
     public static final String SQL_DELETE_PAGINAS = "DROP TABLE " + tablaPaginas;
     public static final String SQL_DELETE_EDITTEXT = "DROP TABLE " + tablaEditText;
 
@@ -100,6 +106,11 @@ public class SQLConstantesComponente {
             ENCUESTA_ID, ENCUESTA_TITULO
     };
 
+    public static final String[] ALL_COLUMNS_MODULOS = {
+            MODULO_ID, MODULO_TITULO
+    };
+
+
     public static final String[] ALL_COLUMNS_PAGINAS = {
             PAGINA_ID, PAGINA_MODULO , PAGINA_IDP1 , PAGINA_TP1 ,
             PAGINA_IDP2 , PAGINA_TP2 , PAGINA_IDP3 , PAGINA_TP3 ,
@@ -108,7 +119,6 @@ public class SQLConstantesComponente {
 
     public static final String[] ALL_COLUMNS_EDITTEXT = {
             EDITTEXT_ID, EDITTEXT_MODULO , EDITTEXT_NUMERO , EDITTEXT_PREGUNTA ,
-            EDITTEXT_HINT1, EDITTEXT_HINT2, EDITTEXT_HINT3,
             EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
     };
 

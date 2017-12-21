@@ -37,6 +37,21 @@ public class Pagina {
         TIPO5 = "";
     }
 
+    public Pagina(String ID, String MODULO, String IDP1, String TIPO1, String IDP2, String TIPO2, String IDP3, String TIPO3, String IDP4, String TIPO4, String IDP5, String TIPO5) {
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.IDP1 = IDP1;
+        this.TIPO1 = TIPO1;
+        this.IDP2 = IDP2;
+        this.TIPO2 = TIPO2;
+        this.IDP3 = IDP3;
+        this.TIPO3 = TIPO3;
+        this.IDP4 = IDP4;
+        this.TIPO4 = TIPO4;
+        this.IDP5 = IDP5;
+        this.TIPO5 = TIPO5;
+    }
+
     public String getID() {
         return ID;
     }
