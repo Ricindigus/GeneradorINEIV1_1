@@ -135,7 +135,7 @@ public class EncuestaActivity extends AppCompatActivity {
                 nombreSeccion = "IDENTIFICACION";
                 break;
             default:
-                int numeroDePagina = pos-2;
+                int numeroDePagina = pos - 2;
                 dataComponentes = new DataComponentes(getApplicationContext());
                 dataComponentes.open();
                 String numModulo = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
