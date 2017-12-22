@@ -12,6 +12,7 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
@@ -55,6 +56,9 @@ public class DataComponentes {
     }
     public long getNumeroItemsCCheckBox(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaCheckBox);
+    }
+    public long getNumeroItemsCRadio(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaRadio);
     }
 
 
@@ -303,4 +307,54 @@ public class DataComponentes {
         return cCheckBox;
     }
     //FIN CHECKBOX
+
+    //INICIO RADIO
+    public void insertarCRadio(CRadio cRadio){
+        ContentValues contentValues = cRadio.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaRadio,null,contentValues);
+    }
+    public void insertarCRadios(ArrayList<CRadio> cRadios){
+        long items = getNumeroItemsCRadio();
+        if(items == 0){
+            for (CRadio cRadio : cRadios) {
+                try {
+                    insertarCRadio(cRadio);
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public CRadio getCRadio(String idCRadio){
+        CRadio cRadio = new CRadio();
+        String[] whereArgs = new String[]{idCRadio};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaRadio,
+                    SQLConstantesComponente.ALL_COLUMNS_RADIO,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                cRadio.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_ID )));
+                cRadio.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_MODULO)));
+                cRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_NUMERO )));
+                cRadio.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PREGUNTA )));
+                cRadio.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP1 )));
+                cRadio.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP2 )));
+                cRadio.setSP3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP3 )));
+                cRadio.setSP4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente. RADIO_SP4 )));
+                cRadio.setSP5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP5 )));
+                cRadio.setSP6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP6 )));
+                cRadio.setSP7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP7 )));
+                cRadio.setSP8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente. RADIO_SP8 )));
+                cRadio.setSP9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente. RADIO_SP9 )));
+                cRadio.setSP10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP10)));
+                cRadio.setVARRADIO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_VARRADIO)));
+                cRadio.setVARESP(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_VARESP)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return cRadio;
+    }
+    //FIN RADIO
 }

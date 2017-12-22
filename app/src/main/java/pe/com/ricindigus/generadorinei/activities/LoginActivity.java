@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
@@ -92,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
         modulos.add(new Modulo("1","MODULO 1"));
         modulos.add(new Modulo("2","MODULO 2"));
         modulos.add(new Modulo("3","MODULO 3"));
+        modulos.add(new Modulo("4","MODULO 4"));
 
         ArrayList<Pagina> paginas = new ArrayList<Pagina>();
         paginas.add(new Pagina("1","1","01001","1","01002","1","01003","1","","","",""));
@@ -100,7 +102,10 @@ public class LoginActivity extends AppCompatActivity {
         paginas.add(new Pagina("4","1","01008","1","","","","","","","",""));
         paginas.add(new Pagina("5","2","02001","1","02002","2","02003","2","","","",""));
         paginas.add(new Pagina("6","2","02004","2","02005","2","","","","","",""));
-        paginas.add(new Pagina("7","3","03006","2","","","","","","","",""));
+        paginas.add(new Pagina("7","3","03001","2","03002","3","03003","3","","","",""));
+        paginas.add(new Pagina("8","3","03004","3","03005","3","","","","","",""));
+        paginas.add(new Pagina("9","4","04001","3","","","","","","","",""));
+
 
 
         ArrayList<CEditText> cEditTexts = new ArrayList<CEditText>();
@@ -149,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                 ,"","","","","","","","","","","",""
                 ,"","","","","","","","","","","",""
                 ,"","",""));
-        cCheckBoxes.add(new CCheckBox("03006","03","001","PREGUNTA DE PRUEBA CHECKBOX5"
+        cCheckBoxes.add(new CCheckBox("03001","03","001","PREGUNTA DE PRUEBA CHECKBOX5"
                 ,"SUBPREGUNTA CHECKBOX 1","M3_P5_1","SUBPREGUNTA CHECKBOX 2","M3_P5_2"
                 ,"SUBPREGUNTA CHECKBOX 3","M3_P5_3","SUBPREGUNTA CHECKBOX 4","M3_P5_4"
                 ,"SUBPREGUNTA CHECKBOX 5","M3_P5_5","SUBPREGUNTA CHECKBOX 6","M3_P5_6"
@@ -157,12 +162,40 @@ public class LoginActivity extends AppCompatActivity {
                 ,"","","","","","","","","","","",""
                 ,"","",""));
 
+        ArrayList<CRadio> cRadios = new ArrayList<CRadio>();
+        cRadios.add(new CRadio("03002","03","002","PREGUNTA DE PRUEBA RADIOS",
+                "SUBPREGUNTA RADIO 1","SUBPREGUNTA RADIO 2","SUBPREGUNTA RADIO 3",
+                "SUBPREGUNTA RADIO 4","SUBPREGUNTA RADIO 5","SUBPREGUNTA RADIO 6",
+                "SUBPREGUNTA RADIO 7","SUBPREGUNTA RADIO 8","SUBPREGUNTA RADIO 9",
+                "SUBPREGUNTA RADIO 10","M3_P2","M3_P2_0"));
+        cRadios.add(new CRadio("03003","03","003","PREGUNTA DE PRUEBA RADIOS",
+                "SUBPREGUNTA RADIO 1","SUBPREGUNTA RADIO 2","SUBPREGUNTA RADIO 3",
+                "SUBPREGUNTA RADIO 4","SUBPREGUNTA RADIO 5","SUBPREGUNTA RADIO 6",
+                "SUBPREGUNTA RADIO 7","","",
+                "","M3_P3",""));
+        cRadios.add(new CRadio("03004","03","004","PREGUNTA DE PRUEBA RADIOS",
+                "SI","NO","NO SABE",
+                "","","",
+                "","","",
+                "","M3_P4",""));
+        cRadios.add(new CRadio("03005","03","005","PREGUNTA DE PRUEBA RADIOS",
+                "SUBPREGUNTA RADIO 1","SUBPREGUNTA RADIO 2","SUBPREGUNTA RADIO 3",
+                "SUBPREGUNTA RADIO 4","SUBPREGUNTA RADIO 5","SUBPREGUNTA RADIO 6",
+                "","","",
+                "","M3_P5","M3_P5_0"));
+        cRadios.add(new CRadio("04001","04","001","PREGUNTA DE PRUEBA RADIOS",
+                "SUBPREGUNTA RADIO 1","SUBPREGUNTA RADIO 2","SUBPREGUNTA RADIO 3",
+                "SUBPREGUNTA RADIO 4","SUBPREGUNTA RADIO 5","SUBPREGUNTA RADIO 6",
+                "SUBPREGUNTA RADIO 7","SUBPREGUNTA RADIO 8","SUBPREGUNTA RADIO 9",
+                "SUBPREGUNTA RADIO 10","M4_P1","M4_P1_0"));
+
         DataComponentes dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         dataComponentes.insertarModulos(modulos);
         dataComponentes.insertarPaginas(paginas);
         dataComponentes.insertarCEditTexts(cEditTexts);
         dataComponentes.insertarCCheckBoxs(cCheckBoxes);
+        dataComponentes.insertarCRadios(cRadios);
         dataComponentes.close();
     }
 

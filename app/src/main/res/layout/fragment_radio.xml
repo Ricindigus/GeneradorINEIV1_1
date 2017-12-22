@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:padding="@dimen/margenMaterial">
         <TextView
+            android:id="@+id/radio_pregunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="n. texto de la pregunta"
@@ -84,26 +85,20 @@
                 android:text="sub pregunta 9"
                 android:layout_marginBottom="5dp"
                 />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/radio_sp10"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-                <RadioButton
-                    android:id="@+id/radio_otro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Otro"
-                    />
-                <EditText
-                    android:id="@+id/radio_especifique"
-                    android:layout_width="400dp"
-                    android:layout_height="30dp"
-                    android:padding="5dp"
-                    android:hint="Especifique"
-                    android:background="@drawable/sumaedit_edittext_limpio"
-                    android:layout_marginLeft="10dp"/>
-            </LinearLayout>
+                android:text="sub pregunta 10"
+                />
+            <EditText
+                android:id="@+id/radio_especifique"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:background="@drawable/sumaedit_edittext_limpio"
+                android:layout_marginLeft="10dp"/>
         </RadioGroup>
     </LinearLayout>
 

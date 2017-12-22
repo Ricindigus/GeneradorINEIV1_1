@@ -33,6 +33,8 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
 import pe.com.ricindigus.generadorinei.fragments.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
@@ -216,6 +218,10 @@ public class EncuestaActivity extends AppCompatActivity {
                     case TipoComponente.CHECKBOX:
                         CCheckBox cCheckBox = dataComponentes.getCCheckbox(ids[i]);
                         fragmentComponente = new CheckBoxFragment(cCheckBox,getApplicationContext());
+                        break;
+                    case TipoComponente.RADIO:
+                        CRadio cRadio = dataComponentes.getCRadio(ids[i]);
+                        fragmentComponente = new RadioFragment(cRadio,getApplicationContext());
                         break;
                 }
             }else{

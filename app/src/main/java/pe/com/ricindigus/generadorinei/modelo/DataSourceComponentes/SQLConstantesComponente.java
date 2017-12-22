@@ -9,10 +9,12 @@ public class SQLConstantesComponente {
 
     //TABLAS
     public static final String tablaEncuestas = "encuestas";
-    public static final String tablaEditText = "edittexts";
-    public static final String tablaCheckBox = "checkboxs";
     public static final String tablaPaginas = "paginas";
     public static final String tablaModulos = "modulos";
+    public static final String tablaEditText = "edittexts";
+    public static final String tablaCheckBox = "checkboxs";
+    public static final String tablaRadio = "radios";
+
 
     //COLUMNAS ENCUESTAS
     public static final String ENCUESTA_ID = "ID";
@@ -93,6 +95,23 @@ public class SQLConstantesComponente {
     public static final String CHECKBOX_VAR19 = "VAR19";
     public static final String CHECKBOX_VARESP = "VARESP";
 
+    //COLUMNAS RADIO
+    public static final String RADIO_ID = "ID";
+    public static final String RADIO_MODULO = "MODULO";
+    public static final String RADIO_NUMERO = "NUMERO";
+    public static final String RADIO_PREGUNTA = "PREGUNTA";
+    public static final String RADIO_SP1 = "SP1";
+    public static final String RADIO_SP2 = "SP2";
+    public static final String RADIO_SP3 = "SP3";
+    public static final String RADIO_SP4 = "SP4";
+    public static final String RADIO_SP5 = "SP5";
+    public static final String RADIO_SP6 = "SP6";
+    public static final String RADIO_SP7 = "SP7";
+    public static final String RADIO_SP8 = "SP8";
+    public static final String RADIO_SP9 = "SP9";
+    public static final String RADIO_SP10 = "SP10";
+    public static final String RADIO_VARRADIO = "VARRADIO";
+    public static final String RADIO_VARESP = "VARESP";
 
     //CREACION DE TABLAS (CREATE)
     public static final String SQL_CREATE_TABLA_ENCUESTAS =
@@ -184,6 +203,26 @@ public class SQLConstantesComponente {
                     CHECKBOX_VARESP + " TEXT" + ");"
             ;
 
+    public static final String SQL_CREATE_TABLA_RADIO =
+            "CREATE TABLE " + tablaRadio + "(" +
+                    RADIO_ID + " TEXT PRIMARY KEY," +
+                    RADIO_MODULO + " TEXT," +
+                    RADIO_NUMERO + " TEXT," +
+                    RADIO_PREGUNTA + " TEXT," +
+                    RADIO_SP1 + " TEXT," +
+                    RADIO_SP2 + " TEXT," +
+                    RADIO_SP3 + " TEXT," +
+                    RADIO_SP4 + " TEXT," +
+                    RADIO_SP5 + " TEXT," +
+                    RADIO_SP6 + " TEXT," +
+                    RADIO_SP7 + " TEXT," +
+                    RADIO_SP8 + " TEXT," +
+                    RADIO_SP9 + " TEXT," +
+                    RADIO_SP10 + " TEXT," +
+                    RADIO_VARRADIO + " TEXT," +
+                    RADIO_VARESP + " TEXT" + ");"
+            ;
+
     //CLAUSULA WHERE BUSQUEDA (WHERE)
     public static final String WHERE_CLAUSE_ID = "ID=?";
 
@@ -194,6 +233,7 @@ public class SQLConstantesComponente {
     public static final String SQL_DELETE_PAGINAS = "DROP TABLE " + tablaPaginas;
     public static final String SQL_DELETE_EDITTEXT = "DROP TABLE " + tablaEditText;
     public static final String SQL_DELETE_CHECKBOX = "DROP TABLE " + tablaCheckBox;
+    public static final String SQL_DELETE_RADIO = "DROP TABLE " + tablaRadio;
 
 
     //TRAER TODAS LAS COLUMNAS
@@ -229,5 +269,12 @@ public class SQLConstantesComponente {
             CHECKBOX_SP15 , CHECKBOX_VAR15 , CHECKBOX_SP16 , CHECKBOX_VAR16 ,
             CHECKBOX_SP17 , CHECKBOX_VAR17 , CHECKBOX_SP18 , CHECKBOX_VAR18 ,
             CHECKBOX_SP19 , CHECKBOX_VAR19 , CHECKBOX_VARESP
+    };
+
+    public static final String[] ALL_COLUMNS_RADIO = {
+            RADIO_ID , RADIO_MODULO, RADIO_NUMERO , RADIO_PREGUNTA ,
+            RADIO_SP1 , RADIO_SP2 , RADIO_SP3 , RADIO_SP4 , RADIO_SP5 ,
+            RADIO_SP6 , RADIO_SP7 , RADIO_SP8 , RADIO_SP9 ,RADIO_SP10,
+            RADIO_VARRADIO, RADIO_VARESP
     };
 }
