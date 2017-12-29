@@ -140,6 +140,16 @@ public class DataComponentes {
                 pagina.setTIPO4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)));
                 pagina.setIDP5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP5)));
                 pagina.setTIPO5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)));
+                pagina.setIDP6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP6)));
+                pagina.setTIPO6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)));
+                pagina.setIDP7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP7)));
+                pagina.setTIPO7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)));
+                pagina.setIDP8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP8)));
+                pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
+                pagina.setIDP9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)));
+                pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
+                pagina.setIDP10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10)));
+                pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
             }
         }finally{
             if(cursor != null) cursor.close();
@@ -216,6 +226,7 @@ public class DataComponentes {
                 cEditText.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_ID)));
                 cEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_MODULO)));
                 cEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_NUMERO)));
+                cEditText.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_PAGINA)));
                 cEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_PREGUNTA)));
                 cEditText.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_SP1)));
                 cEditText.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EDITTEXT_SP2)));
@@ -260,6 +271,7 @@ public class DataComponentes {
                 cCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_ID)));
                 cCheckBox.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_MODULO)));
                 cCheckBox.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_NUMERO)));
+                cCheckBox.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_PAGINA)));
                 cCheckBox.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_PREGUNTA )));
                 cCheckBox.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_SP1 )));
                 cCheckBox.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.CHECKBOX_SP2 )));
@@ -337,6 +349,7 @@ public class DataComponentes {
                 cRadio.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_ID )));
                 cRadio.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_MODULO)));
                 cRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_NUMERO )));
+                cRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PAGINA )));
                 cRadio.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PREGUNTA )));
                 cRadio.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP1 )));
                 cRadio.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP2 )));

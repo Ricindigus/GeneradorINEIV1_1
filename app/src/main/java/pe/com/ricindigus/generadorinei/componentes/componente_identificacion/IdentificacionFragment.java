@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.fragments;
+package pe.com.ricindigus.generadorinei.componentes.componente_identificacion;
 
 
 import android.annotation.SuppressLint;
@@ -14,18 +14,17 @@ import pe.com.ricindigus.generadorinei.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CaratulaFragment extends Fragment {
+public class IdentificacionFragment extends Fragment {
 
     private String idEmpresa;
     private Context context;
 
-    public CaratulaFragment() {
+    public IdentificacionFragment() {
         // Required empty public constructor
     }
 
-
     @SuppressLint("ValidFragment")
-    public CaratulaFragment(String idEmpresa, Context context) {
+    public IdentificacionFragment(String idEmpresa, Context context) {
         this.idEmpresa = idEmpresa;
         this.context = context;
     }
@@ -34,7 +33,7 @@ public class CaratulaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_caratula, container, false);
+        return inflater.inflate(R.layout.fragment_identificacion, container, false);
     }
 
 }

@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.pojos;
+package pe.com.ricindigus.generadorinei.componentes.componente_caratula;
 
 import android.content.ContentValues;
 
@@ -8,7 +8,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
  * Created by dmorales on 13/12/2017.
  */
 
-public class Caratula {
+public class CCaratula {
     private String ID;
     private String CAMBIO;
     private String NOMBREDD;
@@ -36,7 +36,7 @@ public class Caratula {
     private String KM;
     private String REF_DIREC;
 
-    public Caratula(){
+    public CCaratula(){
         this.ID = "";
         this.CAMBIO = "";
         this.NOMBREDD = "";

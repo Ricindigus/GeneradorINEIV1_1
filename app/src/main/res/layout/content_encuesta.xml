@@ -14,13 +14,6 @@
         android:layout_height="50dp"
         android:orientation="vertical">
     </LinearLayout>
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/layout_fragment_visita"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--android:visibility="gone"></LinearLayout>-->
     <ScrollView
         android:id="@+id/scrollView_encuesta"
         android:layout_width="match_parent"
@@ -56,6 +49,36 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_componente5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_componente6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_componente7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_componente8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_componente9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_componente10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">

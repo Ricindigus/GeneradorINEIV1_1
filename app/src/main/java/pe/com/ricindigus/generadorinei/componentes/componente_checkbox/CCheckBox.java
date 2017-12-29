@@ -12,6 +12,7 @@ public class CCheckBox {
     private String ID;
     private String MODULO;
     private String NUMERO;
+    private String PAGINA;
     private String PREGUNTA;
     private String SP1;
     private String VAR1;
@@ -53,10 +54,11 @@ public class CCheckBox {
     private String VAR19;
     private String VARESP;
 
-    public CCheckBox(String ID, String MODULO, String NUMERO, String PREGUNTA, String SP1, String VAR1, String SP2, String VAR2, String SP3, String VAR3, String SP4, String VAR4, String SP5, String VAR5, String SP6, String VAR6, String SP7, String VAR7, String SP8, String VAR8, String SP9, String VAR9, String SP10, String VAR10, String SP11, String VAR11, String SP12, String VAR12, String SP13, String VAR13, String SP14, String VAR14, String SP15, String VAR15, String SP16, String VAR16, String SP17, String VAR17, String SP18, String VAR18, String SP19, String VAR19, String VARESP) {
+    public CCheckBox(String ID, String MODULO, String NUMERO, String PAGINA, String PREGUNTA, String SP1, String VAR1, String SP2, String VAR2, String SP3, String VAR3, String SP4, String VAR4, String SP5, String VAR5, String SP6, String VAR6, String SP7, String VAR7, String SP8, String VAR8, String SP9, String VAR9, String SP10, String VAR10, String SP11, String VAR11, String SP12, String VAR12, String SP13, String VAR13, String SP14, String VAR14, String SP15, String VAR15, String SP16, String VAR16, String SP17, String VAR17, String SP18, String VAR18, String SP19, String VAR19, String VARESP) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.NUMERO = NUMERO;
+        this.PAGINA = PAGINA;
         this.PREGUNTA = PREGUNTA;
         this.SP1 = SP1;
         this.VAR1 = VAR1;
@@ -103,6 +105,7 @@ public class CCheckBox {
         this.ID = "";
         this.MODULO = "";
         this.NUMERO = "";
+        this.PAGINA = "";
         this.PREGUNTA = "";
         this.SP1 = "";
         this.VAR1 = "";
@@ -167,6 +170,14 @@ public class CCheckBox {
 
     public void setNUMERO(String NUMERO) {
         this.NUMERO = NUMERO;
+    }
+
+    public String getPAGINA() {
+        return PAGINA;
+    }
+
+    public void setPAGINA(String PAGINA) {
+        this.PAGINA = PAGINA;
     }
 
     public String getPREGUNTA() {
@@ -494,6 +505,7 @@ public class CCheckBox {
         contentValues.put(SQLConstantesComponente.CHECKBOX_ID,ID);
         contentValues.put(SQLConstantesComponente.CHECKBOX_MODULO,MODULO);
         contentValues.put(SQLConstantesComponente.CHECKBOX_NUMERO,NUMERO);
+        contentValues.put(SQLConstantesComponente.CHECKBOX_PAGINA,PAGINA);
         contentValues.put(SQLConstantesComponente.CHECKBOX_PREGUNTA,PREGUNTA);
         contentValues.put(SQLConstantesComponente.CHECKBOX_SP1,SP1);
         contentValues.put(SQLConstantesComponente.CHECKBOX_VAR1,VAR1);

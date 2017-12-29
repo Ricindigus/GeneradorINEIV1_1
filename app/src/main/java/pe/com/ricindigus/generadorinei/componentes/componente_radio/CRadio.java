@@ -12,6 +12,7 @@ public class CRadio {
     private String ID;
     private String MODULO;
     private String NUMERO;
+    private String PAGINA;
     private String PREGUNTA;
     private String SP1;
     private String SP2;
@@ -26,10 +27,11 @@ public class CRadio {
     private String VARRADIO;
     private String VARESP;
 
-    public CRadio(String ID, String MODULO, String NUMERO, String PREGUNTA, String SP1, String SP2, String SP3, String SP4, String SP5, String SP6, String SP7, String SP8, String SP9, String SP10, String VARRADIO, String VARESP) {
+    public CRadio(String ID, String MODULO, String NUMERO, String PAGINA, String PREGUNTA, String SP1, String SP2, String SP3, String SP4, String SP5, String SP6, String SP7, String SP8, String SP9, String SP10, String VARRADIO, String VARESP) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.NUMERO = NUMERO;
+        this.PAGINA = PAGINA;
         this.PREGUNTA = PREGUNTA;
         this.SP1 = SP1;
         this.SP2 = SP2;
@@ -49,6 +51,7 @@ public class CRadio {
         this.ID = "";
         this.MODULO = "";
         this.NUMERO = "";
+        this.PAGINA = "";
         this.PREGUNTA = "";
         this.SP1 = "";
         this.SP2 = "";
@@ -86,6 +89,14 @@ public class CRadio {
 
     public void setNUMERO(String NUMERO) {
         this.NUMERO = NUMERO;
+    }
+
+    public String getPAGINA() {
+        return PAGINA;
+    }
+
+    public void setPAGINA(String PAGINA) {
+        this.PAGINA = PAGINA;
     }
 
     public String getPREGUNTA() {
@@ -197,6 +208,7 @@ public class CRadio {
         contentValues.put(SQLConstantesComponente.RADIO_ID,ID);
         contentValues.put(SQLConstantesComponente.RADIO_MODULO,MODULO);
         contentValues.put(SQLConstantesComponente.RADIO_NUMERO,NUMERO);
+        contentValues.put(SQLConstantesComponente.RADIO_PAGINA,PAGINA);
         contentValues.put(SQLConstantesComponente.RADIO_PREGUNTA,PREGUNTA);
         contentValues.put(SQLConstantesComponente.RADIO_SP1,SP1);
         contentValues.put(SQLConstantesComponente.RADIO_SP2,SP2);

@@ -37,11 +37,22 @@ public class SQLConstantesComponente {
     public static final String PAGINA_TP4 = "TIPO4";
     public static final String PAGINA_IDP5 = "IDP5";
     public static final String PAGINA_TP5 = "TIPO5";
+    public static final String PAGINA_IDP6 = "IDP6";
+    public static final String PAGINA_TP6 = "TIPO6";
+    public static final String PAGINA_IDP7 = "IDP7";
+    public static final String PAGINA_TP7 = "TIPO7";
+    public static final String PAGINA_IDP8 = "IDP8";
+    public static final String PAGINA_TP8 = "TIPO8";
+    public static final String PAGINA_IDP9 = "IDP9";
+    public static final String PAGINA_TP9 = "TIPO9";
+    public static final String PAGINA_IDP10 = "IDP10";
+    public static final String PAGINA_TP10 = "TIPO10";
 
     //COLUMNAS EDIT TEXT
     public static final String EDITTEXT_ID = "ID";
     public static final String EDITTEXT_MODULO = "MODULO";
     public static final String EDITTEXT_NUMERO = "NUMERO";
+    public static final String EDITTEXT_PAGINA = "PAGINA";
     public static final String EDITTEXT_PREGUNTA = "PREGUNTA";
     public static final String EDITTEXT_SP1 = "SP1";
     public static final String EDITTEXT_VAR1 = "VAR1";
@@ -54,6 +65,7 @@ public class SQLConstantesComponente {
     public static final String CHECKBOX_ID = "ID";
     public static final String CHECKBOX_MODULO = "MODULO";
     public static final String CHECKBOX_NUMERO = "NUMERO";
+    public static final String CHECKBOX_PAGINA = "PAGINA";
     public static final String CHECKBOX_PREGUNTA = "PREGUNTA";
     public static final String CHECKBOX_SP1 = "SP1";
     public static final String CHECKBOX_VAR1 = "VAR1";
@@ -99,6 +111,7 @@ public class SQLConstantesComponente {
     public static final String RADIO_ID = "ID";
     public static final String RADIO_MODULO = "MODULO";
     public static final String RADIO_NUMERO = "NUMERO";
+    public static final String RADIO_PAGINA = "PAGINA";
     public static final String RADIO_PREGUNTA = "PREGUNTA";
     public static final String RADIO_SP1 = "SP1";
     public static final String RADIO_SP2 = "SP2";
@@ -133,7 +146,17 @@ public class SQLConstantesComponente {
                     PAGINA_IDP4 + " TEXT," +
                     PAGINA_TP4 + " TEXT," +
                     PAGINA_IDP5 + " TEXT," +
-                    PAGINA_TP5 + " TEXT" + ");"
+                    PAGINA_TP5 + " TEXT," +
+                    PAGINA_IDP6 + " TEXT," +
+                    PAGINA_TP6 + " TEXT," +
+                    PAGINA_IDP7 + " TEXT," +
+                    PAGINA_TP7 + " TEXT," +
+                    PAGINA_IDP8 + " TEXT," +
+                    PAGINA_TP8 + " TEXT," +
+                    PAGINA_IDP9 + " TEXT," +
+                    PAGINA_TP9 + " TEXT," +
+                    PAGINA_IDP10 + " TEXT," +
+                    PAGINA_TP10 + " TEXT" + ");"
             ;
 
     public static final String SQL_CREATE_TABLA_MODULOS =
@@ -147,6 +170,7 @@ public class SQLConstantesComponente {
                     EDITTEXT_ID + " TEXT PRIMARY KEY," +
                     EDITTEXT_MODULO + " TEXT," +
                     EDITTEXT_NUMERO + " TEXT," +
+                    EDITTEXT_PAGINA + " TEXT," +
                     EDITTEXT_PREGUNTA + " TEXT," +
                     EDITTEXT_SP1 + " TEXT," +
                     EDITTEXT_VAR1 + " TEXT," +
@@ -161,6 +185,7 @@ public class SQLConstantesComponente {
                     CHECKBOX_ID + " TEXT PRIMARY KEY," +
                     CHECKBOX_MODULO + " TEXT," +
                     CHECKBOX_NUMERO + " TEXT," +
+                    CHECKBOX_PAGINA + " TEXT," +
                     CHECKBOX_PREGUNTA + " TEXT," +
                     CHECKBOX_SP1 + " TEXT," +
                     CHECKBOX_VAR1 + " TEXT," +
@@ -208,6 +233,7 @@ public class SQLConstantesComponente {
                     RADIO_ID + " TEXT PRIMARY KEY," +
                     RADIO_MODULO + " TEXT," +
                     RADIO_NUMERO + " TEXT," +
+                    RADIO_PAGINA + " TEXT," +
                     RADIO_PREGUNTA + " TEXT," +
                     RADIO_SP1 + " TEXT," +
                     RADIO_SP2 + " TEXT," +
@@ -249,16 +275,19 @@ public class SQLConstantesComponente {
     public static final String[] ALL_COLUMNS_PAGINAS = {
             PAGINA_ID, PAGINA_MODULO , PAGINA_IDP1 , PAGINA_TP1 ,
             PAGINA_IDP2 , PAGINA_TP2 , PAGINA_IDP3 , PAGINA_TP3 ,
-            PAGINA_IDP4 , PAGINA_TP4 , PAGINA_IDP5 , PAGINA_TP5
+            PAGINA_IDP4 , PAGINA_TP4 , PAGINA_IDP5 , PAGINA_TP5,
+            PAGINA_IDP6 , PAGINA_TP6, PAGINA_IDP7 , PAGINA_TP7,
+            PAGINA_IDP8 , PAGINA_TP8, PAGINA_IDP9 , PAGINA_TP9,
+            PAGINA_IDP10 , PAGINA_TP10
     };
 
     public static final String[] ALL_COLUMNS_EDITTEXT = {
-            EDITTEXT_ID, EDITTEXT_MODULO , EDITTEXT_NUMERO , EDITTEXT_PREGUNTA ,
+            EDITTEXT_ID, EDITTEXT_MODULO , EDITTEXT_NUMERO , EDITTEXT_PAGINA, EDITTEXT_PREGUNTA ,
             EDITTEXT_SP1 , EDITTEXT_VAR1, EDITTEXT_SP2 , EDITTEXT_VAR2 , EDITTEXT_SP3 , EDITTEXT_VAR3
     };
 
     public static final String[] ALL_COLUMNS_CHECKBOX = {
-            CHECKBOX_ID , CHECKBOX_MODULO , CHECKBOX_NUMERO , CHECKBOX_PREGUNTA,
+            CHECKBOX_ID , CHECKBOX_MODULO , CHECKBOX_NUMERO , CHECKBOX_PAGINA, CHECKBOX_PREGUNTA,
             CHECKBOX_SP1 , CHECKBOX_VAR1, CHECKBOX_SP2 , CHECKBOX_VAR2 ,
             CHECKBOX_SP3 , CHECKBOX_VAR3 , CHECKBOX_SP4 , CHECKBOX_VAR4 ,
             CHECKBOX_SP5 , CHECKBOX_VAR5 , CHECKBOX_SP6 , CHECKBOX_VAR6 ,
@@ -272,7 +301,7 @@ public class SQLConstantesComponente {
     };
 
     public static final String[] ALL_COLUMNS_RADIO = {
-            RADIO_ID , RADIO_MODULO, RADIO_NUMERO , RADIO_PREGUNTA ,
+            RADIO_ID , RADIO_MODULO, RADIO_NUMERO , RADIO_PREGUNTA , RADIO_PAGINA,
             RADIO_SP1 , RADIO_SP2 , RADIO_SP3 , RADIO_SP4 , RADIO_SP5 ,
             RADIO_SP6 , RADIO_SP7 , RADIO_SP8 , RADIO_SP9 ,RADIO_SP10,
             RADIO_VARRADIO, RADIO_VARESP

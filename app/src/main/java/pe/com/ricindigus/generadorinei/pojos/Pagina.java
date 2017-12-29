@@ -21,6 +21,17 @@ public class Pagina {
     private String TIPO4;
     private String IDP5;
     private String TIPO5;
+    private String IDP6;
+    private String TIPO6;
+    private String IDP7;
+    private String TIPO7;
+    private String IDP8;
+    private String TIPO8;
+    private String IDP9;
+    private String TIPO9;
+    private String IDP10;
+    private String TIPO10;
+
 
     public Pagina() {
         ID = "";
@@ -35,9 +46,19 @@ public class Pagina {
         TIPO4 = "";
         IDP5 = "";
         TIPO5 = "";
+        IDP6 = "";
+        TIPO6 = "";
+        IDP7 = "";
+        TIPO7 = "";
+        IDP8 = "";
+        TIPO8 = "";
+        IDP9 = "";
+        TIPO9 = "";
+        IDP10 = "";
+        TIPO10 = "";
     }
 
-    public Pagina(String ID, String MODULO, String IDP1, String TIPO1, String IDP2, String TIPO2, String IDP3, String TIPO3, String IDP4, String TIPO4, String IDP5, String TIPO5) {
+    public Pagina(String ID, String MODULO, String IDP1, String TIPO1, String IDP2, String TIPO2, String IDP3, String TIPO3, String IDP4, String TIPO4, String IDP5, String TIPO5, String IDP6, String TIPO6, String IDP7, String TIPO7, String IDP8, String TIPO8, String IDP9, String TIPO9, String IDP10, String TIPO10) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.IDP1 = IDP1;
@@ -50,6 +71,16 @@ public class Pagina {
         this.TIPO4 = TIPO4;
         this.IDP5 = IDP5;
         this.TIPO5 = TIPO5;
+        this.IDP6 = IDP6;
+        this.TIPO6 = TIPO6;
+        this.IDP7 = IDP7;
+        this.TIPO7 = TIPO7;
+        this.IDP8 = IDP8;
+        this.TIPO8 = TIPO8;
+        this.IDP9 = IDP9;
+        this.TIPO9 = TIPO9;
+        this.IDP10 = IDP10;
+        this.TIPO10 = TIPO10;
     }
 
     public String getID() {
@@ -148,6 +179,86 @@ public class Pagina {
         this.TIPO5 = TIPO5;
     }
 
+    public String getIDP6() {
+        return IDP6;
+    }
+
+    public void setIDP6(String IDP6) {
+        this.IDP6 = IDP6;
+    }
+
+    public String getTIPO6() {
+        return TIPO6;
+    }
+
+    public void setTIPO6(String TIPO6) {
+        this.TIPO6 = TIPO6;
+    }
+
+    public String getIDP7() {
+        return IDP7;
+    }
+
+    public void setIDP7(String IDP7) {
+        this.IDP7 = IDP7;
+    }
+
+    public String getTIPO7() {
+        return TIPO7;
+    }
+
+    public void setTIPO7(String TIPO7) {
+        this.TIPO7 = TIPO7;
+    }
+
+    public String getIDP8() {
+        return IDP8;
+    }
+
+    public void setIDP8(String IDP8) {
+        this.IDP8 = IDP8;
+    }
+
+    public String getTIPO8() {
+        return TIPO8;
+    }
+
+    public void setTIPO8(String TIPO8) {
+        this.TIPO8 = TIPO8;
+    }
+
+    public String getIDP9() {
+        return IDP9;
+    }
+
+    public void setIDP9(String IDP9) {
+        this.IDP9 = IDP9;
+    }
+
+    public String getTIPO9() {
+        return TIPO9;
+    }
+
+    public void setTIPO9(String TIPO9) {
+        this.TIPO9 = TIPO9;
+    }
+
+    public String getIDP10() {
+        return IDP10;
+    }
+
+    public void setIDP10(String IDP10) {
+        this.IDP10 = IDP10;
+    }
+
+    public String getTIPO10() {
+        return TIPO10;
+    }
+
+    public void setTIPO10(String TIPO10) {
+        this.TIPO10 = TIPO10;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(13);
         contentValues.put(SQLConstantesComponente.PAGINA_ID,ID);
@@ -162,6 +273,17 @@ public class Pagina {
         contentValues.put(SQLConstantesComponente.PAGINA_TP4,TIPO4);
         contentValues.put(SQLConstantesComponente.PAGINA_IDP5,IDP5);
         contentValues.put(SQLConstantesComponente.PAGINA_TP5,TIPO5);
+        contentValues.put(SQLConstantesComponente.PAGINA_IDP6,IDP6);
+        contentValues.put(SQLConstantesComponente.PAGINA_TP6,TIPO6);
+        contentValues.put(SQLConstantesComponente.PAGINA_IDP7,IDP7);
+        contentValues.put(SQLConstantesComponente.PAGINA_TP7,TIPO7);
+        contentValues.put(SQLConstantesComponente.PAGINA_IDP8,IDP8);
+        contentValues.put(SQLConstantesComponente.PAGINA_TP8,TIPO8);
+        contentValues.put(SQLConstantesComponente.PAGINA_IDP9,IDP9);
+        contentValues.put(SQLConstantesComponente.PAGINA_TP9,TIPO9);
+        contentValues.put(SQLConstantesComponente.PAGINA_IDP10,IDP10);
+        contentValues.put(SQLConstantesComponente.PAGINA_TP10,TIPO10);
+
         return contentValues;
     }
 }

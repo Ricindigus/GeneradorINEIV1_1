@@ -1,18 +1,13 @@
 package pe.com.ricindigus.generadorinei.activities;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -22,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,7 +25,7 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.EncuestadoAdapter;
 import pe.com.ricindigus.generadorinei.adapters.MarcoAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.pojos.Caratula;
+import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CCaratula;
 import pe.com.ricindigus.generadorinei.pojos.ItemMarco;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 
@@ -46,7 +40,7 @@ public class MarcoActivity extends AppCompatActivity {
     private ArrayList<String> provincias;
     private ArrayList<String> distritos;
     private ArrayList<String> periodos;
-    private Caratula caratula;
+    private CCaratula CCaratula;
     private String idUsuario;
     private String permisoUsuario;
     private Spinner spDepartamento;

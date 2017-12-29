@@ -12,6 +12,7 @@ public class CEditText {
     private String ID;
     private String MODULO;
     private String NUMERO;
+    private String PAGINA;
     private String PREGUNTA;
     private String SP1;
     private String VAR1;
@@ -24,6 +25,7 @@ public class CEditText {
         ID = "";
         MODULO = "";
         NUMERO = "";
+        PAGINA = "";
         PREGUNTA = "";
         SP1 = "";
         VAR1 = "";
@@ -33,10 +35,11 @@ public class CEditText {
         VAR3 = "";
     }
 
-    public CEditText(String ID, String MODULO, String NUMERO, String PREGUNTA, String SP1, String VAR1, String SP2, String VAR2, String SP3, String VAR3) {
+    public CEditText(String ID, String MODULO, String NUMERO, String PAGINA, String PREGUNTA, String SP1, String VAR1, String SP2, String VAR2, String SP3, String VAR3) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.NUMERO = NUMERO;
+        this.PAGINA = PAGINA;
         this.PREGUNTA = PREGUNTA;
         this.SP1 = SP1;
         this.VAR1 = VAR1;
@@ -52,6 +55,38 @@ public class CEditText {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getMODULO() {
+        return MODULO;
+    }
+
+    public void setMODULO(String MODULO) {
+        this.MODULO = MODULO;
+    }
+
+    public String getNUMERO() {
+        return NUMERO;
+    }
+
+    public void setNUMERO(String NUMERO) {
+        this.NUMERO = NUMERO;
+    }
+
+    public String getPAGINA() {
+        return PAGINA;
+    }
+
+    public void setPAGINA(String PAGINA) {
+        this.PAGINA = PAGINA;
+    }
+
+    public String getPREGUNTA() {
+        return PREGUNTA;
+    }
+
+    public void setPREGUNTA(String PREGUNTA) {
+        this.PREGUNTA = PREGUNTA;
     }
 
     public String getSP1() {
@@ -102,36 +137,12 @@ public class CEditText {
         this.VAR3 = VAR3;
     }
 
-    public String getMODULO() {
-        return MODULO;
-    }
-
-    public void setMODULO(String MODULO) {
-        this.MODULO = MODULO;
-    }
-
-    public String getNUMERO() {
-        return NUMERO;
-    }
-
-    public void setNUMERO(String NUMERO) {
-        this.NUMERO = NUMERO;
-    }
-
-    public String getPREGUNTA() {
-        return PREGUNTA;
-    }
-
-    public void setPREGUNTA(String PREGUNTA) {
-        this.PREGUNTA = PREGUNTA;
-    }
-
-
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(10);
         contentValues.put(SQLConstantesComponente.EDITTEXT_ID,ID);
         contentValues.put(SQLConstantesComponente.EDITTEXT_MODULO, MODULO);
         contentValues.put(SQLConstantesComponente.EDITTEXT_NUMERO, NUMERO);
+        contentValues.put(SQLConstantesComponente.EDITTEXT_PAGINA, PAGINA);
         contentValues.put(SQLConstantesComponente.EDITTEXT_PREGUNTA, PREGUNTA);
         contentValues.put(SQLConstantesComponente.EDITTEXT_SP1,SP1);
         contentValues.put(SQLConstantesComponente.EDITTEXT_SP2,SP2);

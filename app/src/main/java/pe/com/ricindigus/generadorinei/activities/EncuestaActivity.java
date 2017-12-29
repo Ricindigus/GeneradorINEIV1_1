@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pe.com.ricindigus.generadorinei.ConstantesGlobales.TipoComponente;
+import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
@@ -35,10 +35,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
-import pe.com.ricindigus.generadorinei.fragments.CaratulaFragment;
-import pe.com.ricindigus.generadorinei.fragments.IdentificacionFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
-import pe.com.ricindigus.generadorinei.fragments.VisitasFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -50,7 +50,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private ExpandListAdapter listAdapter;
     private Button btnAtras;
     private Button btnSiguiente;
-    private int moduloActual = 0;
+    private int moduloActual = -1;
     private int posicionFragment = 0;
     private Fragment fragmentActual = new Fragment();
     private Fragment fragmentComponente = new Fragment();
@@ -78,7 +78,7 @@ public class EncuestaActivity extends AppCompatActivity {
 
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        numeroPaginasTotal = (int)dataComponentes.getNumeroItemsPaginas() + 3;
+        numeroPaginasTotal = (int)dataComponentes.getNumeroItemsPaginas();
         dataComponentes.close();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -124,24 +124,11 @@ public class EncuestaActivity extends AppCompatActivity {
 
     public void setFragmentNombreSeccion(int pos,int direccion){
         String nombreSeccion = "";
-        switch (pos) {
-            case 0:
-                nombreSeccion = "CONTROL DE VISITAS";
-                break;
-            case 1:
-                nombreSeccion = "CARATULA";
-                break;
-            case 2:
-                nombreSeccion = "IDENTIFICACION";
-                break;
-            default:
-                int numeroDePagina = pos - 2;
-                dataComponentes = new DataComponentes(getApplicationContext());
-                dataComponentes.open();
-                String numModulo = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
-                if(Integer.parseInt(numModulo) != moduloActual)nombreSeccion = dataComponentes.getModulo(numModulo).getTITULO();
-                break;
-        }
+        int numeroDePagina = pos;
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        String numModulo = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
+        if(Integer.parseInt(numModulo) != moduloActual)nombreSeccion = dataComponentes.getModulo(numModulo).getTITULO();
         if(!nombreSeccion.equals(nombreSeccionActual)){
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -156,61 +143,62 @@ public class EncuestaActivity extends AppCompatActivity {
             fragmentTransaction.commit();
             nombreSeccionActual = nombreSeccion;
         }
+        dataComponentes.close();
     }
 
     public void setFragment(int pos,int direccion){
-        if(pos < 3){
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            if(direccion > 0){
-//                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-//            }else{
-//                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//        if(pos < 3){
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            switch (pos){
+//                case 0:
+//                    fragmentActual = new VisitasFragment(idEmpresa,this);
+//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+//                    break;
+//                case 1:
+//                    fragmentActual = new CaratulaFragment(idEmpresa,this);
+//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+//                    break;
+//                case 2:
+//                    fragmentActual = new IdentificacionFragment(idEmpresa,this);
+//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
+//                    break;
 //            }
-            switch (pos){
-                case 0:
-                    fragmentActual = new VisitasFragment(idEmpresa,this);
-                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                    break;
-                case 1:
-                    fragmentActual = new CaratulaFragment(idEmpresa,this);
-                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                    break;
-                case 2:
-                    fragmentActual = new IdentificacionFragment(idEmpresa,this);
-                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-                    break;
-            }
-            int[] layouts = {R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
-            for (int i = 0; i < layouts.length; i++) {
-                Fragment fragment = new Fragment();
-                fragmentTransaction.replace(layouts[i], fragment);
-            }
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }else{
-            setComponentes(pos-2,direccion);
-        }
+//            int[] layouts = {R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
+//            for (int i = 0; i < layouts.length; i++) {
+//                Fragment fragment = new Fragment();
+//                fragmentTransaction.replace(layouts[i], fragment);
+//            }
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
+//        }else{
+            setComponentes(pos,direccion);
+//        }
     }
 
     public void setComponentes(int numeroPagina, int direccion){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        if(direccion > 0){
-//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-//        }else{
-//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-//        }
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
         String[] ids = {pagina.getIDP1(),pagina.getIDP2(),pagina.getIDP3(),pagina.getIDP4(),pagina.getIDP5()};
         String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5()};
-        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
+        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5,
+                R.id.layout_componente6, R.id.layout_componente7,R.id.layout_componente8,R.id.layout_componente9,R.id.layout_componente10};
         for (int i = 0; i < ids.length; i++) {
             if(!ids[i].equals("")){
                 int tipo= Integer.parseInt(tipos[i]);
                 switch (tipo){
+                    case TipoComponente.VISITAS:
+                        fragmentComponente = new VisitasFragment();
+                        break;
+                    case TipoComponente.CARATULA:
+                        fragmentComponente = new CaratulaFragment();
+                        break;
+                    case TipoComponente.IDENTIFICACION:
+                        fragmentComponente = new IdentificacionFragment();
+                        break;
                     case TipoComponente.EDITTEXT:
                         CEditText cEditText = dataComponentes.getCEditText(ids[i]);
                         fragmentComponente = new EditTextFragment(cEditText,getApplicationContext());

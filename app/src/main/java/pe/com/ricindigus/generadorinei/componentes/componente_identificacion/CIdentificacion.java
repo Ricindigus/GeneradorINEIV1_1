@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.pojos;
+package pe.com.ricindigus.generadorinei.componentes.componente_identificacion;
 
 import android.content.ContentValues;
 
@@ -8,7 +8,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
  * Created by otin016 on 12/08/2017.
  */
 
-public class Identificacion {
+public class CIdentificacion {
     public String ID;
     public String NUM_RUC;
     public String RAZON_SOCIAL;
@@ -35,7 +35,7 @@ public class Identificacion {
     private String USU_REGISTRO;
     private String FEC_REGISTRO;
 
-    public Identificacion(){
+    public CIdentificacion(){
         this.ID = "";
         this.NUM_RUC = "";
         this.RAZON_SOCIAL = "";
@@ -63,7 +63,7 @@ public class Identificacion {
         this.FEC_REGISTRO = "";
     }
 
-    public Identificacion(String ID, String NUM_RUC, String RAZON_SOCIAL, String NOM_COMER_COOP, String ANIO_FUNDACION, String PAG_WEB, String PAG_WEB_NO, String CORREO, String CORREO_NO, String COD_FIJO, String TEL_FIJO, String TEL_FIJO_NO, String TEL_MOVIL, String TEL_MOVIL_NO, String ANIO_OPERACION, String NOM_INFORMANTE, String SEXO_INFORMANTE, String EDAD_INFORMANTE, String ACAD_INFORMANTE, String CARGO_INFORMANTE, String CARGO_INFORMANTE_ESP, String USU_CREACION, String FEC_CREACION, String USU_REGISTRO, String FEC_REGISTRO) {
+    public CIdentificacion(String ID, String NUM_RUC, String RAZON_SOCIAL, String NOM_COMER_COOP, String ANIO_FUNDACION, String PAG_WEB, String PAG_WEB_NO, String CORREO, String CORREO_NO, String COD_FIJO, String TEL_FIJO, String TEL_FIJO_NO, String TEL_MOVIL, String TEL_MOVIL_NO, String ANIO_OPERACION, String NOM_INFORMANTE, String SEXO_INFORMANTE, String EDAD_INFORMANTE, String ACAD_INFORMANTE, String CARGO_INFORMANTE, String CARGO_INFORMANTE_ESP, String USU_CREACION, String FEC_CREACION, String USU_REGISTRO, String FEC_REGISTRO) {
         this.ID = ID;
         this.NUM_RUC = NUM_RUC;
         this.RAZON_SOCIAL = RAZON_SOCIAL;

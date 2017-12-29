@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.pojos.Caratula;
-import pe.com.ricindigus.generadorinei.pojos.Identificacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CCaratula;
+import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.CIdentificacion;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
@@ -243,16 +243,16 @@ public class Data {
 
     //------------------CARATULA-------------------------------------------------------------------------------------------------------
 
-    public void insertarCaratula(Caratula caratula){
-        ContentValues contentValues = caratula.toValues();
+    public void insertarCaratula(CCaratula CCaratula){
+        ContentValues contentValues = CCaratula.toValues();
         sqLiteDatabase.insert(SQLConstantes.tableCaratulas,null,contentValues);
     }
-    public void InsertarCaratulas(ArrayList<Caratula> caratulas){
+    public void InsertarCaratulas(ArrayList<CCaratula> CCaratulas){
         long items = getNumeroItemsCaratula();
         if(items == 0){
-            for (Caratula caratula : caratulas) {
+            for (CCaratula CCaratula : CCaratulas) {
                 try {
-                    insertarCaratula(caratula);
+                    insertarCaratula(CCaratula);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
@@ -276,8 +276,8 @@ public class Data {
         }
         return encontrado;
     }
-    public Caratula getCaratula(String idEmpresa){
-        Caratula caratula = new Caratula();
+    public CCaratula getCaratula(String idEmpresa){
+        CCaratula CCaratula = new CCaratula();
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
         try{
@@ -285,78 +285,78 @@ public class Data {
                     SQLConstantes.ALL_COLUMNS_CARATULA,SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                caratula.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ID)));
-                caratula.setCAMBIO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_CAMBIO)));
-                caratula.setNOMBREDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO)));
-                caratula.setCCDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO_COD)));
-                caratula.setNOMBREPV(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA)));
-                caratula.setCCPP(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA_COD)));
-                caratula.setNOMBREDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO)));
-                caratula.setCCDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO_COD)));
-                caratula.setGPSLATITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLATITUD)));
-                caratula.setGPSALTITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSALTITUD)));
-                caratula.setGPSLONGITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLONGITUD)));
-                caratula.setCCST(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_SECTOR)));
-                caratula.setCCAT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_AREA)));
-                caratula.setZON_NUM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ZONA)));
-                caratula.setMZ_ID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_MUESTRA)));
-                caratula.setFRENTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_FRENTE)));
-                caratula.setTIPVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_TIPVIA)));
-                caratula.setNOMVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NOMVIA)));
-                caratula.setNROPTA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NPUERTA)));
-                caratula.setBLOCK(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_BLOCK)));
-                caratula.setINT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_INTERIOR)));
-                caratula.setPISO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PISO)));
-                caratula.setMZA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_VIA)));
-                caratula.setLOTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_LOTE)));
-                caratula.setKM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_KM)));
-                caratula.setREF_DIREC(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_REFERENCIA)));
+                CCaratula.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ID)));
+                CCaratula.setCAMBIO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_CAMBIO)));
+                CCaratula.setNOMBREDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO)));
+                CCaratula.setCCDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO_COD)));
+                CCaratula.setNOMBREPV(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA)));
+                CCaratula.setCCPP(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA_COD)));
+                CCaratula.setNOMBREDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO)));
+                CCaratula.setCCDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO_COD)));
+                CCaratula.setGPSLATITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLATITUD)));
+                CCaratula.setGPSALTITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSALTITUD)));
+                CCaratula.setGPSLONGITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLONGITUD)));
+                CCaratula.setCCST(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_SECTOR)));
+                CCaratula.setCCAT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_AREA)));
+                CCaratula.setZON_NUM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ZONA)));
+                CCaratula.setMZ_ID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_MUESTRA)));
+                CCaratula.setFRENTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_FRENTE)));
+                CCaratula.setTIPVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_TIPVIA)));
+                CCaratula.setNOMVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NOMVIA)));
+                CCaratula.setNROPTA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NPUERTA)));
+                CCaratula.setBLOCK(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_BLOCK)));
+                CCaratula.setINT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_INTERIOR)));
+                CCaratula.setPISO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PISO)));
+                CCaratula.setMZA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_VIA)));
+                CCaratula.setLOTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_LOTE)));
+                CCaratula.setKM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_KM)));
+                CCaratula.setREF_DIREC(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_REFERENCIA)));
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return caratula;
+        return CCaratula;
     }
-    public ArrayList<Caratula> getAllCaratulas(){
-        ArrayList<Caratula> caratulas = new ArrayList<Caratula>();
+    public ArrayList<CCaratula> getAllCaratulas(){
+        ArrayList<CCaratula> CCaratulas = new ArrayList<CCaratula>();
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantes.tableCaratulas,
                     SQLConstantes.ALL_COLUMNS_CARATULA,null,null,null,null,null);
             while(cursor.moveToNext()) {
-                Caratula caratula = new Caratula();
-                caratula.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ID)));
-                caratula.setCAMBIO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_CAMBIO)));
-                caratula.setNOMBREDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO)));
-                caratula.setCCDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO_COD)));
-                caratula.setNOMBREPV(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA)));
-                caratula.setCCPP(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA_COD)));
-                caratula.setNOMBREDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO)));
-                caratula.setCCDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO_COD)));
-                caratula.setGPSLATITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLATITUD)));
-                caratula.setGPSALTITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSALTITUD)));
-                caratula.setGPSLONGITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLONGITUD)));
-                caratula.setCCST(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_SECTOR)));
-                caratula.setCCAT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_AREA)));
-                caratula.setZON_NUM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ZONA)));
-                caratula.setMZ_ID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_MUESTRA)));
-                caratula.setFRENTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_FRENTE)));
-                caratula.setTIPVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_TIPVIA)));
-                caratula.setNOMVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NOMVIA)));
-                caratula.setNROPTA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NPUERTA)));
-                caratula.setBLOCK(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_BLOCK)));
-                caratula.setINT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_INTERIOR)));
-                caratula.setPISO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PISO)));
-                caratula.setMZA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_VIA)));
-                caratula.setLOTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_LOTE)));
-                caratula.setKM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_KM)));
-                caratula.setREF_DIREC(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_REFERENCIA)));
-                caratulas.add(caratula);
+                CCaratula CCaratula = new CCaratula();
+                CCaratula.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ID)));
+                CCaratula.setCAMBIO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_CAMBIO)));
+                CCaratula.setNOMBREDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO)));
+                CCaratula.setCCDD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DEPARTAMENTO_COD)));
+                CCaratula.setNOMBREPV(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA)));
+                CCaratula.setCCPP(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PROVINCIA_COD)));
+                CCaratula.setNOMBREDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO)));
+                CCaratula.setCCDI(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_DISTRITO_COD)));
+                CCaratula.setGPSLATITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLATITUD)));
+                CCaratula.setGPSALTITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSALTITUD)));
+                CCaratula.setGPSLONGITUD(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_GPSLONGITUD)));
+                CCaratula.setCCST(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_SECTOR)));
+                CCaratula.setCCAT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_AREA)));
+                CCaratula.setZON_NUM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_ZONA)));
+                CCaratula.setMZ_ID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_MUESTRA)));
+                CCaratula.setFRENTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_FRENTE)));
+                CCaratula.setTIPVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_TIPVIA)));
+                CCaratula.setNOMVIA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NOMVIA)));
+                CCaratula.setNROPTA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_NPUERTA)));
+                CCaratula.setBLOCK(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_BLOCK)));
+                CCaratula.setINT(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_INTERIOR)));
+                CCaratula.setPISO(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_PISO)));
+                CCaratula.setMZA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_MANZANA_VIA)));
+                CCaratula.setLOTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_LOTE)));
+                CCaratula.setKM(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_KM)));
+                CCaratula.setREF_DIREC(cursor.getString(cursor.getColumnIndex(SQLConstantes.CARATULA_REFERENCIA)));
+                CCaratulas.add(CCaratula);
             }
         }finally {
             if(cursor!=null) cursor.close();
         }
-        return caratulas;
+        return CCaratulas;
     }
     public void deleteCaratula(String idEmpresa){
         String[] whereArgs = new String[]{idEmpresa};
@@ -366,17 +366,17 @@ public class Data {
 //-----------------------------------------FIN CARATULA-------------------------------------------------------------------------------
 
     //----------------------------------------IDENTIFICACION---------------------------------------------------------------------------
-    public void insertarIdentificacion(Identificacion identificacion){
-        ContentValues contentValues = identificacion.toValues();
+    public void insertarIdentificacion(CIdentificacion CIdentificacion){
+        ContentValues contentValues = CIdentificacion.toValues();
         sqLiteDatabase.insert(SQLConstantes.tableIdentificaciones,null,contentValues);
     }
 
-    public void InsertarIdentificaciones(ArrayList<Identificacion> identificaciones){
+    public void InsertarIdentificaciones(ArrayList<CIdentificacion> identificaciones){
         long items = getNumeroItemsIdentificacion();
         if(items == 0){
-            for (Identificacion identificacion : identificaciones) {
+            for (CIdentificacion CIdentificacion : identificaciones) {
                 try {
-                    insertarIdentificacion(identificacion);
+                    insertarIdentificacion(CIdentificacion);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
@@ -403,8 +403,8 @@ public class Data {
         sqLiteDatabase.update(SQLConstantes.tableIdentificaciones,contentValues,SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs);
     }
 
-    public Identificacion getIdentificacion(String idEmpresa){
-        Identificacion identificacion = new Identificacion();
+    public CIdentificacion getIdentificacion(String idEmpresa){
+        CIdentificacion CIdentificacion = new CIdentificacion();
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
         try{
@@ -412,59 +412,59 @@ public class Data {
                     SQLConstantes.ALL_COLUMNS_IDENTIFICACIONES,SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                identificacion.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ID)));
-                identificacion.setNUM_RUC(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RUC)));
-                identificacion.setRAZON_SOCIAL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RAZON)));
-                identificacion.setNOM_COMER_COOP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_NOMBRE)));
-                identificacion.setPAG_WEB(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEB)));
-                identificacion.setPAG_WEB_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEBNO)));
-                identificacion.setCORREO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREO)));
-                identificacion.setCORREO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREONO)));
-                identificacion.setTEL_FIJO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJO)));
-                identificacion.setTEL_FIJO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJONO)));
-                identificacion.setTEL_MOVIL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVIL)));
-                identificacion.setTEL_MOVIL_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVILNO)));
-                identificacion.setANIO_OPERACION(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ANIO_FUNCIONAMIENTO)));
-                identificacion.setNOM_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_NOMBRE)));
-                identificacion.setSEXO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_SEXO)));
-                identificacion.setEDAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_EDAD)));
-                identificacion.setACAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_ESTUDIOS)));
-                identificacion.setCARGO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO)));
-                identificacion.setCARGO_INFORMANTE_ESP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO_ESP)));
+                CIdentificacion.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ID)));
+                CIdentificacion.setNUM_RUC(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RUC)));
+                CIdentificacion.setRAZON_SOCIAL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RAZON)));
+                CIdentificacion.setNOM_COMER_COOP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_NOMBRE)));
+                CIdentificacion.setPAG_WEB(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEB)));
+                CIdentificacion.setPAG_WEB_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEBNO)));
+                CIdentificacion.setCORREO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREO)));
+                CIdentificacion.setCORREO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREONO)));
+                CIdentificacion.setTEL_FIJO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJO)));
+                CIdentificacion.setTEL_FIJO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJONO)));
+                CIdentificacion.setTEL_MOVIL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVIL)));
+                CIdentificacion.setTEL_MOVIL_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVILNO)));
+                CIdentificacion.setANIO_OPERACION(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ANIO_FUNCIONAMIENTO)));
+                CIdentificacion.setNOM_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_NOMBRE)));
+                CIdentificacion.setSEXO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_SEXO)));
+                CIdentificacion.setEDAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_EDAD)));
+                CIdentificacion.setACAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_ESTUDIOS)));
+                CIdentificacion.setCARGO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO)));
+                CIdentificacion.setCARGO_INFORMANTE_ESP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO_ESP)));
             }
         }finally {
             if(cursor != null) cursor.close();
         }
-        return identificacion;
+        return CIdentificacion;
     }
-    public ArrayList<Identificacion> getAllIdentificaciones(){
-        ArrayList<Identificacion> identificaciones = new ArrayList<Identificacion>();
+    public ArrayList<CIdentificacion> getAllIdentificaciones(){
+        ArrayList<CIdentificacion> identificaciones = new ArrayList<CIdentificacion>();
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantes.tableIdentificaciones,
                     SQLConstantes.ALL_COLUMNS_IDENTIFICACIONES,null,null,null,null,null);
             while(cursor.moveToNext()){
-                Identificacion identificacion = new Identificacion();
-                identificacion.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ID)));
-                identificacion.setNUM_RUC(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RUC)));
-                identificacion.setRAZON_SOCIAL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RAZON)));
-                identificacion.setNOM_COMER_COOP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_NOMBRE)));
-                identificacion.setPAG_WEB(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEB)));
-                identificacion.setPAG_WEB_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEBNO)));
-                identificacion.setCORREO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREO)));
-                identificacion.setCORREO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREONO)));
-                identificacion.setTEL_FIJO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJO)));
-                identificacion.setTEL_FIJO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJONO)));
-                identificacion.setTEL_MOVIL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVIL)));
-                identificacion.setTEL_MOVIL_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVILNO)));
-                identificacion.setANIO_OPERACION(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ANIO_FUNCIONAMIENTO)));
-                identificacion.setNOM_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_NOMBRE)));
-                identificacion.setSEXO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_SEXO)));
-                identificacion.setEDAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_EDAD)));
-                identificacion.setACAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_ESTUDIOS)));
-                identificacion.setCARGO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO)));
-                identificacion.setCARGO_INFORMANTE_ESP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO_ESP)));
-                identificaciones.add(identificacion);
+                CIdentificacion CIdentificacion = new CIdentificacion();
+                CIdentificacion.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ID)));
+                CIdentificacion.setNUM_RUC(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RUC)));
+                CIdentificacion.setRAZON_SOCIAL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_RAZON)));
+                CIdentificacion.setNOM_COMER_COOP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_NOMBRE)));
+                CIdentificacion.setPAG_WEB(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEB)));
+                CIdentificacion.setPAG_WEB_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_WEBNO)));
+                CIdentificacion.setCORREO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREO)));
+                CIdentificacion.setCORREO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CORREONO)));
+                CIdentificacion.setTEL_FIJO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJO)));
+                CIdentificacion.setTEL_FIJO_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_FIJONO)));
+                CIdentificacion.setTEL_MOVIL(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVIL)));
+                CIdentificacion.setTEL_MOVIL_NO(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_MOVILNO)));
+                CIdentificacion.setANIO_OPERACION(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_ANIO_FUNCIONAMIENTO)));
+                CIdentificacion.setNOM_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_NOMBRE)));
+                CIdentificacion.setSEXO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_SEXO)));
+                CIdentificacion.setEDAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_EDAD)));
+                CIdentificacion.setACAD_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_ESTUDIOS)));
+                CIdentificacion.setCARGO_INFORMANTE(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO)));
+                CIdentificacion.setCARGO_INFORMANTE_ESP(cursor.getString(cursor.getColumnIndex(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO_ESP)));
+                identificaciones.add(CIdentificacion);
             }
         }finally {
             if(cursor != null) cursor.close();

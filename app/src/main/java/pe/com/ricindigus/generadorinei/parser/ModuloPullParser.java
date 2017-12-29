@@ -10,28 +10,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 /**
- * Created by otin016 on 23/08/2017.
+ * Created by dmorales on 28/12/2017.
  */
 
-public class UsuariosPullParser {
-    public static final String USU_ID = "ID";
-    public static final String USU_PASSWORD = "PASSWORD";
-    public static final String USU_PERMISO = "PERMISO";
-    private Usuario currentUsuario = null;
+public class ModuloPullParser {
+    public static final String MODULO_ID = "ID";
+    public static final String MODULO_TITULO = "TITULO";
+    private Modulo currentModulo = null;
     private String currentTag = null;
-    ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 
-    public ArrayList<Usuario> parseXML(Context context){
+    public ArrayList<Modulo> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("usuarios.xml");
+                InputStream stream = context.getAssets().open("modulos.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -53,24 +53,23 @@ public class UsuariosPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return usuarios;
+        return modulos;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentUsuario!= null && currentTag != null){
+        if(currentModulo!= null && currentTag != null){
             switch (currentTag){
-                case USU_ID:currentUsuario.setUSUARIO_ID(xmlText);break;
-                case USU_PASSWORD:currentUsuario.setUSUARIO_PASSWORD(xmlText);break;
-                case USU_PERMISO:currentUsuario.setUSUARIO_PERMISO(xmlText);break;
+                case MODULO_ID:currentModulo.setID(xmlText);break;
+                case MODULO_TITULO:currentModulo.setTITULO(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("USUARIO")){
-            currentUsuario = new Usuario();
-            usuarios.add(currentUsuario);
+        if(name.equals("MODULO")){
+            currentModulo = new Modulo();
+            modulos.add(currentModulo);
         }else{
             currentTag = name;
         }

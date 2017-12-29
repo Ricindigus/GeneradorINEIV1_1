@@ -63,8 +63,5 @@
             android:alpha=".5"
             android:layout_below="@id/relative_aux"
             android:background="@android:color/white" />
-
     </FrameLayout>
-
-
 </android.support.design.widget.CoordinatorLayout>
