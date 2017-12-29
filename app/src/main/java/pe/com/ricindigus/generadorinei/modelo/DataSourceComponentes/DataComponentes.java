@@ -349,7 +349,7 @@ public class DataComponentes {
                 cRadio.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_ID )));
                 cRadio.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_MODULO)));
                 cRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_NUMERO )));
-                cRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PAGINA )));
+                cRadio.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PAGINA )));
                 cRadio.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_PREGUNTA )));
                 cRadio.setSP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP1 )));
                 cRadio.setSP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.RADIO_SP2 )));
