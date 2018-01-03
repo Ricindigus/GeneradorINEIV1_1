@@ -28,76 +28,168 @@
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 1"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion1"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 2"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion2"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 3"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion3"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 4"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion4"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 5"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion5"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 6"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion6"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 7"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion7"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 8"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion8"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 9"
                 android:layout_marginBottom="5dp"
+                android:visibility="gone"
                 />
+            <EditText
+                android:id="@+id/radio_descripcion9"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
             <RadioButton
                 android:id="@+id/radio_sp10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sub pregunta 10"
+                android:visibility="gone"
                 />
             <EditText
-                android:id="@+id/radio_especifique"
+                android:id="@+id/radio_descripcion10"
                 android:layout_width="400dp"
                 android:layout_height="30dp"
                 android:padding="5dp"
                 android:hint="Especifique"
-                android:background="@drawable/sumaedit_edittext_limpio"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
         </RadioGroup>
     </LinearLayout>

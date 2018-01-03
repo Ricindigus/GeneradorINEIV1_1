@@ -11,27 +11,28 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by dmorales on 28/12/2017.
+ * Created by RICARDO on 2/01/2018.
  */
 
-public class RadioPullParser {
-    public static final String RADIO_ID = "ID";
-    public static final String RADIO_MODULO = "MODULO";
-    public static final String RADIO_NUMERO = "NUMERO";
-    public static final String RADIO_PREGUNTA = "PREGUNTA";
+public class SPRadioPullParser {
+    public static final String SPRADIO_ID = "ID";
+    public static final String SPRADIO_ID_PREGUNTA = "ID_PREGUNTA";
+    public static final String SPRADIO_SUBPREGUNTA = "SUBPREGUNTA";
+    public static final String SPRADIO_VARIABLE = "VARIABLE";
+    public static final String SPRADIO_VARDESC = "VARDESC";
 
-    private POJORadio currentRadio = null;
+    private SPRadio currentSPRadio = null;
     private String currentTag = null;
-    ArrayList<POJORadio> POJORadios = new ArrayList<POJORadio>();
+    ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
 
-    public ArrayList<POJORadio> parseXML(Context context){
+    public ArrayList<SPRadio> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("preguntas_radio.xml");
+                InputStream stream = context.getAssets().open("subpreguntas_radio.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -53,25 +54,26 @@ public class RadioPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return POJORadios;
+        return spRadios;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentRadio!= null && currentTag != null){
+        if(currentSPRadio!= null && currentTag != null){
             switch (currentTag){
-                case RADIO_ID:currentRadio.setID(xmlText);break;
-                case RADIO_MODULO:currentRadio.setMODULO(xmlText);break;
-                case RADIO_NUMERO:currentRadio.setNUMERO(xmlText);break;
-                case RADIO_PREGUNTA:currentRadio.setPREGUNTA(xmlText);break;
+                case SPRADIO_ID:currentSPRadio.setID(xmlText);break;
+                case SPRADIO_ID_PREGUNTA:currentSPRadio.setID_PREGUNTA(xmlText);break;
+                case SPRADIO_SUBPREGUNTA:currentSPRadio.setSUBPREGUNTA(xmlText);break;
+                case SPRADIO_VARIABLE:currentSPRadio.setVARIABLE(xmlText);break;
+                case SPRADIO_VARDESC:currentSPRadio.setVARDESC(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("RADIO")){
-            currentRadio = new POJORadio();
-            POJORadios.add(currentRadio);
+        if(name.equals("SP_RADIO")){
+            currentSPRadio = new SPRadio();
+            spRadios.add(currentSPRadio);
         }else{
             currentTag = name;
         }

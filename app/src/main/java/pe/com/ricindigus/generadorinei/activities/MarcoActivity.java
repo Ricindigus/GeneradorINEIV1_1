@@ -25,7 +25,7 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.EncuestadoAdapter;
 import pe.com.ricindigus.generadorinei.adapters.MarcoAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CCaratula;
+import pe.com.ricindigus.generadorinei.componentes.componente_caratula.POJOCaratula;
 import pe.com.ricindigus.generadorinei.pojos.ItemMarco;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 
@@ -40,7 +40,7 @@ public class MarcoActivity extends AppCompatActivity {
     private ArrayList<String> provincias;
     private ArrayList<String> distritos;
     private ArrayList<String> periodos;
-    private CCaratula CCaratula;
+    private POJOCaratula POJOCaratula;
     private String idUsuario;
     private String permisoUsuario;
     private Spinner spDepartamento;

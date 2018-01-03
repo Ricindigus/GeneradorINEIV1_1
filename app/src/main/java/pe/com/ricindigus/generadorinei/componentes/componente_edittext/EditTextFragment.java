@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +17,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class EditTextFragment extends Fragment {
     private DataComponentes dataComponentes;
-    private CEditText cEditText;
+    private POJOEditText POJOEditText;
+    private ArrayList<SPEditText> subpreguntas;
     private Context context;
     private String idEditText;
     private TextView txtPregunta;
@@ -43,10 +51,15 @@ public class EditTextFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public EditTextFragment(CEditText cEditText, Context context) {
-        this.cEditText = cEditText;
+    public EditTextFragment(POJOEditText POJOEditText, ArrayList<SPEditText> subpreguntas, Context context) {
+        this.POJOEditText = POJOEditText;
+        this.subpreguntas = subpreguntas;
         this.context = context;
     }
+
+    @SuppressLint("ValidFragment")
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,16 +87,28 @@ public class EditTextFragment extends Fragment {
     }
 
     public void llenarVista(){
-        txtPregunta.setText(cEditText.getNUMERO() + ". " + cEditText.getPREGUNTA().toUpperCase());
-        String[] subPreguntas = {cEditText.getSP1(), cEditText.getSP2(), cEditText.getSP3()};
+        txtPregunta.setText(POJOEditText.getNUMERO() + ". " + POJOEditText.getPREGUNTA().toUpperCase());
         TextInputLayout[] textInputLayouts = {edtLyt1, edtLyt2, edtLyt3};
+        TextInputEditText[] textInputEditTexts = {edtSP1,edtSP2,edtSP3};
         LinearLayout[] linearLayouts = {lyt1, lyt2, lyt3};
-        for (int i = 0; i < subPreguntas.length; i++) {
-            if(subPreguntas[i].equals("")){
-                linearLayouts[i].setVisibility(View.GONE);
+        for (int i = 0; i < subpreguntas.size(); i++) {
+            SPEditText spEditText = subpreguntas.get(i);
+            linearLayouts[i].setVisibility(View.VISIBLE);
+            textInputLayouts[i].setHint(spEditText.getSUBPREGUNTA());
+            if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
+                textInputEditTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
+                textInputEditTexts[i].setFilters(new InputFilter[]{
+                        new InputFilter.AllCaps(),
+                        new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
+                });
             }else{
-                textInputLayouts[i].setHint(subPreguntas[i]);
+                textInputEditTexts[i].setTransformationMethod(new NumericKeyBoardTransformationMethod());
+                textInputEditTexts[i].setFilters(new InputFilter[]{
+                        new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
+                });
             }
+
+
         }
     }
 

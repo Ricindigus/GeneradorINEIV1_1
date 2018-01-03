@@ -10,30 +10,31 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
 /**
- * Created by dmorales on 28/12/2017.
+ * Created by RICARDO on 1/01/2018.
  */
 
-public class EditTextPullParser {
-    public static final String EDITTEXT_ID = "ID";
-    public static final String EDITTEXT_MODULO = "MODULO";
-    public static final String EDITTEXT_NUMERO = "NUMERO";
-    public static final String EDITTEXT_PREGUNTA = "PREGUNTA";
+public class SPEditTextPullParser {
+    public static final String SPEDITTEXT_ID = "ID";
+    public static final String SPEDITTEXT_ID_PREGUNTA = "ID_PREGUNTA";
+    public static final String SPEDITTEXT_SUBPREGUNTA = "SUBPREGUNTA";
+    public static final String SPEDITTEXT_VARIABLE = "VARIABLE";
+    public static final String SPEDITTEXT_TIPO = "TIPO";
+    public static final String SPEDITTEXT_LONGITUD = "LONGITUD";
 
 
-    private POJOEditText currentEditText = null;
+    private SPEditText currentSPEditText = null;
     private String currentTag = null;
-    ArrayList<POJOEditText> POJOEditTexts = new ArrayList<POJOEditText>();
+    ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
 
-    public ArrayList<POJOEditText> parseXML(Context context){
+    public ArrayList<SPEditText> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("preguntas_edittext.xml");
+                InputStream stream = context.getAssets().open("subpreguntas_edittext.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -54,25 +55,27 @@ public class EditTextPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return POJOEditTexts;
+        return spEditTexts;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentEditText!= null && currentTag != null){
+        if(currentSPEditText!= null && currentTag != null){
             switch (currentTag){
-                case EDITTEXT_ID:currentEditText.setID(xmlText);break;
-                case EDITTEXT_MODULO:currentEditText.setMODULO(xmlText);break;
-                case EDITTEXT_NUMERO:currentEditText.setNUMERO(xmlText);break;
-                case EDITTEXT_PREGUNTA:currentEditText.setPREGUNTA(xmlText);break;
+                case SPEDITTEXT_ID: currentSPEditText.setID(xmlText);break;
+                case SPEDITTEXT_ID_PREGUNTA: currentSPEditText.setID_PREGUNTA(xmlText);break;
+                case SPEDITTEXT_SUBPREGUNTA: currentSPEditText.setSUBPREGUNTA(xmlText);break;
+                case SPEDITTEXT_VARIABLE: currentSPEditText.setVARIABLE(xmlText);break;
+                case SPEDITTEXT_TIPO: currentSPEditText.setTIPO(xmlText);break;
+                case SPEDITTEXT_LONGITUD: currentSPEditText.setLONGITUD(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("EDITTEXT")){
-            currentEditText = new POJOEditText();
-            POJOEditTexts.add(currentEditText);
+        if(name.equals("SP_EDITTEXT")){
+            currentSPEditText = new SPEditText();
+            spEditTexts.add(currentSPEditText);
         }else{
             currentTag = name;
         }

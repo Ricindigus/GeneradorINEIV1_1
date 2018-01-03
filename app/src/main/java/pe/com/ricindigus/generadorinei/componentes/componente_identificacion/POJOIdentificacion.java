@@ -8,7 +8,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
  * Created by otin016 on 12/08/2017.
  */
 
-public class CIdentificacion {
+public class POJOIdentificacion {
     public String ID;
     public String NUM_RUC;
     public String RAZON_SOCIAL;
@@ -35,7 +35,7 @@ public class CIdentificacion {
     private String USU_REGISTRO;
     private String FEC_REGISTRO;
 
-    public CIdentificacion(){
+    public POJOIdentificacion(){
         this.ID = "";
         this.NUM_RUC = "";
         this.RAZON_SOCIAL = "";
@@ -63,7 +63,7 @@ public class CIdentificacion {
         this.FEC_REGISTRO = "";
     }
 
-    public CIdentificacion(String ID, String NUM_RUC, String RAZON_SOCIAL, String NOM_COMER_COOP, String ANIO_FUNDACION, String PAG_WEB, String PAG_WEB_NO, String CORREO, String CORREO_NO, String COD_FIJO, String TEL_FIJO, String TEL_FIJO_NO, String TEL_MOVIL, String TEL_MOVIL_NO, String ANIO_OPERACION, String NOM_INFORMANTE, String SEXO_INFORMANTE, String EDAD_INFORMANTE, String ACAD_INFORMANTE, String CARGO_INFORMANTE, String CARGO_INFORMANTE_ESP, String USU_CREACION, String FEC_CREACION, String USU_REGISTRO, String FEC_REGISTRO) {
+    public POJOIdentificacion(String ID, String NUM_RUC, String RAZON_SOCIAL, String NOM_COMER_COOP, String ANIO_FUNDACION, String PAG_WEB, String PAG_WEB_NO, String CORREO, String CORREO_NO, String COD_FIJO, String TEL_FIJO, String TEL_FIJO_NO, String TEL_MOVIL, String TEL_MOVIL_NO, String ANIO_OPERACION, String NOM_INFORMANTE, String SEXO_INFORMANTE, String EDAD_INFORMANTE, String ACAD_INFORMANTE, String CARGO_INFORMANTE, String CARGO_INFORMANTE_ESP, String USU_CREACION, String FEC_CREACION, String USU_REGISTRO, String FEC_REGISTRO) {
         this.ID = ID;
         this.NUM_RUC = NUM_RUC;
         this.RAZON_SOCIAL = RAZON_SOCIAL;
@@ -293,25 +293,25 @@ public class CIdentificacion {
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(25);
-        contentValues.put(SQLConstantes.IDENTIFICACION_ID,ID);
-        contentValues.put(SQLConstantes.IDENTIFICACION_RUC,NUM_RUC);
-        contentValues.put(SQLConstantes.IDENTIFICACION_RAZON,RAZON_SOCIAL);
-        contentValues.put(SQLConstantes.IDENTIFICACION_NOMBRE,NOM_COMER_COOP);
-        contentValues.put(SQLConstantes.IDENTIFICACION_WEB,PAG_WEB);
-        contentValues.put(SQLConstantes.IDENTIFICACION_WEBNO,PAG_WEB_NO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CORREO,CORREO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CORREONO,CORREO_NO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_FIJO,TEL_FIJO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_FIJONO,TEL_FIJO_NO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_MOVIL,TEL_MOVIL);
-        contentValues.put(SQLConstantes.IDENTIFICACION_MOVILNO,TEL_MOVIL_NO);
-        contentValues.put(SQLConstantes.IDENTIFICACION_ANIO_FUNCIONAMIENTO,ANIO_OPERACION);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_NOMBRE,NOM_INFORMANTE);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_SEXO,SEXO_INFORMANTE);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_EDAD,EDAD_INFORMANTE);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_ESTUDIOS,ACAD_INFORMANTE);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO,CARGO_INFORMANTE);
-        contentValues.put(SQLConstantes.IDENTIFICACION_CONDUCTOR_CARGO_ESP,CARGO_INFORMANTE_ESP);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_ID,ID);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_RUC,NUM_RUC);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_RAZON,RAZON_SOCIAL);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_NOMBRE,NOM_COMER_COOP);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_WEB,PAG_WEB);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_WEBNO,PAG_WEB_NO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CORREO,CORREO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CORREONO,CORREO_NO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_FIJO,TEL_FIJO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_FIJONO,TEL_FIJO_NO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_MOVIL,TEL_MOVIL);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_MOVILNO,TEL_MOVIL_NO);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_ANIO_FUNCIONAMIENTO,ANIO_OPERACION);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_NOMBRE,NOM_INFORMANTE);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_SEXO,SEXO_INFORMANTE);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_EDAD,EDAD_INFORMANTE);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_ESTUDIOS,ACAD_INFORMANTE);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_CARGO,CARGO_INFORMANTE);
+        contentValues.put(SQLIdentificacion.IDENTIFICACION_CONDUCTOR_CARGO_ESP,CARGO_INFORMANTE_ESP);
         return contentValues;
     }
 }

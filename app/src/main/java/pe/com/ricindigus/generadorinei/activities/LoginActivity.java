@@ -8,19 +8,10 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
-import pe.com.ricindigus.generadorinei.pojos.Modulo;
-import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 public class LoginActivity extends AppCompatActivity {

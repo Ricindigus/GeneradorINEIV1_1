@@ -5,13 +5,19 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
 
@@ -20,7 +26,8 @@ import pe.com.ricindigus.generadorinei.R;
  */
 public class RadioFragment extends Fragment {
 
-    private CRadio cRadio;
+    private POJORadio POJORadio;
+    private ArrayList<SPRadio> subpreguntas;
     private Context  context;
     private TextView txtPregunta;
     private RadioGroup radioGroup;
@@ -34,16 +41,25 @@ public class RadioFragment extends Fragment {
     private RadioButton radioButton8;
     private RadioButton radioButton9;
     private RadioButton radioButton10;
-    private EditText edtEspecifique;
-
+    private EditText edit1;
+    private EditText edit2;
+    private EditText edit3;
+    private EditText edit4;
+    private EditText edit5;
+    private EditText edit6;
+    private EditText edit7;
+    private EditText edit8;
+    private EditText edit9;
+    private EditText edit10;
 
     public RadioFragment() {
         // Required empty public constructor
     }
 
     @SuppressLint("ValidFragment")
-    public RadioFragment(CRadio cRadio, Context context) {
-        this.cRadio = cRadio;
+    public RadioFragment(POJORadio pojoRadio, ArrayList<SPRadio> subpreguntas, Context context) {
+        this.POJORadio = pojoRadio;
+        this.subpreguntas = subpreguntas;
         this.context = context;
     }
 
@@ -64,25 +80,48 @@ public class RadioFragment extends Fragment {
         radioButton8 = (RadioButton) rootView.findViewById(R.id.radio_sp8);
         radioButton9 = (RadioButton) rootView.findViewById(R.id.radio_sp9);
         radioButton10 = (RadioButton) rootView.findViewById(R.id.radio_sp10);
-        edtEspecifique = (EditText) rootView.findViewById(R.id.radio_especifique);
+        edit1 = (EditText) rootView.findViewById(R.id.radio_descripcion1);
+        edit2 = (EditText) rootView.findViewById(R.id.radio_descripcion2);
+        edit3 = (EditText) rootView.findViewById(R.id.radio_descripcion3);
+        edit4 = (EditText) rootView.findViewById(R.id.radio_descripcion4);
+        edit5 = (EditText) rootView.findViewById(R.id.radio_descripcion5);
+        edit6 = (EditText) rootView.findViewById(R.id.radio_descripcion6);
+        edit7 = (EditText) rootView.findViewById(R.id.radio_descripcion7);
+        edit8 = (EditText) rootView.findViewById(R.id.radio_descripcion8);
+        edit9 = (EditText) rootView.findViewById(R.id.radio_descripcion9);
+        edit10 = (EditText) rootView.findViewById(R.id.radio_descripcion10);
         llenarVista();
         return rootView;
     }
 
     public void llenarVista(){
-        txtPregunta.setText(cRadio.getNUMERO() + ". " + cRadio.getPREGUNTA().toUpperCase());
-        String[] subPreguntas = {cRadio.getSP1(),cRadio.getSP2(),cRadio.getSP3(),cRadio.getSP4(),
-                cRadio.getSP5(),cRadio.getSP6(),cRadio.getSP7(),cRadio.getSP8(),cRadio.getSP9(),
-                cRadio.getSP10()};
+        txtPregunta.setText(POJORadio.getNUMERO() + ". " + POJORadio.getPREGUNTA().toUpperCase());
         RadioButton[] radioButtons = {radioButton1,radioButton2,radioButton3,radioButton4,
                 radioButton5,radioButton6,radioButton7,radioButton8,radioButton9,radioButton10};
-        for (int i = 0; i <radioButtons.length; i++) {
-            if(!subPreguntas[i].equals("")){
-                radioButtons[i].setText(subPreguntas[i]);
-            }else{
-                radioButtons[i].setVisibility(View.GONE);
+        EditText[] editTexts = {edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9,edit10};
+
+        for (int i = 0; i <subpreguntas.size() ; i++) {
+            final RadioButton radioButton = radioButtons[i];
+            final EditText editText = editTexts[i];
+            radioButton.setVisibility(View.VISIBLE);
+            radioButton.setText(subpreguntas.get(i).getSUBPREGUNTA());
+            if(!subpreguntas.get(i).getVARDESC().equals("")){
+                editText.setVisibility(View.VISIBLE);
+                editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+                radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            editText.setEnabled(true);
+                            editText.setBackgroundResource(R.drawable.edittext_enabled);
+                        } else{
+                            editText.setText("");
+                            editText.setEnabled(false);
+                            editText.setBackgroundResource(R.drawable.edittext_disabled);
+                        }
+                    }
+                });
             }
         }
-        if(cRadio.getVARESP().equals("")) edtEspecifique.setVisibility(View.GONE);
     }
 }

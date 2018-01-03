@@ -92,6 +92,16 @@ public class PaginaPullParser {
                 case PAGINA_TP4:currentPagina.setTIPO4(xmlText);break;
                 case PAGINA_IDP5:currentPagina.setIDP5(xmlText);break;
                 case PAGINA_TP5:currentPagina.setTIPO5(xmlText);break;
+                case PAGINA_IDP6:currentPagina.setIDP6(xmlText);break;
+                case PAGINA_TP6:currentPagina.setTIPO6(xmlText);break;
+                case PAGINA_IDP7:currentPagina.setIDP7(xmlText);break;
+                case PAGINA_TP7:currentPagina.setTIPO7(xmlText);break;
+                case PAGINA_IDP8:currentPagina.setIDP8(xmlText);break;
+                case PAGINA_TP8:currentPagina.setTIPO8(xmlText);break;
+                case PAGINA_IDP9:currentPagina.setIDP9(xmlText);break;
+                case PAGINA_TP9:currentPagina.setTIPO9(xmlText);break;
+                case PAGINA_IDP10:currentPagina.setIDP10(xmlText);break;
+                case PAGINA_TP10:currentPagina.setTIPO10(xmlText);break;
             }
         }
     }

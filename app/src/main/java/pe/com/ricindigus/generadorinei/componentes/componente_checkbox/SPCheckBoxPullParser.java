@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_radio;
+package pe.com.ricindigus.generadorinei.componentes.componente_checkbox;
 
 import android.content.Context;
 
@@ -11,27 +11,28 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by dmorales on 28/12/2017.
+ * Created by RICARDO on 2/01/2018.
  */
 
-public class RadioPullParser {
-    public static final String RADIO_ID = "ID";
-    public static final String RADIO_MODULO = "MODULO";
-    public static final String RADIO_NUMERO = "NUMERO";
-    public static final String RADIO_PREGUNTA = "PREGUNTA";
+public class SPCheckBoxPullParser {
+    public static final String SPCHECKBOX_ID = "ID";
+    public static final String SPCHECKBOX_ID_PREGUNTA = "ID_PREGUNTA";
+    public static final String SPCHECKBOX_SUBPREGUNTA = "SUBPREGUNTA";
+    public static final String SPCHECKBOX_VARIABLE = "VARIABLE";
+    public static final String SPCHECKBOX_VARDESC = "VARDESC";
 
-    private POJORadio currentRadio = null;
+    private SPCheckBox currentSPCheckBox = null;
     private String currentTag = null;
-    ArrayList<POJORadio> POJORadios = new ArrayList<POJORadio>();
+    ArrayList<SPCheckBox> spCheckBoxes = new ArrayList<SPCheckBox>();
 
-    public ArrayList<POJORadio> parseXML(Context context){
+    public ArrayList<SPCheckBox> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("preguntas_radio.xml");
+                InputStream stream = context.getAssets().open("subpreguntas_checkbox.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -53,25 +54,26 @@ public class RadioPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return POJORadios;
+        return spCheckBoxes;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentRadio!= null && currentTag != null){
+        if(currentSPCheckBox!= null && currentTag != null){
             switch (currentTag){
-                case RADIO_ID:currentRadio.setID(xmlText);break;
-                case RADIO_MODULO:currentRadio.setMODULO(xmlText);break;
-                case RADIO_NUMERO:currentRadio.setNUMERO(xmlText);break;
-                case RADIO_PREGUNTA:currentRadio.setPREGUNTA(xmlText);break;
+                case SPCHECKBOX_ID:currentSPCheckBox.setID(xmlText);break;
+                case SPCHECKBOX_ID_PREGUNTA:currentSPCheckBox.setID_PREGUNTA(xmlText);break;
+                case SPCHECKBOX_SUBPREGUNTA:currentSPCheckBox.setSUBPREGUNTA(xmlText);break;
+                case SPCHECKBOX_VARDESC:currentSPCheckBox.setVARDESC(xmlText);break;
+                case SPCHECKBOX_VARIABLE:currentSPCheckBox.setVARIABLE(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("RADIO")){
-            currentRadio = new POJORadio();
-            POJORadios.add(currentRadio);
+        if(name.equals("SP_CHECKBOX")){
+            currentSPCheckBox = new SPCheckBox();
+            spCheckBoxes.add(currentSPCheckBox);
         }else{
             currentTag = name;
         }

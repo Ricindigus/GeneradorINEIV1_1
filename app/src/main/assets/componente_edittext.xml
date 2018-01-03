@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<EDITTEXTS>
-	<EDITTEXT><ID>1</ID><MODULO>3</MODULO><NUMERO>105</NUMERO><PAGINA>3</PAGINA><PREGUNTA>En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa? (Incluidos los que no estuvieron en planillas).</PREGUNTA><SP1>Numero promedio de trabajadores</SP1><VAR1>P105_edt</VAR1><SP2></SP2><VAR2></VAR2><SP3></SP3><VAR3></VAR3></EDITTEXT>
-	<EDITTEXT><ID>2</ID><MODULO>4</MODULO><NUMERO>204</NUMERO><PAGINA>6</PAGINA><PREGUNTA>¿En qué año implementó la norma técnica o estándar de calidad más importante?</PREGUNTA><SP1>Año</SP1><VAR1>P204_edt</VAR1><SP2></SP2><VAR2></VAR2><SP3></SP3><VAR3></VAR3></EDITTEXT>
-	<EDITTEXT><ID>3</ID><MODULO>5</MODULO><NUMERO>305</NUMERO><PAGINA>7</PAGINA><PREGUNTA>¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?</PREGUNTA><SP1>Gasto  en  S/.</SP1><VAR1>P305_edt</VAR1><SP2></SP2><VAR2></VAR2><SP3></SP3><VAR3></VAR3></EDITTEXT>
-	<EDITTEXT><ID>4</ID><MODULO>6</MODULO><NUMERO>406</NUMERO><PAGINA>9</PAGINA><PREGUNTA>Respecto a la principal certificación con la que cuenta su empresa, ¿Cuál fue el año de obtención de la certificación?</PREGUNTA><SP1>Año</SP1><VAR1>P406_edt</VAR1><SP2></SP2><VAR2></VAR2><SP3></SP3><VAR3></VAR3></EDITTEXT>
-</EDITTEXTS>

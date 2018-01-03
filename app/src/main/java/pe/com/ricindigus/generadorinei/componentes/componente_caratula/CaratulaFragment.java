@@ -37,4 +37,6 @@ public class CaratulaFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_caratula, container, false);
     }
 
+
+
 }

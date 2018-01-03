@@ -3,23 +3,30 @@ package pe.com.ricindigus.generadorinei.activities;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.DataCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.POJOCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.CEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBoxPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.DataEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.POJOEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.CRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SPEditTextPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.DataRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.POJORadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
@@ -42,13 +49,21 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
-    ArrayList<CEditText> cEditTexts = new ArrayList<CEditText>();
-    ArrayList<CCheckBox> cCheckBoxes = new ArrayList<CCheckBox>();
-    ArrayList<CRadio> cRadios = new ArrayList<CRadio>();
+    ArrayList<POJOEditText> POJOEditTexts = new ArrayList<POJOEditText>();
+    ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
+    ArrayList<POJOCheckBox> POJOCheckBoxes = new ArrayList<POJOCheckBox>();
+    ArrayList<SPCheckBox> spCheckBoxes  = new ArrayList<SPCheckBox>();
+    ArrayList<POJORadio> POJORadios = new ArrayList<POJORadio>();
+    ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
 
     Data data;
     DataComponentes dataComponentes;
+    DataEditText dataEditText;
+    DataCheckBox dataCheckBox;
+    DataRadio dataRadio;
+
+
     int maximo = 0;
     double carga = 0.0;
     @Override
@@ -70,8 +85,11 @@ public class SplashActivity extends AppCompatActivity {
             UbigeoPullParser ubigeoPullParser = new UbigeoPullParser();
             ModuloPullParser moduloPullParser = new ModuloPullParser();
             EditTextPullParser editTextPullParser = new EditTextPullParser();
+            SPEditTextPullParser spEditTextPullParser = new SPEditTextPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
+            SPCheckBoxPullParser spCheckBoxPullParser = new SPCheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
+            SPRadioPullParser spRadioPullParser = new SPRadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
 
             marcos = marcoPullParser.parseXML(getApplicationContext());
@@ -80,15 +98,22 @@ public class SplashActivity extends AppCompatActivity {
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
             modulos = moduloPullParser.parseXML(getApplicationContext());
-            cEditTexts = editTextPullParser.parseXML(getApplicationContext());
-            cCheckBoxes = checkBoxPullParser.parseXML(getApplicationContext());
-            cRadios = radioPullParser.parseXML(getApplicationContext());
+            POJOEditTexts = editTextPullParser.parseXML(getApplicationContext());
+            spEditTexts = spEditTextPullParser.parseXML(getApplicationContext());
+            POJOCheckBoxes = checkBoxPullParser.parseXML(getApplicationContext());
+            spCheckBoxes = spCheckBoxPullParser.parseXML(getApplicationContext());
+            POJORadios = radioPullParser.parseXML(getApplicationContext());
+            spRadios = spRadioPullParser.parseXML(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             dataComponentes.close();
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size()
-                + cEditTexts.size() + cCheckBoxes.size() + cRadios .size() + paginas.size();
+                + POJOEditTexts.size() + spEditTexts.size()
+                + POJOCheckBoxes.size() + spCheckBoxes.size()
+                + POJORadios.size() + spRadios.size()
+                + paginas.size();
+//                + POJOEditTexts.size() + POJOCheckBoxes.size() + POJORadios.size() + paginas.size();
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -116,6 +141,12 @@ public class SplashActivity extends AppCompatActivity {
             data.open();
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
+            dataEditText = new DataEditText(getApplicationContext());
+            dataEditText.open();
+            dataCheckBox = new DataCheckBox(getApplicationContext());
+            dataCheckBox.open();
+            dataRadio = new DataRadio(getApplicationContext());
+            dataRadio.open();
             long items = data.getNumeroItemsMarco();
             if(items == 0){
                 for (Marco marco : marcos) {
@@ -154,27 +185,54 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (CEditText cEditText : cEditTexts) {
+                for (POJOEditText pojoEditText : POJOEditTexts) {
                     try {
-                        dataComponentes.insertarCEditText(cEditText);
+                        dataEditText.insertarPOJOEditText(pojoEditText);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (CCheckBox cCheckBox : cCheckBoxes) {
+                for (SPEditText spEditText : spEditTexts) {
                     try {
-                        dataComponentes.insertarCCheckBox(cCheckBox);
+                        dataEditText.insertarSPEditText(spEditText);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (CRadio cRadio : cRadios) {
+                for (POJOCheckBox pojoCheckBox : POJOCheckBoxes) {
                     try {
-                        dataComponentes.insertarCRadio(cRadio);
+                        dataCheckBox.insertarPOJOCheckBox(pojoCheckBox);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPCheckBox spCheckBox : spCheckBoxes) {
+                    try {
+                        dataCheckBox.insertarSPCheckBox(spCheckBox);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (POJORadio POJORadio : POJORadios) {
+                    try {
+                        dataRadio.insertarPOJORadio(POJORadio);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPRadio spRadio : spRadios) {
+                    try {
+                        dataRadio.insertarSPRadio(spRadio);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -201,6 +259,9 @@ public class SplashActivity extends AppCompatActivity {
             }
             data.close();
             dataComponentes.close();
+            dataEditText.close();
+            dataCheckBox.close();
+            dataRadio.close();
             return mensaje;
         }
 

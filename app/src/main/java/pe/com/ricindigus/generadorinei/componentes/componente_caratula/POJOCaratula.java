@@ -8,7 +8,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
  * Created by dmorales on 13/12/2017.
  */
 
-public class CCaratula {
+public class POJOCaratula {
     private String ID;
     private String CAMBIO;
     private String NOMBREDD;
@@ -36,7 +36,7 @@ public class CCaratula {
     private String KM;
     private String REF_DIREC;
 
-    public CCaratula(){
+    public POJOCaratula(){
         this.ID = "";
         this.CAMBIO = "";
         this.NOMBREDD = "";
@@ -277,32 +277,32 @@ public class CCaratula {
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(30);
-        contentValues.put(SQLConstantes.CARATULA_ID,ID);
-        contentValues.put(SQLConstantes.CARATULA_CAMBIO,CAMBIO);
-        contentValues.put(SQLConstantes.CARATULA_DEPARTAMENTO,NOMBREDD);
-        contentValues.put(SQLConstantes.CARATULA_DEPARTAMENTO_COD,CCDD);
-        contentValues.put(SQLConstantes.CARATULA_PROVINCIA,NOMBREPV);
-        contentValues.put(SQLConstantes.CARATULA_PROVINCIA_COD,CCPP);
-        contentValues.put(SQLConstantes.CARATULA_DISTRITO,NOMBREDI);
-        contentValues.put(SQLConstantes.CARATULA_DISTRITO_COD,CCDI);
-        contentValues.put(SQLConstantes.CARATULA_GPSLATITUD,GPSLATITUD);
-        contentValues.put(SQLConstantes.CARATULA_GPSALTITUD,GPSALTITUD);
-        contentValues.put(SQLConstantes.CARATULA_GPSLONGITUD,GPSLONGITUD);
-        contentValues.put(SQLConstantes.CARATULA_SECTOR,CCST);
-        contentValues.put(SQLConstantes.CARATULA_AREA,CCAT);
-        contentValues.put(SQLConstantes.CARATULA_ZONA,ZON_NUM);
-        contentValues.put(SQLConstantes.CARATULA_MANZANA_MUESTRA,MZ_ID);
-        contentValues.put(SQLConstantes.CARATULA_FRENTE,FRENTE);
-        contentValues.put(SQLConstantes.CARATULA_TIPVIA,TIPVIA);
-        contentValues.put(SQLConstantes.CARATULA_NOMVIA,NOMVIA);
-        contentValues.put(SQLConstantes.CARATULA_NPUERTA,NROPTA);
-        contentValues.put(SQLConstantes.CARATULA_BLOCK,BLOCK);
-        contentValues.put(SQLConstantes.CARATULA_INTERIOR,INT);
-        contentValues.put(SQLConstantes.CARATULA_PISO,PISO);
-        contentValues.put(SQLConstantes.CARATULA_MANZANA_VIA,MZA);
-        contentValues.put(SQLConstantes.CARATULA_LOTE,LOTE);
-        contentValues.put(SQLConstantes.CARATULA_KM,KM);
-        contentValues.put(SQLConstantes.CARATULA_REFERENCIA,REF_DIREC);
+        contentValues.put(SQLCaratula.CARATULA_ID,ID);
+        contentValues.put(SQLCaratula.CARATULA_CAMBIO,CAMBIO);
+        contentValues.put(SQLCaratula.CARATULA_DEPARTAMENTO,NOMBREDD);
+        contentValues.put(SQLCaratula.CARATULA_DEPARTAMENTO_COD,CCDD);
+        contentValues.put(SQLCaratula.CARATULA_PROVINCIA,NOMBREPV);
+        contentValues.put(SQLCaratula.CARATULA_PROVINCIA_COD,CCPP);
+        contentValues.put(SQLCaratula.CARATULA_DISTRITO,NOMBREDI);
+        contentValues.put(SQLCaratula.CARATULA_DISTRITO_COD,CCDI);
+        contentValues.put(SQLCaratula.CARATULA_GPSLATITUD,GPSLATITUD);
+        contentValues.put(SQLCaratula.CARATULA_GPSALTITUD,GPSALTITUD);
+        contentValues.put(SQLCaratula.CARATULA_GPSLONGITUD,GPSLONGITUD);
+        contentValues.put(SQLCaratula.CARATULA_SECTOR,CCST);
+        contentValues.put(SQLCaratula.CARATULA_AREA,CCAT);
+        contentValues.put(SQLCaratula.CARATULA_ZONA,ZON_NUM);
+        contentValues.put(SQLCaratula.CARATULA_MANZANA_MUESTRA,MZ_ID);
+        contentValues.put(SQLCaratula.CARATULA_FRENTE,FRENTE);
+        contentValues.put(SQLCaratula.CARATULA_TIPVIA,TIPVIA);
+        contentValues.put(SQLCaratula.CARATULA_NOMVIA,NOMVIA);
+        contentValues.put(SQLCaratula.CARATULA_NPUERTA,NROPTA);
+        contentValues.put(SQLCaratula.CARATULA_BLOCK,BLOCK);
+        contentValues.put(SQLCaratula.CARATULA_INTERIOR,INT);
+        contentValues.put(SQLCaratula.CARATULA_PISO,PISO);
+        contentValues.put(SQLCaratula.CARATULA_MANZANA_VIA,MZA);
+        contentValues.put(SQLCaratula.CARATULA_LOTE,LOTE);
+        contentValues.put(SQLCaratula.CARATULA_KM,KM);
+        contentValues.put(SQLCaratula.CARATULA_REFERENCIA,REF_DIREC);
         return contentValues;
     }
 }
