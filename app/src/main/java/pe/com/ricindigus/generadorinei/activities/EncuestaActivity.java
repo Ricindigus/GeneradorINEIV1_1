@@ -43,6 +43,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.POJOEditT
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
+import pe.com.ricindigus.generadorinei.fragments.M2P1Fragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
@@ -238,6 +239,9 @@ public class EncuestaActivity extends AppCompatActivity {
                         POJORadio POJORadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
                         fragmentComponente = new RadioFragment(POJORadio,spRadios,getApplicationContext());
+                        break;
+                    case TipoComponente.M2P1:
+                        fragmentComponente = new M2P1Fragment();
                         break;
                 }
             }else{

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/edittext_pregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_p111_ck7_sp1"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/edit_text_lyt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"/>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

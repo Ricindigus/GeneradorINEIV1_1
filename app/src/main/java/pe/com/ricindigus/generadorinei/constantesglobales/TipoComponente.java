@@ -11,5 +11,5 @@ public class TipoComponente {
     public static final int EDITTEXT = 4;
     public static final int CHECKBOX = 5;
     public static final int RADIO = 6;
-    public static final int EDITSUMA = 7;
+    public static final int M2P1 = 7;
 }

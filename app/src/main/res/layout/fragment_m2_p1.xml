@@ -1,0 +1,82 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.fragments.M2P1Fragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:id="@+id/radio_pregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck1"/>
+        <include layout="@layout/m2p1_p111_layout" android:id="@+id/pregunta_p111"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck2"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck3"/>
+        <include layout="@layout/m2p1_p131_layout" android:id="@+id/pregunta_p131"/>
+        <include layout="@layout/m2p1_p132_layout" android:id="@+id/pregunta_p132"/>
+        <include layout="@layout/m2p1_p133_layout" android:id="@+id/pregunta_p133"/>
+        <include layout="@layout/m2p1_p134_layout" android:id="@+id/pregunta_p134"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck4"/>
+        <include layout="@layout/m2p1_p141_layout" android:id="@+id/pregunta_p141"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck5"/>
+        <include layout="@layout/m2p1_p151_layout" android:id="@+id/pregunta_p151"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck6"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck7"/>
+        <include layout="@layout/m2p1_p171_layout" android:id="@+id/pregunta_p171"/>
+        <include layout="@layout/m2p1_p172_layout" android:id="@+id/pregunta_p172"/>
+        <include layout="@layout/m2p1_p173_layout" android:id="@+id/pregunta_p173"/>
+        <include layout="@layout/m2p1_p174_layout" android:id="@+id/pregunta_p174"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck8"/>
+        <include layout="@layout/m2p1_p181_layout" android:id="@+id/pregunta_p181"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck9"/>
+        <CheckBox
+            android:id="@+id/m2p1_ck10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m2p1_ck10"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
