@@ -121,8 +121,8 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-                if(posicionFragment + 1 < numeroPaginasTotal) posicionFragment++;
-                else if(posicionFragment + 1 == numeroPaginasTotal) posicionFragment = 1;
+                if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
+                else posicionFragment = 1;
                 setFragmentNombreSeccion(posicionFragment,1);
                 setFragment(posicionFragment,1);
             }

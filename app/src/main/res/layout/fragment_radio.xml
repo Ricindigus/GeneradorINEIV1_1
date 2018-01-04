@@ -191,6 +191,86 @@
                 android:visibility="gone"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
+            <RadioButton
+                android:id="@+id/radio_sp11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 11"
+                android:visibility="gone"
+                />
+            <EditText
+                android:id="@+id/radio_descripcion11"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
+            <RadioButton
+                android:id="@+id/radio_sp12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 12"
+                android:visibility="gone"
+                />
+            <EditText
+                android:id="@+id/radio_descripcion12"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
+            <RadioButton
+                android:id="@+id/radio_sp13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 13"
+                android:visibility="gone"
+                />
+            <EditText
+                android:id="@+id/radio_descripcion13"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
+            <RadioButton
+                android:id="@+id/radio_sp14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 14"
+                android:visibility="gone"
+                />
+            <EditText
+                android:id="@+id/radio_descripcion14"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
+            <RadioButton
+                android:id="@+id/radio_sp15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sub pregunta 15"
+                android:visibility="gone"
+                />
+            <EditText
+                android:id="@+id/radio_descripcion15"
+                android:layout_width="400dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:hint="Especifique"
+                android:visibility="gone"
+                android:background="@drawable/edittext_disabled"
+                android:layout_marginLeft="10dp"/>
         </RadioGroup>
     </LinearLayout>
 
