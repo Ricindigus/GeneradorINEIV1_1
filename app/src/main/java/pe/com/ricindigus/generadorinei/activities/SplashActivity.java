@@ -57,6 +57,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
 
+
     Data data;
     DataComponentes dataComponentes;
     DataEditText dataEditText;
