@@ -23,6 +23,7 @@ public class SQLConstantesComponente {
     public static final String MODULO_TITULO = "TITULO";
 
     //COLUMNAS PAGINAS
+
     public static final String PAGINA_ID = "ID";
     public static final String PAGINA_MODULO = "MODULO";
     public static final String PAGINA_IDP1 = "IDP1";

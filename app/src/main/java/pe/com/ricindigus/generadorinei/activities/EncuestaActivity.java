@@ -144,8 +144,8 @@ public class EncuestaActivity extends AppCompatActivity {
         int numeroDePagina = pos;
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        String numModulo = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
-        if(Integer.parseInt(numModulo) != moduloActual)nombreSeccion = dataComponentes.getModulo(numModulo).getTITULO();
+        String mod = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
+        if(!mod.equals(moduloActual))nombreSeccion = dataComponentes.getModulo(mod).getTITULO();
         if(!nombreSeccion.equals(nombreSeccionActual)){
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

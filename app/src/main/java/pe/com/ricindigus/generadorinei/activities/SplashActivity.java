@@ -29,9 +29,11 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
+import pe.com.ricindigus.generadorinei.parser.TablaGuardadoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
@@ -56,7 +58,6 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<POJORadio> POJORadios = new ArrayList<POJORadio>();
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
-
 
     Data data;
     DataComponentes dataComponentes;
@@ -92,6 +93,7 @@ public class SplashActivity extends AppCompatActivity {
             RadioPullParser radioPullParser = new RadioPullParser();
             SPRadioPullParser spRadioPullParser = new SPRadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
+
 
             marcos = marcoPullParser.parseXML(getApplicationContext());
             usuarios = usuarioParser.parseXML(getApplicationContext());
@@ -263,6 +265,9 @@ public class SplashActivity extends AppCompatActivity {
             dataEditText.close();
             dataCheckBox.close();
             dataRadio.close();
+            DataTablas dataTablas = new DataTablas(getApplicationContext());
+            dataTablas.open();
+            dataTablas.close();
             return mensaje;
         }
 
