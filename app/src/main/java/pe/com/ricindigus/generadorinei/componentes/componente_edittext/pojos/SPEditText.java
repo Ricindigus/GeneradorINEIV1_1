@@ -1,6 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos;
 
 import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 
 /**
  * Created by RICARDO on 1/01/2018.

@@ -1,6 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_checkbox;
+package pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos;
 
 import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 
 /**
  * Created by RICARDO on 2/01/2018.

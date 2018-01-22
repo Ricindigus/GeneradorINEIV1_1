@@ -1,19 +1,22 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_checkbox;
+package pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos;
 
 import android.content.ContentValues;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
+
+
 /**
- * Created by dmorales on 20/12/2017.
+ * Created by dmorales on 21/12/2017.
  */
 
-public class POJOCheckBox {
+public class PRadio {
     private String ID;
     private String MODULO;
     private String NUMERO;
     private String PREGUNTA;
 
 
-    public POJOCheckBox() {
+    public PRadio() {
         this.ID = "";
         this.MODULO = "";
         this.NUMERO = "";
@@ -55,10 +58,10 @@ public class POJOCheckBox {
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(5);
-        contentValues.put(SQLCheckBox.CHECKBOX_ID,ID);
-        contentValues.put(SQLCheckBox.CHECKBOX_MODULO,MODULO);
-        contentValues.put(SQLCheckBox.CHECKBOX_NUMERO,NUMERO);
-        contentValues.put(SQLCheckBox.CHECKBOX_PREGUNTA,PREGUNTA);
+        contentValues.put(SQLRadio.RADIO_ID,ID);
+        contentValues.put(SQLRadio.RADIO_MODULO,MODULO);
+        contentValues.put(SQLRadio.RADIO_NUMERO,NUMERO);
+        contentValues.put(SQLRadio.RADIO_PREGUNTA,PREGUNTA);
         return contentValues;
     }
 }

@@ -12,20 +12,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.DataCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.POJOCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.DataCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBoxPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.DataEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.POJOEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SPEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SPEditTextPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.DataRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.POJORadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
@@ -33,7 +31,6 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTabla
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
-import pe.com.ricindigus.generadorinei.parser.TablaGuardadoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
@@ -51,11 +48,11 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
-    ArrayList<POJOEditText> POJOEditTexts = new ArrayList<POJOEditText>();
+    ArrayList<PEditText> PEditTexts = new ArrayList<PEditText>();
     ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
-    ArrayList<POJOCheckBox> POJOCheckBoxes = new ArrayList<POJOCheckBox>();
+    ArrayList<PCheckBox> PCheckBoxes = new ArrayList<PCheckBox>();
     ArrayList<SPCheckBox> spCheckBoxes  = new ArrayList<SPCheckBox>();
-    ArrayList<POJORadio> POJORadios = new ArrayList<POJORadio>();
+    ArrayList<PRadio> PRadios = new ArrayList<PRadio>();
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
 
@@ -87,9 +84,7 @@ public class SplashActivity extends AppCompatActivity {
             UbigeoPullParser ubigeoPullParser = new UbigeoPullParser();
             ModuloPullParser moduloPullParser = new ModuloPullParser();
             EditTextPullParser editTextPullParser = new EditTextPullParser();
-            SPEditTextPullParser spEditTextPullParser = new SPEditTextPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
-            SPCheckBoxPullParser spCheckBoxPullParser = new SPCheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
             SPRadioPullParser spRadioPullParser = new SPRadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
@@ -101,22 +96,22 @@ public class SplashActivity extends AppCompatActivity {
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
             modulos = moduloPullParser.parseXML(getApplicationContext());
-            POJOEditTexts = editTextPullParser.parseXML(getApplicationContext());
-            spEditTexts = spEditTextPullParser.parseXML(getApplicationContext());
-            POJOCheckBoxes = checkBoxPullParser.parseXML(getApplicationContext());
-            spCheckBoxes = spCheckBoxPullParser.parseXML(getApplicationContext());
-            POJORadios = radioPullParser.parseXML(getApplicationContext());
+            PEditTexts = editTextPullParser.parseXMLPEditText(getApplicationContext());
+            spEditTexts = editTextPullParser.parseXMLSPEditText(getApplicationContext());
+            PCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
+            spCheckBoxes = checkBoxPullParser.parseXMLSPCheckBox(getApplicationContext());
+            PRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
             spRadios = spRadioPullParser.parseXML(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             dataComponentes.close();
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size()
-                + POJOEditTexts.size() + spEditTexts.size()
-                + POJOCheckBoxes.size() + spCheckBoxes.size()
-                + POJORadios.size() + spRadios.size()
+                + PEditTexts.size() + spEditTexts.size()
+                + PCheckBoxes.size() + spCheckBoxes.size()
+                + PRadios.size() + spRadios.size()
                 + paginas.size();
-//                + POJOEditTexts.size() + POJOCheckBoxes.size() + POJORadios.size() + paginas.size();
+//                + PEditTexts.size() + PCheckBoxes.size() + PRadios.size() + paginas.size();
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -188,9 +183,9 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (POJOEditText pojoEditText : POJOEditTexts) {
+                for (PEditText pEditText : PEditTexts) {
                     try {
-                        dataEditText.insertarPOJOEditText(pojoEditText);
+                        dataEditText.insertarPOJOEditText(pEditText);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -206,9 +201,9 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (POJOCheckBox pojoCheckBox : POJOCheckBoxes) {
+                for (PCheckBox pCheckBox : PCheckBoxes) {
                     try {
-                        dataCheckBox.insertarPOJOCheckBox(pojoCheckBox);
+                        dataCheckBox.insertarPOJOCheckBox(pCheckBox);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -224,9 +219,9 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (POJORadio POJORadio : POJORadios) {
+                for (PRadio PRadio : PRadios) {
                     try {
-                        dataRadio.insertarPOJORadio(POJORadio);
+                        dataRadio.insertarPOJORadio(PRadio);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

@@ -27,19 +27,19 @@ import java.util.List;
 import java.util.Map;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.DataCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.POJOCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.DataEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SPEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.DataRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.POJORadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.DataCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.POJOEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
@@ -226,19 +226,19 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new IdentificacionFragment();
                         break;
                     case TipoComponente.EDITTEXT:
-                        POJOEditText POJOEditText = dataEditText.getPOJOEditText(ids[i]);
+                        PEditText PEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        fragmentComponente = new EditTextFragment(POJOEditText,spEditTexts,getApplicationContext());
+                        fragmentComponente = new EditTextFragment(PEditText,spEditTexts,getApplicationContext());
                         break;
                     case TipoComponente.CHECKBOX:
-                        POJOCheckBox POJOCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
+                        PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
                         ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
-                        fragmentComponente = new CheckBoxFragment(POJOCheckBox,spCheckBoxes,getApplicationContext());
+                        fragmentComponente = new CheckBoxFragment(PCheckBox,spCheckBoxes,getApplicationContext());
                         break;
                     case TipoComponente.RADIO:
-                        POJORadio POJORadio = dataRadio.getPOJORadio(ids[i]);
+                        PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
-                        fragmentComponente = new RadioFragment(POJORadio,spRadios,getApplicationContext());
+                        fragmentComponente = new RadioFragment(PRadio,spRadios,getApplicationContext());
                         break;
                     case TipoComponente.M2P1:
                         fragmentComponente = new M2P1Fragment();

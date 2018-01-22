@@ -1,28 +1,28 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos;
 
 import android.content.ContentValues;
 
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 
 /**
  * Created by dmorales on 13/12/2017.
  */
 
-public class POJOEditText {
+public class PEditText {
     private String ID;
     private String MODULO;
     private String NUMERO;
     private String PREGUNTA;
 
 
-    public POJOEditText() {
+    public PEditText() {
         ID = "";
         MODULO = "";
         NUMERO = "";
         PREGUNTA = "";
     }
 
-    public POJOEditText(String ID, String MODULO, String NUMERO, String PREGUNTA) {
+    public PEditText(String ID, String MODULO, String NUMERO, String PREGUNTA) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.NUMERO = NUMERO;

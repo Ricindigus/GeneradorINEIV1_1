@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +25,7 @@ import pe.com.ricindigus.generadorinei.R;
 public class CheckBoxFragment extends Fragment {
 
     private Context context;
-    private POJOCheckBox POJOCheckBox;
+    private pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox PCheckBox;
     private ArrayList<SPCheckBox> subpreguntas;
     private LinearLayout lyt1,lyt2,lyt3,lyt4,lyt5,lyt6,lyt7,lyt8,lyt9,lyt10,
             lyt11,lyt12,lyt13,lyt14,lyt15,lyt16,lyt17,lyt18,lyt19,lyt20;
@@ -39,9 +41,9 @@ public class CheckBoxFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public CheckBoxFragment(POJOCheckBox POJOCheckBox, ArrayList<SPCheckBox> subpreguntas, Context context) {
+    public CheckBoxFragment(PCheckBox PCheckBox, ArrayList<SPCheckBox> subpreguntas, Context context) {
         this.context = context;
-        this.POJOCheckBox = POJOCheckBox;
+        this.PCheckBox = PCheckBox;
         this.subpreguntas = subpreguntas;
     }
 
@@ -122,7 +124,7 @@ public class CheckBoxFragment extends Fragment {
     }
 
     public void llenarVista(){
-        txtPregunta.setText(POJOCheckBox.getNUMERO() + ". " + POJOCheckBox.getPREGUNTA().toUpperCase());
+        txtPregunta.setText(PCheckBox.getNUMERO() + ". " + PCheckBox.getPREGUNTA().toUpperCase());
         LinearLayout[] linearLayouts = {lyt1,lyt2,lyt3,lyt4,lyt5,lyt6,lyt7,lyt8,lyt9,lyt10,
                 lyt11,lyt12,lyt13,lyt14,lyt15,lyt16,lyt17,lyt18,lyt19,lyt20};
         CheckBox[] checkBoxes = {ck1, ck2, ck3, ck4, ck5, ck6, ck7, ck8, ck9, ck10,

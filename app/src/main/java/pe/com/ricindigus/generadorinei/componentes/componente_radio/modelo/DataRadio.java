@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_radio;
+package pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SPCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SQLCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -46,24 +46,24 @@ public class DataRadio {
     }
 
     //INICIO RADIO
-    public void insertarPOJORadio(POJORadio POJORadio){
-        ContentValues contentValues = POJORadio.toValues();
+    public void insertarPOJORadio(PRadio PRadio){
+        ContentValues contentValues = PRadio.toValues();
         sqLiteDatabase.insert(SQLRadio.tablaRadio,null,contentValues);
     }
-    public void insertarPOJORadios(ArrayList<POJORadio> POJORadios){
+    public void insertarPOJORadios(ArrayList<PRadio> PRadios){
         long items = getNumeroItemsPOJORadio();
         if(items == 0){
-            for (POJORadio POJORadio : POJORadios) {
+            for (PRadio PRadio : PRadios) {
                 try {
-                    insertarPOJORadio(POJORadio);
+                    insertarPOJORadio(PRadio);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
             }
         }
     }
-    public POJORadio getPOJORadio(String idCRadio){
-        POJORadio POJORadio = new POJORadio();
+    public PRadio getPOJORadio(String idCRadio){
+        PRadio PRadio = new PRadio();
         String[] whereArgs = new String[]{idCRadio};
         Cursor cursor = null;
         try{
@@ -71,15 +71,15 @@ public class DataRadio {
                     SQLRadio.ALL_COLUMNS_RADIO, SQLRadio.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                POJORadio.setID(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_ID )));
-                POJORadio.setMODULO(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_MODULO)));
-                POJORadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_NUMERO )));
-                POJORadio.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_PREGUNTA )));
+                PRadio.setID(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_ID )));
+                PRadio.setMODULO(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_MODULO)));
+                PRadio.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_NUMERO )));
+                PRadio.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLRadio.RADIO_PREGUNTA )));
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return POJORadio;
+        return PRadio;
     }
     //FIN RADIO
 

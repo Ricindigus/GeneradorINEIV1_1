@@ -1,6 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_radio;
+package pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos;
 
 import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
 
 /**
  * Created by RICARDO on 2/01/2018.

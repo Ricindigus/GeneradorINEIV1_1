@@ -9,10 +9,8 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,13 +18,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RadioFragment extends Fragment {
 
-    private POJORadio POJORadio;
+    private pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio PRadio;
     private ArrayList<SPRadio> subpreguntas;
     private Context  context;
     private TextView txtPregunta;
@@ -69,8 +69,8 @@ public class RadioFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public RadioFragment(POJORadio pojoRadio, ArrayList<SPRadio> subpreguntas, Context context) {
-        this.POJORadio = pojoRadio;
+    public RadioFragment(PRadio pRadio, ArrayList<SPRadio> subpreguntas, Context context) {
+        this.PRadio = pRadio;
         this.subpreguntas = subpreguntas;
         this.context = context;
     }
@@ -118,7 +118,7 @@ public class RadioFragment extends Fragment {
     }
 
     public void llenarVista(){
-        txtPregunta.setText(POJORadio.getNUMERO() + ". " + POJORadio.getPREGUNTA().toUpperCase());
+        txtPregunta.setText(PRadio.getNUMERO() + ". " + PRadio.getPREGUNTA().toUpperCase());
         RadioButton[] radioButtons = {rb1,rb2,rb3,rb4,
                 rb5,rb6,rb7,rb8,rb9,rb10,rb11,rb12,rb13,rb14,rb15};
         EditText[] editTexts = {edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9,edit10

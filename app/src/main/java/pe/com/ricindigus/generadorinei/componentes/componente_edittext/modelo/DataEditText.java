@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
+package pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -43,24 +45,24 @@ public class DataEditText {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLEditText.tablaSPEditText);
     }
 
-    public void insertarPOJOEditText(POJOEditText POJOEditText){
-        ContentValues contentValues = POJOEditText.toValues();
+    public void insertarPOJOEditText(PEditText PEditText){
+        ContentValues contentValues = PEditText.toValues();
         sqLiteDatabase.insert(SQLEditText.tablaEditText,null,contentValues);
     }
-    public void insertarPOJOEditTexts(ArrayList<POJOEditText> editTexts){
+    public void insertarPOJOEditTexts(ArrayList<PEditText> editTexts){
         long items = getNumeroItemsPOJOEditText();
         if(items == 0){
-            for (POJOEditText POJOEditText : editTexts) {
+            for (PEditText PEditText : editTexts) {
                 try {
-                    insertarPOJOEditText(POJOEditText);
+                    insertarPOJOEditText(PEditText);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
             }
         }
     }
-    public POJOEditText getPOJOEditText(String idPOJOEditText){
-        POJOEditText POJOEditText = new POJOEditText();
+    public PEditText getPOJOEditText(String idPOJOEditText){
+        PEditText PEditText = new PEditText();
         String[] whereArgs = new String[]{idPOJOEditText};
         Cursor cursor = null;
         try{
@@ -68,15 +70,15 @@ public class DataEditText {
                     SQLEditText.ALL_COLUMNS_EDITTEXT, SQLEditText.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                POJOEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_ID)));
-                POJOEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_MODULO)));
-                POJOEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_NUMERO)));
-                POJOEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_PREGUNTA)));
+                PEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_ID)));
+                PEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_MODULO)));
+                PEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_NUMERO)));
+                PEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_PREGUNTA)));
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return POJOEditText;
+        return PEditText;
     }
 
     public void insertarSPEditText(SPEditText spEditText){

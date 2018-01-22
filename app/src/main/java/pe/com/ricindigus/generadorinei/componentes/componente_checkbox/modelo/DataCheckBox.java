@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_checkbox;
+package pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 
@@ -43,24 +45,24 @@ public class DataCheckBox {
     }
 
     //INICIO CHECKBOX
-    public void insertarPOJOCheckBox(POJOCheckBox POJOCheckBox){
-        ContentValues contentValues = POJOCheckBox.toValues();
+    public void insertarPOJOCheckBox(PCheckBox PCheckBox){
+        ContentValues contentValues = PCheckBox.toValues();
         sqLiteDatabase.insert(SQLCheckBox.tablaCheckBox,null,contentValues);
     }
-    public void insertarPOJOCheckBoxs(ArrayList<POJOCheckBox> POJOCheckBoxes){
+    public void insertarPOJOCheckBoxs(ArrayList<PCheckBox> PCheckBoxes){
         long items = getNumeroItemsPOJOCheckBox();
         if(items == 0){
-            for (POJOCheckBox POJOCheckBox : POJOCheckBoxes) {
+            for (PCheckBox PCheckBox : PCheckBoxes) {
                 try {
-                    insertarPOJOCheckBox(POJOCheckBox);
+                    insertarPOJOCheckBox(PCheckBox);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
             }
         }
     }
-    public POJOCheckBox getPOJOCheckbox(String idCCheckbox){
-        POJOCheckBox POJOCheckBox = new POJOCheckBox();
+    public PCheckBox getPOJOCheckbox(String idCCheckbox){
+        PCheckBox PCheckBox = new PCheckBox();
         String[] whereArgs = new String[]{idCCheckbox};
         Cursor cursor = null;
         try{
@@ -68,15 +70,15 @@ public class DataCheckBox {
                     SQLCheckBox.ALL_COLUMNS_CHECKBOX, SQLCheckBox.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                POJOCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_ID)));
-                POJOCheckBox.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_MODULO)));
-                POJOCheckBox.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_NUMERO)));
-                POJOCheckBox.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_PREGUNTA )));
+                PCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_ID)));
+                PCheckBox.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_MODULO)));
+                PCheckBox.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_NUMERO)));
+                PCheckBox.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_PREGUNTA )));
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return POJOCheckBox;
+        return PCheckBox;
     }
     //FIN CHECKBOX
 

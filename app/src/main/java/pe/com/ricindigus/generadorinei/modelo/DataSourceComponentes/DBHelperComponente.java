@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.SQLCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.SQLEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.SQLRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
 
 /**
  * Created by dmorales on 23/11/2017.

@@ -10,10 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.POJOCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.POJORadio;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.POJOEditText;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;

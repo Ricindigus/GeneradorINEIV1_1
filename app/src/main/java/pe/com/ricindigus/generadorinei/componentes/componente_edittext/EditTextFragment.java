@@ -8,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 
@@ -30,20 +32,20 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponen
  */
 public class EditTextFragment extends Fragment {
     private DataComponentes dataComponentes;
-    private POJOEditText POJOEditText;
+    private pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText PEditText;
     private ArrayList<SPEditText> subpreguntas;
     private Context context;
     private String idEditText;
     private TextView txtPregunta;
-    private TextInputLayout edtLyt1;
-    private TextInputLayout edtLyt2;
-    private TextInputLayout edtLyt3;
-    private TextInputEditText edtSP1;
-    private TextInputEditText edtSP2;
-    private TextInputEditText edtSP3;
-    private LinearLayout lyt1;
-    private LinearLayout lyt2;
-    private LinearLayout lyt3;
+    private TextInputLayout edtLyt1,edtLyt2,edtLyt3;
+    private TextInputEditText edtSP1,edtSP2,edtSP3;
+    private LinearLayout lyt1,lyt2,lyt3;
+    private CardView editTextCardView;
+    private View rootView;
+
+    private TextInputLayout[] textInputLayouts = {edtLyt1, edtLyt2, edtLyt3};
+    private TextInputEditText[] textInputEditTexts = {edtSP1,edtSP2,edtSP3};
+    private LinearLayout[] linearLayouts = {lyt1, lyt2, lyt3};
 
 
     public EditTextFragment() {
@@ -51,8 +53,8 @@ public class EditTextFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public EditTextFragment(POJOEditText POJOEditText, ArrayList<SPEditText> subpreguntas, Context context) {
-        this.POJOEditText = POJOEditText;
+    public EditTextFragment(PEditText PEditText, ArrayList<SPEditText> subpreguntas, Context context) {
+        this.PEditText = PEditText;
         this.subpreguntas = subpreguntas;
         this.context = context;
     }
@@ -76,6 +78,7 @@ public class EditTextFragment extends Fragment {
         edtSP1 = (TextInputEditText) lyt1.findViewById(R.id.edit_text_input);
         edtSP2 = (TextInputEditText) lyt2.findViewById(R.id.edit_text_input);
         edtSP3 = (TextInputEditText) lyt3.findViewById(R.id.edit_text_input);
+
         llenarVista();
         return rootView;
     }
@@ -87,10 +90,8 @@ public class EditTextFragment extends Fragment {
     }
 
     public void llenarVista(){
-        txtPregunta.setText(POJOEditText.getNUMERO() + ". " + POJOEditText.getPREGUNTA().toUpperCase());
-        TextInputLayout[] textInputLayouts = {edtLyt1, edtLyt2, edtLyt3};
-        TextInputEditText[] textInputEditTexts = {edtSP1,edtSP2,edtSP3};
-        LinearLayout[] linearLayouts = {lyt1, lyt2, lyt3};
+        txtPregunta.setText(PEditText.getNUMERO() + ". " + PEditText.getPREGUNTA().toUpperCase());
+
         for (int i = 0; i < subpreguntas.size(); i++) {
             SPEditText spEditText = subpreguntas.get(i);
             linearLayouts[i].setVisibility(View.VISIBLE);
@@ -107,12 +108,42 @@ public class EditTextFragment extends Fragment {
                         new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
                 });
             }
-
-
         }
     }
 
     public void cargarDatos(){
 
+    }
+
+    public void guardarDatos(){
+
+    }
+
+//    public void validar(){
+//        boolean correcto = true, vEdt1, vEdt2, vEdt3;
+//        if(rootView.getVisibility() == View.VISIBLE){
+//            for (int i = 0; i < subpreguntas.size(); i++) {
+//                if(linearLayouts[i].getVisibility() == View.VISIBLE){
+//
+//                }
+//
+//                if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
+//                    textInputEditTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
+//                    textInputEditTexts[i].setFilters(new InputFilter[]{
+//                            new InputFilter.AllCaps(),
+//                            new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
+//                    });
+//                }else{
+//                    textInputEditTexts[i].setTransformationMethod(new NumericKeyBoardTransformationMethod());
+//                    textInputEditTexts[i].setFilters(new InputFilter[]{
+//                            new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
+//                    });
+//                }
+//            }
+//        }
+//    }
+
+    public void inhabilitar(){
+        rootView.setVisibility(View.GONE);
     }
 }
