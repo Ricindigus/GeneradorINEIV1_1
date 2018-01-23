@@ -3,28 +3,28 @@ package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 
 /**
@@ -32,20 +32,19 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponen
  */
 public class EditTextFragment extends Fragment {
     private DataComponentes dataComponentes;
-    private pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText PEditText;
+    private PEditText pEditText;
     private ArrayList<SPEditText> subpreguntas;
     private Context context;
+    private String idEmpresa;
     private String idEditText;
     private TextView txtPregunta;
     private TextInputLayout edtLyt1,edtLyt2,edtLyt3;
     private TextInputEditText edtSP1,edtSP2,edtSP3;
-    private LinearLayout lyt1,lyt2,lyt3;
     private CardView editTextCardView;
     private View rootView;
 
     private TextInputLayout[] textInputLayouts = {edtLyt1, edtLyt2, edtLyt3};
     private TextInputEditText[] textInputEditTexts = {edtSP1,edtSP2,edtSP3};
-    private LinearLayout[] linearLayouts = {lyt1, lyt2, lyt3};
 
 
     public EditTextFragment() {
@@ -53,32 +52,25 @@ public class EditTextFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public EditTextFragment(PEditText PEditText, ArrayList<SPEditText> subpreguntas, Context context) {
-        this.PEditText = PEditText;
+    public EditTextFragment(PEditText pEditText, ArrayList<SPEditText> subpreguntas, Context context, String idEmpresa) {
+        this.pEditText = pEditText;
         this.subpreguntas = subpreguntas;
         this.context = context;
+        this.idEmpresa = idEmpresa;
     }
-
-    @SuppressLint("ValidFragment")
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_edit_text, container, false);
-        lyt1 = (LinearLayout) rootView.findViewById(R.id.edittext_sp1);
-        lyt2 = (LinearLayout) rootView.findViewById(R.id.edittext_sp2);
-        lyt3 = (LinearLayout) rootView.findViewById(R.id.edittext_sp3);
+        rootView = inflater.inflate(R.layout.fragment_edit_text, container, false);
         txtPregunta = rootView.findViewById(R.id.edittext_pregunta);
-        edtLyt1 = (TextInputLayout)lyt1.findViewById(R.id.edit_text_lyt);
-        edtLyt2 = (TextInputLayout)lyt2.findViewById(R.id.edit_text_lyt);
-        edtLyt3 = (TextInputLayout)lyt3.findViewById(R.id.edit_text_lyt);
-        edtSP1 = (TextInputEditText) lyt1.findViewById(R.id.edit_text_input);
-        edtSP2 = (TextInputEditText) lyt2.findViewById(R.id.edit_text_input);
-        edtSP3 = (TextInputEditText) lyt3.findViewById(R.id.edit_text_input);
-
+        edtLyt1 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp1);
+        edtLyt2 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp2);
+        edtLyt3 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp3);
+        edtSP1 = (TextInputEditText) edtLyt1.findViewById(R.id.edit_text_input);
+        edtSP2 = (TextInputEditText) edtLyt2.findViewById(R.id.edit_text_input);
+        edtSP3 = (TextInputEditText) edtLyt3.findViewById(R.id.edit_text_input);
         llenarVista();
         return rootView;
     }
@@ -90,11 +82,10 @@ public class EditTextFragment extends Fragment {
     }
 
     public void llenarVista(){
-        txtPregunta.setText(PEditText.getNUMERO() + ". " + PEditText.getPREGUNTA().toUpperCase());
-
+        txtPregunta.setText(pEditText.getNUMERO() + ". " + pEditText.getPREGUNTA().toUpperCase());
         for (int i = 0; i < subpreguntas.size(); i++) {
             SPEditText spEditText = subpreguntas.get(i);
-            linearLayouts[i].setVisibility(View.VISIBLE);
+            textInputLayouts[i].setVisibility(View.VISIBLE);
             textInputLayouts[i].setHint(spEditText.getSUBPREGUNTA());
             if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
                 textInputEditTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
@@ -116,34 +107,51 @@ public class EditTextFragment extends Fragment {
     }
 
     public void guardarDatos(){
+        DataTablas data = new DataTablas(context);
+        data.open();
 
+        data.close();
     }
 
-//    public void validar(){
-//        boolean correcto = true, vEdt1, vEdt2, vEdt3;
-//        if(rootView.getVisibility() == View.VISIBLE){
-//            for (int i = 0; i < subpreguntas.size(); i++) {
-//                if(linearLayouts[i].getVisibility() == View.VISIBLE){
-//
-//                }
-//
-//                if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
-//                    textInputEditTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
-//                    textInputEditTexts[i].setFilters(new InputFilter[]{
-//                            new InputFilter.AllCaps(),
-//                            new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
-//                    });
-//                }else{
-//                    textInputEditTexts[i].setTransformationMethod(new NumericKeyBoardTransformationMethod());
-//                    textInputEditTexts[i].setFilters(new InputFilter[]{
-//                            new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
-//                    });
-//                }
-//            }
-//        }
-//    }
+    public boolean validar(){
+        boolean correcto = true;
+        boolean fin = false;
+        String mensaje = "";
+        int c = 0;
+        while(correcto && !fin){
+            if(textInputEditTexts[c].getVisibility() == View.VISIBLE){
+                if(textInputEditTexts[c].getText().toString().trim().equals("")){
+                    correcto = false;
+                    mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";
+                }
+            }else{
+                fin = true;
+            }
+            c++;
+        }
+        if(!correcto) mostrarMensaje(mensaje);
+        return correcto;
+    }
 
     public void inhabilitar(){
         rootView.setVisibility(View.GONE);
+    }
+
+    public boolean estaHabilitado(){
+        boolean habilitado = false;
+        if(rootView.getVisibility() == View.VISIBLE) habilitado = true;
+        return habilitado;
+    }
+
+    public void mostrarMensaje(String m){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(m);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

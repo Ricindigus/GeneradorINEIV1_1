@@ -6,7 +6,7 @@ package pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura;
 
 public class SQLConstantes {
     //DB
-    public static final String DB = "bdencuestagenerador.db";
+    public static final String DB = "bdcaptura.db";
 
     //TABLAS
     public static final String tableUsuarios = "usuarios";

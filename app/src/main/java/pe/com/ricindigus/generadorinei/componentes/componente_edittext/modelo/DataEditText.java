@@ -52,9 +52,9 @@ public class DataEditText {
     public void insertarPOJOEditTexts(ArrayList<PEditText> editTexts){
         long items = getNumeroItemsPOJOEditText();
         if(items == 0){
-            for (PEditText PEditText : editTexts) {
+            for (PEditText pEditText : editTexts) {
                 try {
-                    insertarPOJOEditText(PEditText);
+                    insertarPOJOEditText(pEditText);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
@@ -62,7 +62,7 @@ public class DataEditText {
         }
     }
     public PEditText getPOJOEditText(String idPOJOEditText){
-        PEditText PEditText = new PEditText();
+        PEditText pEditText = new PEditText();
         String[] whereArgs = new String[]{idPOJOEditText};
         Cursor cursor = null;
         try{
@@ -70,15 +70,15 @@ public class DataEditText {
                     SQLEditText.ALL_COLUMNS_EDITTEXT, SQLEditText.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                PEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_ID)));
-                PEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_MODULO)));
-                PEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_NUMERO)));
-                PEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_PREGUNTA)));
+                pEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_ID)));
+                pEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_MODULO)));
+                pEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_NUMERO)));
+                pEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_PREGUNTA)));
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return PEditText;
+        return pEditText;
     }
 
     public void insertarSPEditText(SPEditText spEditText){

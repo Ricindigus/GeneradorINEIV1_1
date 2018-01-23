@@ -93,6 +93,11 @@ public class EncuestaActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        final Bundle recupera=getIntent().getExtras();
+        if(recupera != null){
+            idEmpresa = recupera.getString("idEmpresa");
+        }
+
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         numeroPaginasTotal = (int)dataComponentes.getNumeroItemsPaginas();
@@ -228,7 +233,7 @@ public class EncuestaActivity extends AppCompatActivity {
                     case TipoComponente.EDITTEXT:
                         PEditText PEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        fragmentComponente = new EditTextFragment(PEditText,spEditTexts,getApplicationContext());
+                        fragmentComponente = new EditTextFragment(PEditText,spEditTexts,getApplicationContext(),idEmpresa);
                         break;
                     case TipoComponente.CHECKBOX:
                         PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
