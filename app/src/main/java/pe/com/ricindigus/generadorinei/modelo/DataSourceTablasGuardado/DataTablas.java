@@ -50,7 +50,7 @@ public class DataTablas {
         return columnas;
     }
 
-    public boolean existeModulo(int nModulo, String idEmpresa){
+    public boolean existenDatos(int nModulo, String idEmpresa){
         boolean encontrado = false;
         String[] columnas = {"ID_EMPRESA"};
         String[] whereArgs = new String[]{idEmpresa};
@@ -73,7 +73,23 @@ public class DataTablas {
         sqLiteDatabase.update("modulo" + nModulo,valores,SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs);
     }
 
-//    public String getValores
+    public String[] getValores(int nModulo, String[] variables, String idEmpresa){
+        String[] valores = new String[variables.length];
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query("modulo" + nModulo, variables,SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                for (int i = 0; i < variables.length; i++) {
+                    valores[i] = cursor.getString(cursor.getColumnIndex(variables[i]));
+                }
+            }
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        return valores;
+    }
 
     public String[] getModulo(int nModulo, String idEmpresa){
         String[] columnas = getColumnasModulo(nModulo);
@@ -93,7 +109,4 @@ public class DataTablas {
         }
         return valoresModulo;
     }
-
-
-
 }

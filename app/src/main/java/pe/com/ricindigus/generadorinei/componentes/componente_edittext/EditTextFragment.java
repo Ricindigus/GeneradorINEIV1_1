@@ -2,6 +2,7 @@ package pe.com.ricindigus.generadorinei.componentes.componente_edittext;
 
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
@@ -43,8 +46,8 @@ public class EditTextFragment extends Fragment {
     private CardView editTextCardView;
     private View rootView;
 
-    private TextInputLayout[] textInputLayouts = {edtLyt1, edtLyt2, edtLyt3};
-    private TextInputEditText[] textInputEditTexts = {edtSP1,edtSP2,edtSP3};
+    private TextInputLayout[] textInputLayouts;
+    private TextInputEditText[] textInputEditTexts;
 
 
     public EditTextFragment() {
@@ -71,6 +74,8 @@ public class EditTextFragment extends Fragment {
         edtSP1 = (TextInputEditText) edtLyt1.findViewById(R.id.edit_text_input);
         edtSP2 = (TextInputEditText) edtLyt2.findViewById(R.id.edit_text_input);
         edtSP3 = (TextInputEditText) edtLyt3.findViewById(R.id.edit_text_input);
+        textInputLayouts = new TextInputLayout[]{edtLyt1,edtLyt2,edtLyt3};
+        textInputEditTexts = new TextInputEditText[]{edtSP1,edtSP2,edtSP3};
         llenarVista();
         return rootView;
     }
@@ -103,13 +108,38 @@ public class EditTextFragment extends Fragment {
     }
 
     public void cargarDatos(){
-
+        DataTablas data = new DataTablas(context);
+        data.open();
+        if(data.existenDatos(getNumModulo(),idEmpresa)){
+            String[] variables = new String[subpreguntas.size()];
+            for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
+            String[] valores = data.getValores(getNumModulo(),variables,idEmpresa);
+            for (int i = 0; i < valores.length; i++) {if(valores[i] == null) textInputEditTexts[i].setText(valores[i]);}
+        }
+        data.close();
     }
 
     public void guardarDatos(){
         DataTablas data = new DataTablas(context);
         data.open();
-
+        ContentValues contentValues = new ContentValues();
+        if(data.existenDatos(getNumModulo(),idEmpresa)){
+            //insertar
+            for (int i = 0; i < subpreguntas.size(); i++) {
+                String variable = subpreguntas.get(i).getVARIABLE();
+                String valor = textInputEditTexts[i].getText().toString();
+                contentValues.put(variable, valor);
+            }
+            data.insertarValores(Integer.parseInt(pEditText.getMODULO()),contentValues);
+        }else{
+            //actualizar
+            for (int i = 0; i < subpreguntas.size(); i++) {
+                String variable = subpreguntas.get(i).getVARIABLE();
+                String valor = textInputEditTexts[i].getText().toString();
+                contentValues.put(variable, valor);
+            }
+            data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+        }
         data.close();
     }
 
@@ -153,5 +183,9 @@ public class EditTextFragment extends Fragment {
         });
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public int getNumModulo(){
+        return Integer.parseInt(pEditText.getMODULO());
     }
 }
