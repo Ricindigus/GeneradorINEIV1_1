@@ -117,8 +117,8 @@ public class EncuestaActivity extends AppCompatActivity {
                 ocultarTeclado(btnAtras);
                 if(posicionFragment - 1 >= 1){
                     posicionFragment--;
-                    setFragmentNombreSeccion(posicionFragment,-1);
-                    setFragment(posicionFragment,-1);
+                    setNombreSeccion(posicionFragment,-1);
+                    setPagina(posicionFragment,-1);
                 }
             }
         });
@@ -127,14 +127,17 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-                if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
-                else posicionFragment = 1;
-                setFragmentNombreSeccion(posicionFragment,1);
-                setFragment(posicionFragment,1);
+                if(validarPagina(posicionFragment)){
+                    guardarPagina(posicionFragment);
+                    if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
+                    else posicionFragment = 1;
+                    setNombreSeccion(posicionFragment,1);
+                    setPagina(posicionFragment,1);
+                }
             }
         });
-        setFragmentNombreSeccion(1,1);
-        setFragment(1,1);
+        setNombreSeccion(1,1);
+        setPagina(1,1);
     }
 
     @Override
@@ -144,9 +147,9 @@ public class EncuestaActivity extends AppCompatActivity {
     }
 
 
-    public void setFragmentNombreSeccion(int pos,int direccion){
+    public void setNombreSeccion(int nPagina, int direccion){
         String nombreSeccion = "";
-        int numeroDePagina = pos;
+        int numeroDePagina = nPagina;
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         String mod = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
@@ -168,37 +171,7 @@ public class EncuestaActivity extends AppCompatActivity {
         dataComponentes.close();
     }
 
-    public void setFragment(int pos,int direccion){
-//        if(pos < 3){
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            switch (pos){
-//                case 0:
-//                    fragmentActual = new VisitasFragment(idEmpresa,this);
-//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-//                    break;
-//                case 1:
-//                    fragmentActual = new CaratulaFragment(idEmpresa,this);
-//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-//                    break;
-//                case 2:
-//                    fragmentActual = new IdentificacionFragment(idEmpresa,this);
-//                    fragmentTransaction.replace(R.id.layout_componente1, fragmentActual);
-//                    break;
-//            }
-//            int[] layouts = {R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5};
-//            for (int i = 0; i < layouts.length; i++) {
-//                Fragment fragment = new Fragment();
-//                fragmentTransaction.replace(layouts[i], fragment);
-//            }
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();
-//        }else{
-            setComponentes(pos,direccion);
-//        }
-    }
-
-    public void setComponentes(int numeroPagina, int direccion){
+    public void setPagina(int numeroPagina, int direccion){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         dataComponentes = new DataComponentes(getApplicationContext());
@@ -231,9 +204,9 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new IdentificacionFragment();
                         break;
                     case TipoComponente.EDITTEXT:
-                        PEditText PEditText = dataEditText.getPOJOEditText(ids[i]);
+                        PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        fragmentComponente = new EditTextFragment(PEditText,spEditTexts,getApplicationContext(),idEmpresa);
+                        fragmentComponente = new EditTextFragment(pEditText,spEditTexts,getApplicationContext(),idEmpresa);
                         break;
                     case TipoComponente.CHECKBOX:
                         PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
@@ -249,16 +222,83 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new M2P1Fragment();
                         break;
                 }
+                fragmentTransaction.replace(layouts[i], fragmentComponente,ids[i]);
             }else{
-                fragmentComponente = new Fragment();
+                if(fragmentManager.findFragmentById(layouts[i]) != null) {
+                    fragmentTransaction.remove(fragmentManager.findFragmentById(layouts[i]));
+                }
             }
-            fragmentTransaction.replace(layouts[i], fragmentComponente);
         }
         dataComponentes.close();
         dataEditText.close();
+        dataCheckBox.close();
+        dataRadio.close();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+    public boolean validarPagina(int numeroPagina){
+        boolean valido = true;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
+                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
+                pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
+        int indice = 0;
+        while(!ids[indice].equals("") && valido){
+            Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
+            switch (Integer.parseInt(tipos[indice])){
+                case TipoComponente.EDITTEXT: valido = valido && ((EditTextFragment)fragment).validarDatos();break;
+                case TipoComponente.CHECKBOX:break;
+                case TipoComponente.RADIO:break;
+            }
+            indice++;
+        }
+        dataComponentes.close();
+        return valido;
+    }
+
+    public void guardarPagina(int numeroPagina){
+
+    }
+
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @SuppressLint("NewApi")
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Está seguro que desea volver al marco y salir de la encuesta?")
+                    .setTitle("Aviso")
+                    .setCancelable(false)
+                    .setNegativeButton("No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            })
+                    .setPositiveButton("Sí",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                }
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------------------------------------
 
     private void enableExpandableList() {
         listDataHeader = new ArrayList<String>();
@@ -276,16 +316,20 @@ public class EncuestaActivity extends AppCompatActivity {
                 switch (groupPosition){
                     case 0:
                         switch (childPosition){
-                            case 0:setFragment(childPosition,1);
+                            case 0:
+                                setPagina(childPosition,1);
                                 posicionFragment = childPosition;break;
                             case 1:
-                                posicionFragment = childPosition;setFragment(childPosition,1);
+                                posicionFragment = childPosition;
+                                setPagina(childPosition,1);
                                 break;
                             case 2:
-                                posicionFragment = childPosition;setFragment(childPosition,1);
+                                posicionFragment = childPosition;
+                                setPagina(childPosition,1);
                                 break;
                             case 3:
-                                posicionFragment = childPosition;setFragment(childPosition,1);
+                                posicionFragment = childPosition;
+                                setPagina(childPosition,1);
                                 break;
                         }
                         break;
@@ -393,34 +437,5 @@ public class EncuestaActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(9), modulo9);
         listDataChild.put(listDataHeader.get(10), modulo10);
     }
-    public void ocultarTeclado(View view){
-        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
-    @SuppressLint("NewApi")
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO Auto-generated method stub
-        if (keyCode == event.KEYCODE_BACK) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Está seguro que desea volver al marco y salir de la encuesta?")
-                    .setTitle("Aviso")
-                    .setCancelable(false)
-                    .setNegativeButton("No",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            })
-                    .setPositiveButton("Sí",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    finish();
-                                }
-                            });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }

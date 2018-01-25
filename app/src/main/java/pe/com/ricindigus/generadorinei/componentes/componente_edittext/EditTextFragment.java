@@ -17,8 +17,6 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
@@ -143,19 +141,18 @@ public class EditTextFragment extends Fragment {
         data.close();
     }
 
-    public boolean validar(){
+    public boolean validarDatos(){
         boolean correcto = true;
-        boolean fin = false;
         String mensaje = "";
         int c = 0;
-        while(correcto && !fin){
-            if(textInputEditTexts[c].getVisibility() == View.VISIBLE){
+        while(correcto && c < textInputLayouts.length){
+            if(textInputLayouts[c].getVisibility() == View.VISIBLE){
+//                String texto = textInputEditTexts[c].getText().toString();
+//                String resul = textInputEditTexts[c].getText().toString().trim();
                 if(textInputEditTexts[c].getText().toString().trim().equals("")){
                     correcto = false;
                     mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";
                 }
-            }else{
-                fin = true;
             }
             c++;
         }
