@@ -112,7 +112,7 @@ public class EditTextFragment extends Fragment {
             String[] variables = new String[subpreguntas.size()];
             for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
             String[] valores = data.getValores(getNumModulo(),variables,idEmpresa);
-            for (int i = 0; i < valores.length; i++) {if(valores[i] == null) textInputEditTexts[i].setText(valores[i]);}
+            for (int i = 0; i < valores.length; i++) {if(valores[i] != null) textInputEditTexts[i].setText(valores[i]);}
         }
         data.close();
     }
@@ -121,8 +121,9 @@ public class EditTextFragment extends Fragment {
         DataTablas data = new DataTablas(context);
         data.open();
         ContentValues contentValues = new ContentValues();
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
+        if(!data.existenDatos(getNumModulo(),idEmpresa)){
             //insertar
+            contentValues.put("ID_EMPRESA",idEmpresa);
             for (int i = 0; i < subpreguntas.size(); i++) {
                 String variable = subpreguntas.get(i).getVARIABLE();
                 String valor = textInputEditTexts[i].getText().toString();
@@ -147,8 +148,6 @@ public class EditTextFragment extends Fragment {
         int c = 0;
         while(correcto && c < textInputLayouts.length){
             if(textInputLayouts[c].getVisibility() == View.VISIBLE){
-//                String texto = textInputEditTexts[c].getText().toString();
-//                String resul = textInputEditTexts[c].getText().toString().trim();
                 if(textInputEditTexts[c].getText().toString().trim().equals("")){
                     correcto = false;
                     mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";

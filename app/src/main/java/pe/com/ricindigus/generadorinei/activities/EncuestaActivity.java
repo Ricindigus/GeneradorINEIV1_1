@@ -262,7 +262,25 @@ public class EncuestaActivity extends AppCompatActivity {
     }
 
     public void guardarPagina(int numeroPagina){
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
+                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
+                pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
+        int indice = 0;
+        while(!ids[indice].equals("")){
+            Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
+            switch (Integer.parseInt(tipos[indice])){
+                case TipoComponente.EDITTEXT: ((EditTextFragment)fragment).guardarDatos();break;
+                case TipoComponente.CHECKBOX:break;
+                case TipoComponente.RADIO:break;
+            }
+            indice++;
+        }
+        dataComponentes.close();
     }
 
     public void ocultarTeclado(View view){
