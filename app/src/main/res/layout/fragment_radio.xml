@@ -21,7 +21,8 @@
             android:layout_margin="@dimen/margenMaterial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
             <RadioButton
                 android:id="@+id/radio_sp1"
                 android:layout_width="wrap_content"
@@ -37,8 +38,10 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:enabled="false"/>
             <RadioButton
                 android:id="@+id/radio_sp2"
                 android:layout_width="wrap_content"
@@ -54,8 +57,10 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:enabled="false"/>
             <RadioButton
                 android:id="@+id/radio_sp3"
                 android:layout_width="wrap_content"
@@ -71,8 +76,10 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:enabled="false"/>
             <RadioButton
                 android:id="@+id/radio_sp4"
                 android:layout_width="wrap_content"
@@ -88,8 +95,10 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:enabled="false"/>
             <RadioButton
                 android:id="@+id/radio_sp5"
                 android:layout_width="wrap_content"
@@ -105,6 +114,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -122,6 +133,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -139,6 +152,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -156,6 +171,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -173,6 +190,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -189,6 +208,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -205,6 +226,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -221,6 +244,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -237,6 +262,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -253,6 +280,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
             <RadioButton
@@ -269,6 +298,8 @@
                 android:padding="5dp"
                 android:hint="Especifique"
                 android:visibility="gone"
+                android:enabled="false"
+                android:inputType="text"
                 android:background="@drawable/edittext_disabled"
                 android:layout_marginLeft="10dp"/>
         </RadioGroup>

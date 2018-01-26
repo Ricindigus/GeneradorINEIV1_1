@@ -10,28 +10,112 @@
 		<var>M1P3_2</var>
 		<var>M1P3_3</var>
 		<var>M1P4</var>
-		<var>M1P5_1</var>
-		<var>M1P5_2</var>
-		<var>M1P6</var>
-		<var>M1P7_1</var>
-		<var>M1P7_2</var>
-		<var>M1P8_1</var>
-		<var>M1P8_2</var>
-		<var>M1P9</var>
 	</modulo>
 	<modulo id="2">
 		<var>M2P1</var>
 		<var>M2P2_1</var>
 		<var>M2P2_2</var>
 		<var>M2P2_3</var>
-		<var>M2P3</var>
+		<var>M2P3_1</var>
+		<var>M2P3_2</var>
+		<var>M2P3_3</var>
+		<var>M2P3_4</var>
+		<var>M2P3_5</var>
+		<var>M2P3_6</var>
+		<var>M2P3_7</var>
+		<var>M2P3_8</var>
+		<var>M2P3_9</var>
+		<var>M2P3_10</var>
+		<var>M2P3_11</var>
+		<var>M2P3_12</var>
+		<var>M2P3_13</var>
+		<var>M2P3_14</var>
+		<var>M2P3_15</var>
+		<var>M2P3_16</var>
+		<var>M2P3_17</var>
+		<var>M2P3_18</var>
+		<var>M2P3_19</var>
+		<var>M2P3_20</var>
 		<var>M2P4_1</var>
 		<var>M2P4_2</var>
-		<var>M2P5</var>
-		<var>M2P6</var>
+		<var>M2P4_3</var>
+		<var>M2P4_4</var>
+		<var>M2P4_5</var>
+		<var>M2P4_6</var>
+		<var>M2P4_7</var>
+		<var>M2P4_8</var>
+		<var>M2P4_9</var>
+		<var>M2P4_10</var>
+		<var>M2P4_11</var>
+		<var>M2P4_12</var>
+		<var>M2P4_13</var>
+		<var>M2P4_14</var>
+		<var>M2P4_15</var>
+		<var>M2P4_16</var>
+		<var>M2P4_17</var>
+		<var>M2P4_18</var>
+		<var>M2P4_19</var>
+		<var>M2P4_20</var>
+		<var>M2P5_1</var>
+		<var>M2P5_2</var>
+		<var>M2P5_3</var>
+		<var>M2P5_4</var>
+		<var>M2P5_5</var>
+		<var>M2P5_6</var>
+		<var>M2P5_7</var>
+		<var>M2P5_8</var>
+		<var>M2P5_9</var>
+		<var>M2P5_10</var>
+		<var>M2P5_11</var>
+		<var>M2P5_12</var>
+		<var>M2P5_13</var>
+		<var>M2P5_14</var>
+		<var>M2P5_15</var>
+		<var>M2P5_16</var>
+		<var>M2P5_17</var>
+		<var>M2P5_18</var>
+		<var>M2P5_19</var>
+		<var>M2P5_20</var>
+		<var>M2P6_1</var>
+		<var>M2P6_2</var>
+		<var>M2P6_3</var>
+		<var>M2P6_4</var>
+		<var>M2P6_5</var>
+		<var>M2P6_6</var>
+		<var>M2P6_7</var>
+		<var>M2P6_8</var>
+		<var>M2P6_9</var>
+		<var>M2P6_10</var>
+		<var>M2P6_11</var>
+		<var>M2P6_12</var>
+		<var>M2P6_13</var>
+		<var>M2P6_14</var>
+		<var>M2P6_15</var>
+		<var>M2P6_16</var>
+		<var>M2P6_17</var>
+		<var>M2P6_18</var>
+		<var>M2P6_19</var>
+		<var>M2P6_20</var>
 		<var>M2P7_1</var>
 		<var>M2P7_2</var>
-		<var>M2P8</var>
+		<var>M2P7_3</var>
+		<var>M2P7_4</var>
+		<var>M2P7_5</var>
+		<var>M2P7_6</var>
+		<var>M2P7_7</var>
+		<var>M2P7_8</var>
+		<var>M2P7_9</var>
+		<var>M2P7_10</var>
+		<var>M2P7_11</var>
+		<var>M2P7_12</var>
+		<var>M2P7_13</var>
+		<var>M2P7_14</var>
+		<var>M2P7_15</var>
+		<var>M2P7_16</var>
+		<var>M2P7_17</var>
+		<var>M2P7_18</var>
+		<var>M2P7_19</var>
+		<var>M2P7_20</var>
 		<var>M2P8_1</var>
 		<var>M2P8_2</var>
 		<var>M2P8_3</var>
@@ -72,126 +156,22 @@
 		<var>M2P9_18</var>
 		<var>M2P9_19</var>
 		<var>M2P9_20</var>
-		<var>M2P10_1</var>
-		<var>M2P10_2</var>
-		<var>M2P10_3</var>
-		<var>M2P10_4</var>
-		<var>M2P10_5</var>
-		<var>M2P10_6</var>
-		<var>M2P10_7</var>
-		<var>M2P10_8</var>
-		<var>M2P10_9</var>
-		<var>M2P10_10</var>
-		<var>M2P10_11</var>
-		<var>M2P10_12</var>
-		<var>M2P10_13</var>
-		<var>M2P10_14</var>
-		<var>M2P10_15</var>
-		<var>M2P10_16</var>
-		<var>M2P10_17</var>
-		<var>M2P10_18</var>
-		<var>M2P10_19</var>
-		<var>M2P10_20</var>
-		<var>M2P11_1</var>
-		<var>M2P11_2</var>
-		<var>M2P11_3</var>
-		<var>M2P11_4</var>
-		<var>M2P11_5</var>
-		<var>M2P11_6</var>
-		<var>M2P11_7</var>
-		<var>M2P11_8</var>
-		<var>M2P11_9</var>
-		<var>M2P11_10</var>
-		<var>M2P11_11</var>
-		<var>M2P11_12</var>
-		<var>M2P11_13</var>
-		<var>M2P11_14</var>
-		<var>M2P11_15</var>
-		<var>M2P11_16</var>
-		<var>M2P11_17</var>
-		<var>M2P11_18</var>
-		<var>M2P11_19</var>
-		<var>M2P11_20</var>
-		<var>M2P12_1</var>
-		<var>M2P12_2</var>
-		<var>M2P12_3</var>
-		<var>M2P12_4</var>
-		<var>M2P12_5</var>
-		<var>M2P12_6</var>
-		<var>M2P12_7</var>
-		<var>M2P12_8</var>
-		<var>M2P12_9</var>
-		<var>M2P12_10</var>
-		<var>M2P12_11</var>
-		<var>M2P12_12</var>
-		<var>M2P12_13</var>
-		<var>M2P12_14</var>
-		<var>M2P12_15</var>
-		<var>M2P12_16</var>
-		<var>M2P12_17</var>
-		<var>M2P12_18</var>
-		<var>M2P12_19</var>
-		<var>M2P12_20</var>
-		<var>M2P13_1</var>
-		<var>M2P13_2</var>
-		<var>M2P13_3</var>
-		<var>M2P13_4</var>
-		<var>M2P13_5</var>
-		<var>M2P13_6</var>
-		<var>M2P13_7</var>
-		<var>M2P13_8</var>
-		<var>M2P13_9</var>
-		<var>M2P13_10</var>
-		<var>M2P13_11</var>
-		<var>M2P13_12</var>
-		<var>M2P13_13</var>
-		<var>M2P13_14</var>
-		<var>M2P13_15</var>
-		<var>M2P13_16</var>
-		<var>M2P13_17</var>
-		<var>M2P13_18</var>
-		<var>M2P13_19</var>
-		<var>M2P13_20</var>
-		<var>M2P14_1</var>
-		<var>M2P14_2</var>
-		<var>M2P14_3</var>
-		<var>M2P14_4</var>
-		<var>M2P14_5</var>
-		<var>M2P14_6</var>
-		<var>M2P14_7</var>
-		<var>M2P14_8</var>
-		<var>M2P14_9</var>
-		<var>M2P14_10</var>
-		<var>M2P14_11</var>
-		<var>M2P14_12</var>
-		<var>M2P14_13</var>
-		<var>M2P14_14</var>
-		<var>M2P14_15</var>
-		<var>M2P14_16</var>
-		<var>M2P14_17</var>
-		<var>M2P14_18</var>
-		<var>M2P14_19</var>
-		<var>M2P14_20</var>
-		<var>M2P8_0</var>
+		<var>M2P3_0</var>
+		<var>M2P4_0</var>
+		<var>M2P5_0</var>
+		<var>M2P6_0</var>
+		<var>M2P7_0</var>
 		<var>M2P9_0</var>
-		<var>M2P10_0</var>
-		<var>M2P11_0</var>
-		<var>M2P12_0</var>
-		<var>M2P14_0</var>
 	</modulo>
 	<modulo id="3">
 		<var>M3P1</var>
-		<var>M3P2_1</var>
-		<var>M3P2_2</var>
-		<var>M3P3_1</var>
-		<var>M3P3_2</var>
+		<var>M3P2</var>
+		<var>M3P3</var>
 		<var>M3P4</var>
 		<var>M3P5_1</var>
 		<var>M3P5_2</var>
-		<var>M3P6</var>
-		<var>M3P7_1</var>
-		<var>M3P7_2</var>
-		<var>M3P7_3</var>
-		<var>M3P8</var>
+		<var>M3P1_0</var>
+		<var>M3P2_0</var>
+		<var>M3P3_0</var>
 	</modulo>
 </variables>

@@ -92,7 +92,7 @@ public class DataTablas {
     }
 
     public String getValor(int nModulo, String variable, String idEmpresa){
-        String valor = "blanco";
+        String valor = "";
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
         try{

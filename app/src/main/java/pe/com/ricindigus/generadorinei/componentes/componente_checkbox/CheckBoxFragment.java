@@ -9,9 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -97,6 +99,18 @@ public class CheckBoxFragment extends Fragment {
             if(!subpreguntas.get(i).getVARDESC().equals("")){
                 editText.setVisibility(View.VISIBLE);
                 editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+                editText.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                        if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
+                                (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            ocultarTeclado(editText);
+                            linearLayout.requestFocus();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -123,12 +137,14 @@ public class CheckBoxFragment extends Fragment {
             for (int i = 0; i < subpreguntas.size() ; i++) {
                 valorCheck = data.getValor(getNumModulo(),subpreguntas.get(i).getVARIABLE(),idEmpresa);
                 if(valorCheck != null){
-                    if (valorCheck.equals("1")) checkBoxes[i].setChecked(true);
+                    if (valorCheck.equals("1")){
+                        checkBoxes[i].setChecked(true);
+                        if(!subpreguntas.get(i).getVARDESC().equals("")){
+                            valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
+                            if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
+                        }
+                    }
                     if (valorCheck.equals("0")) checkBoxes[i].setChecked(false);
-                }
-                if(!subpreguntas.get(i).getVARDESC().equals("")){
-                    valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
-                    if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
                 }
             }
         }
@@ -210,4 +226,8 @@ public class CheckBoxFragment extends Fragment {
         return Integer.parseInt(pCheckBox.getMODULO());
     }
 
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }

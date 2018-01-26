@@ -216,7 +216,7 @@ public class EncuestaActivity extends AppCompatActivity {
                     case TipoComponente.RADIO:
                         PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
-                        fragmentComponente = new RadioFragment(PRadio,spRadios,getApplicationContext());
+                        fragmentComponente = new RadioFragment(PRadio,spRadios,getApplicationContext(),idEmpresa);
                         break;
                     case TipoComponente.M2P1:
                         fragmentComponente = new M2P1Fragment();
@@ -253,7 +253,7 @@ public class EncuestaActivity extends AppCompatActivity {
             switch (Integer.parseInt(tipos[indice])){
                 case TipoComponente.EDITTEXT: valido = valido && ((EditTextFragment)fragment).validarDatos();break;
                 case TipoComponente.CHECKBOX: valido = valido && ((CheckBoxFragment)fragment).validarDatos();break;
-                case TipoComponente.RADIO:break;
+                case TipoComponente.RADIO: valido = valido && ((RadioFragment)fragment).validarDatos();break;
             }
             indice++;
         }
@@ -276,7 +276,7 @@ public class EncuestaActivity extends AppCompatActivity {
             switch (Integer.parseInt(tipos[indice])){
                 case TipoComponente.EDITTEXT: ((EditTextFragment)fragment).guardarDatos();break;
                 case TipoComponente.CHECKBOX: ((CheckBoxFragment)fragment).guardarDatos();break;
-                case TipoComponente.RADIO:break;
+                case TipoComponente.RADIO: ((RadioFragment)fragment).guardarDatos();break;
             }
             indice++;
         }
