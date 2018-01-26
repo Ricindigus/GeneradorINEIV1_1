@@ -48,11 +48,11 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
-    ArrayList<PEditText> PEditTexts = new ArrayList<PEditText>();
+    ArrayList<PEditText> pEditTexts = new ArrayList<PEditText>();
     ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
-    ArrayList<PCheckBox> PCheckBoxes = new ArrayList<PCheckBox>();
+    ArrayList<PCheckBox> pCheckBoxes = new ArrayList<PCheckBox>();
     ArrayList<SPCheckBox> spCheckBoxes  = new ArrayList<SPCheckBox>();
-    ArrayList<PRadio> PRadios = new ArrayList<PRadio>();
+    ArrayList<PRadio> pRadios = new ArrayList<PRadio>();
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
 
@@ -96,22 +96,21 @@ public class SplashActivity extends AppCompatActivity {
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
             modulos = moduloPullParser.parseXML(getApplicationContext());
-            PEditTexts = editTextPullParser.parseXMLPEditText(getApplicationContext());
+            pEditTexts = editTextPullParser.parseXMLPEditText(getApplicationContext());
             spEditTexts = editTextPullParser.parseXMLSPEditText(getApplicationContext());
-            PCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
+            pCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
             spCheckBoxes = checkBoxPullParser.parseXMLSPCheckBox(getApplicationContext());
-            PRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
+            pRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
             spRadios = spRadioPullParser.parseXML(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             dataComponentes.close();
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size()
-                + PEditTexts.size() + spEditTexts.size()
-                + PCheckBoxes.size() + spCheckBoxes.size()
-                + PRadios.size() + spRadios.size()
+                + pEditTexts.size() + spEditTexts.size()
+                + pCheckBoxes.size() + spCheckBoxes.size()
+                + pRadios.size() + spRadios.size()
                 + paginas.size();
-//                + PEditTexts.size() + PCheckBoxes.size() + PRadios.size() + paginas.size();
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -183,7 +182,7 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (PEditText pEditText : PEditTexts) {
+                for (PEditText pEditText : pEditTexts) {
                     try {
                         dataEditText.insertarPOJOEditText(pEditText);
                     }catch (SQLiteException e){
@@ -201,7 +200,7 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (PCheckBox pCheckBox : PCheckBoxes) {
+                for (PCheckBox pCheckBox : pCheckBoxes) {
                     try {
                         dataCheckBox.insertarPOJOCheckBox(pCheckBox);
                     }catch (SQLiteException e){
@@ -219,7 +218,7 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (PRadio PRadio : PRadios) {
+                for (PRadio PRadio : pRadios) {
                     try {
                         dataRadio.insertarPOJORadio(PRadio);
                     }catch (SQLiteException e){

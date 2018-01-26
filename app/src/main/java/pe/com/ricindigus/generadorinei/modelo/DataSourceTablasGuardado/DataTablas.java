@@ -91,6 +91,22 @@ public class DataTablas {
         return valores;
     }
 
+    public String getValor(int nModulo, String variable, String idEmpresa){
+        String valor = "blanco";
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query("modulo" + nModulo, new String[]{variable},SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                valor = cursor.getString(cursor.getColumnIndex(variable));
+            }
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        return valor;
+    }
+
     public String[] getModulo(int nModulo, String idEmpresa){
         String[] columnas = getColumnasModulo(nModulo);
         String[] valoresModulo = new String[columnas.length];
