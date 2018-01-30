@@ -10,13 +10,13 @@ public class Formulario {
     private String ID;
     private String MODULO;
     private String NUMERO;
-    private String PREGUNTA;
+    private String TITULO;
 
     public Formulario() {
         this.ID = "";
         this.MODULO = "";
         this.NUMERO = "";
-        this.PREGUNTA = "";
+        this.TITULO = "";
     }
 
     public String getID() {
@@ -43,12 +43,12 @@ public class Formulario {
         this.NUMERO = NUMERO;
     }
 
-    public String getPREGUNTA() {
-        return PREGUNTA;
+    public String getTITULO() {
+        return TITULO;
     }
 
-    public void setPREGUNTA(String PREGUNTA) {
-        this.PREGUNTA = PREGUNTA;
+    public void setTITULO(String TITULO) {
+        this.TITULO = TITULO;
     }
 
     public ContentValues toValues(){
@@ -56,7 +56,7 @@ public class Formulario {
         contentValues.put(SQLFormulario.FORMULARIO_ID,ID);
         contentValues.put(SQLFormulario.FORMULARIO_MODULO,MODULO);
         contentValues.put(SQLFormulario.FORMULARIO_NUMERO,NUMERO);
-        contentValues.put(SQLFormulario.FORMULARIO_PREGUNTA,PREGUNTA);
+        contentValues.put(SQLFormulario.FORMULARIO_TITULO, TITULO);
         return contentValues;
     }
 }

@@ -18,6 +18,7 @@ public class VisitasFragment extends Fragment {
 
     private String idEmpresa;
     private Context context;
+    private View rootView;
 
     public VisitasFragment() {
         // Required empty public constructor
@@ -33,7 +34,15 @@ public class VisitasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_visitas, container, false);
+        rootView = inflater.inflate(R.layout.fragment_visitas, container, false);
+        return rootView;
     }
 
+    public void cargarDatos(){}
+    public boolean validarDatos(){
+        boolean valido = true;
+        return valido;
+    }
+    public void guardarDatos(){}
+    public void llenarVista(){}
 }

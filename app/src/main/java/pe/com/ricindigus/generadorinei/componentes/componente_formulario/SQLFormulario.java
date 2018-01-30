@@ -11,7 +11,7 @@ public class SQLFormulario {
     public static final String FORMULARIO_ID = "ID";
     public static final String FORMULARIO_MODULO = "MODULO";
     public static final String FORMULARIO_NUMERO = "NUMERO";
-    public static final String FORMULARIO_PREGUNTA= "PREGUNTA";
+    public static final String FORMULARIO_TITULO= "TITULO";
 
 
     public static final String SP_FORMU_ID= "ID";
@@ -28,7 +28,7 @@ public class SQLFormulario {
             FORMULARIO_ID + " TEXT PRIMARY KEY," +
             FORMULARIO_MODULO + " TEXT," +
             FORMULARIO_NUMERO + " TEXT," +
-            FORMULARIO_PREGUNTA + " TEXT" + ");"
+            FORMULARIO_TITULO + " TEXT" + ");"
             ;
 
     public static final String SQL_CREATE_TABLA_SP_FORMULARIO = "CREATE TABLE " + tablaSPFormulario + "(" +
@@ -52,7 +52,7 @@ public class SQLFormulario {
 
 
     public static final String[] ALL_COLUMNS_FORMULARIO = {
-            FORMULARIO_ID, FORMULARIO_MODULO, FORMULARIO_NUMERO, FORMULARIO_PREGUNTA
+            FORMULARIO_ID, FORMULARIO_MODULO, FORMULARIO_NUMERO, FORMULARIO_TITULO
     };
 
     public static final String[] ALL_COLUMNS_SP_FORMULARIO = {

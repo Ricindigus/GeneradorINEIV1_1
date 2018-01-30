@@ -20,11 +20,21 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.Da
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.DataGPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
@@ -48,6 +58,10 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
+    ArrayList<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
+    ArrayList<GPS> gpsArrayList = new ArrayList<GPS>();
+    ArrayList<Formulario> formularios = new ArrayList<Formulario>();
+    ArrayList<SPFormulario> spFormularios = new ArrayList<SPFormulario>();
     ArrayList<PEditText> pEditTexts = new ArrayList<PEditText>();
     ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
     ArrayList<PCheckBox> pCheckBoxes = new ArrayList<PCheckBox>();
@@ -57,6 +71,9 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
 
     Data data;
+    DataUbicacion dataUbicacion;
+    DataGPS dataGPS;
+    DataFormulario dataFormulario;
     DataComponentes dataComponentes;
     DataEditText dataEditText;
     DataCheckBox dataCheckBox;
@@ -83,6 +100,9 @@ public class SplashActivity extends AppCompatActivity {
             UsuariosPullParser usuarioParser = new UsuariosPullParser();
             UbigeoPullParser ubigeoPullParser = new UbigeoPullParser();
             ModuloPullParser moduloPullParser = new ModuloPullParser();
+            UbicacionPullParser ubicacionPullParser = new UbicacionPullParser();
+            GPSPullParser gpsPullParser = new GPSPullParser();
+            FormularioPullParser formularioPullParser = new FormularioPullParser();
             EditTextPullParser editTextPullParser = new EditTextPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
@@ -93,9 +113,11 @@ public class SplashActivity extends AppCompatActivity {
             marcos = marcoPullParser.parseXML(getApplicationContext());
             usuarios = usuarioParser.parseXML(getApplicationContext());
             ubigeos = ubigeoPullParser.parseXML(getApplicationContext());
-            dataComponentes = new DataComponentes(getApplicationContext());
-            dataComponentes.open();
             modulos = moduloPullParser.parseXML(getApplicationContext());
+            ubicaciones = ubicacionPullParser.parseXML(getApplicationContext());
+            gpsArrayList = gpsPullParser.parseXML(getApplicationContext());
+            formularios = formularioPullParser.parseXMLFormulario(getApplicationContext());
+            spFormularios = formularioPullParser.parseXMLSPFormulario(getApplicationContext());
             pEditTexts = editTextPullParser.parseXMLPEditText(getApplicationContext());
             spEditTexts = editTextPullParser.parseXMLSPEditText(getApplicationContext());
             pCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
@@ -103,10 +125,11 @@ public class SplashActivity extends AppCompatActivity {
             pRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
             spRadios = spRadioPullParser.parseXML(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
-            dataComponentes.close();
+
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size()
+                + ubicaciones.size() + gpsArrayList.size() + formularios.size()
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size()
@@ -138,6 +161,12 @@ public class SplashActivity extends AppCompatActivity {
             data.open();
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
+            dataUbicacion = new DataUbicacion(getApplicationContext());
+            dataUbicacion.open();
+            dataGPS = new DataGPS(getApplicationContext());
+            dataGPS.open();
+            dataFormulario =new DataFormulario(getApplicationContext());
+            dataFormulario.open();
             dataEditText = new DataEditText(getApplicationContext());
             dataEditText.open();
             dataCheckBox = new DataCheckBox(getApplicationContext());
@@ -176,6 +205,42 @@ public class SplashActivity extends AppCompatActivity {
                 for (Modulo modulo : modulos) {
                     try {
                         dataComponentes.insertarModulo(modulo);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Ubicacion ubicacion : ubicaciones) {
+                    try {
+                        dataUbicacion.insertarUbicacion(ubicacion);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (GPS gps : gpsArrayList) {
+                    try {
+                        dataGPS.insertarGPS(gps);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Formulario formulario : formularios) {
+                    try {
+                        dataFormulario.insertarFormulario(formulario);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPFormulario spFormulario : spFormularios) {
+                    try {
+                        dataFormulario.insertarSPFormulario(spFormulario);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

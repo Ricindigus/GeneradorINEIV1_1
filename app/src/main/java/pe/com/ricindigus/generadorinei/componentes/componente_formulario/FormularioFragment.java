@@ -44,7 +44,9 @@ public class FormularioFragment extends Fragment {
         return valido;
     }
     public void guardarDatos(){}
-    public void llenarVista(){}
+    public void llenarVista(){
+        
+    }
 
 
 

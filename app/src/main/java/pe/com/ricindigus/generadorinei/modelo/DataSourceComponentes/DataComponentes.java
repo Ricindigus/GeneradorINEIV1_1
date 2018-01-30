@@ -10,9 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
+import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 /**
@@ -47,6 +50,12 @@ public class DataComponentes {
     public long getNumeroItemsPaginas(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPaginas);
     }
+
+    public long getNumeroItemsOpciones(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPaginas);
+    }
+
+
 
 
 
@@ -186,6 +195,44 @@ public class DataComponentes {
     //FIN MODULOS
 
 
+    //INICIO OPCIONES
+    public void insertarOpcion(OpcionSpinner opcionSpinner){
+        ContentValues contentValues = opcionSpinner.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaOpcionSpinner,null,contentValues);
+    }
+
+    public void InsertarOpciones(ArrayList<OpcionSpinner> opcionSpinners){
+        long items = getNumeroItemsOpciones();
+        if(items == 0){
+            for (OpcionSpinner opcionSpinner : opcionSpinners) {
+                try {
+                    insertarOpcion(opcionSpinner);
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
+    public ArrayList<OpcionSpinner> getOpcionesSpinner(String idSpinner) {
+        ArrayList<OpcionSpinner> opcionSpinners = new ArrayList<OpcionSpinner>();
+        String[] whereArgs = new String[]{idSpinner};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaOpcionSpinner,
+                    SQLConstantesComponente.ALL_COLUMNS_OPCION_SPINNER, SQLConstantesComponente.WHERE_CLAUSE_ID_VARIABLE, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                OpcionSpinner opcionSpinner = new OpcionSpinner();
+                opcionSpinner.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_ID)));
+                opcionSpinner.setIDVARIABLE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_IDVARIABLE)));
+                opcionSpinner.setNOPCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_NOPCION)));
+                opcionSpinner.setOPCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_OPCION)));
+                opcionSpinners.add(opcionSpinner);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return opcionSpinners;
+    }
 }

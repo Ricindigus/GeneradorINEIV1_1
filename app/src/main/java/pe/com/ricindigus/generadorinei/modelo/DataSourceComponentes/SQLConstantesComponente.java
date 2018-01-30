@@ -11,6 +11,8 @@ public class SQLConstantesComponente {
     public static final String tablaEncuestas = "encuestas";
     public static final String tablaPaginas = "paginas";
     public static final String tablaModulos = "modulos";
+    public static final String tablaOpcionSpinner = "opciones";
+
 
 
 
@@ -47,6 +49,11 @@ public class SQLConstantesComponente {
     public static final String PAGINA_IDP10 = "IDP10";
     public static final String PAGINA_TP10 = "TIPO10";
 
+    //COLUMNAS OPCIONES SPINNER
+    public static final String OPCION_SPINNER_ID = "ID";
+    public static final String OPCION_SPINNER_IDVARIABLE = "IDVARIABLE";
+    public static final String OPCION_SPINNER_NOPCION = "NOPCION";
+    public static final String OPCION_SPINNER_OPCION = "OPCION";
 
 
     //CREACION DE TABLAS (CREATE)
@@ -89,15 +96,26 @@ public class SQLConstantesComponente {
             ;
 
 
+    public static final String SQL_CREATE_TABLA_OPCION_SPINNER =
+            "CREATE TABLE " + tablaOpcionSpinner + "(" +
+                    OPCION_SPINNER_ID + " TEXT PRIMARY KEY," +
+                    OPCION_SPINNER_IDVARIABLE + " TEXT," +
+                    OPCION_SPINNER_NOPCION + " TEXT," +
+                    OPCION_SPINNER_OPCION + " TEXT" + ");"
+            ;
 
     //CLAUSULA WHERE BUSQUEDA (WHERE)
     public static final String WHERE_CLAUSE_ID = "ID=?";
+    public static final String WHERE_CLAUSE_ID_VARIABLE = "IDVARIABLE=?";
+
 
 
     //BORRADO DE TABLAS (DELETE)
     public static final String SQL_DELETE_ENCUESTAS = "DROP TABLE " + tablaEncuestas;
     public static final String SQL_DELETE_MODULOS = "DROP TABLE " + tablaModulos;
     public static final String SQL_DELETE_PAGINAS = "DROP TABLE " + tablaPaginas;
+    public static final String SQL_DELETE_OPCION_SPINNER = "DROP TABLE " + tablaOpcionSpinner;
+
 
 
 
@@ -120,5 +138,9 @@ public class SQLConstantesComponente {
             PAGINA_IDP9 , PAGINA_TP9 , PAGINA_IDP10 , PAGINA_TP10
     };
 
+    public static final String[] ALL_COLUMNS_OPCION_SPINNER = {
+            OPCION_SPINNER_ID , OPCION_SPINNER_IDVARIABLE ,
+            OPCION_SPINNER_NOPCION, OPCION_SPINNER_OPCION
+    };
 
 }

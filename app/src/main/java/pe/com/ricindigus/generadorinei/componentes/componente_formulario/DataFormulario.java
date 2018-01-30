@@ -11,8 +11,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -74,7 +72,7 @@ public class DataFormulario {
                 formulario.setID(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_ID)));
                 formulario.setMODULO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_MODULO)));
                 formulario.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_NUMERO)));
-                formulario.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_PREGUNTA)));
+                formulario.setTITULO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_TITULO)));
             }
         }finally{
             if(cursor != null) cursor.close();

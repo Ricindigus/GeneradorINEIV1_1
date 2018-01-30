@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
 
 /**
@@ -30,6 +31,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLCheckBox.SQL_CREATE_TABLA_SPCHECKBOX);
         sqLiteDatabase.execSQL(SQLRadio.SQL_CREATE_TABLA_RADIO);
         sqLiteDatabase.execSQL(SQLRadio.SQL_CREATE_TABLA_SPRADIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
     }
 
     @Override
@@ -43,6 +46,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLCheckBox.SQL_DELETE_SPCHECKBOX);
         sqLiteDatabase.execSQL(SQLRadio.SQL_DELETE_RADIO);
         sqLiteDatabase.execSQL(SQLRadio.SQL_DELETE_SPRADIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
         onCreate(sqLiteDatabase);
     }
 }

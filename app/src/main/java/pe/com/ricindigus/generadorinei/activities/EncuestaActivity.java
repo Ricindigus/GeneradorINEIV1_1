@@ -32,10 +32,14 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCh
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionFragment;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
@@ -197,11 +201,14 @@ public class EncuestaActivity extends AppCompatActivity {
                     case TipoComponente.VISITAS:
                         fragmentComponente = new VisitasFragment();
                         break;
-                    case TipoComponente.CARATULA:
-                        fragmentComponente = new CaratulaFragment();
+                    case TipoComponente.UBICACION:
+                        fragmentComponente = new UbicacionFragment();
                         break;
-                    case TipoComponente.IDENTIFICACION:
-                        fragmentComponente = new IdentificacionFragment();
+                    case TipoComponente.GPS:
+                        fragmentComponente = new GPSFragment();
+                        break;
+                    case TipoComponente.FORMULARIO:
+                        fragmentComponente = new FormularioFragment();
                         break;
                     case TipoComponente.EDITTEXT:
                         PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
@@ -251,6 +258,10 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("") && valido){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
+                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
+                case TipoComponente.UBICACION: valido = valido && ((UbicacionFragment)fragment).validarDatos();break;
+                case TipoComponente.GPS: valido = valido && ((GPSFragment)fragment).validarDatos();break;
+                case TipoComponente.FORMULARIO: valido = valido && ((FormularioFragment)fragment).validarDatos();break;
                 case TipoComponente.EDITTEXT: valido = valido && ((EditTextFragment)fragment).validarDatos();break;
                 case TipoComponente.CHECKBOX: valido = valido && ((CheckBoxFragment)fragment).validarDatos();break;
                 case TipoComponente.RADIO: valido = valido && ((RadioFragment)fragment).validarDatos();break;
@@ -274,6 +285,10 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("")){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
+                case TipoComponente.VISITAS: ((VisitasFragment)fragment).guardarDatos();break;
+                case TipoComponente.UBICACION: ((UbicacionFragment)fragment).guardarDatos();break;
+                case TipoComponente.GPS: ((GPSFragment)fragment).guardarDatos();break;
+                case TipoComponente.FORMULARIO: ((FormularioFragment)fragment).guardarDatos();break;
                 case TipoComponente.EDITTEXT: ((EditTextFragment)fragment).guardarDatos();break;
                 case TipoComponente.CHECKBOX: ((CheckBoxFragment)fragment).guardarDatos();break;
                 case TipoComponente.RADIO: ((RadioFragment)fragment).guardarDatos();break;
