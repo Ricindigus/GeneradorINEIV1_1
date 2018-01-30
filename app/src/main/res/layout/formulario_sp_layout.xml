@@ -28,6 +28,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <EditText
+                android:visibility="gone"
                 android:id="@+id/formulario_sp_edittext"
                 android:paddingLeft="10dp"
                 android:gravity="center_vertical"

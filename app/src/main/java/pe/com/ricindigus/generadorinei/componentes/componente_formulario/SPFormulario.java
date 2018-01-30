@@ -15,6 +15,8 @@ public class SPFormulario {
     private String LONG;
     private String VARS;
     private String VARESP;
+    private String VARCK;
+
 
     public SPFormulario() {
         this.ID = "";
@@ -25,6 +27,7 @@ public class SPFormulario {
         this.LONG = "";
         this.VARS = "";
         this.VARESP = "";
+        this.VARCK = "";
     }
 
     public String getID() {
@@ -91,6 +94,14 @@ public class SPFormulario {
         this.VARESP = VARESP;
     }
 
+    public String getVARCK() {
+        return VARCK;
+    }
+
+    public void setVARCK(String VARCK) {
+        this.VARCK = VARCK;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues =  new ContentValues();
         contentValues.put(SQLFormulario.SP_FORMU_ID,ID);
@@ -101,6 +112,7 @@ public class SPFormulario {
         contentValues.put(SQLFormulario.SP_FORMU_TIPO,TIPO);
         contentValues.put(SQLFormulario.SP_FORMU_VARS,VARS);
         contentValues.put(SQLFormulario.SP_FORMU_VARESP,VARESP);
+        contentValues.put(SQLFormulario.SP_FORMU_VARCK,VARCK);
         return contentValues;
     }
 }

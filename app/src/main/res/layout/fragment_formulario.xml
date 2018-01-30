@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="@color/greyBluePrimary"
     android:layout_marginBottom="@dimen/margenMaterial"
+    android:id="@+id/formulario_layout"
     tools:context="pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment">
     <TextView
         android:id="@+id/formulario_titulo"

@@ -114,6 +114,7 @@ public class DataFormulario {
                 spFormulario.setTIPO(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_TIPO)));
                 spFormulario.setVARS(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARS)));
                 spFormulario.setVARESP(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARESP)));
+                spFormulario.setVARCK(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARCK)));
                 spFormularios.add(spFormulario);
             }
         }finally {

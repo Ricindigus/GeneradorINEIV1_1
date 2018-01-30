@@ -22,6 +22,7 @@ public class SQLFormulario {
     public static final String SP_FORMU_LONG = "LONG";
     public static final String SP_FORMU_VARS = "VARS";
     public static final String SP_FORMU_VARESP = "VARESP";
+    public static final String SP_FORMU_VARCK = "VARCK";
 
 
     public static final String SQL_CREATE_TABLA_FORMULARIO = "CREATE TABLE " + tablaFormulario + "(" +
@@ -39,7 +40,8 @@ public class SQLFormulario {
             SP_FORMU_TIPO + " TEXT," +
             SP_FORMU_LONG + " TEXT," +
             SP_FORMU_VARS + " TEXT," +
-            SP_FORMU_VARESP + " TEXT" + ");"
+            SP_FORMU_VARESP + " TEXT," +
+            SP_FORMU_VARCK + " TEXT" + ");"
             ;
 
     public static final String SQL_DELETE_FORMULARIO= "DROP TABLE " + tablaFormulario;
@@ -57,6 +59,6 @@ public class SQLFormulario {
 
     public static final String[] ALL_COLUMNS_SP_FORMULARIO = {
             SP_FORMU_ID, SP_FORMU_IDPREGUNTA, SP_FORMU_SUBPREGUNTA, SP_FORMU_VARE,
-            SP_FORMU_TIPO, SP_FORMU_LONG, SP_FORMU_VARS, SP_FORMU_VARESP
+            SP_FORMU_TIPO, SP_FORMU_LONG, SP_FORMU_VARS, SP_FORMU_VARESP,SP_FORMU_VARCK
     };
 }
