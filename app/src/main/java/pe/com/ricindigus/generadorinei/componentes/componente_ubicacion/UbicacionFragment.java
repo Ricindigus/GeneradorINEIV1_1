@@ -2,6 +2,7 @@ package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import pe.com.ricindigus.generadorinei.R;
  */
 public class UbicacionFragment extends Fragment {
 
+    private View rootView;
 
     public UbicacionFragment() {
         // Required empty public constructor
@@ -24,7 +26,24 @@ public class UbicacionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ubicacion, container, false);
+        rootView = inflater.inflate(R.layout.fragment_ubicacion, container, false);
+        llenarVista();
+        return rootView;
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        cargarDatos();
+    }
+
+    public void cargarDatos(){}
+    public boolean validarDatos(){
+        boolean valido = true;
+        return valido;
+    }
+    public void guardarDatos(){}
+    public void llenarVista(){}
+
 
 }

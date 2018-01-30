@@ -47,6 +47,14 @@
         <item>Otro</item>
     </string-array>
 
+    <string-array name="opcion_spinner">
+        <item>Seleccione Opcion...</item>
+        <item>opcion 1</item>
+        <item>opcion 2</item>
+        <item>opcion 3</item>
+        <item>opcion 4</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -1,13 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/greyBluePrimary"
+    android:layout_marginBottom="@dimen/margenMaterial"
     tools:context="pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/formulario_titulo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="30dp"
+        android:text="TITULO FORMULARIO"
+        android:textColor="@color/colorIcons"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@color/greyBluePrimaryDark"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp1"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp2"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp3"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp4"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp5"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp6"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp7"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp8"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp9"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp10"/>
+</LinearLayout>
