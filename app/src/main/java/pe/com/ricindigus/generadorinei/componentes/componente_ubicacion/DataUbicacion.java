@@ -60,7 +60,6 @@ public class DataUbicacion {
                 cursor.moveToFirst();
                 ubicacion.setID(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_ID)));
                 ubicacion.setVARDEP(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DEPARTAMENTO)));
-                ubicacion.setVARREG(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_REGION)));
                 ubicacion.setVARDIS(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DISTRITO)));
                 ubicacion.setVARPRO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_PROVINCIA)));
             }

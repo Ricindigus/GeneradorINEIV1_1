@@ -1,5 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <variables>
+	<modulo id="B">
+		<var>CAR_SP1</var>
+		<var>CAR_SP2</var>
+		<var>CAR_SP3</var>
+		<var>CAR_SP4</var>
+		<var>CAR_SP6</var>
+		<var>CAR_SP7</var>
+		<var>CAR_SP8</var>
+		<var>CAR_SP5</var>
+		<var>CAR_SP5_ESP</var>
+		<var>CAR_SP1_NO</var>
+		<var>CAR_SP2_NO</var>
+		<var>CAR_SP3_NO</var>
+		<var>CAR_SP4_NO</var>
+	</modulo>
+	<modulo id= "C">
+		<var>IDE_SP2</var>
+		<var>IDE_SP3</var>
+		<var>IDE_SP4</var>
+		<var>IDE_SP1</var>
+		<var>IDE_SP5</var>
+		<var>IDE_SP6</var>
+		<var>IDE_SP7</var>
+		<var>IDE_SP8</var>
+		<var>IDE_SP7_ESP</var>
+		<var>IDE_SP8_ESP</var>
+		<var>IDE_SP7_NO</var>
+		<var>IDE_SP8_NO</var>
+	</modulo>
 	<modulo id= "1">
 		<var>M1P1_1</var>
 		<var>M1P1_2</var>

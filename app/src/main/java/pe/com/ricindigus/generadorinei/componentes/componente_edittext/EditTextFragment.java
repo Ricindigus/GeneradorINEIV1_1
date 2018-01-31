@@ -121,24 +121,15 @@ public class EditTextFragment extends Fragment {
         DataTablas data = new DataTablas(context);
         data.open();
         ContentValues contentValues = new ContentValues();
-        if(!data.existenDatos(getNumModulo(),idEmpresa)){
-            //insertar
-            contentValues.put("ID_EMPRESA",idEmpresa);
-            for (int i = 0; i < subpreguntas.size(); i++) {
-                String variable = subpreguntas.get(i).getVARIABLE();
-                String valor = textInputEditTexts[i].getText().toString();
-                contentValues.put(variable, valor);
-            }
-            data.insertarValores(Integer.parseInt(pEditText.getMODULO()),contentValues);
-        }else{
-            //actualizar
-            for (int i = 0; i < subpreguntas.size(); i++) {
-                String variable = subpreguntas.get(i).getVARIABLE();
-                String valor = textInputEditTexts[i].getText().toString();
-                contentValues.put(variable, valor);
-            }
-            data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+        for (int i = 0; i < subpreguntas.size(); i++) {
+            String variable = subpreguntas.get(i).getVARIABLE();
+            String valor = textInputEditTexts[i].getText().toString();
+            contentValues.put(variable, valor);
         }
+        if(!data.existenDatos(getNumModulo(),idEmpresa)){
+            contentValues.put("ID_EMPRESA",idEmpresa);
+            data.insertarValores(getNumModulo(),contentValues);
+        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
         data.close();
     }
 
@@ -181,7 +172,7 @@ public class EditTextFragment extends Fragment {
         alertDialog.show();
     }
 
-    public int getNumModulo(){
-        return Integer.parseInt(pEditText.getMODULO());
+    public String getNumModulo(){
+        return pEditText.getMODULO();
     }
 }

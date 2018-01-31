@@ -23,12 +23,13 @@ public class DBHelperTablas extends SQLiteOpenHelper {
     public DBHelperTablas(Context context) {
         super(context, SQLConstantesTablas.NOMBRE_DB, null, DB_VERSION);
         this.contexto = context;
-        tablaGuardadoPullParser = new TablaGuardadoPullParser();
-        tablas = tablaGuardadoPullParser.parseXML(contexto);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        tablaGuardadoPullParser = new TablaGuardadoPullParser();
+        tablas = tablaGuardadoPullParser.parseXML(contexto);
         for (String createTabla : tablas){
             sqLiteDatabase.execSQL(createTabla);
         }
@@ -36,7 +37,11 @@ public class DBHelperTablas extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        for (int i = 1; i <= tablas.size(); i++) {
+        tablaGuardadoPullParser = new TablaGuardadoPullParser();
+        tablas = tablaGuardadoPullParser.parseXML(contexto);
+        sqLiteDatabase.execSQL("DROP TABLE moduloB");
+        sqLiteDatabase.execSQL("DROP TABLE moduloC");
+        for (int i = 1; i <= tablas.size()-2; i++) {
             sqLiteDatabase.execSQL("DROP TABLE modulo" + i);
         }
         onCreate(sqLiteDatabase);

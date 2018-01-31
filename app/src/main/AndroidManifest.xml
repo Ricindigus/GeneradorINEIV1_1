@@ -19,9 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.LoginActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"/>
         <activity android:name=".activities.MarcoActivity" />
-        <activity android:name=".activities.EncuestaActivity"></activity>
+        <activity android:name=".activities.EncuestaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"></activity>
     </application>
 
 </manifest>

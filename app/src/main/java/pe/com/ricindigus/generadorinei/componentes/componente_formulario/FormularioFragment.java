@@ -2,12 +2,15 @@ package pe.com.ricindigus.generadorinei.componentes.componente_formulario;
 
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -31,6 +34,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEd
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 
 /**
@@ -112,6 +116,7 @@ public class FormularioFragment extends Fragment {
 
 
     public void llenarVista(){
+        formularioTitulo.setText(formulario.getTITULO());
         for (int i = 0; i <subpreguntas.size() ; i++) {
             final SPFormulario spFormulario = subpreguntas.get(i);
             final EditText editText = editTexts[i];
@@ -205,12 +210,114 @@ public class FormularioFragment extends Fragment {
         }
     }
 
-    public void cargarDatos(){}
-    public boolean validarDatos(){
-        boolean valido = true;
-        return valido;
+    public void cargarDatos(){
+        DataTablas data = new DataTablas(context);
+        data.open();
+        String valorEdit;
+        String valorEsp;
+        String valorSp;
+        String valorCheck;
+        if(data.existenDatos(getNumModulo(),idEmpresa)){
+            for (int i = 0; i < subpreguntas.size() ; i++){
+                SPFormulario spFormulario = subpreguntas.get(i);
+                if(!spFormulario.getVARE().equals("")){
+                    valorEdit = data.getValor(getNumModulo(),spFormulario.getVARE(),idEmpresa);
+                    if(valorEdit != null) editTexts[i].setText(valorEdit);
+                }else{
+                    valorSp = data.getValor(getNumModulo(),spFormulario.getVARS(),idEmpresa);
+                    if(valorSp != null) spinners[i].setSelection(Integer.parseInt(valorSp));
+                    if(edtEspecifiques[i].getVisibility()==View.VISIBLE) {
+                        valorEsp = data.getValor(getNumModulo(),spFormulario.getVARESP(),idEmpresa);
+                        if(valorEsp != null) edtEspecifiques[i].setText(valorEsp);
+                    }
+                }
+                if(!spFormulario.getVARCK().equals("")){
+                    valorCheck = data.getValor(getNumModulo(),spFormulario.getVARCK(),idEmpresa);
+                    if(valorCheck != null) {if(valorCheck.equals("1"))checkBoxes[i].setChecked(true);}
+                }
+            }
+        }
+        data.close();
     }
-    public void guardarDatos(){}
+
+    public void guardarDatos(){
+        DataTablas data = new DataTablas(context);
+        data.open();
+        ContentValues contentValues = new ContentValues();
+        for (int i = 0; i < subpreguntas.size(); i++) {
+            SPFormulario spFormulario = subpreguntas.get(i);
+            if(!spFormulario.getVARE().equals(""))
+                contentValues.put(spFormulario.getVARE(),editTexts[i].getText().toString());
+            else{
+                contentValues.put(spFormulario.getVARS(),spinners[i].getSelectedItemPosition());
+                if(edtEspecifiques[i].getVisibility() == View.VISIBLE) contentValues.put(spFormulario.getVARESP(),edtEspecifiques[i].getText().toString());
+            }
+            if(!spFormulario.getVARCK().equals("")) {
+                if(checkBoxes[i].isChecked())contentValues.put(spFormulario.getVARCK(),1);
+                else contentValues.put(spFormulario.getVARCK(),0);
+            }
+        }
+        if(!data.existenDatos(getNumModulo(),idEmpresa)){
+            contentValues.put("ID_EMPRESA",idEmpresa);
+            data.insertarValores(getNumModulo(),contentValues);
+        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+        data.close();
+    }
+
+    public boolean validarDatos(){
+        boolean correcto = true;
+        String mensaje = "";
+        int c = 0;
+        while(correcto && c < subpreguntas.size()){
+            if(checkBoxes[c].getVisibility() != View.VISIBLE || !checkBoxes[c].isChecked()){
+                if(editTexts[c].getVisibility() == View.VISIBLE){
+                    if(editTexts[c].getText().toString().trim().equals("")){
+                        correcto = false;
+                        mensaje = "PREGUNTA " + formulario.getTITULO() + "(" + subpreguntas.get(c).getSUBPREGUNTA()+ ")" + ": COMPLETE LA PREGUNTA";
+                    }
+                }else{
+                    if(spinners[c].getSelectedItemPosition() == 0){
+                        correcto = false;
+                        mensaje = "PREGUNTA " + formulario.getTITULO() + "(" + subpreguntas.get(c).getSUBPREGUNTA()+ ")" + ": DEBE SELECCIONAR UNA OPCION";
+                    }else{
+                        if(edtEspecifiques[c].isEnabled() && edtEspecifiques[c].getText().toString().trim().equals("")){
+                            correcto = false;
+                            mensaje = "PREGUNTA " + formulario.getTITULO() + "(" + subpreguntas.get(c).getSUBPREGUNTA()+ ")" + ": DEBE ESPECIFICAR";
+                        }
+                    }
+                }
+            }
+            c++;
+        }
+        if(!correcto) mostrarMensaje(mensaje);
+        return correcto;
+    }
+
+    public void inhabilitar(){
+        rootView.setVisibility(View.GONE);
+    }
+
+    public boolean estaHabilitado(){
+        boolean habilitado = false;
+        if(rootView.getVisibility() == View.VISIBLE) habilitado = true;
+        return habilitado;
+    }
+
+    public void mostrarMensaje(String m){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(m);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public String getNumModulo(){
+        return formulario.getMODULO();
+    }
 
 
 

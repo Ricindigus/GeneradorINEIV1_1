@@ -209,8 +209,8 @@ public class RadioFragment extends Fragment {
         alertDialog.show();
     }
 
-    public int getNumModulo(){
-        return Integer.parseInt(pRadio.getMODULO());
+    public String getNumModulo(){
+        return pRadio.getMODULO();
     }
     public void ocultarTeclado(View view){
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

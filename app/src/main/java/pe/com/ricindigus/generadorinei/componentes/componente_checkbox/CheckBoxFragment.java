@@ -155,26 +155,17 @@ public class CheckBoxFragment extends Fragment {
         DataTablas data = new DataTablas(context);
         data.open();
         ContentValues contentValues = new ContentValues();
+        for (int i = 0; i < subpreguntas.size(); i++) {
+            String variable = subpreguntas.get(i).getVARIABLE();
+            if(checkBoxes[i].isChecked()) contentValues.put(variable, "1");
+            else contentValues.put(variable, "0");
+            if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
+        }
         if(!data.existenDatos(getNumModulo(),idEmpresa)){
             //insertar
             contentValues.put("ID_EMPRESA",idEmpresa);
-            for (int i = 0; i < subpreguntas.size(); i++) {
-                String variable = subpreguntas.get(i).getVARIABLE();
-                if(checkBoxes[i].isChecked()) contentValues.put(variable, "1");
-                else contentValues.put(variable, "0");
-                if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
-            }
-            data.insertarValores(Integer.parseInt(pCheckBox.getMODULO()),contentValues);
-        }else{
-            //actualizar
-            for (int i = 0; i < subpreguntas.size(); i++) {
-                String variable = subpreguntas.get(i).getVARIABLE();
-                if(checkBoxes[i].isChecked()) contentValues.put(variable, "1");
-                else contentValues.put(variable, "0");
-                if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
-            }
-            data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
-        }
+            data.insertarValores(getNumModulo(),contentValues);
+        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
         data.close();
     }
 
@@ -222,8 +213,8 @@ public class CheckBoxFragment extends Fragment {
         alertDialog.show();
     }
 
-    public int getNumModulo(){
-        return Integer.parseInt(pCheckBox.getMODULO());
+    public String getNumModulo(){
+        return pCheckBox.getMODULO();
     }
 
     public void ocultarTeclado(View view){

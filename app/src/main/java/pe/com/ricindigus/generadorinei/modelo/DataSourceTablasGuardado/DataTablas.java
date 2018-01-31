@@ -36,7 +36,7 @@ public class DataTablas {
     }
 
 
-    public String[] getColumnasModulo(int nModulo){
+    public String[] getColumnasModulo(String nModulo){
         String[] columnas = null;
         Cursor cursor = null;
         try{
@@ -50,7 +50,7 @@ public class DataTablas {
         return columnas;
     }
 
-    public boolean existenDatos(int nModulo, String idEmpresa){
+    public boolean existenDatos(String nModulo, String idEmpresa){
         boolean encontrado = false;
         String[] columnas = {"ID_EMPRESA"};
         String[] whereArgs = new String[]{idEmpresa};
@@ -64,16 +64,16 @@ public class DataTablas {
         return encontrado;
     }
 
-    public void insertarValores(int nModulo, ContentValues valores){
+    public void insertarValores(String nModulo, ContentValues valores){
         sqLiteDatabase.insert("modulo" + nModulo,null,valores);
     }
 
-    public void actualizarValores(int nModulo, String idempresa, ContentValues valores){
+    public void actualizarValores(String nModulo, String idempresa, ContentValues valores){
         String[] whereArgs = new String[]{idempresa};
         sqLiteDatabase.update("modulo" + nModulo,valores,SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs);
     }
 
-    public String[] getValores(int nModulo, String[] variables, String idEmpresa){
+    public String[] getValores(String nModulo, String[] variables, String idEmpresa){
         String[] valores = new String[variables.length];
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
@@ -91,7 +91,7 @@ public class DataTablas {
         return valores;
     }
 
-    public String getValor(int nModulo, String variable, String idEmpresa){
+    public String getValor(String nModulo, String variable, String idEmpresa){
         String valor = "";
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
@@ -107,7 +107,7 @@ public class DataTablas {
         return valor;
     }
 
-    public String[] getModulo(int nModulo, String idEmpresa){
+    public String[] getModulo(String nModulo, String idEmpresa){
         String[] columnas = getColumnasModulo(nModulo);
         String[] valoresModulo = new String[columnas.length];
         String[] whereArgs = new String[]{idEmpresa};

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class UbicacionPullParser {
     public static final String UBICACION_ID = "ID";
-    public static final String UBICACION_REGION = "VARREG";
     public static final String UBICACION_DEPARTAMENTO = "VARDEP";
     public static final String UBICACION_PROVINCIA = "VARPRO";
     public static final String UBICACION_DISTRITO = "VARDIS";
@@ -62,7 +61,6 @@ public class UbicacionPullParser {
         if(currentUbicacion!= null && currentTag != null){
             switch (currentTag){
                 case UBICACION_ID:currentUbicacion.setID(xmlText);break;
-                case UBICACION_REGION:currentUbicacion.setVARREG(xmlText);break;
                 case UBICACION_DEPARTAMENTO:currentUbicacion.setVARDEP(xmlText);break;
                 case UBICACION_PROVINCIA:currentUbicacion.setVARPRO(xmlText);break;
                 case UBICACION_DISTRITO:currentUbicacion.setVARDIS(xmlText);break;

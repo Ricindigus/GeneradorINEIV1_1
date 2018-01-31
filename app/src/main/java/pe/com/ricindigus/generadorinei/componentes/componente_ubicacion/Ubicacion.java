@@ -10,14 +10,12 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 
 public class Ubicacion {
     private String ID;
-    private String VARREG;
     private String VARDEP;
     private String VARPRO;
     private String VARDIS;
 
     public Ubicacion() {
          ID = "";
-         VARREG = "";
          VARDEP = "";
          VARPRO = "";
          VARDIS = "";
@@ -31,13 +29,6 @@ public class Ubicacion {
         this.ID = ID;
     }
 
-    public String getVARREG() {
-        return VARREG;
-    }
-
-    public void setVARREG(String VARREG) {
-        this.VARREG = VARREG;
-    }
 
     public String getVARDEP() {
         return VARDEP;
@@ -66,7 +57,6 @@ public class Ubicacion {
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLUbicacion.UBICACION_ID,ID);
-        contentValues.put(SQLUbicacion.UBICACION_REGION,VARREG);
         contentValues.put(SQLUbicacion.UBICACION_DEPARTAMENTO,VARDEP);
         contentValues.put(SQLUbicacion.UBICACION_PROVINCIA,VARPRO);
         contentValues.put(SQLUbicacion.UBICACION_DISTRITO,VARDIS);
