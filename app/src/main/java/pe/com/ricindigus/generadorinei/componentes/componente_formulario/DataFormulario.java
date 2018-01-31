@@ -9,8 +9,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -60,13 +58,13 @@ public class DataFormulario {
             }
         }
     }
-    public Formulario getFormulario(String idFormulario){
+    public Formulario getFormulario(String idPregunta){
         Formulario formulario = new Formulario();
-        String[] whereArgs = new String[]{idFormulario};
+        String[] whereArgs = new String[]{idPregunta};
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLFormulario.tablaFormulario,
-                    SQLFormulario.ALL_COLUMNS_FORMULARIO, SQLEditText.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+                    SQLFormulario.ALL_COLUMNS_FORMULARIO, SQLFormulario.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 formulario.setID(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_ID)));

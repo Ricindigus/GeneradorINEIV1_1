@@ -32,7 +32,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCh
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
@@ -69,6 +72,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private String nombreSeccionActual = "";
     private Data data;
     private DataComponentes dataComponentes;
+    private DataFormulario dataFormulario;
     private DataEditText dataEditText;
     private DataCheckBox dataCheckBox;
     private DataRadio dataRadio;
@@ -179,10 +183,12 @@ public class EncuestaActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         dataComponentes = new DataComponentes(getApplicationContext());
+        dataFormulario = new DataFormulario(getApplicationContext());
         dataEditText = new DataEditText(getApplicationContext());
         dataCheckBox = new DataCheckBox(getApplicationContext());
         dataRadio = new DataRadio(getApplicationContext());
         dataComponentes.open();
+        dataFormulario.open();
         dataEditText.open();
         dataCheckBox.open();
         dataRadio.open();
@@ -208,7 +214,9 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new GPSFragment();
                         break;
                     case TipoComponente.FORMULARIO:
-                        fragmentComponente = new FormularioFragment();
+                        Formulario formulario = dataFormulario.getFormulario(ids[i]);
+                        ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(ids[i]);
+                        fragmentComponente = new FormularioFragment(formulario,formularios,getApplicationContext(),idEmpresa);
                         break;
                     case TipoComponente.EDITTEXT:
                         PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
@@ -237,6 +245,7 @@ public class EncuestaActivity extends AppCompatActivity {
             }
         }
         dataComponentes.close();
+        dataFormulario.close();
         dataEditText.close();
         dataCheckBox.close();
         dataRadio.close();

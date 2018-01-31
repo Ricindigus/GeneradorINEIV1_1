@@ -109,6 +109,7 @@ public class FormularioFragment extends Fragment {
 
     public void llenarVista(){
         for (int i = 0; i <subpreguntas.size() ; i++) {
+            cardViews[i].setVisibility(View.VISIBLE);
             textViews[i].setText(subpreguntas.get(i).getSUBPREGUNTA());
             if(!subpreguntas.get(i).getVARE().equals("")) {
                 editTexts[i].setVisibility(View.VISIBLE);

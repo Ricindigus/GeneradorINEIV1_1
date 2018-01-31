@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/greyBluePrimary"
-    android:layout_marginBottom="@dimen/margenMaterial"
+    android:layout_margin="@dimen/margenMaterial"
     android:id="@+id/formulario_layout"
     tools:context="pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment">
     <TextView
@@ -17,14 +17,14 @@
         android:textStyle="bold"
         android:gravity="center"
         android:background="@color/greyBluePrimaryDark"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp1"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp2"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp3"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp4"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp5"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp6"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp7"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp8"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp9"/>
-    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp10"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp1" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp2" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp3" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp4" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp5" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp6" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp7" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp8" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp9" android:visibility="gone"/>
+    <include layout="@layout/formulario_sp_layout" android:id="@+id/formulario_sp10" android:visibility="gone"/>
 </LinearLayout>
