@@ -19,8 +19,8 @@ import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 public class OpcionSpinnerPullParser {
     public static final String OPCION_SPINNER_ID = "ID";
     public static final String OPCION_SPINNER_IDVARIABLE = "IDVARIABLE";
-    public static final String OPCION_SPINNER_NOPCION = "NOPCION";
-    public static final String OPCION_SPINNER_OPCION = "OPCION";
+    public static final String OPCION_SPINNER_NDATO = "NDATO";
+    public static final String OPCION_SPINNER_DATO = "DATO";
     
     private OpcionSpinner currentOpcionSpinner = null;
     private String currentTag = null;
@@ -63,9 +63,9 @@ public class OpcionSpinnerPullParser {
         if(currentOpcionSpinner!= null && currentTag != null){
             switch (currentTag){
                 case OPCION_SPINNER_ID:currentOpcionSpinner.setID(xmlText);break;
-                case OPCION_SPINNER_IDVARIABLE:currentOpcionSpinner.setID(xmlText);break;
-                case OPCION_SPINNER_NOPCION:currentOpcionSpinner.setID(xmlText);break;
-                case OPCION_SPINNER_OPCION:currentOpcionSpinner.setID(xmlText);break;
+                case OPCION_SPINNER_IDVARIABLE:currentOpcionSpinner.setIDVARIABLE(xmlText);break;
+                case OPCION_SPINNER_NDATO:currentOpcionSpinner.setNDATO(xmlText);break;
+                case OPCION_SPINNER_DATO:currentOpcionSpinner.setDATO(xmlText);break;
             }
         }
     }

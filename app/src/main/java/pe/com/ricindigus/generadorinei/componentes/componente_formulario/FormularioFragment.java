@@ -14,7 +14,10 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -28,6 +31,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEd
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -109,25 +113,94 @@ public class FormularioFragment extends Fragment {
 
     public void llenarVista(){
         for (int i = 0; i <subpreguntas.size() ; i++) {
+            final SPFormulario spFormulario = subpreguntas.get(i);
+            final EditText editText = editTexts[i];
+            final EditText edtEspecifique = edtEspecifiques[i];
+            final Spinner spinner = spinners[i];
             cardViews[i].setVisibility(View.VISIBLE);
-            textViews[i].setText(subpreguntas.get(i).getSUBPREGUNTA());
-            if(!subpreguntas.get(i).getVARE().equals("")) {
-                editTexts[i].setVisibility(View.VISIBLE);
-                if(Integer.parseInt(subpreguntas.get(i).getTIPO()) == TipoInput.TEXTO) {
-                    editTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
-                    editTexts[i].setFilters(new InputFilter[]{
+            textViews[i].setText(spFormulario.getSUBPREGUNTA());
+            if(!spFormulario.getVARE().equals("")) {
+                editText.setVisibility(View.VISIBLE);
+                if(Integer.parseInt(spFormulario.getTIPO()) == TipoInput.TEXTO) {
+                    editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                    editText.setFilters(new InputFilter[]{
                             new InputFilter.AllCaps(),
-                            new InputFilter.LengthFilter(Integer.parseInt(subpreguntas.get(i).getLONG()))
+                            new InputFilter.LengthFilter(Integer.parseInt(spFormulario.getLONG()))
                     });
                 }else{
-                    editTexts[i].setTransformationMethod(new NumericKeyBoardTransformationMethod());
-                    editTexts[i].setFilters(new InputFilter[]{
-                            new InputFilter.LengthFilter(Integer.parseInt(subpreguntas.get(i).getLONG()))
+                    editText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+                    editText.setFilters(new InputFilter[]{
+                            new InputFilter.LengthFilter(Integer.parseInt(spFormulario.getLONG()))
                     });
                 }
             }else{
                 layoutSpinners[i].setVisibility(View.VISIBLE);
-                if(subpreguntas.get(i).getVARESP().equals("")) edtEspecifiques[i].setVisibility(View.GONE);
+                dataComponentes = new DataComponentes(context);
+                dataComponentes.open();
+                ArrayList<String> ops = dataComponentes.getOpcionesSpinner(spFormulario.getVARS());
+                dataComponentes.close();
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_item,ops);
+                adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+                spinners[i].setAdapter(adapter);
+
+                if(!spFormulario.getVARESP().equals("")){
+                    if(Integer.parseInt(spFormulario.getTIPESP()) == TipoInput.TEXTO) {
+                        edtEspecifique.setInputType(InputType.TYPE_CLASS_TEXT);
+                        edtEspecifique.setFilters(new InputFilter[]{
+                                new InputFilter.AllCaps(),
+                                new InputFilter.LengthFilter(Integer.parseInt(spFormulario.getLONESP()))
+                        });
+                    }else{
+                        edtEspecifique.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+                        edtEspecifique.setFilters(new InputFilter[]{
+                                new InputFilter.LengthFilter(Integer.parseInt(spFormulario.getLONESP()))
+                        });
+                    }
+                    spinners[i].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            if(position == Integer.parseInt(spFormulario.getHABESP())){
+                                edtEspecifique.setEnabled(true);
+                                edtEspecifique.setBackgroundResource(R.drawable.edittext_enabled);
+                            }else{
+                                edtEspecifique.setText("");
+                                edtEspecifique.setEnabled(false);
+                                edtEspecifique.setBackgroundResource(R.drawable.edittext_disabled);
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {}
+                    });
+                }else edtEspecifique.setVisibility(View.GONE);
+            }
+            if (!spFormulario.getVARCK().equals("")){
+                CheckBox checkBox = checkBoxes[i];
+                checkBox.setVisibility(View.VISIBLE);
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(!spFormulario.getVARE().equals("")){
+                            if(isChecked){
+                                editText.setText("");
+                                editText.setEnabled(false);
+                                editText.setBackgroundResource(R.drawable.edittext_disabled);
+                            }else{
+                                editText.setEnabled(true);
+                                editText.setBackgroundResource(R.drawable.edittext_enabled);
+                            }
+                        }else{
+                            if(isChecked){
+                                spinner.setSelection(0);
+                                spinner.setEnabled(false);
+                                edtEspecifique.setText("");
+                                edtEspecifique.setEnabled(false);
+                                edtEspecifique.setBackgroundResource(R.drawable.edittext_disabled);
+                            }else{
+                                spinner.setEnabled(true);
+                            }
+                        }
+                    }
+                });
             }
         }
     }

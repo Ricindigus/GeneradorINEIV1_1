@@ -11,14 +11,14 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstante
 public class OpcionSpinner {
     private String ID;
     private String IDVARIABLE;
-    private String NOPCION;
-    private String OPCION;
+    private String NDATO;
+    private String DATO;
 
     public OpcionSpinner() {
         this.ID = "";
         this.IDVARIABLE = "";
-        this.NOPCION = "";
-        this.OPCION = "";
+        this.NDATO = "";
+        this.DATO = "";
     }
 
     public String getID() {
@@ -37,28 +37,28 @@ public class OpcionSpinner {
         this.IDVARIABLE = IDVARIABLE;
     }
 
-    public String getNOPCION() {
-        return NOPCION;
+    public String getNDATO() {
+        return NDATO;
     }
 
-    public void setNOPCION(String NOPCION) {
-        this.NOPCION = NOPCION;
+    public void setNDATO(String NDATO) {
+        this.NDATO = NDATO;
     }
 
-    public String getOPCION() {
-        return OPCION;
+    public String getDATO() {
+        return DATO;
     }
 
-    public void setOPCION(String OPCION) {
-        this.OPCION = OPCION;
+    public void setDATO(String DATO) {
+        this.DATO = DATO;
     }
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLConstantesComponente.OPCION_SPINNER_ID,ID);
         contentValues.put(SQLConstantesComponente.OPCION_SPINNER_IDVARIABLE,IDVARIABLE);
-        contentValues.put(SQLConstantesComponente.OPCION_SPINNER_NOPCION,NOPCION);
-        contentValues.put(SQLConstantesComponente.OPCION_SPINNER_OPCION,OPCION);
+        contentValues.put(SQLConstantesComponente.OPCION_SPINNER_NDATO,NDATO);
+        contentValues.put(SQLConstantesComponente.OPCION_SPINNER_DATO,DATO);
         return contentValues;
     }
 }

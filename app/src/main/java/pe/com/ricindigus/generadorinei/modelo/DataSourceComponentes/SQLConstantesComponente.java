@@ -52,8 +52,8 @@ public class SQLConstantesComponente {
     //COLUMNAS OPCIONES SPINNER
     public static final String OPCION_SPINNER_ID = "ID";
     public static final String OPCION_SPINNER_IDVARIABLE = "IDVARIABLE";
-    public static final String OPCION_SPINNER_NOPCION = "NOPCION";
-    public static final String OPCION_SPINNER_OPCION = "OPCION";
+    public static final String OPCION_SPINNER_NDATO = "NDATO";
+    public static final String OPCION_SPINNER_DATO = "DATO";
 
 
     //CREACION DE TABLAS (CREATE)
@@ -100,8 +100,8 @@ public class SQLConstantesComponente {
             "CREATE TABLE " + tablaOpcionSpinner + "(" +
                     OPCION_SPINNER_ID + " TEXT PRIMARY KEY," +
                     OPCION_SPINNER_IDVARIABLE + " TEXT," +
-                    OPCION_SPINNER_NOPCION + " TEXT," +
-                    OPCION_SPINNER_OPCION + " TEXT" + ");"
+                    OPCION_SPINNER_NDATO + " TEXT," +
+                    OPCION_SPINNER_DATO + " TEXT" + ");"
             ;
 
     //CLAUSULA WHERE BUSQUEDA (WHERE)
@@ -140,7 +140,7 @@ public class SQLConstantesComponente {
 
     public static final String[] ALL_COLUMNS_OPCION_SPINNER = {
             OPCION_SPINNER_ID , OPCION_SPINNER_IDVARIABLE ,
-            OPCION_SPINNER_NOPCION, OPCION_SPINNER_OPCION
+            OPCION_SPINNER_NDATO, OPCION_SPINNER_DATO
     };
 
 }

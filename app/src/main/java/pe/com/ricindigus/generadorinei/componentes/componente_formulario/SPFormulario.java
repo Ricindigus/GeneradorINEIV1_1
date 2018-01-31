@@ -15,6 +15,9 @@ public class SPFormulario {
     private String LONG;
     private String VARS;
     private String VARESP;
+    private String TIPESP;
+    private String LONESP;
+    private String HABESP;
     private String VARCK;
 
 
@@ -27,6 +30,9 @@ public class SPFormulario {
         this.LONG = "";
         this.VARS = "";
         this.VARESP = "";
+        this.TIPESP = "";
+        this.LONESP = "";
+        this.HABESP = "";
         this.VARCK = "";
     }
 
@@ -94,6 +100,30 @@ public class SPFormulario {
         this.VARESP = VARESP;
     }
 
+    public String getTIPESP() {
+        return TIPESP;
+    }
+
+    public void setTIPESP(String TIPESP) {
+        this.TIPESP = TIPESP;
+    }
+
+    public String getLONESP() {
+        return LONESP;
+    }
+
+    public void setLONESP(String LONESP) {
+        this.LONESP = LONESP;
+    }
+
+    public String getHABESP() {
+        return HABESP;
+    }
+
+    public void setHABESP(String HABESP) {
+        this.HABESP = HABESP;
+    }
+
     public String getVARCK() {
         return VARCK;
     }
@@ -112,6 +142,9 @@ public class SPFormulario {
         contentValues.put(SQLFormulario.SP_FORMU_TIPO,TIPO);
         contentValues.put(SQLFormulario.SP_FORMU_VARS,VARS);
         contentValues.put(SQLFormulario.SP_FORMU_VARESP,VARESP);
+        contentValues.put(SQLFormulario.SP_FORMU_TIPESP,TIPESP);
+        contentValues.put(SQLFormulario.SP_FORMU_LONESP,LONESP);
+        contentValues.put(SQLFormulario.SP_FORMU_HABESP,HABESP);
         contentValues.put(SQLFormulario.SP_FORMU_VARCK,VARCK);
         return contentValues;
     }

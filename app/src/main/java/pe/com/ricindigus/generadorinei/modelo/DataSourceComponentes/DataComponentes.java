@@ -215,19 +215,18 @@ public class DataComponentes {
     }
 
 
-    public ArrayList<OpcionSpinner> getOpcionesSpinner(String idSpinner) {
-        ArrayList<OpcionSpinner> opcionSpinners = new ArrayList<OpcionSpinner>();
-        String[] whereArgs = new String[]{idSpinner};
+    public ArrayList<String> getOpcionesSpinner(String idVarSpinner) {
+        ArrayList<String> opcionSpinners = new ArrayList<String>();
+        opcionSpinners.add("SELECCIONE...");
+        String[] whereArgs = new String[]{idVarSpinner};
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaOpcionSpinner,
                     SQLConstantesComponente.ALL_COLUMNS_OPCION_SPINNER, SQLConstantesComponente.WHERE_CLAUSE_ID_VARIABLE, whereArgs, null, null, null);
             while(cursor.moveToNext()){
-                OpcionSpinner opcionSpinner = new OpcionSpinner();
-                opcionSpinner.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_ID)));
-                opcionSpinner.setIDVARIABLE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_IDVARIABLE)));
-                opcionSpinner.setNOPCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_NOPCION)));
-                opcionSpinner.setOPCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_OPCION)));
+                String opcionSpinner = "";
+                opcionSpinner = opcionSpinner + cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_NDATO)) + "."
+                + cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.OPCION_SPINNER_DATO));
                 opcionSpinners.add(opcionSpinner);
             }
         }finally {

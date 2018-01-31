@@ -29,6 +29,9 @@ public class FormularioPullParser {
     public static final String SP_FORMU_LONG = "LONG";
     public static final String SP_FORMU_VARS = "VARS";
     public static final String SP_FORMU_VARESP = "VARESP";
+    public static final String SP_FORMU_TIPESP = "TIPESP";
+    public static final String SP_FORMU_LONESP = "LONESP";
+    public static final String SP_FORMU_HABESP = "HABESP";
     public static final String SP_FORMU_VARCK = "VARCK";
 
 
@@ -134,6 +137,9 @@ public class FormularioPullParser {
                 case SP_FORMU_TIPO: currentSPFormulario.setTIPO(xmlText);break;
                 case SP_FORMU_VARS: currentSPFormulario.setVARS(xmlText);break;
                 case SP_FORMU_VARESP: currentSPFormulario.setVARESP(xmlText);break;
+                case SP_FORMU_TIPESP: currentSPFormulario.setTIPESP(xmlText);break;
+                case SP_FORMU_LONESP: currentSPFormulario.setLONESP(xmlText);break;
+                case SP_FORMU_HABESP: currentSPFormulario.setHABESP(xmlText);break;
                 case SP_FORMU_VARCK: currentSPFormulario.setVARCK(xmlText);break;
             }
         }

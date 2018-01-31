@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
     </style>
     <style name="RaisedButtonDark" parent="Theme.AppCompat.Light">
         <item name="colorButtonNormal">@color/greyBluePrimaryDark</item>
@@ -25,4 +26,20 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="spinnerItemEstilo" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <item name="colorAccent">@color/colorPrimaryText</item>
+        <item name="colorControlNormal">@color/colorPrimaryText</item>
+        <item name="colorControlActivated">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="spinnerDropDownEstilo" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorPrimary">@color/greyBluePrimary</item>
+        <item name="colorAccent">@color/greyBluePrimary</item>
+        <item name="colorControlNormal">@color/greyBluePrimary</item>
+        <item name="colorControlActivated">@color/greyBluePrimaryDark</item>
+    </style>
 </resources>
