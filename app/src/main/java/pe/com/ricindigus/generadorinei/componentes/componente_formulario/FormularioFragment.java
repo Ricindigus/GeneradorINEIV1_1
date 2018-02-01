@@ -241,27 +241,29 @@ public class FormularioFragment extends Fragment {
     }
 
     public void guardarDatos(){
-        DataTablas data = new DataTablas(context);
-        data.open();
-        ContentValues contentValues = new ContentValues();
-        for (int i = 0; i < subpreguntas.size(); i++) {
-            SPFormulario spFormulario = subpreguntas.get(i);
-            if(!spFormulario.getVARE().equals(""))
-                contentValues.put(spFormulario.getVARE(),editTexts[i].getText().toString());
-            else{
-                contentValues.put(spFormulario.getVARS(),spinners[i].getSelectedItemPosition());
-                if(edtEspecifiques[i].getVisibility() == View.VISIBLE) contentValues.put(spFormulario.getVARESP(),edtEspecifiques[i].getText().toString());
+        if (subpreguntas.size() > 0){
+            DataTablas data = new DataTablas(context);
+            data.open();
+            ContentValues contentValues = new ContentValues();
+            for (int i = 0; i < subpreguntas.size(); i++) {
+                SPFormulario spFormulario = subpreguntas.get(i);
+                if(!spFormulario.getVARE().equals(""))
+                    contentValues.put(spFormulario.getVARE(),editTexts[i].getText().toString());
+                else{
+                    contentValues.put(spFormulario.getVARS(),spinners[i].getSelectedItemPosition());
+                    if(edtEspecifiques[i].getVisibility() == View.VISIBLE) contentValues.put(spFormulario.getVARESP(),edtEspecifiques[i].getText().toString());
+                }
+                if(!spFormulario.getVARCK().equals("")) {
+                    if(checkBoxes[i].isChecked())contentValues.put(spFormulario.getVARCK(),1);
+                    else contentValues.put(spFormulario.getVARCK(),0);
+                }
             }
-            if(!spFormulario.getVARCK().equals("")) {
-                if(checkBoxes[i].isChecked())contentValues.put(spFormulario.getVARCK(),1);
-                else contentValues.put(spFormulario.getVARCK(),0);
-            }
+            if(!data.existenDatos(getNumModulo(),idEmpresa)){
+                contentValues.put("ID_EMPRESA",idEmpresa);
+                data.insertarValores(getNumModulo(),contentValues);
+            }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+            data.close();
         }
-        if(!data.existenDatos(getNumModulo(),idEmpresa)){
-            contentValues.put("ID_EMPRESA",idEmpresa);
-            data.insertarValores(getNumModulo(),contentValues);
-        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
-        data.close();
     }
 
     public boolean validarDatos(){

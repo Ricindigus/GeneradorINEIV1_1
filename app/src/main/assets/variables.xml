@@ -5,29 +5,39 @@
 		<var>CAR_SP2</var>
 		<var>CAR_SP3</var>
 		<var>CAR_SP4</var>
+		<var>CAR_SP5</var>
 		<var>CAR_SP6</var>
 		<var>CAR_SP7</var>
 		<var>CAR_SP8</var>
-		<var>CAR_SP5</var>
-		<var>CAR_SP5_ESP</var>
-		<var>CAR_SP1_NO</var>
-		<var>CAR_SP2_NO</var>
-		<var>CAR_SP3_NO</var>
-		<var>CAR_SP4_NO</var>
+		<var>CAR_SP9</var>
+		<var>CAR_SP10</var>
+		<var>CAR_SP11</var>
+		<var>CAR_SP12</var>
+		<var>CAR_SP13</var>
+		<var>CAR_SP14</var>
+		<var>CAR_SP15</var>
 	</modulo>
 	<modulo id= "C">
+		<var>IDE_SP1</var>
 		<var>IDE_SP2</var>
 		<var>IDE_SP3</var>
 		<var>IDE_SP4</var>
-		<var>IDE_SP1</var>
 		<var>IDE_SP5</var>
 		<var>IDE_SP6</var>
 		<var>IDE_SP7</var>
 		<var>IDE_SP8</var>
-		<var>IDE_SP7_ESP</var>
-		<var>IDE_SP8_ESP</var>
+		<var>IDE_SP9</var>
+		<var>IDE_SP10</var>
+		<var>IDE_SP11</var>
+		<var>IDE_SP12</var>
+		<var>IDE_SP13</var>
+		<var>IDE_SP14</var>
+		<var>IDE_SP5_NO</var>
+		<var>IDE_SP6_NO</var>
 		<var>IDE_SP7_NO</var>
 		<var>IDE_SP8_NO</var>
+		<var>IDE_SP13_ESP</var>
+		<var>IDE_SP15</var>
 	</modulo>
 	<modulo id= "1">
 		<var>M1P1_1</var>
