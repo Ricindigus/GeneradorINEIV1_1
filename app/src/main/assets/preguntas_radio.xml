@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RADIOS>
-	<RADIO><ID>M3P1</ID><MODULO>3</MODULO><NUMERO>1</NUMERO><PREGUNTA>PREGUNTA RADIO1</PREGUNTA></RADIO>
-	<RADIO><ID>M3P2</ID><MODULO>3</MODULO><NUMERO>2</NUMERO><PREGUNTA>PREGUNTA RADIO2</PREGUNTA></RADIO>
-	<RADIO><ID>M3P3</ID><MODULO>3</MODULO><NUMERO>3</NUMERO><PREGUNTA>PREGUNTA RADIO3</PREGUNTA></RADIO>
 	<RADIO><ID>MCP5</ID><MODULO>C</MODULO><NUMERO>5</NUMERO><PREGUNTA>¿Conoce o ha oído hablar del Instituto Nacional de Calidad (INACAL)?</PREGUNTA></RADIO>
+	<RADIO><ID>M1P3</ID><MODULO>1</MODULO><NUMERO>3</NUMERO><PREGUNTA>¿Cuál es la constitución legal de la empresa?</PREGUNTA></RADIO>
+	<RADIO><ID>M1P4</ID><MODULO>1</MODULO><NUMERO>4</NUMERO><PREGUNTA>Sus ventas totales del año 2016, se encuentran en el rango de:</PREGUNTA></RADIO>
+	<RADIO><ID>M1P8</ID><MODULO>1</MODULO><NUMERO>8</NUMERO><PREGUNTA>En el año 2016, ¿ha exportado algún producto o servicio industrial?</PREGUNTA></RADIO>
+	<RADIO><ID>M1P11</ID><MODULO>1</MODULO><NUMERO>11</NUMERO><PREGUNTA>Su empresa, ¿pertenece a alguna asociación, organización o gremio empresarial?</PREGUNTA></RADIO>
+	<RADIO><ID>M1P12</ID><MODULO>1</MODULO><NUMERO>12</NUMERO><PREGUNTA>¿A qué tipo de organización o agrupación pertenece?</PREGUNTA></RADIO>
+	<RADIO><ID>M2P2</ID><MODULO>2</MODULO><NUMERO>2</NUMERO><PREGUNTA>En el año 2016, ¿su empresa ha utilizado o ha implementado algún estándar de calidad o alguna norma técnica para elaborar su producto o prestación de sus servicios industriales?</PREGUNTA></RADIO>
+	<RADIO><ID>M2P3</ID><MODULO>2</MODULO><NUMERO>3</NUMERO><PREGUNTA>¿Cuál es el origen de la norma técnica o estándar de calidad más importante que utilizó o implementó?</PREGUNTA></RADIO>
+	<RADIO><ID>M3P1</ID><MODULO>3</MODULO><NUMERO>1</NUMERO><PREGUNTA>Algún producto o servicio industrial que ofrece su empresa ¿ha tenido rechazo o problemas por errores de medición?</PREGUNTA></RADIO>
+	<RADIO><ID>M3P4</ID><MODULO>3</MODULO><NUMERO>4</NUMERO><PREGUNTA>En caso de que haya utilizado servicios de calibración de una entidad o laboratorio especializado ¿Ésta estuvo acreditada por el Organismo Nacional de Acreditación(INACAL)?</PREGUNTA></RADIO>
+	<RADIO><ID>M4P2</ID><MODULO>4</MODULO><NUMERO>2</NUMERO><PREGUNTA>Alguna entidad acreditada en el Perú, ha evaluado la conformidad de la calidad de su producto o servicio industrial, o algún proceso o gestión de su empresa.</PREGUNTA></RADIO>
+	<RADIO><ID>M4P4</ID><MODULO>4</MODULO><NUMERO>4</NUMERO><PREGUNTA>Respecto a la principal certificación con la que cuenta su empresa, ¿cuál es el origen de la entidad que emitió la certificación?</PREGUNTA></RADIO>
+	<RADIO><ID>M4P5</ID><MODULO>4</MODULO><NUMERO>5</NUMERO><PREGUNTA>Respecto a la principal certificación con la que cuenta su empresa, ¿la entidad que ha emitido la certificación está acreditada en el Perú (INACAL)?</PREGUNTA></RADIO>
+	<RADIO><ID>M4P10</ID><MODULO>4</MODULO><NUMERO>10</NUMERO><PREGUNTA>¿Quién le brindó la asistencia técnica?</PREGUNTA></RADIO>
 </RADIOS>

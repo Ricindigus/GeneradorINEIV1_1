@@ -135,13 +135,13 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-                if(validarPagina(posicionFragment)){
-                    guardarPagina(posicionFragment);
+//                if(validarPagina(posicionFragment)){
+//                    guardarPagina(posicionFragment);
                     if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
                     else posicionFragment = 1;
                     setNombreSeccion(posicionFragment,1);
                     setPagina(posicionFragment,1);
-                }
+//                }
             }
         });
         setNombreSeccion(1,1);
