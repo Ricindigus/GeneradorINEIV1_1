@@ -157,4 +157,33 @@
     <string name="m2p1_p181_ck8">Otro?</string>
     <string name="m2p1_p181_ck9">NO SABE</string>
 
+
+    <string-array name="departamentos" >
+        <item>[01]AMAZONAS</item>
+        <item>[02]ANCASH</item>
+        <item>[03]APURIMAC</item>
+        <item>[04]AREQUIPA</item>
+        <item>[05]AYACUCHO</item>
+        <item>[06]CAJAMARCA</item>
+        <item>[07]CALLAO</item>
+        <item>[08]CUSCO</item>
+        <item>[09]HUANCAVELICA</item>
+        <item>[10]HUANUCO</item>
+        <item>[11]ICA</item>
+        <item>[12]JUNIN</item>
+        <item>[13]LA LIBERTAD</item>
+        <item>[14]LAMBAYEQUE</item>
+        <item>[15]LIMA</item>
+        <item>[16]LORETO</item>
+        <item>[17]MADRE DE DIOS</item>
+        <item>[18]MOQUEGUA</item>
+        <item>[19]PASCO</item>
+        <item>[20]PIURA</item>
+        <item>[21]PUNO</item>
+        <item>[22]SAN MARTIN</item>
+        <item>[23]TACNA</item>
+        <item>[24]TUMBES</item>
+        <item>[25]UCAYALI</item>
+    </string-array>
+
 </resources>

@@ -48,8 +48,6 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_caratula.CaratulaFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.IdentificacionFragment;
 import pe.com.ricindigus.generadorinei.fragments.M2P1Fragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;

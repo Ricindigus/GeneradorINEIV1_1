@@ -10,9 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_caratula.POJOCaratula;
-import pe.com.ricindigus.generadorinei.componentes.componente_identificacion.POJOIdentificacion;
+import pe.com.ricindigus.generadorinei.pojos.Distrito;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
+import pe.com.ricindigus.generadorinei.pojos.Provincia;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
@@ -42,6 +42,13 @@ public class Data {
     public long getNumeroItemsUbigeo(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tableUbigeo);
     }
+    public long getNumeroItemsProvincias(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tablaProvincias);
+    }
+    public long getNumeroItemsDistritos(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tablaDistritos);
+    }
+
     public long getNumeroItemsUsuario(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tableUsuarios);
     }
@@ -231,6 +238,51 @@ public class Data {
         return ubigeos;
     }
     //------------------FIN UBIGEO-----------------------------------------------------------------------------------------------------
+
+    //----------------------------------UBICACION---------------------------------------------------
+
+    public void insertarProvincia(Provincia provincia){
+        ContentValues contentValues = provincia.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tablaProvincias,null,contentValues);
+    }
+    public void insertarDistrito(Distrito distrito){
+        ContentValues contentValues = distrito.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tablaDistritos,null,contentValues);
+    }
+
+    public ArrayList<String> getProvincias(String idDepartamento){
+        ArrayList<String> provincias = new ArrayList<String>();
+        provincias.add("Seleccione");
+        String[] whereArgs = new String[]{idDepartamento};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaProvincias,
+                    SQLConstantes.ALL_COLUMNS_PROVINCIAS,SQLConstantes.WHERE_CLAUSE_CCDD,whereArgs,null,null,null);
+            while(cursor.moveToNext()){
+                provincias.add(cursor.getString(cursor.getColumnIndex(SQLConstantes.PROVINCIA_NOMBRE)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return provincias;
+    }
+    public ArrayList<String> getDistritos(String idProvincia){
+        ArrayList<String> distritos = new ArrayList<String>();
+        distritos.add("Seleccione");
+        String[] whereArgs = new String[]{idProvincia};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaDistritos,
+                    SQLConstantes.ALL_COLUMNS_DISTRITOS,SQLConstantes.WHERE_CLAUSE_CCPP,whereArgs,null,null,null);
+            while(cursor.moveToNext()){
+                distritos.add(cursor.getString(cursor.getColumnIndex(SQLConstantes.DISTRITO_NOMBRE)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return distritos;
+    }
+    //----------------------------------FIN UBICACION---------------------------------------------------
 
 
 
