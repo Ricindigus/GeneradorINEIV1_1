@@ -73,6 +73,9 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
 
+
+
+
     Data data;
     DataUbicacion dataUbicacion;
     DataGPS dataGPS;
@@ -114,6 +117,7 @@ public class SplashActivity extends AppCompatActivity {
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
 
 
+
             marcos = marcoPullParser.parseXML(getApplicationContext());
             usuarios = usuarioParser.parseXML(getApplicationContext());
             ubigeos = ubigeoPullParser.parseXML(getApplicationContext());
@@ -138,7 +142,7 @@ public class SplashActivity extends AppCompatActivity {
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size()
-                + paginas.size() + opciones.size();
+                + paginas.size() + opciones.size() ;
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -324,7 +328,6 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-
                 mensaje = "LISTO, BIENVENIDO";
             }else{
                 try {
@@ -351,8 +354,8 @@ public class SplashActivity extends AppCompatActivity {
             String texto = "";
             if(values[0] < marcos.size()) texto = "CARGANDO MARCO " + contador +"%";
             if(values[0] > marcos.size() && values[0] < marcos.size()+usuarios.size()) texto = "CARGANDO USUARIOS " + contador +"%";
-            if(values[0] > marcos.size()+usuarios.size() && values[0] < marcos.size()+usuarios.size()+ubigeos.size()) texto = "CARGANDO UBIGEO " + contador +"%";
-            if(values[0] > marcos.size()+usuarios.size()+ubigeos.size() && values[0] < maximo) texto = "CARGANDO ENCUESTA " + contador +"%";
+            if(values[0] > marcos.size()+usuarios.size() && values[0] < marcos.size()+usuarios.size()+ ubigeos.size()) texto = "CARGANDO UBIGEO " + contador +"%";
+            if(values[0] > marcos.size()+usuarios.size() + ubigeos.size() && values[0] < maximo) texto = "CARGANDO ENCUESTA " + contador +"%";
             txtMensaje.setText(texto);
             progressBar.setProgress(values[0]);
             progressBar1.setProgress(values[0]);

@@ -59,6 +59,8 @@ public class DataUbicacion {
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 ubicacion.setID(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_ID)));
+                ubicacion.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_NUM)));
+                ubicacion.setMODULO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_MODULO)));
                 ubicacion.setVARDEP(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DEPARTAMENTO)));
                 ubicacion.setVARDIS(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DISTRITO)));
                 ubicacion.setVARPRO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_PROVINCIA)));

@@ -41,6 +41,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataR
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionFragment;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
@@ -70,6 +71,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private String nombreSeccionActual = "";
     private Data data;
     private DataComponentes dataComponentes;
+    private DataUbicacion dataUbicacion;
     private DataFormulario dataFormulario;
     private DataEditText dataEditText;
     private DataCheckBox dataCheckBox;
@@ -133,13 +135,13 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-//                if(validarPagina(posicionFragment)){
-//                    guardarPagina(posicionFragment);
+                if(validarPagina(posicionFragment)){
+                    guardarPagina(posicionFragment);
                     if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
                     else posicionFragment = 1;
                     setNombreSeccion(posicionFragment,1);
                     setPagina(posicionFragment,1);
-//                }
+                }
             }
         });
         setNombreSeccion(1,1);
@@ -181,11 +183,13 @@ public class EncuestaActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         dataComponentes = new DataComponentes(getApplicationContext());
+        dataUbicacion = new DataUbicacion(getApplicationContext());
         dataFormulario = new DataFormulario(getApplicationContext());
         dataEditText = new DataEditText(getApplicationContext());
         dataCheckBox = new DataCheckBox(getApplicationContext());
         dataRadio = new DataRadio(getApplicationContext());
         dataComponentes.open();
+        dataUbicacion.open();
         dataFormulario.open();
         dataEditText.open();
         dataCheckBox.open();
@@ -206,7 +210,8 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new VisitasFragment();
                         break;
                     case TipoComponente.UBICACION:
-                        fragmentComponente = new UbicacionFragment();
+                        Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
+                        fragmentComponente = new UbicacionFragment(getApplicationContext(),idEmpresa,ubicacion);
                         break;
                     case TipoComponente.GPS:
                         fragmentComponente = new GPSFragment();
@@ -244,6 +249,7 @@ public class EncuestaActivity extends AppCompatActivity {
         }
         dataComponentes.close();
         dataFormulario.close();
+        dataUbicacion.close();
         dataEditText.close();
         dataCheckBox.close();
         dataRadio.close();

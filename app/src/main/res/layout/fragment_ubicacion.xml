@@ -50,15 +50,9 @@
                 android:layout_weight="2"
                 android:layout_marginLeft="10dp">
                 <Spinner
+                    android:id="@+id/ubicacion_sp_departamento"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:clickable="true"
-                    android:text="SELECCIONE DEPARTAMENTO"/>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
@@ -94,15 +88,9 @@
                 android:layout_weight="2"
                 android:layout_marginLeft="10dp">
                 <Spinner
+                    android:id="@+id/ubicacion_sp_provincia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="10dp"
-                    android:text="SELECCIONE PROVINCIA"
-                    android:clickable="true"
-                    android:gravity="center_vertical"/>
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -137,15 +125,9 @@
                 android:layout_weight="2"
                 android:layout_marginLeft="10dp">
                 <Spinner
+                    android:id="@+id/ubicacion_sp_distrito"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="10dp"
-                    android:clickable="true"
-                    android:text="SELECCIONE DISTRITO"
-                    android:gravity="center_vertical"/>
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </android.support.v7.widget.CardView>

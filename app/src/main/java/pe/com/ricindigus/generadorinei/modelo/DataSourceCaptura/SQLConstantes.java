@@ -12,7 +12,6 @@ public class SQLConstantes {
     public static final String tableUsuarios = "usuarios";
     public static final String tableUbigeo = "ubigeo";
     public static final String tableMarco = "marco";
-    public static final String tablaDepartamentos = "departamentos";
     public static final String tablaProvincias = "provincias";
     public static final String tablaDistritos = "distritos";
 
@@ -126,6 +125,7 @@ public class SQLConstantes {
 
     //WHERE
     public static final String WHERE_CLAUSE_ID = "ID=?";
+    public static final String WHERE_CLAUSE_ID_UBIGEO = "ID_UBI=?";
     public static final String WHERE_CLAUSE_CCDD = "CCDD=?";
     public static final String WHERE_CLAUSE_CCPP = "CCPP=?";
     public static final String WHERE_CLAUSE_ID_EMPRESA = "ID_EMPRESA=?";

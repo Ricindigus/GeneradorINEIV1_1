@@ -10,6 +10,8 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 
 public class Ubicacion {
     private String ID;
+    private String NUMERO;
+    private String MODULO;
     private String VARDEP;
     private String VARPRO;
     private String VARDIS;
@@ -19,6 +21,8 @@ public class Ubicacion {
          VARDEP = "";
          VARPRO = "";
          VARDIS = "";
+         NUMERO = "";
+         MODULO = "";
     }
 
     public String getID() {
@@ -54,12 +58,30 @@ public class Ubicacion {
         this.VARDIS = VARDIS;
     }
 
+    public String getNUMERO() {
+        return NUMERO;
+    }
+
+    public void setNUMERO(String NUMERO) {
+        this.NUMERO = NUMERO;
+    }
+
+    public String getMODULO() {
+        return MODULO;
+    }
+
+    public void setMODULO(String MODULO) {
+        this.MODULO = MODULO;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLUbicacion.UBICACION_ID,ID);
         contentValues.put(SQLUbicacion.UBICACION_DEPARTAMENTO,VARDEP);
         contentValues.put(SQLUbicacion.UBICACION_PROVINCIA,VARPRO);
         contentValues.put(SQLUbicacion.UBICACION_DISTRITO,VARDIS);
+        contentValues.put(SQLUbicacion.UBICACION_NUM,NUMERO);
+        contentValues.put(SQLUbicacion.UBICACION_MODULO,MODULO);
         return contentValues;
     }
 }

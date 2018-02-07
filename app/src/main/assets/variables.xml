@@ -16,6 +16,10 @@
 		<var>CAR_SP13</var>
 		<var>CAR_SP14</var>
 		<var>CAR_SP15</var>
+		<var>CAR_DD</var>
+		<var>CAR_PV</var>
+		<var>CAR_DS</var>
+
 	</modulo>
 	<modulo id= "C">
 		<var>IDE_SP1</var>

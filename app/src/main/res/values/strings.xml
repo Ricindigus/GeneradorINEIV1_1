@@ -159,31 +159,304 @@
 
 
     <string-array name="departamentos" >
-        <item>[01]AMAZONAS</item>
-        <item>[02]ANCASH</item>
-        <item>[03]APURIMAC</item>
-        <item>[04]AREQUIPA</item>
-        <item>[05]AYACUCHO</item>
-        <item>[06]CAJAMARCA</item>
-        <item>[07]CALLAO</item>
-        <item>[08]CUSCO</item>
-        <item>[09]HUANCAVELICA</item>
-        <item>[10]HUANUCO</item>
-        <item>[11]ICA</item>
-        <item>[12]JUNIN</item>
-        <item>[13]LA LIBERTAD</item>
-        <item>[14]LAMBAYEQUE</item>
-        <item>[15]LIMA</item>
-        <item>[16]LORETO</item>
-        <item>[17]MADRE DE DIOS</item>
-        <item>[18]MOQUEGUA</item>
-        <item>[19]PASCO</item>
-        <item>[20]PIURA</item>
-        <item>[21]PUNO</item>
-        <item>[22]SAN MARTIN</item>
-        <item>[23]TACNA</item>
-        <item>[24]TUMBES</item>
-        <item>[25]UCAYALI</item>
+        <item>SELECCIONE DEPARTAMENTO</item>
+        <item>AMAZONAS [01]</item>
+        <item>ANCASH [02]</item>
+        <item>APURIMAC [03]</item>
+        <item>AREQUIPA [04]</item>
+        <item>AYACUCHO [05]</item>
+        <item>CAJAMARCA [06]</item>
+        <item>CALLAO [07]</item>
+        <item>CUSCO [08]</item>
+        <item>HUANCAVELICA [09]</item>
+        <item>HUANUCO [10]</item>
+        <item>ICA [11]</item>
+        <item>JUNIN [12]</item>
+        <item>LA LIBERTAD [13]</item>
+        <item>LAMBAYEQUE [14]</item>
+        <item>LIMA [15]</item>
+        <item>LORETO [16]</item>
+        <item>MADRE DE DIOS [17]</item>
+        <item>MOQUEGUA [18]</item>
+        <item>PASCO [19]</item>
+        <item>PIURA [20]</item>
+        <item>PUNO [21]</item>
+        <item>SAN MARTIN [22]</item>
+        <item>TACNA [23]</item>
+        <item>TUMBES [24]</item>
+        <item>UCAYALI [25]</item>
+    </string-array>
+
+    <string-array name="D_AMAZONAS">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CHACHAPOYAS [01]</item>
+        <item>BAGUA [02]</item>
+        <item>BONGARA [03]</item>
+        <item>CONDORCANQUI [04]</item>
+        <item>LUYA [05]</item>
+        <item>RODRIGUEZ DE MENDOZA [06]</item>
+        <item>UTCUBAMBA [07]</item>
+    </string-array>
+    <string-array name="D_ANCASH">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>HUARAZ [01]</item>
+        <item>AIJA [02]</item>
+        <item>ANTONIO RAYMONDI [03]</item>
+        <item>ASUNCION [04]</item>
+        <item>BOLOGNESI [05]</item>
+        <item>CARHUAZ [06]</item>
+        <item>CARLOS FERMIN FITZCARRALD [07]</item>
+        <item>CASMA [08]</item>
+        <item>CORONGO [09]</item>
+        <item>HUARI [10]</item>
+        <item>HUARMEY [11]</item>
+        <item>HUAYLAS [12]</item>
+        <item>MARISCAL LUZURIAGA [13]</item>
+        <item>OCROS [14]</item>
+        <item>PALLASCA [15]</item>
+        <item>POMABAMBA [16]</item>
+        <item>RECUAY [17]</item>
+        <item>SANTA [18]</item>
+        <item>SIHUAS [19]</item>
+        <item>YUNGAY [20]</item>
+    </string-array>
+    <string-array name="D_APURIMAC">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>ABANCAY [01]</item>
+        <item>ANDAHUAYLAS [02]</item>
+        <item>ANTABAMBA [03]</item>
+        <item>AYMARAES [04]</item>
+        <item>COTABAMBAS [05]</item>
+        <item>CHINCHEROS [06]</item>
+        <item>GRAU [07]</item>
+    </string-array>
+    <string-array name="D_AREQUIPA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>AREQUIPA [01]</item>
+        <item>CAMANA [02]</item>
+        <item>CARAVELI [03]</item>
+        <item>CASTILLA [04]</item>
+        <item>CAYLLOMA [05]</item>
+        <item>CONDESUYOS [06]</item>
+        <item>ISLAY [07]</item>
+        <item>LA UNION [08]</item>
+    </string-array>
+    <string-array name="D_AYACUCHO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>HUAMANGA [01]</item>
+        <item>CANGALLO [02]</item>
+        <item>HUANCA SANCOS [03]</item>
+        <item>HUANTA [04]</item>
+        <item>LA MAR [05]</item>
+        <item>LUCANAS [06]</item>
+        <item>PARINACOCHAS [07]</item>
+        <item>PAUCAR DEL SARA SARA [08]</item>
+        <item>SUCRE [09]</item>
+        <item>VICTOR FAJARDO [10]</item>
+        <item>VILCAS HUAMAN [11]</item>
+    </string-array>
+    <string-array name="D_CAJAMARCA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CAJAMARCA [01]</item>
+        <item>CAJABAMBA [02]</item>
+        <item>CELENDIN [03]</item>
+        <item>CHOTA [04]</item>
+        <item>CONTUMAZA [05]</item>
+        <item>CUTERVO [06]</item>
+        <item>HUALGAYOC [07]</item>
+        <item>JAEN [08]</item>
+        <item>SAN IGNACIO [09]</item>
+        <item>SAN MARCOS [10]</item>
+        <item>SAN MIGUEL [11]</item>
+        <item>SAN PABLO [12]</item>
+        <item>SANTA CRUZ [13]</item>
+    </string-array>
+    <string-array name="D_CALLAO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CALLAO [01]</item>
+    </string-array>
+    <string-array name="D_CUSCO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CUSCO [01]</item>
+        <item>ACOMAYO [02]</item>
+        <item>ANTA [03]</item>
+        <item>CALCA [04]</item>
+        <item>CANAS [05]</item>
+        <item>CANCHIS [06]</item>
+        <item>CHUMBIVILCAS [07]</item>
+        <item>ESPINAR [08]</item>
+        <item>LA CONVENCION [09]</item>
+        <item>PARURO [10]</item>
+        <item>PAUCARTAMBO [11]</item>
+        <item>QUISPICANCHI [12]</item>
+        <item>URUBAMBA [13]</item>
+    </string-array>
+    <string-array name="D_HUANCAVELICA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>HUANCAVELICA [01]</item>
+        <item>ACOBAMBA [02]</item>
+        <item>ANGARAES [03]</item>
+        <item>CASTROVIRREYNA [04]</item>
+        <item>CHURCAMPA [05]</item>
+        <item>HUAYTARA [06]</item>
+        <item>TAYACAJA [07]</item>
+    </string-array>
+    <string-array name="D_HUANUCO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>HUANUCO [01]</item>
+        <item>AMBO [02]</item>
+        <item>DOS DE MAYO [03]</item>
+        <item>HUACAYBAMBA [04]</item>
+        <item>HUAMALIES [05]</item>
+        <item>LEONCIO PRADO [06]</item>
+        <item>MARAÑON [07]</item>
+        <item>PACHITEA [08]</item>
+        <item>PUERTO INCA [09]</item>
+        <item>LAURICOCHA [10]</item>
+        <item>YAROWILCA [11]</item>
+    </string-array>
+    <string-array name="D_ICA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>ICA [01]</item>
+        <item>CHINCHA [02]</item>
+        <item>NAZCA [03]</item>
+        <item>PALPA [04]</item>
+        <item>PISCO [05]</item>
+    </string-array>
+    <string-array name="D_JUNIN">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>HUANCAYO [01]</item>
+        <item>CONCEPCION [02]</item>
+        <item>CHANCHAMAYO [03]</item>
+        <item>JAUJA [04]</item>
+        <item>JUNIN [05]</item>
+        <item>SATIPO [06]</item>
+        <item>TARMA [07]</item>
+        <item>YAULI [08]</item>
+        <item>CHUPACA [09]</item>
+    </string-array>
+    <string-array name="D_LA_LIBERTAD">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>TRUJILLO [01]</item>
+        <item>ASCOPE [02]</item>
+        <item>BOLIVAR [03]</item>
+        <item>CHEPEN [04]</item>
+        <item>JULCAN [05]</item>
+        <item>OTUZCO [06]</item>
+        <item>PACASMAYO [07]</item>
+        <item>PATAZ [08]</item>
+        <item>SANCHEZ CARRION [09]</item>
+        <item>SANTIAGO DE CHUCO [10]</item>
+        <item>GRAN CHIMU [11]</item>
+        <item>VIRU [12]</item>
+    </string-array>
+    <string-array name="D_LAMBAYEQUE">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CHICLAYO [01]</item>
+        <item>FERREÑAFE [02]</item>
+        <item>LAMBAYEQUE [03]</item>
+    </string-array>
+    <string-array name="D_LIMA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>LIMA [01]</item>
+        <item>BARRANCA [02]</item>
+        <item>CAJATAMBO [03]</item>
+        <item>CANTA [04]</item>
+        <item>CAÑETE [05]</item>
+        <item>HUARAL [06]</item>
+        <item>HUAROCHIRI [07]</item>
+        <item>HUAURA [08]</item>
+        <item>OYON [09]</item>
+        <item>YAUYOS [10]</item>
+    </string-array>
+    <string-array name="D_LORETO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>MAYNAS [01]</item>
+        <item>ALTO AMAZONAS [02]</item>
+        <item>LORETO [03]</item>
+        <item>MARISCAL RAMON CASTILLA [04]</item>
+        <item>REQUENA [05]</item>
+        <item>UCAYALI [06]</item>
+        <item>DATEM DEL MARAÑON [07]</item>
+        <item>PUTUMAYO [08]</item>
+    </string-array>
+    <string-array name="D_MADRE_DE_DIOS">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>TAMBOPATA [01]</item>
+        <item>MANU [02]</item>
+        <item>TAHUAMANU [03]</item>
+    </string-array>
+    <string-array name="D_MOQUEGUA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>MARISCAL NIETO [01]</item>
+        <item>GENERAL SANCHEZ CERRO [02]</item>
+        <item>ILO [03]</item>
+    </string-array>
+    <string-array name="D_PASCO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>PASCO [01]</item>
+        <item>DANIEL ALCIDES CARRION [02]</item>
+        <item>OXAPAMPA [03]</item>
+    </string-array>
+    <string-array name="D_PIURA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>PIURA [01]</item>
+        <item>AYABACA [02]</item>
+        <item>HUANCABAMBA [03]</item>
+        <item>MORROPON [04]</item>
+        <item>PAITA [05]</item>
+        <item>SULLANA [06]</item>
+        <item>TALARA [07]</item>
+        <item>SECHURA [08]</item>
+    </string-array>
+    <string-array name="D_PUNO">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>PUNO [01]</item>
+        <item>AZANGARO [02]</item>
+        <item>CARABAYA [03]</item>
+        <item>CHUCUITO [04]</item>
+        <item>EL COLLAO [05]</item>
+        <item>HUANCANE [06]</item>
+        <item>LAMPA [07]</item>
+        <item>MELGAR [08]</item>
+        <item>MOHO [09]</item>
+        <item>SAN ANTONIO DE PUTINA [10]</item>
+        <item>SAN ROMAN [11]</item>
+        <item>SANDIA [12]</item>
+        <item>YUNGUYO [13]</item>
+    </string-array>
+    <string-array name="D_SAN_MARTIN">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>MOYOBAMBA [01]</item>
+        <item>BELLAVISTA [02]</item>
+        <item>EL DORADO [03]</item>
+        <item>HUALLAGA [04]</item>
+        <item>LAMAS [05]</item>
+        <item>MARISCAL CACERES [06]</item>
+        <item>PICOTA [07]</item>
+        <item>RIOJA [08]</item>
+        <item>SAN MARTIN [09]</item>
+        <item>TOCACHE [10]</item>
+    </string-array>
+    <string-array name="D_TACNA">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>TACNA [01]</item>
+        <item>CANDARAVE [02]</item>
+        <item>JORGE BASADRE [03]</item>
+        <item>TARATA [04]</item>
+    </string-array>
+    <string-array name="D_TUMBES">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>TUMBES [01]</item>
+        <item>CONTRALMIRANTE VILLAR [02]</item>
+        <item>ZARUMILLA [03]</item>
+    </string-array>
+    <string-array name="D_UCAYALI">
+        <item>SELECCIONE PROVINCIA</item>
+        <item>CORONEL PORTILLO [01]</item>
+        <item>ATALAYA [02]</item>
+        <item>PADRE ABAD [03]</item>
+        <item>PURUS [04]</item>
     </string-array>
 
 </resources>

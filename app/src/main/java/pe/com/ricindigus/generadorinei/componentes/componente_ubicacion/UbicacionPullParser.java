@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class UbicacionPullParser {
     public static final String UBICACION_ID = "ID";
+    public static final String UBICACION_NUM = "NUMERO";
+    public static final String UBICACION_MODULO= "MODULO";
     public static final String UBICACION_DEPARTAMENTO = "VARDEP";
     public static final String UBICACION_PROVINCIA = "VARPRO";
     public static final String UBICACION_DISTRITO = "VARDIS";
@@ -61,6 +63,8 @@ public class UbicacionPullParser {
         if(currentUbicacion!= null && currentTag != null){
             switch (currentTag){
                 case UBICACION_ID:currentUbicacion.setID(xmlText);break;
+                case UBICACION_NUM:currentUbicacion.setNUMERO(xmlText);break;
+                case UBICACION_MODULO:currentUbicacion.setMODULO(xmlText);break;
                 case UBICACION_DEPARTAMENTO:currentUbicacion.setVARDEP(xmlText);break;
                 case UBICACION_PROVINCIA:currentUbicacion.setVARPRO(xmlText);break;
                 case UBICACION_DISTRITO:currentUbicacion.setVARDIS(xmlText);break;
@@ -69,7 +73,7 @@ public class UbicacionPullParser {
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("USUARIO")){
+        if(name.equals("UBICACION")){
             currentUbicacion = new Ubicacion();
             ubicaciones.add(currentUbicacion);
         }else{
