@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginBottom="1dp"
+    android:layout_width="match_parent"
+    android:id="@+id/cardview_visita"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/visita_numero"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:text="1"/>
+        <TextView
+            android:id="@+id/visita_fecha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="20/10/2018"/>
+        <TextView
+            android:id="@+id/visita_hora_inicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="13:30"/>
+        <TextView
+            android:id="@+id/visita_hora_final"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:text="15:40"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/txt_item_visita_resultado"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="INCOMPLETO"/>
+
+        <TextView
+            android:id="@+id/visita_fecha_proxima"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="25/10/2018"
+            />
+
+        <TextView
+            android:id="@+id/visita_hora_proxima"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="14:20"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

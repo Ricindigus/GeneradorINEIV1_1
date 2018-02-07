@@ -4,10 +4,16 @@ package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
 
@@ -19,6 +25,23 @@ public class VisitasFragment extends Fragment {
     private String idEmpresa;
     private Context context;
     private View rootView;
+
+    private ArrayList<Visita> visitas;
+    private LinearLayoutManager linearLayoutManager;
+    private VisitaAdapter visitaAdapter;
+    private RecyclerView recyclerView;
+    private FloatingActionButton btnAgregar;
+    private TextView txtFechaFinal;
+    private TextView txtHorafinal;
+    private TextView txtResultadoFinal;
+//    private Data data;
+//    private ResultadoEncuesta resultadoEncuesta;
+
+    int diaInicio,mesInicio, anioInicio;
+    int horaInicio, minutoInicio;
+    int horaFin, minutoFin;
+    int diaProx, mesProx,anioProx;
+    int horaProx, minutoProx;
 
     public VisitasFragment() {
         // Required empty public constructor

@@ -10,22 +10,23 @@ public class SQLVisitas {
 
     //COLUMNAS_VISITA
     public static final String VISITA_ID = "ID";
-    public static final String VISITA_ID_EMPRESA = "ID_EMPRESA";
-    public static final String VISITA_N = "N_VISITA";
-    public static final String VISITA_DIA = "V_DIA";
-    public static final String VISITA_MES = "V_MES";
-    public static final String VISITA_ANIO = "V_ANIO";
-    public static final String VISITA_HORAI = "V_HORA_I";
-    public static final String VISITA_MINUTOI = "V_MINUTO_I";
-    public static final String VISITA_HORAF = "V_HORA_F";
-    public static final String VISITA_MINUTOF = "V_MINUTO_F";
-    public static final String VISITA_RESULTADO = "R_VISITA";
-    public static final String VISITA_RESULTADO_ESP = "R_VISITA_ESP";
-    public static final String VISITA_PROX_DIA = "V_PROX_FECHA_DIA";
-    public static final String VISITA_PROX_MES = "V_PROX_FECHA_MES";
-    public static final String VISITA_PROX_ANIO = "V_PROX_FECHA_ANIO";
-    public static final String VISITA_PROX_HORA = "V_PROX_HORA";
-    public static final String VISITA_PROX_MINUTO = "V_PROX_MIN";
+    public static final String VISITA_MODULO = "MODULO";
+    public static final String VISITA_NUMERO = "NUMERO";
+    public static final String VISITA_VARNUM = "VARNUM";
+    public static final String VISITA_VARDIA = "VARDIA";
+    public static final String VISITA_VARMES = "VARMES";
+    public static final String VISITA_VARANIO = "VARANIO";
+    public static final String VISITA_VARHORI = "VARHORI";
+    public static final String VISITA_VARMINI = "VARMINI";
+    public static final String VISITA_VARHORF = "VARHORF";
+    public static final String VISITA_VARMINF = "VARMINF";
+    public static final String VISITA_VARRES = "VARRES";
+    public static final String VISITA_VARDIAP = "VARDIAP";
+    public static final String VISITA_VARMESP = "VARMESP";
+    public static final String VISITA_VARANIOP = "VARANIOP";
+    public static final String VISITA_VARHORP = "VARHORP";
+    public static final String VISITA_VARMINP = "VARMINP";
+
 
     //COLUMNAS DATOS ENTREVISTA
     public static final String DATOS_ID = "ID";
@@ -38,23 +39,23 @@ public class SQLVisitas {
 
     public static final String SQL_CREATE_TABLA_VISITAS =
             "CREATE TABLE " + tableVisitas + "(" +
-                    VISITA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    VISITA_ID_EMPRESA + " TEXT," +
-                    VISITA_N + " TEXT," +
-                    VISITA_DIA + " TEXT," +
-                    VISITA_MES + " TEXT," +
-                    VISITA_ANIO + " TEXT," +
-                    VISITA_HORAI + " TEXT," +
-                    VISITA_MINUTOI + " TEXT," +
-                    VISITA_HORAF + " TEXT," +
-                    VISITA_MINUTOF + " TEXT," +
-                    VISITA_RESULTADO + " TEXT," +
-                    VISITA_RESULTADO_ESP + " TEXT," +
-                    VISITA_PROX_DIA + " TEXT," +
-                    VISITA_PROX_MES + " TEXT," +
-                    VISITA_PROX_ANIO + " TEXT," +
-                    VISITA_PROX_HORA + " TEXT," +
-                    VISITA_PROX_MINUTO + " TEXT" + ");"
+                    VISITA_ID + " TEXT PRIMARY KEY," +
+                    VISITA_MODULO + " TEXT," +
+                    VISITA_NUMERO + " TEXT," +
+                    VISITA_VARNUM + " TEXT," +
+                    VISITA_VARDIA + " TEXT," +
+                    VISITA_VARMES + " TEXT," +
+                    VISITA_VARANIO + " TEXT," +
+                    VISITA_VARHORI + " TEXT," +
+                    VISITA_VARMINI + " TEXT," +
+                    VISITA_VARHORF + " TEXT," +
+                    VISITA_VARMINF + " TEXT," +
+                    VISITA_VARRES + " TEXT," +
+                    VISITA_VARDIAP + " TEXT," +
+                    VISITA_VARMESP + " TEXT," +
+                    VISITA_VARANIOP + " TEXT," +
+                    VISITA_VARHORP + " TEXT," +
+                    VISITA_VARMINP + " TEXT" + ");"
             ;
     public static final String SQL_CREATE_TABLA_DATOS_ENTREVISTA =
             "CREATE TABLE " + tableDatosEntrevista + "(" +
@@ -76,9 +77,10 @@ public class SQLVisitas {
 
     //TRAER COLUMNAS VISITAS
     public static final String[] ALL_COLUMNS_VISITAS = {
-            VISITA_ID, VISITA_ID_EMPRESA,  VISITA_DIA, VISITA_MES,VISITA_ANIO,
-            VISITA_HORAI, VISITA_MINUTOI, VISITA_HORAF,VISITA_MINUTOF, VISITA_RESULTADO, VISITA_RESULTADO_ESP, VISITA_PROX_DIA, VISITA_PROX_MES, VISITA_PROX_ANIO, VISITA_PROX_HORA,
-            VISITA_PROX_MINUTO,VISITA_N
+            VISITA_ID, VISITA_MODULO, VISITA_NUMERO, VISITA_VARNUM, VISITA_VARDIA,
+            VISITA_VARMES, VISITA_VARANIO, VISITA_VARHORI, VISITA_VARMINI,
+            VISITA_VARHORF, VISITA_VARMINF, VISITA_VARRES, VISITA_VARDIAP,
+            VISITA_VARMESP, VISITA_VARANIOP, VISITA_VARHORP, VISITA_VARMINP
     };
 
     public static final String[] ALL_COLUMNS_DATOS_ENTREVISTA= {
