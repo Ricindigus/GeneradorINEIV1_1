@@ -31,6 +31,7 @@
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:background="@color/colorPrimary"
             android:layout_alignParentTop="true">
             <Button
                 android:id="@+id/btn_anterior"
@@ -41,13 +42,14 @@
                 android:text="Ant"
                 android:textColor="@android:color/white" />
             <LinearLayout
-                android:id="@+id/layoutNombreSeccion"
+                android:id="@+id/textoNombreSeccion"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="vertical">
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_siguiente"
                 android:layout_width="wrap_content"

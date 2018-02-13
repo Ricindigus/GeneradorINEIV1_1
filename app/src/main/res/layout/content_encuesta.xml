@@ -9,7 +9,6 @@
     tools:context="pe.com.ricindigus.generadorinei.activities.EncuestaActivity"
     tools:showIn="@layout/app_bar_encuesta">
     <LinearLayout
-        android:id="@+id/textoNombreSeccion"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="vertical">
