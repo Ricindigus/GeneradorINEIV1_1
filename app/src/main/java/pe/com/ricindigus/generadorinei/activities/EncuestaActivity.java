@@ -36,6 +36,8 @@ import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFor
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.DataGPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
@@ -76,6 +78,8 @@ public class EncuestaActivity extends AppCompatActivity {
     private DataEditText dataEditText;
     private DataCheckBox dataCheckBox;
     private DataRadio dataRadio;
+    private DataGPS dataGPS;
+
     private Toolbar toolbar;
     private LinearLayout lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5,
             lytComponente6, lytComponente7, lytComponente8, lytComponente9, lytComponente10;
@@ -188,6 +192,7 @@ public class EncuestaActivity extends AppCompatActivity {
         dataEditText = new DataEditText(getApplicationContext());
         dataCheckBox = new DataCheckBox(getApplicationContext());
         dataRadio = new DataRadio(getApplicationContext());
+        dataGPS = new DataGPS(getApplicationContext());
         dataComponentes.open();
         dataUbicacion.open();
         dataFormulario.open();
@@ -214,7 +219,8 @@ public class EncuestaActivity extends AppCompatActivity {
                         fragmentComponente = new UbicacionFragment(getApplicationContext(),idEmpresa,ubicacion);
                         break;
                     case TipoComponente.GPS:
-                        fragmentComponente = new GPSFragment();
+                        GPS gps = dataGPS.getGPS(ids[i]);
+                        fragmentComponente = new GPSFragment(getApplicationContext(),idEmpresa,gps);
                         break;
                     case TipoComponente.FORMULARIO:
                         Formulario formulario = dataFormulario.getFormulario(ids[i]);

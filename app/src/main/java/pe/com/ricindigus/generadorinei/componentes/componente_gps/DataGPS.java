@@ -54,6 +54,8 @@ public class DataGPS {
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 gps.setID(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_ID)));
+                gps.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_NUMERO)));
+                gps.setMODULO(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_MODULO)));
                 gps.setVARALT(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_ALTITUD)));
                 gps.setVARLAT(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_LATITUD)));
                 gps.setVARLONG(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_LONGITUD)));

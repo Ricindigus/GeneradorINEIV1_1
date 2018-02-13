@@ -74,13 +74,13 @@ public class EditTextFragment extends Fragment {
         edtSP3 = (TextInputEditText) edtLyt3.findViewById(R.id.edit_text_input);
         textInputLayouts = new TextInputLayout[]{edtLyt1,edtLyt2,edtLyt3};
         textInputEditTexts = new TextInputEditText[]{edtSP1,edtSP2,edtSP3};
-        llenarVista();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        llenarVista();
         cargarDatos();
     }
 

@@ -103,7 +103,6 @@ public class FormularioFragment extends Fragment {
             edtEspecifiques[i] = (EditText) cardViews[i].findViewById(R.id.formulario_sp_especifique);
             checkBoxes[i] = (CheckBox) cardViews[i].findViewById(R.id.formulario_sp_checkbox);
         }
-        llenarVista();
         return rootView;
     }
 
@@ -111,6 +110,7 @@ public class FormularioFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        llenarVista();
         cargarDatos();
     }
 

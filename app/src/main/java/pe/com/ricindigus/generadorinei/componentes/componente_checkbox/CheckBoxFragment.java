@@ -77,14 +77,13 @@ public class CheckBoxFragment extends Fragment {
         for (int i = 0; i <subpreguntas.size() ; i++) {
             editTexts[i] = (EditText) checkLayouts[i].findViewById(R.id.checkbox_descripcion);
         }
-
-        llenarVista();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        llenarVista();
         cargarDatos();
     }
 

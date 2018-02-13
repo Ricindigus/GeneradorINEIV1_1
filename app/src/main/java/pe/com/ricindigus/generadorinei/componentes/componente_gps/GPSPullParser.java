@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class GPSPullParser {
     public static final String GPS_ID = "ID";
+    public static final String GPS_NUMERO = "NUMERO";
+    public static final String GPS_MODULO = "MODULO";
     public static final String GPS_LATITUD = "VARLAT";
     public static final String GPS_LONGITUD = "VARLONG";
     public static final String GPS_ALTITUD = "VARALT";
@@ -62,6 +64,8 @@ public class GPSPullParser {
         if(currentGPS!= null && currentTag != null){
             switch (currentTag){
                 case GPS_ID:currentGPS.setID(xmlText);break;
+                case GPS_NUMERO:currentGPS.setNUMERO(xmlText);break;
+                case GPS_MODULO:currentGPS.setMODULO(xmlText);break;
                 case GPS_LATITUD:currentGPS.setVARLAT(xmlText);break;
                 case GPS_LONGITUD:currentGPS.setVARLONG(xmlText);break;
                 case GPS_ALTITUD:currentGPS.setVARALT(xmlText);break;
@@ -70,7 +74,7 @@ public class GPSPullParser {
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("USUARIO")){
+        if(name.equals("GPS")){
             currentGPS = new GPS();
             gpsArrayList.add(currentGPS);
         }else{

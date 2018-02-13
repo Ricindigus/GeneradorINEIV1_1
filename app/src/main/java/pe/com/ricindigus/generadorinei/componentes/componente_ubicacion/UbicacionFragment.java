@@ -68,13 +68,13 @@ public class UbicacionFragment extends Fragment {
         spDepartamentos = (Spinner) rootView.findViewById(R.id.ubicacion_sp_departamento);
         spProvincias = (Spinner) rootView.findViewById(R.id.ubicacion_sp_provincia);
         spDistritos = (Spinner) rootView.findViewById(R.id.ubicacion_sp_distrito);
-        llenarVista();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        llenarVista();
         spDepartamentos.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {

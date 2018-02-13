@@ -19,6 +19,9 @@
 		<var>CAR_DD</var>
 		<var>CAR_PV</var>
 		<var>CAR_DS</var>
+		<var>CAR_LAT</var>
+		<var>CAR_LONG</var>
+		<var>CAR_ALT</var>
 
 	</modulo>
 	<modulo id= "C">

@@ -80,13 +80,13 @@ public class RadioFragment extends Fragment {
         for (int i = 0; i <subpreguntas.size() ; i++) {
             editTexts[i] = (EditText) rootView.findViewById(idEdits[i]);
         }
-        llenarVista();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        llenarVista();
         cargarDatos();
     }
 
