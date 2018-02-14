@@ -35,6 +35,9 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullP
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.DataVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.Visita;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
@@ -60,6 +63,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
+    ArrayList<Visita> visitas = new ArrayList<Visita>();
     ArrayList<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
     ArrayList<GPS> gpsArrayList = new ArrayList<GPS>();
     ArrayList<Formulario> formularios = new ArrayList<Formulario>();
@@ -77,6 +81,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     Data data;
+    DataVisitas dataVisitas;
     DataUbicacion dataUbicacion;
     DataGPS dataGPS;
     DataFormulario dataFormulario;
@@ -104,6 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         if(items1 == 0){
             MarcoPullParser marcoPullParser = new MarcoPullParser();
             UsuariosPullParser usuarioParser = new UsuariosPullParser();
+            VisitaPullParser visitaPullParser = new VisitaPullParser();
             UbigeoPullParser ubigeoPullParser = new UbigeoPullParser();
             ModuloPullParser moduloPullParser = new ModuloPullParser();
             UbicacionPullParser ubicacionPullParser = new UbicacionPullParser();
@@ -122,6 +128,7 @@ public class SplashActivity extends AppCompatActivity {
             usuarios = usuarioParser.parseXML(getApplicationContext());
             ubigeos = ubigeoPullParser.parseXML(getApplicationContext());
             modulos = moduloPullParser.parseXML(getApplicationContext());
+            visitas = visitaPullParser.parseXML(getApplicationContext());
             ubicaciones = ubicacionPullParser.parseXML(getApplicationContext());
             gpsArrayList = gpsPullParser.parseXML(getApplicationContext());
             formularios = formularioPullParser.parseXMLFormulario(getApplicationContext());
@@ -137,7 +144,7 @@ public class SplashActivity extends AppCompatActivity {
 
         }
 
-        maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size()
+        maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
                 + ubicaciones.size() + gpsArrayList.size() + formularios.size()
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
@@ -170,6 +177,8 @@ public class SplashActivity extends AppCompatActivity {
             data.open();
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
+            dataVisitas = new DataVisitas(getApplicationContext());
+            dataVisitas.open();
             dataUbicacion = new DataUbicacion(getApplicationContext());
             dataUbicacion.open();
             dataGPS = new DataGPS(getApplicationContext());
@@ -214,6 +223,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (Modulo modulo : modulos) {
                     try {
                         dataComponentes.insertarModulo(modulo);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Visita visita : visitas) {
+                    try {
+                        dataVisitas.insertarVisita(visita);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

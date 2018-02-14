@@ -5,7 +5,6 @@ package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
  */
 
 public class SQLVisitas {
-    public static final String tableDatosEntrevista = "datosEntrevista";
     public static final String tableVisitas = "visitas";
 
     //COLUMNAS_VISITA
@@ -26,15 +25,8 @@ public class SQLVisitas {
     public static final String VISITA_VARANIOP = "VARANIOP";
     public static final String VISITA_VARHORP = "VARHORP";
     public static final String VISITA_VARMINP = "VARMINP";
-
-
-    //COLUMNAS DATOS ENTREVISTA
-    public static final String DATOS_ID = "ID";
-    public static final String DATOS_RESULTADO_FINAL = "R_ENCUESTA";
-    public static final String DATOS_RESULTADO_FINAL_ESP = "R_ENCUESTA_ESP";
-    public static final String DATOS_FECHA_FINAL_DIA = "R_FECHA_DIA";
-    public static final String DATOS_FECHA_FINAL_MES = "R_FECHA_MES";
-    public static final String DATOS_FECHA_FINAL_ANIO = "R_FECHA_ANIO";
+    public static final String VISITA_VARRESFINAL = "VARRESFINAL";
+    public static final String VISITA_VARRESFECHA = "VARRESFECHA";
 
 
     public static final String SQL_CREATE_TABLA_VISITAS =
@@ -55,20 +47,14 @@ public class SQLVisitas {
                     VISITA_VARMESP + " TEXT," +
                     VISITA_VARANIOP + " TEXT," +
                     VISITA_VARHORP + " TEXT," +
-                    VISITA_VARMINP + " TEXT" + ");"
-            ;
-    public static final String SQL_CREATE_TABLA_DATOS_ENTREVISTA =
-            "CREATE TABLE " + tableDatosEntrevista + "(" +
-                    DATOS_ID + " TEXT PRIMARY KEY," +
-                    DATOS_RESULTADO_FINAL + " TEXT," +
-                    DATOS_RESULTADO_FINAL_ESP + " TEXT," +
-                    DATOS_FECHA_FINAL_DIA + " TEXT," +
-                    DATOS_FECHA_FINAL_MES + " TEXT," +
-                    DATOS_FECHA_FINAL_ANIO + " TEXT" + ");"
+                    VISITA_VARMINP + " TEXT," +
+                    VISITA_VARRESFINAL + " TEXT," +
+                    VISITA_VARRESFECHA + " TEXT" + ");"
             ;
 
 
-    public static final String SQL_DELETE_DATOS_ENTREVISTA = "DROP TABLE " + tableDatosEntrevista;
+
+
     public static final String SQL_DELETE_VISITAS = "DROP TABLE " + tableVisitas;
 
     //WHERE
@@ -80,11 +66,8 @@ public class SQLVisitas {
             VISITA_ID, VISITA_MODULO, VISITA_NUMERO, VISITA_VARNUM, VISITA_VARDIA,
             VISITA_VARMES, VISITA_VARANIO, VISITA_VARHORI, VISITA_VARMINI,
             VISITA_VARHORF, VISITA_VARMINF, VISITA_VARRES, VISITA_VARDIAP,
-            VISITA_VARMESP, VISITA_VARANIOP, VISITA_VARHORP, VISITA_VARMINP
+            VISITA_VARMESP, VISITA_VARANIOP, VISITA_VARHORP, VISITA_VARMINP,
+            VISITA_VARRESFINAL,VISITA_VARRESFECHA
     };
 
-    public static final String[] ALL_COLUMNS_DATOS_ENTREVISTA= {
-            DATOS_ID, DATOS_RESULTADO_FINAL,DATOS_RESULTADO_FINAL_ESP,
-            DATOS_FECHA_FINAL_DIA,DATOS_FECHA_FINAL_MES,DATOS_FECHA_FINAL_ANIO
-    };
 }

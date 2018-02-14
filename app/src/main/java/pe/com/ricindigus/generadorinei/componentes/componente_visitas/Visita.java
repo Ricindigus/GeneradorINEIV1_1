@@ -24,6 +24,9 @@ public class Visita {
     private String VARANIOP;
     private String VARHORP;
     private String VARMINP;
+    private String VARRESFINAL;
+    private String VARRESFECHA;
+
 
     public Visita() {
         this.ID = "";
@@ -43,6 +46,8 @@ public class Visita {
         this.VARANIOP = "";
         this.VARHORP = "";
         this.VARMINP = "";
+        this.VARRESFINAL = "";
+        this.VARRESFECHA = "";
     }
 
     public String getID() {
@@ -181,6 +186,22 @@ public class Visita {
         this.VARMINP = VARMINP;
     }
 
+    public String getVARRESFINAL() {
+        return VARRESFINAL;
+    }
+
+    public void setVARRESFINAL(String VARRESFINAL) {
+        this.VARRESFINAL = VARRESFINAL;
+    }
+
+    public String getVARRESFECHA() {
+        return VARRESFECHA;
+    }
+
+    public void setVARRESFECHA(String VARRESFECHA) {
+        this.VARRESFECHA = VARRESFECHA;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLVisitas.VISITA_ID,ID);
@@ -200,6 +221,8 @@ public class Visita {
         contentValues.put(SQLVisitas.VISITA_VARHORP,VARANIOP);
         contentValues.put(SQLVisitas.VISITA_VARMINP,VARHORP);
         contentValues.put(SQLVisitas.VISITA_VARMINP,VARMINP);
+        contentValues.put(SQLVisitas.VISITA_VARRESFINAL,VARRESFINAL);
+        contentValues.put(SQLVisitas.VISITA_VARRESFECHA,VARRESFECHA);
         return contentValues;
     }
 }

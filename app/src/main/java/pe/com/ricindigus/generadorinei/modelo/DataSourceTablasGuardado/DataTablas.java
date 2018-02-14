@@ -104,6 +104,7 @@ public class DataTablas {
         }finally {
             if(cursor != null)cursor.close();
         }
+        if(valor == null) valor = "";
         return valor;
     }
 
@@ -124,5 +125,11 @@ public class DataTablas {
             if(cursor != null)cursor.close();
         }
         return valoresModulo;
+    }
+
+    public Cursor getAllTabla(String tabla){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * from " + tabla, null);
+        if (cursor != null) cursor.moveToFirst();
+        return cursor;
     }
 }

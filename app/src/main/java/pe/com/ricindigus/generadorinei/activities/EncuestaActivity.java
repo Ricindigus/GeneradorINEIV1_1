@@ -46,6 +46,8 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadi
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.DataVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.Visita;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
@@ -73,6 +75,7 @@ public class EncuestaActivity extends AppCompatActivity {
     private String nombreSeccionActual = "";
     private Data data;
     private DataComponentes dataComponentes;
+    private DataVisitas dataVisitas;
     private DataUbicacion dataUbicacion;
     private DataFormulario dataFormulario;
     private DataEditText dataEditText;
@@ -187,6 +190,7 @@ public class EncuestaActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         dataComponentes = new DataComponentes(getApplicationContext());
+        dataVisitas = new DataVisitas(getApplicationContext());
         dataUbicacion = new DataUbicacion(getApplicationContext());
         dataFormulario = new DataFormulario(getApplicationContext());
         dataEditText = new DataEditText(getApplicationContext());
@@ -194,6 +198,7 @@ public class EncuestaActivity extends AppCompatActivity {
         dataRadio = new DataRadio(getApplicationContext());
         dataGPS = new DataGPS(getApplicationContext());
         dataComponentes.open();
+        dataVisitas.open();
         dataUbicacion.open();
         dataFormulario.open();
         dataEditText.open();
@@ -212,7 +217,8 @@ public class EncuestaActivity extends AppCompatActivity {
                 int tipo= Integer.parseInt(tipos[i]);
                 switch (tipo){
                     case TipoComponente.VISITAS:
-                        fragmentComponente = new VisitasFragment();
+                        Visita visita = dataVisitas.getVisita(ids[i]);
+                        fragmentComponente = new VisitasFragment(getApplicationContext(),idEmpresa,visita);
                         break;
                     case TipoComponente.UBICACION:
                         Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
@@ -277,7 +283,7 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("") && valido){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
-                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
+//                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
                 case TipoComponente.UBICACION: valido = valido && ((UbicacionFragment)fragment).validarDatos();break;
                 case TipoComponente.GPS: valido = valido && ((GPSFragment)fragment).validarDatos();break;
                 case TipoComponente.FORMULARIO: valido = valido && ((FormularioFragment)fragment).validarDatos();break;
@@ -304,7 +310,7 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("")){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
-                case TipoComponente.VISITAS: ((VisitasFragment)fragment).guardarDatos();break;
+//                case TipoComponente.VISITAS: ((VisitasFragment)fragment).guardarDatos();break;
                 case TipoComponente.UBICACION: ((UbicacionFragment)fragment).guardarDatos();break;
                 case TipoComponente.GPS: ((GPSFragment)fragment).guardarDatos();break;
                 case TipoComponente.FORMULARIO: ((FormularioFragment)fragment).guardarDatos();break;

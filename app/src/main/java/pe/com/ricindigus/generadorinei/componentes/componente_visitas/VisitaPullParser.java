@@ -34,6 +34,8 @@ public class VisitaPullParser {
     public static final String VISITA_VARANIOP = "VARANIOP";
     public static final String VISITA_VARHORP = "VARHORP";
     public static final String VISITA_VARMINP = "VARMINP";
+    public static final String VISITA_VARRESFINAL = "VARRESFINAL";
+    public static final String VISITA_VARRESFECHA = "VARRESFECHA";
 
     private Visita currentVisita = null;
     private String currentTag = null;
@@ -91,6 +93,8 @@ public class VisitaPullParser {
                 case VISITA_VARANIOP:currentVisita.setVARANIOP(xmlText);break;
                 case VISITA_VARHORP:currentVisita.setVARHORP(xmlText);break;
                 case VISITA_VARMINP:currentVisita.setVARMINP(xmlText);break;
+                case VISITA_VARRESFINAL:currentVisita.setVARRESFINAL(xmlText);break;
+                case VISITA_VARRESFECHA:currentVisita.setVARRESFECHA(xmlText);break;
             }
         }
     }
