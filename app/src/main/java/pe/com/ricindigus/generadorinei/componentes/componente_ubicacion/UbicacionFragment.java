@@ -223,36 +223,36 @@ public class UbicacionFragment extends Fragment {
 
 
     public void cargarSpinerDepartamentos(String[] datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spDepartamentos.setAdapter(adapter);
     }
 
     public void cargarSpinerDepartamentos(ArrayList<String> datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spDepartamentos.setAdapter(adapter);
     }
 
     public void cargarSpinerProvincias(String[] datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spProvincias.setAdapter(adapter);
     }
 
     public void cargarSpinerProvincias(ArrayList<String> datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spProvincias.setAdapter(adapter);
     }
     public void cargarSpinerDistritos(String[] datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spDistritos.setAdapter(adapter);
     }
     public void cargarSpinerDistritos(ArrayList<String> datos){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, R.layout.spinner_item,datos);
-        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_spinner_item,datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spDistritos.setAdapter(adapter);
     }
 

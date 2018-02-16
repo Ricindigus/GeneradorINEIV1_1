@@ -144,8 +144,8 @@ public class FormularioFragment extends Fragment {
                 dataComponentes.open();
                 ArrayList<String> ops = dataComponentes.getOpcionesSpinner(spFormulario.getVARS());
                 dataComponentes.close();
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_item,ops);
-                adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,ops);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinners[i].setAdapter(adapter);
 
                 if(!spFormulario.getVARESP().equals("")){
