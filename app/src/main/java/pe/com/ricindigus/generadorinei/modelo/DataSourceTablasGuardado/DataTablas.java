@@ -139,8 +139,18 @@ public class DataTablas {
     public Cursor getVisitas(String nModulo, String idEmpresa){
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
-        cursor = sqLiteDatabase.query("modulo" + nModulo,null, SQLVisitas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+        cursor = sqLiteDatabase.query("modulo" + nModulo,null, SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
         if(cursor != null) cursor.moveToFirst();
         return cursor;
+    }
+
+    public void actualizarVisita(String nModulo, String id, ContentValues valores){
+        String[] whereArgs = new String[]{id};
+        sqLiteDatabase.update("modulo" + nModulo,valores,SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs);
+    }
+
+    public void deleteVisita(String nModulo, String id){
+        String[] whereArgs = new String[]{String.valueOf(id)};
+        sqLiteDatabase.delete("modulo" + nModulo,SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs);
     }
 }

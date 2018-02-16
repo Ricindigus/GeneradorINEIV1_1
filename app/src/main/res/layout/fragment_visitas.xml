@@ -239,7 +239,6 @@
                                         android:gravity="center"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="28/12/2017"
                                         android:textColor="@color/colorPrimaryText"/>
                                 </android.support.v7.widget.CardView>
                             </LinearLayout>
@@ -282,7 +281,6 @@
                                         android:gravity="center"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="12:05"
                                         android:textColor="@color/colorPrimaryText"/>
                                 </android.support.v7.widget.CardView>
                             </LinearLayout>

@@ -51,26 +51,22 @@ public class VisitaAdapter extends RecyclerView.Adapter<VisitaAdapter.ViewHolder
                                 ":"+ checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMINI()))))
                 );
                 String resultado = cursor.getString(cursor.getColumnIndex(visita.getVARRES()));
-                if(resultado != null){
-                    if(!resultado.equals("")) txtResultado.setText(resultado);
-                    else txtResultado.setText("NO FINALIZADO");
-                }
+                if(resultado != null)txtResultado.setText(context.getResources().getStringArray(R.array.array_resultado_visita)[Integer.parseInt(resultado)]);
+                else txtResultado.setText("NO FINALIZADO");
                 String diaProxV = cursor.getString(cursor.getColumnIndex(visita.getVARDIAP()));
-                if(diaProxV != null){
-                    if(!diaProxV.equals("")){
-                        txtFechaProxVisita.setText(
-                                checkDigito(Integer.parseInt(diaProxV)) +
-                                        "/" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMESP())))) +
-                                        "/" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARANIOP()))))
-                        );
-                        txtHoraProxVisita.setText(
-                                checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARHORP())))) +
-                                        ":" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMINP()))))
-                        );
-                    }else{
+                if(diaProxV != null) {
+                    txtFechaProxVisita.setText(
+                            checkDigito(Integer.parseInt(diaProxV)) +
+                                    "/" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMESP())))) +
+                                    "/" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARANIOP()))))
+                    );
+                    txtHoraProxVisita.setText(
+                            checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARHORP())))) +
+                                    ":" + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMINP()))))
+                    );
+                }else{
                         txtFechaProxVisita.setText("-/-/-");
                         txtHoraProxVisita.setText("-:-");
-                    }
                 }
             }
         };

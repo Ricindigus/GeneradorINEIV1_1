@@ -329,7 +329,7 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("") && valido){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
-//                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
+                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
                 case TipoComponente.UBICACION: valido = valido && ((UbicacionFragment)fragment).validarDatos();break;
                 case TipoComponente.GPS: valido = valido && ((GPSFragment)fragment).validarDatos();break;
                 case TipoComponente.FORMULARIO: valido = valido && ((FormularioFragment)fragment).validarDatos();break;

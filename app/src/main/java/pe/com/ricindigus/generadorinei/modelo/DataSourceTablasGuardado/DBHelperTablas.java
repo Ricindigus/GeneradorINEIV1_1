@@ -39,7 +39,8 @@ public class DBHelperTablas extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         tablaGuardadoPullParser = new TablaGuardadoPullParser();
         tablas = tablaGuardadoPullParser.parseXML(contexto);
-        sqLiteDatabase.execSQL("DROP TABLE moduloA");
+        sqLiteDatabase.execSQL("DROP TABLE moduloA1");
+        sqLiteDatabase.execSQL("DROP TABLE moduloA2");
         sqLiteDatabase.execSQL("DROP TABLE moduloB");
         sqLiteDatabase.execSQL("DROP TABLE moduloC");
         for (int i = 1; i <= tablas.size()-2; i++) {

@@ -54,8 +54,8 @@ public class TablaGuardadoPullParser {
 
     private void handleStarTag(XmlPullParser xpp) {
         if(xpp.getName().equals("modulo")){
-            currentCreate = "CREATE TABLE " + "modulo" + xpp.getAttributeValue(0) + "(";
-            if (xpp.getAttributeValue(1).equals("1")){
+            currentCreate = "CREATE TABLE " + "modulo" + xpp.getAttributeValue(0) + xpp.getAttributeValue(1)+ "(";
+            if (xpp.getAttributeValue(2).equals("1")){
                 currentCreate = currentCreate + "ID_EMPRESA" + " TEXT PRIMARY KEY";
             }else{
                 currentCreate = currentCreate + "_id" + " TEXT PRIMARY KEY,"
