@@ -70,11 +70,14 @@ public class DataVisitas {
                 visita.setID(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_ID)));
                 visita.setMODULO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_MODULO)));
                 visita.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_NUMERO)));
+                visita.setVARNUM(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARNUM)));
                 visita.setVARDIA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARDIA)));
                 visita.setVARMES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMES)));
                 visita.setVARANIO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARANIO)));
                 visita.setVARHORI(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORI)));
-                visita.setVARHORF(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINI)));
+                visita.setVARMINI(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINI)));
+                visita.setVARHORF(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORF)));
+                visita.setVARMINF(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINF)));
                 visita.setVARRES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRES)));
                 visita.setVARDIAP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARDIAP)));
                 visita.setVARMESP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMESP)));
@@ -82,7 +85,11 @@ public class DataVisitas {
                 visita.setVARHORP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORP)));
                 visita.setVARMINP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINP)));
                 visita.setVARRESFINAL(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESFINAL)));
-                visita.setVARRESFECHA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESFECHA)));
+                visita.setVARRESDIA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESDIA)));
+                visita.setVARRESMES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESMES)));
+                visita.setVARRESANIO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESANIO)));
+                visita.setVARRESHORA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESHORA)));
+                visita.setVARRESMIN(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESMIN)));
             }
         }finally{
             if(cursor != null) cursor.close();

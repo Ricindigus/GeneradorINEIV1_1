@@ -26,7 +26,12 @@ public class SQLVisitas {
     public static final String VISITA_VARHORP = "VARHORP";
     public static final String VISITA_VARMINP = "VARMINP";
     public static final String VISITA_VARRESFINAL = "VARRESFINAL";
-    public static final String VISITA_VARRESFECHA = "VARRESFECHA";
+    public static final String VISITA_VARRESDIA = "VARRESDIA";
+    public static final String VISITA_VARRESMES = "VARRESMES";
+    public static final String VISITA_VARRESANIO = "VARRESANIO";
+    public static final String VISITA_VARRESHORA = "VARRESHORA";
+    public static final String VISITA_VARRESMIN = "VARRESMIN";
+
 
 
     public static final String SQL_CREATE_TABLA_VISITAS =
@@ -49,7 +54,11 @@ public class SQLVisitas {
                     VISITA_VARHORP + " TEXT," +
                     VISITA_VARMINP + " TEXT," +
                     VISITA_VARRESFINAL + " TEXT," +
-                    VISITA_VARRESFECHA + " TEXT" + ");"
+                    VISITA_VARRESDIA + " TEXT," +
+                    VISITA_VARRESMES + " TEXT," +
+                    VISITA_VARRESANIO + " TEXT," +
+                    VISITA_VARRESHORA + " TEXT," +
+                    VISITA_VARRESMIN + " TEXT" + ");"
             ;
 
 
@@ -67,7 +76,8 @@ public class SQLVisitas {
             VISITA_VARMES, VISITA_VARANIO, VISITA_VARHORI, VISITA_VARMINI,
             VISITA_VARHORF, VISITA_VARMINF, VISITA_VARRES, VISITA_VARDIAP,
             VISITA_VARMESP, VISITA_VARANIOP, VISITA_VARHORP, VISITA_VARMINP,
-            VISITA_VARRESFINAL,VISITA_VARRESFECHA
+            VISITA_VARRESFINAL,VISITA_VARRESDIA, VISITA_VARRESMES,
+            VISITA_VARRESANIO,VISITA_VARRESHORA, VISITA_VARRESMIN
     };
 
 }

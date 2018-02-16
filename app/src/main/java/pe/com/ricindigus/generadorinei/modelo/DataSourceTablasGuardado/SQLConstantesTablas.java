@@ -9,4 +9,6 @@ import java.util.ArrayList;
 public class SQLConstantesTablas {
     public static final String NOMBRE_DB = "guardado.db";
     public static final String WHERE_CLAUSE_ID_EMPRESA = "ID_EMPRESA=?";
+    public static final String WHERE_CLAUSE_id = "_id=?";
+
 }

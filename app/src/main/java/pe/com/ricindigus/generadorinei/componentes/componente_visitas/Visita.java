@@ -25,7 +25,11 @@ public class Visita {
     private String VARHORP;
     private String VARMINP;
     private String VARRESFINAL;
-    private String VARRESFECHA;
+    private String VARRESDIA;
+    private String VARRESMES;
+    private String VARRESANIO;
+    private String VARRESHORA;
+    private String VARRESMIN;
 
 
     public Visita() {
@@ -47,7 +51,11 @@ public class Visita {
         this.VARHORP = "";
         this.VARMINP = "";
         this.VARRESFINAL = "";
-        this.VARRESFECHA = "";
+        this.VARRESDIA = "";
+        this.VARRESMES= "";
+        this.VARRESMIN = "";
+        this.VARRESHORA = "";
+        this.VARRESMIN = "";
     }
 
     public String getID() {
@@ -194,12 +202,44 @@ public class Visita {
         this.VARRESFINAL = VARRESFINAL;
     }
 
-    public String getVARRESFECHA() {
-        return VARRESFECHA;
+    public String getVARRESDIA() {
+        return VARRESDIA;
     }
 
-    public void setVARRESFECHA(String VARRESFECHA) {
-        this.VARRESFECHA = VARRESFECHA;
+    public void setVARRESDIA(String VARRESDIA) {
+        this.VARRESDIA = VARRESDIA;
+    }
+
+    public String getVARRESMES() {
+        return VARRESMES;
+    }
+
+    public void setVARRESMES(String VARRESMES) {
+        this.VARRESMES = VARRESMES;
+    }
+
+    public String getVARRESANIO() {
+        return VARRESANIO;
+    }
+
+    public void setVARRESANIO(String VARRESANIO) {
+        this.VARRESANIO = VARRESANIO;
+    }
+
+    public String getVARRESHORA() {
+        return VARRESHORA;
+    }
+
+    public void setVARRESHORA(String VARRESHORA) {
+        this.VARRESHORA = VARRESHORA;
+    }
+
+    public String getVARRESMIN() {
+        return VARRESMIN;
+    }
+
+    public void setVARRESMIN(String VARRESMIN) {
+        this.VARRESMIN = VARRESMIN;
     }
 
     public ContentValues toValues(){
@@ -207,22 +247,26 @@ public class Visita {
         contentValues.put(SQLVisitas.VISITA_ID,ID);
         contentValues.put(SQLVisitas.VISITA_MODULO,MODULO);
         contentValues.put(SQLVisitas.VISITA_NUMERO,NUMERO);
-        contentValues.put(SQLVisitas.VISITA_VARDIA,VARNUM);
-        contentValues.put(SQLVisitas.VISITA_VARMES,VARDIA);
-        contentValues.put(SQLVisitas.VISITA_VARANIO,VARMES);
-        contentValues.put(SQLVisitas.VISITA_VARHORI,VARANIO);
-        contentValues.put(SQLVisitas.VISITA_VARMINI,VARHORI);
-        contentValues.put(SQLVisitas.VISITA_VARHORF,VARMINI);
-        contentValues.put(SQLVisitas.VISITA_VARMINF,VARHORF);
-        contentValues.put(SQLVisitas.VISITA_VARRES,VARMINF);
-        contentValues.put(SQLVisitas.VISITA_VARDIAP,VARRES);
-        contentValues.put(SQLVisitas.VISITA_VARMESP,VARDIAP);
-        contentValues.put(SQLVisitas.VISITA_VARANIOP,VARMESP);
-        contentValues.put(SQLVisitas.VISITA_VARHORP,VARANIOP);
-        contentValues.put(SQLVisitas.VISITA_VARMINP,VARHORP);
+        contentValues.put(SQLVisitas.VISITA_VARNUM,VARNUM);
+        contentValues.put(SQLVisitas.VISITA_VARDIA,VARDIA);
+        contentValues.put(SQLVisitas.VISITA_VARMES,VARMES);
+        contentValues.put(SQLVisitas.VISITA_VARANIO,VARANIO);
+        contentValues.put(SQLVisitas.VISITA_VARHORI,VARHORI);
+        contentValues.put(SQLVisitas.VISITA_VARMINI,VARMINI);
+        contentValues.put(SQLVisitas.VISITA_VARHORF,VARHORF);
+        contentValues.put(SQLVisitas.VISITA_VARMINF,VARMINF);
+        contentValues.put(SQLVisitas.VISITA_VARRES,VARRES);
+        contentValues.put(SQLVisitas.VISITA_VARDIAP,VARDIAP);
+        contentValues.put(SQLVisitas.VISITA_VARMESP,VARMESP);
+        contentValues.put(SQLVisitas.VISITA_VARANIOP,VARANIOP);
+        contentValues.put(SQLVisitas.VISITA_VARHORP,VARHORP);
         contentValues.put(SQLVisitas.VISITA_VARMINP,VARMINP);
         contentValues.put(SQLVisitas.VISITA_VARRESFINAL,VARRESFINAL);
-        contentValues.put(SQLVisitas.VISITA_VARRESFECHA,VARRESFECHA);
+        contentValues.put(SQLVisitas.VISITA_VARRESDIA,VARRESDIA);
+        contentValues.put(SQLVisitas.VISITA_VARRESMES,VARRESMES);
+        contentValues.put(SQLVisitas.VISITA_VARRESANIO,VARRESANIO);
+        contentValues.put(SQLVisitas.VISITA_VARRESHORA,VARRESHORA);
+        contentValues.put(SQLVisitas.VISITA_VARRESMIN,VARRESMIN);
         return contentValues;
     }
 }

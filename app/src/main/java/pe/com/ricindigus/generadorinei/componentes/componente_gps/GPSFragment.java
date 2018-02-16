@@ -179,7 +179,6 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
     }
 
     private void enableLocationUpdates() {
-
         locRequest = new LocationRequest();
         locRequest.setInterval(2000);
         locRequest.setFastestInterval(1000);
@@ -201,6 +200,7 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
                         try {
                             Log.i(LOGTAG, "Se requiere actuación del usuario");
                             status.startResolutionForResult(getActivity(), PETICION_CONFIG_UBICACION);
+                            btnGPS.setChecked(false);
                         } catch (IntentSender.SendIntentException e) {
                             btnGPS.setChecked(false);
                             Log.i(LOGTAG, "Error al intentar solucionar configuración de ubicación");
@@ -216,7 +216,7 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
     }
 
     private void disableLocationUpdates() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this);
     }
 
     private void startLocationUpdates() {
@@ -311,9 +311,31 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         apiClient.stopAutoManage(getActivity());
         apiClient.disconnect();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    //    @Override
+//    public void onPause() {
+//        super.onPause();
+//        apiClient.stopAutoManage(getActivity());
+//        apiClient.disconnect();
+//    }
+
+//    public void activarApiClient(){
+//        if (apiClient == null){
+//            apiClient = new GoogleApiClient.Builder(getActivity().getApplicationContext())
+//                    .enableAutoManage(getActivity(), this)
+//                    .addConnectionCallbacks(this)
+//                    .addApi(LocationServices.API)
+//                    .build();
+//        }
+//    }
 }

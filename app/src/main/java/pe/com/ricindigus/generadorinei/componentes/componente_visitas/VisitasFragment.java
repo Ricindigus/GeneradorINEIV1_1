@@ -4,6 +4,7 @@ package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -59,6 +60,8 @@ public class VisitasFragment extends Fragment {
     private Visita visita;
     private DataVisitas dataVisitas;
     private DataTablas dataTablas;
+    private Cursor cursor;
+    private VisitaAdapter.OnItemClickListener onItemClickListener;
 
 //    private ResultadoEncuesta resultadoEncuesta;
 
@@ -120,43 +123,47 @@ public class VisitasFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        onItemClickListener = new VisitaAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, final int pos) {
+                DataTablas dTablas = new DataTablas(context);
+                dTablas.open();
+                String resultadoVisita = dTablas.getValor(getNumModulo(),visita.getVARRES(),idEmpresa);
+                dTablas.close();
+                if(resultadoVisita.equals("")){
+                    PopupMenu popupMenu = new PopupMenu(context,view);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_visita,popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch(item.getItemId()){
+                                case R.id.opcion_editar:
+//                                            editarVisita(pos);
+                                    break;
+                                case R.id.opcion_eliminar:
+//                                            eliminarVisita(pos);
+                                    break;
+                                case R.id.opcion_finalizar:
+//                                            finalizarVisita(pos);
+                                    break;
+                            }
+                            return true;
+                        }
+                    });
+                    popupMenu.show();
+                }
+            }
+        };
 
         try{
             dataTablas = new DataTablas(context);
             dataTablas.open();
-            Cursor cursor = dataTablas.getAllTabla(SQLVisitas.tableVisitas);
+            cursor = dataTablas.getVisitas(getNumModulo(),idEmpresa);
+            dataTablas.close();
             if(cursor != null){
-                visitaAdapter = new VisitaAdapter(visita, context, cursor, new VisitaAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, final int pos) {
-                        String resultadoVisita = dataTablas.getValor(getNumModulo(),visita.getVARRES(),idEmpresa);
-                        if(resultadoVisita.equals("")){
-                            PopupMenu popupMenu = new PopupMenu(context,view);
-                            popupMenu.getMenuInflater().inflate(R.menu.menu_visita,popupMenu.getMenu());
-                            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    switch(item.getItemId()){
-                                        case R.id.opcion_editar:
-//                                            editarVisita(pos);
-                                            break;
-                                        case R.id.opcion_eliminar:
-//                                            eliminarVisita(pos);
-                                            break;
-                                        case R.id.opcion_finalizar:
-//                                            finalizarVisita(pos);
-                                            break;
-                                    }
-                                    return true;
-                                }
-                            });
-                            popupMenu.show();
-                        }
-                    }
-                });
+                visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
                 recyclerView.setAdapter(visitaAdapter);
             }
-            dataTablas.close();
         }catch (SQLException e){}
 
 
@@ -164,7 +171,8 @@ public class VisitasFragment extends Fragment {
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int numVisitas = visitas.size();
+                agregarVisita();
+//                int numVisitas = cursor.getCount();
 //                if(numVisitas > 0 ){
 //                    if(!visitas.get(numVisitas - 1).getV_RESULTADO().equals("")){
 //                        agregarVisita();
@@ -178,134 +186,142 @@ public class VisitasFragment extends Fragment {
         });
     }
 
-//    public void agregarVisita(){
-//        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-//        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.dialog_agregar_visita, null);
-//        final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_agregar_visita_lyt);
-//        final TextView txtNumero = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtNumero);
-//        final TextView txtFechaI = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtFI);
-//        final TextView txtHoraI = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtHI);
-//
-//        txtFechaI.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final Calendar calendario = Calendar.getInstance();
-//                int yy = calendario.get(Calendar.YEAR);
-//                int mm = calendario.get(Calendar.MONTH);
-//                int dd = calendario.get(Calendar.DAY_OF_MONTH);
-//
-//                DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                        diaInicio = dayOfMonth;
-//                        mesInicio = monthOfYear + 1;
-//                        anioInicio = year;
-//                        String fecha = checkDigito(diaInicio) +"/"+checkDigito(mesInicio)
-//                                +"/"+checkDigito(anioInicio);
-//                        txtFechaI.setText(fecha);
-//
-//                    }
-//                }, yy, mm, dd);
-//                datePicker.show();
-//            }
-//        });
-//
-//        txtHoraI.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final Calendar calendario = Calendar.getInstance();
-//                int hh = calendario.get(Calendar.HOUR_OF_DAY);
-//                int mm = calendario.get(Calendar.MINUTE);
-//
-//                TimePickerDialog timePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int hourofDay, int minute) {
-//                        String hora = checkDigito(hourofDay) +":"+checkDigito(minute);
-//                        txtHoraI.setText(hora);
-//                        horaInicio = hourofDay;
-//                        minutoInicio = minute;
-//                    }
-//                }, hh, mm,true);
-//                timePicker.show();
-//            }
-//        });
-//
-//        alert.setTitle("AGREGAR VISITA");
-//        alert.setView(dialogView);
-//        alert.setPositiveButton("Agregar",null);
-//        alert.setNegativeButton("Cancelar",null);
-//        final AlertDialog alertDialog = alert.create();
-//
-//        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//            @Override
-//            public void onShow(DialogInterface dialogInterface) {
-//                Calendar c = Calendar.getInstance();
-//                diaInicio = c.get(Calendar.DAY_OF_MONTH);
-//                mesInicio = c.get(Calendar.MONTH) + 1;
-//                anioInicio = c.get(Calendar.YEAR);
-//                horaInicio = c.get(Calendar.HOUR_OF_DAY);
-//                minutoInicio = c.get(Calendar.MINUTE);
-//
-//                txtNumero.setText(checkDigito((visitaAdapter.getItemCount() + 1)));
-//                txtFechaI.setText(checkDigito(diaInicio) + "/" + checkDigito(mesInicio) + "/" + checkDigito(anioInicio));
-//                txtHoraI.setText(checkDigito(horaInicio) + ":" + checkDigito(minutoInicio));
-//                Button btnAdd = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-//                btnAdd.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        // TODO Do something
-//                        boolean valido =true;
-//                        String mensaje = "";
-//                        boolean vFechaInicio = true, vHoraInicio = true;
-//                        if(visitas.size() > 0){
-//                            int y = Integer.parseInt(visitas.get(visitas.size()-1).getV_ANIO());
-//                            int m = Integer.parseInt(visitas.get(visitas.size()-1).getV_MES());
-//                            int d = Integer.parseInt(visitas.get(visitas.size()-1).getV_DIA());
-//
-//                            int compHora = Integer.parseInt(visitas.get(visitas.size()-1).getV_HORA());
-//                            int compMinuto = Integer.parseInt(visitas.get(visitas.size()-1).getV_MINUTO());
-//
-//
-//                            Date fi1 = new Date(y,m,d);
-//                            Date fi2 = new Date(anioInicio,mesInicio,diaInicio);
-//                            String sfi1 = checkDigito(d) + "/" + checkDigito(m) + "/" + checkDigito(y);
-//                            String sfi2 = checkDigito(diaInicio) + "/" + checkDigito(mesInicio) + "/" + checkDigito(anioInicio);
-//                            if(fi2.before(fi1)){
-//                                vFechaInicio = false;
-//                                if(mensaje.equals("")) mensaje = "FECHA: LA FECHA DE LA NUEVA VISITA NO DEBE SER MENOR A LA VISITA ANTERIOR";
-//                            }else if(d == diaInicio && m == mesInicio && y == anioInicio){
-//                                if((horaInicio*60 + minutoInicio) <= (compHora*60+compMinuto)){
-//                                    vHoraInicio = false;
-//                                    if(mensaje.equals("")) mensaje = "FECHA: SI LA FECHA ES LA MISMA, LA HORA DE LA NUEVA VISITA NO DEBE SER MENOR O IGUAL A LA VISITA ANTERIOR";
-//                                }
-//                            }
-//                        }
-//                        valido = vFechaInicio && vHoraInicio;
-//                        if(valido){
-//                            Visita visita = new Visita();
-//                            visita.setID(idEmpresa+String.valueOf(visitaAdapter.getItemCount()+1));
-//                            visita.setID_EMPRESA(idEmpresa);
-//                            visita.setV_NRO(String.valueOf(visitaAdapter.getItemCount()+1));
-//                            visita.setV_DIA(diaInicio+"");
-//                            visita.setV_MES(mesInicio+"");
-//                            visita.setV_ANIO(anioInicio + "");
-//                            visita.setV_HORA(horaInicio +"");
-//                            visita.setV_MINUTO(minutoInicio + "");
-//                            visitas.add(visita);
-//                            data = new Data(context);
-//                            data.open();
-//                            data.insertarVisita(visita);
-//                            data.close();
+
+    public void agregarVisita(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.dialog_agregar_visita, null);
+        final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_agregar_visita_lyt);
+        final TextView txtNumero = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtNumero);
+        final TextView txtFechaI = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtFI);
+        final TextView txtHoraI = (TextView) dialogView.findViewById(R.id.dialog_agregar_visita_txtHI);
+
+        txtFechaI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendario = Calendar.getInstance();
+                int yy = calendario.get(Calendar.YEAR);
+                int mm = calendario.get(Calendar.MONTH);
+                int dd = calendario.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        diaInicio = dayOfMonth;
+                        mesInicio = monthOfYear + 1;
+                        anioInicio = year;
+                        String fecha = checkDigito(diaInicio) +"/"+checkDigito(mesInicio)
+                                +"/"+checkDigito(anioInicio);
+                        txtFechaI.setText(fecha);
+
+                    }
+                }, yy, mm, dd);
+                datePicker.show();
+            }
+        });
+
+        txtHoraI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendario = Calendar.getInstance();
+                int hh = calendario.get(Calendar.HOUR_OF_DAY);
+                int mm = calendario.get(Calendar.MINUTE);
+
+                TimePickerDialog timePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourofDay, int minute) {
+                        String hora = checkDigito(hourofDay) +":"+checkDigito(minute);
+                        txtHoraI.setText(hora);
+                        horaInicio = hourofDay;
+                        minutoInicio = minute;
+                    }
+                }, hh, mm,true);
+                timePicker.show();
+            }
+        });
+
+        alert.setTitle("AGREGAR VISITA");
+        alert.setView(dialogView);
+        alert.setPositiveButton("Agregar",null);
+        alert.setNegativeButton("Cancelar",null);
+        final AlertDialog alertDialog = alert.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Calendar c = Calendar.getInstance();
+                diaInicio = c.get(Calendar.DAY_OF_MONTH);
+                mesInicio = c.get(Calendar.MONTH) + 1;
+                anioInicio = c.get(Calendar.YEAR);
+                horaInicio = c.get(Calendar.HOUR_OF_DAY);
+                minutoInicio = c.get(Calendar.MINUTE);
+
+                txtNumero.setText(checkDigito((visitaAdapter.getItemCount() + 1)));
+                txtFechaI.setText(checkDigito(diaInicio) + "/" + checkDigito(mesInicio) + "/" + checkDigito(anioInicio));
+                txtHoraI.setText(checkDigito(horaInicio) + ":" + checkDigito(minutoInicio));
+                Button btnAdd = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                btnAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO Do something
+                        boolean valido =true;
+                        String mensaje = "";
+                        boolean vFechaInicio = true, vHoraInicio = true;
+                        if(cursor.getCount() > 0){
+                            cursor.moveToPosition(cursor.getCount()-1);
+                            int y = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARANIO())));
+                            int m = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMES())));
+                            int d = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARDIA())));
+
+                            int compHora = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARHORI())));
+                            int compMinuto = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMINI())));
+
+
+                            Date fi1 = new Date(y,m,d);
+                            Date fi2 = new Date(anioInicio,mesInicio,diaInicio);
+                            String sfi1 = checkDigito(d) + "/" + checkDigito(m) + "/" + checkDigito(y);
+                            String sfi2 = checkDigito(diaInicio) + "/" + checkDigito(mesInicio) + "/" + checkDigito(anioInicio);
+                            if(fi2.before(fi1)){
+                                vFechaInicio = false;
+                                if(mensaje.equals("")) mensaje = "FECHA: LA FECHA DE LA NUEVA VISITA NO DEBE SER MENOR A LA VISITA ANTERIOR";
+                            }else if(d == diaInicio && m == mesInicio && y == anioInicio){
+                                if((horaInicio*60 + minutoInicio) <= (compHora*60+compMinuto)){
+                                    vHoraInicio = false;
+                                    if(mensaje.equals("")) mensaje = "FECHA: SI LA FECHA ES LA MISMA, LA HORA DE LA NUEVA VISITA NO DEBE SER MENOR O IGUAL A LA VISITA ANTERIOR";
+                                }
+                            }
+                        }
+                        valido = vFechaInicio && vHoraInicio;
+                        if(valido){
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put("_id",idEmpresa+String.valueOf(cursor.getCount()+1));
+                            contentValues.put("ID_EMPRESA",idEmpresa);
+                            contentValues.put(visita.getVARNUM(),String.valueOf(cursor.getCount()+1));
+                            contentValues.put(visita.getVARDIA(),diaInicio);
+                            contentValues.put(visita.getVARMES(),mesInicio);
+                            contentValues.put(visita.getVARANIO(),anioInicio);
+                            contentValues.put(visita.getVARHORI(),horaInicio);
+                            contentValues.put(visita.getVARMINI(),minutoInicio);
+                            try{
+                                DataTablas dTablas = new DataTablas(context);
+                                dTablas.open();
+                                dTablas.insertarValores(getNumModulo(),contentValues);
+                                cursor = dTablas.getVisitas(getNumModulo(),idEmpresa);
+                                dTablas.close();
+                                if(cursor != null){
+                                    visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
+                                    recyclerView.setAdapter(visitaAdapter);
+                                }
+                            }catch (SQLException e){}
 //                            recyclerView.getAdapter().notifyDataSetChanged();
-//                            alertDialog.dismiss();
-//                        }else Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-//        alertDialog.show();
-//    }
-//
+                            alertDialog.dismiss();
+                        }else Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
+    }
+
 //    public void editarVisita(final int posicion){
 //        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 //        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.dialog_agregar_visita, null);
@@ -702,7 +718,7 @@ public class VisitasFragment extends Fragment {
 //        });
 //        alertDialog.show();
 //    }
-
+//
 //    public boolean coberturaCorrecta(){
 //        boolean correcto = true;
 //        return correcto;

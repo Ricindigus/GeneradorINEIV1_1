@@ -1,6 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <variables>
-	<modulo id="B">
+	<modulo id="A" tipo = "2">
+		<var>V_NUM</var>
+		<var>V_DIA</var>
+		<var>V_MES</var>
+		<var>V_ANIO</var>
+		<var>V_HI</var>
+		<var>V_MI</var>
+		<var>V_HF</var>
+		<var>V_MF</var>
+		<var>V_RES</var>
+		<var>V_PROX_DIA</var>
+		<var>V_PROX_MES</var>
+		<var>V_PROX_ANIO</var>
+		<var>V_PROX_HORA</var>
+		<var>V_PROX_MIN</var>
+		<var>RES_FINAL</var>
+		<var>RES_DIA</var>
+		<var>RES_MES</var>
+		<var>RES_ANIO</var>
+		<var>RES_HORA</var>
+		<var>RES_MIN</var>
+	</modulo>
+
+	<modulo id="B" tipo = "1">
 		<var>CAR_SP1</var>
 		<var>CAR_SP2</var>
 		<var>CAR_SP3</var>
@@ -22,9 +45,8 @@
 		<var>CAR_LAT</var>
 		<var>CAR_LONG</var>
 		<var>CAR_ALT</var>
-
 	</modulo>
-	<modulo id= "C">
+	<modulo id= "C" tipo = "1">
 		<var>IDE_SP1</var>
 		<var>IDE_SP2</var>
 		<var>IDE_SP3</var>
@@ -46,7 +68,7 @@
 		<var>IDE_SP7_NO</var>
 		<var>IDE_SP8_NO</var>
 	</modulo>
-	<modulo id= "1">
+	<modulo id= "1" tipo = "1">
 		<var>M1P1_1</var>
 		<var>M1P2_1</var>
 		<var>M1P2_2</var>
@@ -92,7 +114,7 @@
 		<var>M1P3_0</var>
 		<var>M1P12_0</var>
 	</modulo>
-	<modulo id="2">
+	<modulo id="2" tipo = "1">
 		<var>M2P1_1</var>
 		<var>M2P1_2</var>
 		<var>M2P1_3</var>
@@ -109,7 +131,7 @@
 		<var>M2P3_0</var>
 		<var>M2P4_1</var>
 	</modulo>
-	<modulo id="3">
+	<modulo id="3" tipo = "1">
 		<var>M3P5_1</var>
 		<var>M3P3_1</var>
 		<var>M3P3_2</var>
@@ -119,7 +141,7 @@
 		<var>M3P1</var>
 		<var>M3P4</var>
 	</modulo>
-	<modulo id="4">
+	<modulo id="4" tipo = "1">
 		<var>M4P6_1</var>
 		<var>M4P1_1</var>
 		<var>M4P1_2</var>

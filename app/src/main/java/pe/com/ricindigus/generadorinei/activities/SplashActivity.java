@@ -356,12 +356,13 @@ public class SplashActivity extends AppCompatActivity {
             }
             data.close();
             dataComponentes.close();
+            dataVisitas.close();
+            dataGPS.close();
+            dataUbicacion.close();
+            dataFormulario.close();
             dataEditText.close();
             dataCheckBox.close();
             dataRadio.close();
-            DataTablas dataTablas = new DataTablas(getApplicationContext());
-            dataTablas.open();
-            dataTablas.close();
             return mensaje;
         }
 

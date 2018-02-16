@@ -85,7 +85,7 @@ public class EncuestaActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private LinearLayout lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5,
-            lytComponente6, lytComponente7, lytComponente8, lytComponente9, lytComponente10;
+            lytComponente6, lytComponente7, lytComponente8, lytComponente9, lytComponente10, layoutScrolleable;
     private int numeroPaginasTotal;
 
     @Override
@@ -95,6 +95,7 @@ public class EncuestaActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         btnAtras = (Button) findViewById(R.id.btn_anterior);
         btnSiguiente = (Button) findViewById(R.id.btn_siguiente);
+        layoutScrolleable = (LinearLayout) findViewById(R.id.layout_componente_scrolleable);
         lytComponente1 =  (LinearLayout)findViewById(R.id.layout_componente1);
         lytComponente2 =  (LinearLayout)findViewById(R.id.layout_componente2);
         lytComponente3 =  (LinearLayout)findViewById(R.id.layout_componente3);
@@ -187,10 +188,56 @@ public class EncuestaActivity extends AppCompatActivity {
     }
 
     public void setPagina(int numeroPagina, int direccion){
+        dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        dataComponentes.close();
+        int tipo = Integer.parseInt(pagina.getTIPO1());
+        if(tipo == TipoComponente.VISITAS) setPaginaScrolleable(numeroPagina,direccion);
+        else setPaginaNormal(numeroPagina,direccion);
+    }
+
+    public void setPaginaScrolleable(int numeroPagina, int direccion){
+        layoutScrolleable.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         dataComponentes = new DataComponentes(getApplicationContext());
         dataVisitas = new DataVisitas(getApplicationContext());
+        dataComponentes.open();
+        dataVisitas.open();
+
+        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        String idComponente = pagina.getIDP1();
+        String tipoComponente = pagina.getTIPO1();
+        int layoutComponente = R.id.layout_componente_scrolleable;
+        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5,
+                R.id.layout_componente6, R.id.layout_componente7,R.id.layout_componente8,R.id.layout_componente9,R.id.layout_componente10};
+        for (int i = 0; i < layouts.length; i++) {
+            if(fragmentManager.findFragmentById(layouts[i]) != null)
+                fragmentTransaction.detach(fragmentManager.findFragmentById(layouts[i]));
+        }
+        switch (Integer.parseInt(tipoComponente)){
+            case TipoComponente.VISITAS:
+                Visita visita = dataVisitas.getVisita(idComponente);
+                fragmentComponente = new VisitasFragment(EncuestaActivity.this,idEmpresa,visita);
+                break;
+        }
+        fragmentTransaction.replace(layoutComponente, fragmentComponente,idComponente);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        dataComponentes.close();
+        dataVisitas.close();
+    }
+
+    public void setPaginaNormal(int numeroPagina, int direccion){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if(layoutScrolleable.getVisibility() == View.VISIBLE){
+            fragmentTransaction.remove(fragmentManager.findFragmentById(R.id.layout_componente_scrolleable));
+            layoutScrolleable.setVisibility(View.GONE);
+        }
+        dataComponentes = new DataComponentes(getApplicationContext());
         dataUbicacion = new DataUbicacion(getApplicationContext());
         dataFormulario = new DataFormulario(getApplicationContext());
         dataEditText = new DataEditText(getApplicationContext());
@@ -198,7 +245,6 @@ public class EncuestaActivity extends AppCompatActivity {
         dataRadio = new DataRadio(getApplicationContext());
         dataGPS = new DataGPS(getApplicationContext());
         dataComponentes.open();
-        dataVisitas.open();
         dataUbicacion.open();
         dataFormulario.open();
         dataEditText.open();
@@ -216,37 +262,37 @@ public class EncuestaActivity extends AppCompatActivity {
             if(!ids[i].equals("")){
                 int tipo= Integer.parseInt(tipos[i]);
                 switch (tipo){
-                    case TipoComponente.VISITAS:
-                        Visita visita = dataVisitas.getVisita(ids[i]);
-                        fragmentComponente = new VisitasFragment(getApplicationContext(),idEmpresa,visita);
-                        break;
+//                    case TipoComponente.VISITAS:
+//                        Visita visita = dataVisitas.getVisita(ids[i]);
+//                        fragmentComponente = new VisitasFragment(EncuestaActivity.this,idEmpresa,visita);
+//                        break;
                     case TipoComponente.UBICACION:
                         Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
-                        fragmentComponente = new UbicacionFragment(getApplicationContext(),idEmpresa,ubicacion);
+                        fragmentComponente = new UbicacionFragment(EncuestaActivity.this,idEmpresa,ubicacion);
                         break;
                     case TipoComponente.GPS:
                         GPS gps = dataGPS.getGPS(ids[i]);
-                        fragmentComponente = new GPSFragment(getApplicationContext(),idEmpresa,gps);
+                        fragmentComponente = new GPSFragment(EncuestaActivity.this,idEmpresa,gps);
                         break;
                     case TipoComponente.FORMULARIO:
                         Formulario formulario = dataFormulario.getFormulario(ids[i]);
                         ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(ids[i]);
-                        fragmentComponente = new FormularioFragment(formulario,formularios,getApplicationContext(),idEmpresa);
+                        fragmentComponente = new FormularioFragment(formulario,formularios,EncuestaActivity.this,idEmpresa);
                         break;
                     case TipoComponente.EDITTEXT:
                         PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        fragmentComponente = new EditTextFragment(pEditText,spEditTexts,getApplicationContext(),idEmpresa);
+                        fragmentComponente = new EditTextFragment(pEditText,spEditTexts,EncuestaActivity.this,idEmpresa);
                         break;
                     case TipoComponente.CHECKBOX:
                         PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
                         ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
-                        fragmentComponente = new CheckBoxFragment(PCheckBox,spCheckBoxes,getApplicationContext(),idEmpresa);
+                        fragmentComponente = new CheckBoxFragment(PCheckBox,spCheckBoxes,EncuestaActivity.this,idEmpresa);
                         break;
                     case TipoComponente.RADIO:
                         PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
-                        fragmentComponente = new RadioFragment(PRadio,spRadios,getApplicationContext(),idEmpresa);
+                        fragmentComponente = new RadioFragment(PRadio,spRadios,EncuestaActivity.this,idEmpresa);
                         break;
                     case TipoComponente.M2P1:
                         fragmentComponente = new M2P1Fragment();

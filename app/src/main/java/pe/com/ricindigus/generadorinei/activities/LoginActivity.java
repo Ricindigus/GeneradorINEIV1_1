@@ -33,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         txtUsuario.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
         txtPassword.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
 
+        txtUsuario.setText("OPER001");
+        txtPassword.setText("INEI1");
+
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

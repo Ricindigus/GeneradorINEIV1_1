@@ -39,6 +39,17 @@
         <item>11.Post grado</item>
     </string-array>
 
+    <string-array name="array_resultado_visita">
+        <item>Seleccione</item>
+        <item>1.Completa</item>
+        <item>2.Incompleta</item>
+        <item>3.Ausente</item>
+        <item>4.Pendiente con cita</item>
+        <item>5.Rechazo</item>
+        <item>6.No ubicado</item>
+        <item>7.Otro</item>
+    </string-array>
+
     <string-array name="cargos_spinner">
         <item>Seleccione Cargo</item>
         <item>Conductor</item>

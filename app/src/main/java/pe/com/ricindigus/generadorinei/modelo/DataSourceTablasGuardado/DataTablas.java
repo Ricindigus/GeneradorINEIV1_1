@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -108,6 +109,8 @@ public class DataTablas {
         return valor;
     }
 
+
+
     public String[] getModulo(String nModulo, String idEmpresa){
         String[] columnas = getColumnasModulo(nModulo);
         String[] valoresModulo = new String[columnas.length];
@@ -130,6 +133,14 @@ public class DataTablas {
     public Cursor getAllTabla(String tabla){
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * from " + tabla, null);
         if (cursor != null) cursor.moveToFirst();
+        return cursor;
+    }
+
+    public Cursor getVisitas(String nModulo, String idEmpresa){
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        cursor = sqLiteDatabase.query("modulo" + nModulo,null, SQLVisitas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+        if(cursor != null) cursor.moveToFirst();
         return cursor;
     }
 }
