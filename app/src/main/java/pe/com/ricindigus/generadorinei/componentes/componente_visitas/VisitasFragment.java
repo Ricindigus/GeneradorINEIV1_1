@@ -381,7 +381,7 @@ public class VisitasFragment extends Fragment {
                 horaInicio = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARHORI())));
                 minutoInicio = Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARMINI())));
 
-                txtNumero.setText(checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARNUM())))));
+                txtNumero.setText("VISITA N° " + checkDigito(Integer.parseInt(cursor.getString(cursor.getColumnIndex(visita.getVARNUM())))));
                 txtFechaI.setText(checkDigito(diaInicio) + "/" + checkDigito(mesInicio) + "/" + checkDigito(anioInicio));
                 txtHoraI.setText(checkDigito(horaInicio) + ":" + checkDigito(minutoInicio));
                 Button btnAdd = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);

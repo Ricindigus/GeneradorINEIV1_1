@@ -23,6 +23,8 @@ public class SQLConstantesComponente {
     //COLUMNAS MODULOS
     public static final String MODULO_ID = "ID";
     public static final String MODULO_TITULO = "TITULO";
+    public static final String MODULO_CABECERA = "CABECERA";
+
 
     //COLUMNAS PAGINAS
 
@@ -92,7 +94,8 @@ public class SQLConstantesComponente {
     public static final String SQL_CREATE_TABLA_MODULOS =
             "CREATE TABLE " + tablaModulos + "(" +
                     MODULO_ID + " TEXT PRIMARY KEY," +
-                    MODULO_TITULO + " TEXT" + ");"
+                    MODULO_TITULO + " TEXT," +
+                    MODULO_CABECERA + " TEXT" + ");"
             ;
 
 
@@ -107,6 +110,7 @@ public class SQLConstantesComponente {
     //CLAUSULA WHERE BUSQUEDA (WHERE)
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_VARIABLE = "IDVARIABLE=?";
+    public static final String WHERE_CLAUSE_MODULO_PAGINA = "MODULO=?";
 
 
 
@@ -125,7 +129,7 @@ public class SQLConstantesComponente {
     };
 
     public static final String[] ALL_COLUMNS_MODULOS = {
-            MODULO_ID, MODULO_TITULO
+            MODULO_ID, MODULO_TITULO, MODULO_CABECERA
     };
 
 

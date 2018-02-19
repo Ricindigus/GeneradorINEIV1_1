@@ -20,6 +20,8 @@ import pe.com.ricindigus.generadorinei.pojos.Usuario;
 public class ModuloPullParser {
     public static final String MODULO_ID = "ID";
     public static final String MODULO_TITULO = "TITULO";
+    public static final String MODULO_CABECERA = "CABECERA";
+
     private Modulo currentModulo = null;
     private String currentTag = null;
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
@@ -62,6 +64,7 @@ public class ModuloPullParser {
             switch (currentTag){
                 case MODULO_ID:currentModulo.setID(xmlText);break;
                 case MODULO_TITULO:currentModulo.setTITULO(xmlText);break;
+                case MODULO_CABECERA:currentModulo.setCABECERA(xmlText);break;
             }
         }
     }

@@ -12,15 +12,12 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstante
 public class Modulo {
     private String ID;
     private String TITULO;
-
-    public Modulo(String ID, String TITULO) {
-        this.ID = ID;
-        this.TITULO = TITULO;
-    }
+    private String CABECERA;
 
     public Modulo() {
         this.ID = "";
         this.TITULO = "";
+        this.CABECERA = "";
     }
 
     public String getID() {
@@ -39,10 +36,19 @@ public class Modulo {
         this.TITULO = TITULO;
     }
 
+    public String getCABECERA() {
+        return CABECERA;
+    }
+
+    public void setCABECERA(String CABECERA) {
+        this.CABECERA = CABECERA;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues(2);
         contentValues.put(SQLConstantesComponente.MODULO_ID,ID);
         contentValues.put(SQLConstantesComponente.MODULO_TITULO,TITULO);
+        contentValues.put(SQLConstantesComponente.MODULO_CABECERA,CABECERA);
         return contentValues;
     }
 }

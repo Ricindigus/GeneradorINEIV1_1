@@ -58,6 +58,7 @@ import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 public class EncuestaActivity extends AppCompatActivity {
@@ -416,130 +417,110 @@ public class EncuestaActivity extends AppCompatActivity {
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                int posicion = 0;
-                switch (groupPosition){
-                    case 0:
-                        switch (childPosition){
-                            case 0:
-                                setPagina(childPosition,1);
-                                posicionFragment = childPosition;break;
-                            case 1:
-                                posicionFragment = childPosition;
-                                setPagina(childPosition,1);
-                                break;
-                            case 2:
-                                posicionFragment = childPosition;
-                                setPagina(childPosition,1);
-                                break;
-                            case 3:
-                                posicionFragment = childPosition;
-                                setPagina(childPosition,1);
-                                break;
-                        }
-                        break;
-                    case 1:
-
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-
-                        break;
-                    case 5:
-
-                        break;
-                    case 6:
-
-                        break;
-                    case 7:
-
-                        break;
-                    case 8:
-
-                        break;
-                    case 9:
-
-                        break;
-                    case 10:
-                        break;
-                }
+                DataComponentes dataComp = new DataComponentes(EncuestaActivity.this);
+                dataComp.open();
+                ArrayList<Modulo> modulos = dataComp.getAllModulos();
+                Modulo m = modulos.get(groupPosition);
+                ArrayList<Pagina> paginas = dataComp.getPaginasxModulo(m.getID());
+                int numPagina = Integer.parseInt(paginas.get(childPosition).getID());
+                if(numPagina < posicionFragment)setNombreSeccion(numPagina,-1);
+                else setNombreSeccion(numPagina,1);
+                setPagina(numPagina,1);
+                posicionFragment = numPagina;
+                dataComp.close();
                 return false;
             }
         });
     }
 
     private void prepareListData(List<String> listDataHeader, Map<String, List<String>> listDataChild) {
+        dataComponentes = new DataComponentes(this);
+        dataComponentes.open();
+        ArrayList<Modulo> modulos = dataComponentes.getAllModulos();
+        for (Modulo m : modulos){
+            //pone la cabecera
+            listDataHeader.add(m.getCABECERA());
+            ArrayList<Pagina> paginas = dataComponentes.getPaginasxModulo(m.getID());
+            List<String> subItems = new ArrayList<String>();
+            //busca los subtitulos
+            for (Pagina p: paginas){
+                ArrayList<String> ids = dataComponentes.getIdsPagina(p.getID());
+                String subTitulo = "";
+                if(ids.size() == 1) subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0));
+                else subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0)) +
+                        " - P" + getNumPregunta(ids.get((ids.size()-1)));
+                subItems.add(subTitulo);
+            }
+            //agrega cabecera y subtitulos
+            listDataChild.put(listDataHeader.get(listDataHeader.size()-1), subItems);
+        }
+        dataComponentes.close();
 
-        // Adding child data
-        listDataHeader.add("INICIO");
-        listDataHeader.add("MÓDULO I");listDataHeader.add("MÓDULO II");listDataHeader.add("MÓDULO III");
-        listDataHeader.add("MÓDULO IV");listDataHeader.add("MÓDULO V");listDataHeader.add("MÓDULO VI");
-        listDataHeader.add("MÓDULO VII");listDataHeader.add("MÓDULO VIII");listDataHeader.add("MÓDULO IX");
-        listDataHeader.add("MÓDULO X");
-        // Adding child data
-        List<String> inicio = new ArrayList<String>();
-        inicio.add("CONTROL DE VISITA");inicio.add("CARATULA");inicio.add("IDENTIFICACION");
 
-        List<String> modulo1 = new ArrayList<String>();
-        modulo1.add("Módulo I: P1 - P4");modulo1.add("Módulo I: P5 - P7");modulo1.add("Módulo I: P8 - P12");
-
-        List<String> modulo2 = new ArrayList<String>();
-        modulo2.add("Módulo II: P1 - P5");modulo2.add("Módulo II: P6 - P13");modulo2.add("Módulo II: P14 - P17");
-        modulo2.add("Módulo II: P18 - P19");modulo2.add("Módulo II: P20 - P22");modulo2.add("Módulo II: P23 - P25");
-
-        List<String> modulo3 = new ArrayList<String>();
-        modulo3.add("Módulo III: P1 - P6");modulo3.add("Módulo III: P7 - P12");
-
-        List<String> modulo4 = new ArrayList<String>();
-        modulo4.add("Módulo IV: P1 - P3");modulo4.add("Módulo IV: P4 - P7");modulo4.add("Módulo IV: P8 - P10");
-
-        List<String> modulo5 = new ArrayList<String>();
-        modulo5.add("Módulo V: P1");modulo5.add("Módulo V: P2");modulo5.add("Módulo V: P3 - P5");
-        modulo5.add("Módulo V: P6 - P8");modulo5.add("Módulo V: P9");modulo5.add("Módulo V: P10");
-        modulo5.add("Módulo V: P11");modulo5.add("Módulo V: P12");modulo5.add("Módulo V: P13");
-        modulo5.add("Módulo V: P14");modulo5.add("Módulo V: P15");modulo5.add("Módulo V: P16");
-        modulo5.add("Módulo V: P17");modulo5.add("Módulo V: P18");modulo5.add("Módulo V: P19");
-        modulo5.add("Módulo V: P20");modulo5.add("Módulo V: P21");modulo5.add("Módulo V: P22");
-        modulo5.add("Módulo V: P23");modulo5.add("Módulo V: P24");modulo5.add("Módulo V: P25");
-        modulo5.add("Módulo V: P26");modulo5.add("Módulo V: P27");
-
-        List<String> modulo6 = new ArrayList<String>();
-        modulo6.add("Módulo VI: P1 - P3");modulo6.add("Módulo VI: P4");modulo6.add("Módulo VI: P5");
-        modulo6.add("Módulo VI: P6");modulo6.add("Módulo VI: P7 - P8");modulo6.add("Módulo VI: P9 - P10");
-
-        List<String> modulo7 = new ArrayList<String>();
-        modulo7.add("Módulo VII: P1 - P4");modulo7.add("Módulo VII: P5 - P7");modulo7.add("Módulo VII: P8");
-        modulo7.add("Módulo VII: P9");modulo7.add("Módulo VII: P10 - P14");modulo7.add("Módulo VII: P15 - P17");
-        modulo7.add("Módulo VII: P18");modulo7.add("Módulo VII: P19");modulo7.add("Módulo VII: P20 - P33");
-        modulo7.add("Módulo VII: P34 - P36");modulo7.add("Módulo VII: P37 - P39");
-        modulo7.add("Módulo VII: P40 - P43");modulo7.add("Módulo VII: P44 - P46");
-
-        List<String> modulo8 = new ArrayList<String>();
-        modulo8.add("Módulo VIII: Inteligencia Artificial/Aprendizaje Automático");modulo8.add("Módulo VIII: Robótica Avanzada");
-        modulo8.add("Módulo VIII: Transporte Autónomo");modulo8.add("Módulo VIII: Manufactura Avanzada");
-        modulo8.add("Módulo VIII: Producción con impresión en 3D");modulo8.add("Módulo VIII: Servicios Avanzados en Redes (Computacion en la nube, BIG DATA)");
-
-        List<String> modulo9 = new ArrayList<String>();
-        modulo9.add("Módulo IX: P1 - P2");
-
-        List<String> modulo10 = new ArrayList<String>();
-        modulo10.add("Módulo X: P1 - P4");
-
-        listDataChild.put(listDataHeader.get(0), inicio);// Header, Child data
-        listDataChild.put(listDataHeader.get(1), modulo1);
-        listDataChild.put(listDataHeader.get(2), modulo2);
-        listDataChild.put(listDataHeader.get(3), modulo3);
-        listDataChild.put(listDataHeader.get(4), modulo4);
-        listDataChild.put(listDataHeader.get(5), modulo5);
-        listDataChild.put(listDataHeader.get(6), modulo6);
-        listDataChild.put(listDataHeader.get(7), modulo7);
-        listDataChild.put(listDataHeader.get(8), modulo8);
-        listDataChild.put(listDataHeader.get(9), modulo9);
-        listDataChild.put(listDataHeader.get(10), modulo10);
+//                // AGREGA HIJOS PRINCIPALES (MODULOS)
+//        listDataHeader.add("INICIO");
+//        listDataHeader.add("MÓDULO I");listDataHeader.add("MÓDULO II");listDataHeader.add("MÓDULO III");
+//        listDataHeader.add("MÓDULO IV");listDataHeader.add("MÓDULO V");listDataHeader.add("MÓDULO VI");
+//        listDataHeader.add("MÓDULO VII");listDataHeader.add("MÓDULO VIII");listDataHeader.add("MÓDULO IX");
+//        listDataHeader.add("MÓDULO X");
+//
+//
+//        // AGREGA PAGINAS DEL MODULO
+//        List<String> inicio = new ArrayList<String>();
+//        inicio.add("CONTROL DE VISITA");inicio.add("CARATULA");inicio.add("IDENTIFICACION");
+//        List<String> modulo1 = new ArrayList<String>();
+//        modulo1.add("Módulo I: P1 - P4");modulo1.add("Módulo I: P5 - P7");modulo1.add("Módulo I: P8 - P12");
+//        List<String> modulo2 = new ArrayList<String>();
+//        modulo2.add("Módulo II: P1 - P5");modulo2.add("Módulo II: P6 - P13");modulo2.add("Módulo II: P14 - P17");
+//        modulo2.add("Módulo II: P18 - P19");modulo2.add("Módulo II: P20 - P22");modulo2.add("Módulo II: P23 - P25");
+//        List<String> modulo3 = new ArrayList<String>();
+//        modulo3.add("Módulo III: P1 - P6");modulo3.add("Módulo III: P7 - P12");
+//        List<String> modulo4 = new ArrayList<String>();
+//        modulo4.add("Módulo IV: P1 - P3");modulo4.add("Módulo IV: P4 - P7");modulo4.add("Módulo IV: P8 - P10");
+//        List<String> modulo5 = new ArrayList<String>();
+//        modulo5.add("Módulo V: P1");modulo5.add("Módulo V: P2");modulo5.add("Módulo V: P3 - P5");
+//        modulo5.add("Módulo V: P6 - P8");modulo5.add("Módulo V: P9");modulo5.add("Módulo V: P10");
+//        modulo5.add("Módulo V: P11");modulo5.add("Módulo V: P12");modulo5.add("Módulo V: P13");
+//        modulo5.add("Módulo V: P14");modulo5.add("Módulo V: P15");modulo5.add("Módulo V: P16");
+//        modulo5.add("Módulo V: P17");modulo5.add("Módulo V: P18");modulo5.add("Módulo V: P19");
+//        modulo5.add("Módulo V: P20");modulo5.add("Módulo V: P21");modulo5.add("Módulo V: P22");
+//        modulo5.add("Módulo V: P23");modulo5.add("Módulo V: P24");modulo5.add("Módulo V: P25");
+//        modulo5.add("Módulo V: P26");modulo5.add("Módulo V: P27");
+//        List<String> modulo6 = new ArrayList<String>();
+//        modulo6.add("Módulo VI: P1 - P3");modulo6.add("Módulo VI: P4");modulo6.add("Módulo VI: P5");
+//        modulo6.add("Módulo VI: P6");modulo6.add("Módulo VI: P7 - P8");modulo6.add("Módulo VI: P9 - P10");
+//        List<String> modulo7 = new ArrayList<String>();
+//        modulo7.add("Módulo VII: P1 - P4");modulo7.add("Módulo VII: P5 - P7");modulo7.add("Módulo VII: P8");
+//        modulo7.add("Módulo VII: P9");modulo7.add("Módulo VII: P10 - P14");modulo7.add("Módulo VII: P15 - P17");
+//        modulo7.add("Módulo VII: P18");modulo7.add("Módulo VII: P19");modulo7.add("Módulo VII: P20 - P33");
+//        modulo7.add("Módulo VII: P34 - P36");modulo7.add("Módulo VII: P37 - P39");
+//        modulo7.add("Módulo VII: P40 - P43");modulo7.add("Módulo VII: P44 - P46");
+//        List<String> modulo8 = new ArrayList<String>();
+//        modulo8.add("Módulo VIII: Inteligencia Artificial/Aprendizaje Automático");modulo8.add("Módulo VIII: Robótica Avanzada");
+//        modulo8.add("Módulo VIII: Transporte Autónomo");modulo8.add("Módulo VIII: Manufactura Avanzada");
+//        modulo8.add("Módulo VIII: Producción con impresión en 3D");modulo8.add("Módulo VIII: Servicios Avanzados en Redes (Computacion en la nube, BIG DATA)");
+//        List<String> modulo9 = new ArrayList<String>();
+//        modulo9.add("Módulo IX: P1 - P2");
+//        List<String> modulo10 = new ArrayList<String>();
+//        modulo10.add("Módulo X: P1 - P4");
+//
+//
+//        //AGREGA PAGINAS A LOS MODULOS
+//        listDataChild.put(listDataHeader.get(0), inicio);
+//        listDataChild.put(listDataHeader.get(1), modulo1);
+//        listDataChild.put(listDataHeader.get(2), modulo2);
+//        listDataChild.put(listDataHeader.get(3), modulo3);
+//        listDataChild.put(listDataHeader.get(4), modulo4);
+//        listDataChild.put(listDataHeader.get(5), modulo5);
+//        listDataChild.put(listDataHeader.get(6), modulo6);
+//        listDataChild.put(listDataHeader.get(7), modulo7);
+//        listDataChild.put(listDataHeader.get(8), modulo8);
+//        listDataChild.put(listDataHeader.get(9), modulo9);
+//        listDataChild.put(listDataHeader.get(10), modulo10);
     }
 
+    public String getNumPregunta(String idP){
+        String codigo = idP.substring(idP.indexOf("P")+1);
+        return codigo;
+    }
 }
