@@ -137,8 +137,10 @@ public class RadioFragment extends Fragment {
         if(data.existenDatos(getNumModulo(),idEmpresa)){
             valorCheck = data.getValor(getNumModulo(),subpreguntas.get(1).getVARIABLE(),idEmpresa);
             if(valorCheck != null ){
-                int childPos = Integer.parseInt(valorCheck);
-                if(childPos != -1) ((RadioButton) radioGroup.getChildAt(childPos)).setChecked(true);
+                if (!valorCheck.equals("")){
+                    int childPos = Integer.parseInt(valorCheck);
+                    if(childPos != -1) ((RadioButton) radioGroup.getChildAt(childPos)).setChecked(true);
+                }
             }
             for (int i = 0; i < subpreguntas.size() ; i++) {
                 if(!subpreguntas.get(i).getVARDESC().equals("")){

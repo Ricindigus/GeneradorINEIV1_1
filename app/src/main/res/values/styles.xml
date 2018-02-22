@@ -15,6 +15,13 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="RaisedButtonDark2" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="CajaInput" parent="Theme.AppCompat.Light">
         <item name="android:textColorHint">@color/greyBluePrimary</item>
         <item name="android:textSize">25sp</item>

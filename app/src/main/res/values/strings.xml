@@ -169,7 +169,7 @@
     <string name="m2p1_p181_ck9">NO SABE</string>
 
 
-    <string-array name="departamentos" >
+    <string-array name="departamentos">
         <item>SELECCIONE DEPARTAMENTO</item>
         <item>AMAZONAS [01]</item>
         <item>ANCASH [02]</item>

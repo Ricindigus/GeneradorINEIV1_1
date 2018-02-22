@@ -255,6 +255,7 @@ public class DataComponentes {
                 modulo.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_ID)));
                 modulo.setTITULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TITULO)));
                 modulo.setCABECERA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_CABECERA)));
+                modulo.setNTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NTABLA)));
             }
         }finally {
             if(cursor != null) cursor.close();
@@ -273,6 +274,8 @@ public class DataComponentes {
                 modulo.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_ID)));
                 modulo.setTITULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TITULO)));
                 modulo.setCABECERA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_CABECERA)));
+                modulo.setNTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NTABLA)));
+
                 modulos.add(modulo);
             }
         }finally {

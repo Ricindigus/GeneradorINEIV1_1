@@ -6,8 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.TablaGuardadoPullParser;
+import pe.com.ricindigus.generadorinei.pojos.Tabla;
 
 
 /**
@@ -19,6 +20,9 @@ public class DBHelperTablas extends SQLiteOpenHelper {
     private Context contexto;
     TablaGuardadoPullParser tablaGuardadoPullParser;
     ArrayList<String> tablas;
+    TablasPullParser tablasPullParser;
+    ArrayList<Tabla> infoTablas;
+
 
     public DBHelperTablas(Context context) {
         super(context, SQLConstantesTablas.NOMBRE_DB, null, DB_VERSION);
@@ -37,14 +41,10 @@ public class DBHelperTablas extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        tablaGuardadoPullParser = new TablaGuardadoPullParser();
-        tablas = tablaGuardadoPullParser.parseXML(contexto);
-        sqLiteDatabase.execSQL("DROP TABLE moduloA1");
-        sqLiteDatabase.execSQL("DROP TABLE moduloA2");
-        sqLiteDatabase.execSQL("DROP TABLE moduloB");
-        sqLiteDatabase.execSQL("DROP TABLE moduloC");
-        for (int i = 1; i <= tablas.size()-2; i++) {
-            sqLiteDatabase.execSQL("DROP TABLE modulo" + i);
+        tablasPullParser = new TablasPullParser();
+        infoTablas = tablasPullParser.parseXML(contexto);
+        for (int i = 1; i <= infoTablas.size(); i++) {
+            sqLiteDatabase.execSQL("DROP TABLE modulo" + infoTablas.get(i).getID());
         }
         onCreate(sqLiteDatabase);
     }

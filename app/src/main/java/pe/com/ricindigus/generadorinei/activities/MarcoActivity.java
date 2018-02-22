@@ -304,13 +304,18 @@ public class MarcoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_importar:
-                return true;
             case R.id.menu_exportar:
+                Intent intent = new Intent(MarcoActivity.this,ExportarActivity.class);
+                intent.putExtra("idUsuario",idUsuario);
+                intent.putExtra("permisoUsuario",permisoUsuario);
+                startActivity(intent);
+                return true;
+            case R.id.menu_importar:
+//                Intent intent1 = new Intent(MarcoActivity.this,ImportarActivity.class);
+//                startActivity(intent1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 }

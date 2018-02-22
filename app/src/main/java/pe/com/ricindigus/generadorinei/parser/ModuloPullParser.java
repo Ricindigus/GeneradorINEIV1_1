@@ -21,6 +21,7 @@ public class ModuloPullParser {
     public static final String MODULO_ID = "ID";
     public static final String MODULO_TITULO = "TITULO";
     public static final String MODULO_CABECERA = "CABECERA";
+    public static final String MODULO_NTABLA = "NTABLA";
 
     private Modulo currentModulo = null;
     private String currentTag = null;
@@ -65,6 +66,7 @@ public class ModuloPullParser {
                 case MODULO_ID:currentModulo.setID(xmlText);break;
                 case MODULO_TITULO:currentModulo.setTITULO(xmlText);break;
                 case MODULO_CABECERA:currentModulo.setCABECERA(xmlText);break;
+                case MODULO_NTABLA:currentModulo.setNTABLA(xmlText);break;
             }
         }
     }

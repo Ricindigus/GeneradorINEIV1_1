@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/exportacion_cardview"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin5dp"
+    android:layout_marginRight="@dimen/margin5dp"
+    android:layout_marginTop="@dimen/margin5dp"
+    android:layout_height="60dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBox
+            android:id="@+id/exportacion_ckSeleccionar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/exportacion_txtId"
+            android:layout_width="0dp"
+            android:text="id"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:id="@+id/exportacion_txtRuc"
+            android:layout_width="0dp"
+            android:text="ruc"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:id="@+id/exportacion_txtRazonSocial"
+            android:layout_width="0dp"
+            android:text="razon social"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

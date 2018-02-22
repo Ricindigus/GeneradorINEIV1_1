@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+import pe.com.ricindigus.generadorinei.pojos.Modulo;
 
 /**
  * Created by dmorales on 08/01/2018.
@@ -58,7 +60,7 @@ public class DataTablas {
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query("modulo" + nModulo, columnas,SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
-            if(cursor.getCount() == 1) encontrado = true;
+            if(cursor.getCount() > 0) encontrado = true;
         }finally {
             if(cursor != null)cursor.close();
         }
@@ -109,7 +111,22 @@ public class DataTablas {
         return valor;
     }
 
-
+    public String getValorxId(String nModulo, String variable, String id){
+        String valor = "";
+        String[] whereArgs = new String[]{id};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query("modulo" + nModulo, new String[]{variable},SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                valor = cursor.getString(cursor.getColumnIndex(variable));
+            }
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        if(valor == null) valor = "";
+        return valor;
+    }
 
     public String[] getModulo(String nModulo, String idEmpresa){
         String[] columnas = getColumnasModulo(nModulo);
@@ -130,6 +147,7 @@ public class DataTablas {
         return valoresModulo;
     }
 
+
     public Cursor getAllTabla(String tabla){
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * from " + tabla, null);
         if (cursor != null) cursor.moveToFirst();
@@ -144,6 +162,22 @@ public class DataTablas {
         return cursor;
     }
 
+    public ArrayList<String> getFilas(String idTabla,String idEmpresa){
+        ArrayList<String> filas = new ArrayList<String>();
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query("modulo" + idTabla,null, SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            while(cursor.moveToNext()){
+                String idFila = cursor.getString(cursor.getColumnIndex("_id"));
+                filas.add(idFila);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return filas;
+    }
+
     public void actualizarVisita(String nModulo, String id, ContentValues valores){
         String[] whereArgs = new String[]{id};
         sqLiteDatabase.update("modulo" + nModulo,valores,SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs);
@@ -152,5 +186,20 @@ public class DataTablas {
     public void deleteVisita(String nModulo, String id){
         String[] whereArgs = new String[]{String.valueOf(id)};
         sqLiteDatabase.delete("modulo" + nModulo,SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs);
+    }
+
+    public String[] getNombreColumnas(String idModulo, String idEmpresa){
+        Cursor cursor = null;
+        String[] columnNames = null;
+        String[] whereArgs = new String[]{idEmpresa};
+        try{cursor = sqLiteDatabase.query("modulo" + idModulo, null, SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs, null, null, null);
+        }finally {
+            if(cursor != null) {
+                cursor.moveToFirst();
+                columnNames = cursor.getColumnNames();
+                cursor.close();
+            }
+        }
+        return columnNames;
     }
 }

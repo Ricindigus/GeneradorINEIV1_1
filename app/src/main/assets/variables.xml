@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <variables>
-	<modulo id="A" parte = "1" tipo = "2">
+	<modulo id="A" parte = "1" tipo = "2" nombre = "VISITAS">
 		<var>V_NUM</var>
 		<var>V_DIA</var>
 		<var>V_MES</var>
@@ -17,7 +17,7 @@
 		<var>V_PROX_MIN</var>
 	</modulo>
 
-	<modulo id="A" parte = "2" tipo = "1">
+	<modulo id="A" parte = "2" tipo = "1" nombre = "RESULTADO">
 		<var>RES_FINAL</var>
 		<var>RES_DIA</var>
 		<var>RES_MES</var>
@@ -26,7 +26,7 @@
 		<var>RES_MIN</var>
 	</modulo>
 
-	<modulo id="B" parte = "" tipo = "1">
+	<modulo id="B" parte = "" tipo = "1" nombre = "LOCALIZACION">
 		<var>CAR_SP1</var>
 		<var>CAR_SP2</var>
 		<var>CAR_SP3</var>
@@ -49,7 +49,7 @@
 		<var>CAR_LONG</var>
 		<var>CAR_ALT</var>
 	</modulo>
-	<modulo id= "C" parte = "" tipo = "1">
+	<modulo id= "C" parte = "" tipo = "1" nombre = "IDENTIFICACION">
 		<var>IDE_SP1</var>
 		<var>IDE_SP2</var>
 		<var>IDE_SP3</var>
@@ -71,7 +71,7 @@
 		<var>IDE_SP7_NO</var>
 		<var>IDE_SP8_NO</var>
 	</modulo>
-	<modulo id= "1" parte = "" tipo = "1">
+	<modulo id= "1" parte = "" tipo = "1" nombre = "SECCION100">
 		<var>M1P1_1</var>
 		<var>M1P2_1</var>
 		<var>M1P2_2</var>
@@ -117,7 +117,7 @@
 		<var>M1P3_0</var>
 		<var>M1P12_0</var>
 	</modulo>
-	<modulo id="2" parte = "" tipo = "1">
+	<modulo id="2" parte = "" tipo = "1" nombre = "SECCION200">
 		<var>M2P1_1</var>
 		<var>M2P1_2</var>
 		<var>M2P1_3</var>
@@ -134,7 +134,7 @@
 		<var>M2P3_0</var>
 		<var>M2P4_1</var>
 	</modulo>
-	<modulo id="3" parte = "" tipo = "1">
+	<modulo id="3" parte = "" tipo = "1" nombre = "SECCION300">
 		<var>M3P5_1</var>
 		<var>M3P3_1</var>
 		<var>M3P3_2</var>
@@ -144,7 +144,7 @@
 		<var>M3P1</var>
 		<var>M3P4</var>
 	</modulo>
-	<modulo id="4" parte = "" tipo = "1">
+	<modulo id="4" parte = "" tipo = "1" nombre = "SECCION400">
 		<var>M4P6_1</var>
 		<var>M4P1_1</var>
 		<var>M4P1_2</var>

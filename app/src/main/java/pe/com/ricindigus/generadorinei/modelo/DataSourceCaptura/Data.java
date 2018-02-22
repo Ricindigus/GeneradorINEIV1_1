@@ -61,7 +61,7 @@ public class Data {
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantes.tableMarco,
-                    SQLConstantes.ALL_COLUMNS_MARCO,SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+                    SQLConstantes.ALL_COLUMNS_MARCO,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 marco.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.MARCO_ID)));
