@@ -14,6 +14,7 @@ public class SPCheckBox {
     private String SUBPREGUNTA;
     private String VARIABLE;
     private String VARDESC;
+    private String DESHAB;
 
     public SPCheckBox() {
         this.ID = "";
@@ -21,6 +22,7 @@ public class SPCheckBox {
         this.SUBPREGUNTA = "";
         this.VARIABLE = "";
         this.VARDESC = "";
+        this.DESHAB = "";
     }
 
     public String getID() {
@@ -63,13 +65,22 @@ public class SPCheckBox {
         this.VARDESC = VARDESC;
     }
 
+    public String getDESHAB() {
+        return DESHAB;
+    }
+
+    public void setDESHAB(String DESHAB) {
+        this.DESHAB = DESHAB;
+    }
+
     public ContentValues toValues(){
-        ContentValues contentValues = new ContentValues(5);
+        ContentValues contentValues = new ContentValues();
         contentValues.put(SQLCheckBox.SPCHECKBOX_ID,ID);
         contentValues.put(SQLCheckBox.SPCHECKBOX_ID_PREGUNTA,ID_PREGUNTA);
         contentValues.put(SQLCheckBox.SPCHECKBOX_SUBPREGUNTA,SUBPREGUNTA);
         contentValues.put(SQLCheckBox.SPCHECKBOX_VARIABLE,VARIABLE);
         contentValues.put(SQLCheckBox.SPCHECKBOX_VARDESC,VARDESC);
+        contentValues.put(SQLCheckBox.SPCHECKBOX_DESHAB,DESHAB);
         return contentValues;
     }
 }

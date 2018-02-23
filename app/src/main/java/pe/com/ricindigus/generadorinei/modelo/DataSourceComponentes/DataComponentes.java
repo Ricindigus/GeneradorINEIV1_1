@@ -147,6 +147,17 @@ public class DataComponentes {
                 pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
                 pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
                 pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
+                pagina.setPGHAB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PGHAB)));
+                pagina.setPRHAB1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB1)));
+                pagina.setPRHAB2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB2)));
+                pagina.setPRHAB3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB3)));
+                pagina.setPRHAB4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB4)));
+                pagina.setPRHAB5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB5)));
+                pagina.setPRHAB6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB6)));
+                pagina.setPRHAB7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB7)));
+                pagina.setPRHAB8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB8)));
+                pagina.setPRHAB9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB9)));
+                pagina.setPRHAB10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB10)));
             }
         }finally{
             if(cursor != null) cursor.close();
@@ -185,6 +196,17 @@ public class DataComponentes {
                 pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
                 pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
                 pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
+                pagina.setPGHAB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PGHAB)));
+                pagina.setPRHAB1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB1)));
+                pagina.setPRHAB2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB2)));
+                pagina.setPRHAB3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB3)));
+                pagina.setPRHAB4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB4)));
+                pagina.setPRHAB5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB5)));
+                pagina.setPRHAB6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB6)));
+                pagina.setPRHAB7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB7)));
+                pagina.setPRHAB8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB8)));
+                pagina.setPRHAB9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB9)));
+                pagina.setPRHAB10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB10)));
                 paginas.add(pagina);
             }
         }finally{

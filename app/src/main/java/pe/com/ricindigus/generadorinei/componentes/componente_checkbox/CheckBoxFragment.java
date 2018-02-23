@@ -90,12 +90,14 @@ public class CheckBoxFragment extends Fragment {
     public void llenarVista(){
         txtPregunta.setText(pCheckBox.getNUMERO() + ". " + pCheckBox.getPREGUNTA().toUpperCase());
         for (int i = 0; i <subpreguntas.size() ; i++) {
+            final int pos = i;
             final LinearLayout linearLayout = checkLayouts[i];
             final CheckBox checkBox = checkBoxes[i];
             final EditText editText = editTexts[i];
             linearLayout.setVisibility(View.VISIBLE);
-            checkBox.setText(subpreguntas.get(i).getSUBPREGUNTA());
-            if(!subpreguntas.get(i).getVARDESC().equals("")){
+            final SPCheckBox spCheckBox = subpreguntas.get(i);
+            checkBox.setText(spCheckBox.getSUBPREGUNTA());
+            if(!spCheckBox.getVARDESC().equals("")){
                 editText.setVisibility(View.VISIBLE);
                 editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
                 editText.setOnKeyListener(new View.OnKeyListener() {
@@ -110,20 +112,38 @@ public class CheckBoxFragment extends Fragment {
                         return false;
                     }
                 });
-                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            }
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(!spCheckBox.getVARDESC().equals("")){
                         if(isChecked){
                             editText.setEnabled(true);
                             editText.setBackgroundResource(R.drawable.edittext_enabled);
-                        } else{
+                        }else{
                             editText.setText("");
                             editText.setEnabled(false);
                             editText.setBackgroundResource(R.drawable.edittext_disabled);
                         }
                     }
-                });
-            }
+
+                    if(!spCheckBox.getDESHAB().equals("")){
+                        if(isChecked){
+                            for (int j = 0; j < subpreguntas.size(); j++) {
+                                if(pos != j){
+                                    checkBoxes[j].setChecked(false);
+                                    checkBoxes[j].setEnabled(false);
+                                }
+                            }
+                        }else{
+                            for (int j = 0; j < subpreguntas.size(); j++) {
+                                if(pos != j) checkBoxes[j].setEnabled(true);
+                            }
+                        }
+                    }
+                    //AQUI IRAN LOS EVENTOS DE FLUJOS
+                }
+            });
         }
     }
 
@@ -143,7 +163,7 @@ public class CheckBoxFragment extends Fragment {
                             if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
                         }
                     }
-                    if (valorCheck.equals("0")) checkBoxes[i].setChecked(false);
+//                    if (valorCheck.equals("0")) checkBoxes[i].setChecked(false);
                 }
             }
         }
@@ -157,7 +177,10 @@ public class CheckBoxFragment extends Fragment {
         for (int i = 0; i < subpreguntas.size(); i++) {
             String variable = subpreguntas.get(i).getVARIABLE();
             if(checkBoxes[i].isChecked()) contentValues.put(variable, "1");
-            else contentValues.put(variable, "0");
+            else {
+                if(estaHabilitado())contentValues.put(variable, "0");
+                else contentValues.put(variable, "");
+            }
             if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
         }
         if(!data.existenDatos(getNumModulo(),idEmpresa)){
@@ -171,18 +194,20 @@ public class CheckBoxFragment extends Fragment {
     public boolean validarDatos(){
         boolean correcto = false;
         String mensaje = "";
-        for (int c = 0; c <subpreguntas.size() ; c++) {
-            if(checkBoxes[c].isChecked()){
-                if(!subpreguntas.get(c).getVARDESC().equals("")){
-                    String campo = editTexts[c].getText().toString().trim();
-                    if(!campo.equals("")) correcto = true;
-                    else{
-                        correcto = false;
-                        if(mensaje.equals("")) mensaje = "PREGUNTA " + pCheckBox.getNUMERO() + ": DEBE ESPECIFICAR";
-                    }
-                }else correcto = true;
+        if(estaHabilitado()){
+            for (int c = 0; c <subpreguntas.size() ; c++) {
+                if(checkBoxes[c].isChecked()){
+                    if(!subpreguntas.get(c).getVARDESC().equals("")){
+                        String campo = editTexts[c].getText().toString().trim();
+                        if(!campo.equals("")) correcto = true;
+                        else{
+                            correcto = false;
+                            if(mensaje.equals("")) mensaje = "PREGUNTA " + pCheckBox.getNUMERO() + ": DEBE ESPECIFICAR";
+                        }
+                    }else correcto = true;
+                }
             }
-        }
+        }else correcto = true;
         if(!correcto){
             if(mensaje.equals(""))mostrarMensaje("PREGUNTA " + pCheckBox.getNUMERO() + ": DEBE SELECCIONAR UNA OPCION");
             else mostrarMensaje(mensaje);
@@ -191,7 +216,12 @@ public class CheckBoxFragment extends Fragment {
     }
 
     public void inhabilitar(){
+        for (int i = 0; i < subpreguntas.size() ; i++) checkBoxes[i].setChecked(false);
         rootView.setVisibility(View.GONE);
+    }
+
+    public void habilitar(){
+        rootView.setVisibility(View.VISIBLE);
     }
 
     public boolean estaHabilitado(){

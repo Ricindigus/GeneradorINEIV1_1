@@ -165,7 +165,9 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
+    public void inhabilitar(){
+        rootView.setVisibility(View.GONE);
+    }
     public String getNumModulo(){
         return gps.getMODULO();
     }

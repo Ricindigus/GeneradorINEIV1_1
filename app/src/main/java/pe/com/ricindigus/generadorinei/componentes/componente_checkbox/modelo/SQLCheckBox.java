@@ -20,6 +20,8 @@ public class SQLCheckBox {
     public static final String SPCHECKBOX_SUBPREGUNTA = "SUBPREGUNTA";
     public static final String SPCHECKBOX_VARIABLE = "VARIABLE";
     public static final String SPCHECKBOX_VARDESC = "VARDESC";
+    public static final String SPCHECKBOX_DESHAB = "DESHAB";
+
 
 
     public static final String SQL_CREATE_TABLA_CHECKBOX =
@@ -36,7 +38,8 @@ public class SQLCheckBox {
                     SPCHECKBOX_ID_PREGUNTA + " TEXT," +
                     SPCHECKBOX_SUBPREGUNTA + " TEXT," +
                     SPCHECKBOX_VARIABLE + " TEXT," +
-                    SPCHECKBOX_VARDESC + " TEXT" + ");"
+                    SPCHECKBOX_VARDESC + " TEXT," +
+                    SPCHECKBOX_DESHAB + " TEXT" + ");"
             ;
 
     public static final String SQL_DELETE_CHECKBOX = "DROP TABLE " + tablaCheckBox;
@@ -53,6 +56,6 @@ public class SQLCheckBox {
     };
     public static final String[] ALL_COLUMNS_SPCHECKBOX = {
             SPCHECKBOX_ID, SPCHECKBOX_ID_PREGUNTA, SPCHECKBOX_SUBPREGUNTA,
-            SPCHECKBOX_VARIABLE, SPCHECKBOX_VARDESC
+            SPCHECKBOX_VARIABLE, SPCHECKBOX_VARDESC,SPCHECKBOX_DESHAB
     };
 }

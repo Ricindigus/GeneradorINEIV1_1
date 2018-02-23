@@ -113,6 +113,7 @@ public class DataCheckBox {
                 spCheckBox.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_SUBPREGUNTA)));
                 spCheckBox.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_VARIABLE)));
                 spCheckBox.setVARDESC(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_VARDESC)));
+                spCheckBox.setDESHAB(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_DESHAB)));
                 spCheckBoxs.add(spCheckBox);
             }
         }finally {

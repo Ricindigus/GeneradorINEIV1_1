@@ -32,6 +32,7 @@ public class CheckBoxPullParser {
     public static final String SPCHECKBOX_SUBPREGUNTA = "SUBPREGUNTA";
     public static final String SPCHECKBOX_VARIABLE = "VARIABLE";
     public static final String SPCHECKBOX_VARDESC = "VARDESC";
+    public static final String SPCHECKBOX_DESHAB = "DESHAB";
 
     private String currentTag = null;
 
@@ -134,6 +135,7 @@ public class CheckBoxPullParser {
                 case SPCHECKBOX_SUBPREGUNTA:currentSPCheckBox.setSUBPREGUNTA(xmlText);break;
                 case SPCHECKBOX_VARDESC:currentSPCheckBox.setVARDESC(xmlText);break;
                 case SPCHECKBOX_VARIABLE:currentSPCheckBox.setVARIABLE(xmlText);break;
+                case SPCHECKBOX_DESHAB:currentSPCheckBox.setDESHAB(xmlText);break;
             }
         }
     }

@@ -157,8 +157,16 @@ public class EncuestaActivity extends AppCompatActivity {
                 ocultarTeclado(btnSiguiente);
                 if(validarPagina(posicionFragment)){
                     guardarPagina(posicionFragment);
-                    if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
-                    else posicionFragment = 1;
+                    dataComponentes = new DataComponentes(getApplicationContext());
+                    dataComponentes.open();
+                    boolean puedeSetear = false;
+                    while(!puedeSetear){
+                        if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
+                        else posicionFragment = 1;
+                        Pagina pagina = dataComponentes.getPagina(posicionFragment+"");
+                        if(pagina.getPGHAB().equals("1"))puedeSetear = true;
+                    }
+                    dataComponentes.close();
                     setNombreSeccion(posicionFragment,1);
                     setPagina(posicionFragment,1);
                 }
@@ -235,7 +243,7 @@ public class EncuestaActivity extends AppCompatActivity {
             dT.close();
             final String observaciones = obs;
             dialog.setView(dialogView);
-            dialog.setTitle("Observaciones");
+            dialog.setTitle("OBSERVACIONES " + tabla.getNOMBRE());
             dialog.setPositiveButton("Guardar",null);
             dialog.setNegativeButton("Cancelar",null);
             final AlertDialog alertDialog = dialog.create();
@@ -356,53 +364,64 @@ public class EncuestaActivity extends AppCompatActivity {
         dataEditText.open();
         dataCheckBox.open();
         dataRadio.open();
+        dataGPS.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
         String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
                 pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
         String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
                 pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
+        String[] habilitado = {pagina.getPRHAB1(), pagina.getPRHAB2(), pagina.getPRHAB3(), pagina.getPRHAB4(), pagina.getPRHAB5(),
+                pagina.getPRHAB6(), pagina.getPRHAB7(), pagina.getPRHAB8(), pagina.getPRHAB9(), pagina.getPRHAB10()};
         int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5,
                 R.id.layout_componente6, R.id.layout_componente7,R.id.layout_componente8,R.id.layout_componente9,R.id.layout_componente10};
         for (int i = 0; i < ids.length; i++) {
             if(!ids[i].equals("")){
                 int tipo= Integer.parseInt(tipos[i]);
                 switch (tipo){
-//                    case TipoComponente.VISITAS:
-//                        Visita visita = dataVisitas.getVisita(ids[i]);
-//                        fragmentComponente = new VisitasFragment(EncuestaActivity.this,idEmpresa,visita);
-//                        break;
                     case TipoComponente.UBICACION:
                         Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
-                        fragmentComponente = new UbicacionFragment(EncuestaActivity.this,idEmpresa,ubicacion);
+                        UbicacionFragment ubicacionFragment = new UbicacionFragment(EncuestaActivity.this,idEmpresa,ubicacion);
+                        if(habilitado[i].equals("0")) ubicacionFragment.inhabilitar();
+                        fragmentComponente = ubicacionFragment;
                         break;
                     case TipoComponente.GPS:
                         GPS gps = dataGPS.getGPS(ids[i]);
-                        fragmentComponente = new GPSFragment(EncuestaActivity.this,idEmpresa,gps);
+                        GPSFragment gpsFragment = new GPSFragment(EncuestaActivity.this,idEmpresa,gps);
+                        if(habilitado[i].equals("0")) gpsFragment.inhabilitar();
+                        fragmentComponente = gpsFragment;
                         break;
                     case TipoComponente.FORMULARIO:
                         Formulario formulario = dataFormulario.getFormulario(ids[i]);
                         ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(ids[i]);
-                        fragmentComponente = new FormularioFragment(formulario,formularios,EncuestaActivity.this,idEmpresa);
+                        FormularioFragment formularioFragment = new FormularioFragment(formulario,formularios,EncuestaActivity.this,idEmpresa);
+                        if(habilitado[i].equals("0")) formularioFragment.inhabilitar();
+                        fragmentComponente = formularioFragment;
                         break;
                     case TipoComponente.EDITTEXT:
                         PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        fragmentComponente = new EditTextFragment(pEditText,spEditTexts,EncuestaActivity.this,idEmpresa);
+                        EditTextFragment editTextFragment = new EditTextFragment(pEditText,spEditTexts,EncuestaActivity.this,idEmpresa);
+                        if(habilitado[i].equals("0")) editTextFragment.inhabilitar();
+                        fragmentComponente = editTextFragment;
                         break;
                     case TipoComponente.CHECKBOX:
                         PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
                         ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
-                        fragmentComponente = new CheckBoxFragment(PCheckBox,spCheckBoxes,EncuestaActivity.this,idEmpresa);
+                        CheckBoxFragment checkBoxFragment = new CheckBoxFragment(PCheckBox,spCheckBoxes,EncuestaActivity.this,idEmpresa);
+                        if(habilitado[i].equals("0")) checkBoxFragment.inhabilitar();
+                        fragmentComponente = checkBoxFragment;
                         break;
                     case TipoComponente.RADIO:
                         PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
-                        fragmentComponente = new RadioFragment(PRadio,spRadios,EncuestaActivity.this,idEmpresa);
+                        RadioFragment radioFragment = new RadioFragment(PRadio,spRadios,EncuestaActivity.this,idEmpresa);
+                        if(habilitado[i].equals("0")) radioFragment.inhabilitar();
+                        fragmentComponente = radioFragment;
                         break;
-                    case TipoComponente.M2P1:
-                        fragmentComponente = new M2P1Fragment();
-                        break;
+//                    case TipoComponente.M2P1:
+//                        fragmentComponente = new M2P1Fragment();
+//                        break;
                 }
                 fragmentTransaction.replace(layouts[i], fragmentComponente,ids[i]);
             }else{
@@ -417,6 +436,7 @@ public class EncuestaActivity extends AppCompatActivity {
         dataEditText.close();
         dataCheckBox.close();
         dataRadio.close();
+        dataGPS.close();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -462,7 +482,6 @@ public class EncuestaActivity extends AppCompatActivity {
         while(!ids[indice].equals("")){
             Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
             switch (Integer.parseInt(tipos[indice])){
-//                case TipoComponente.VISITAS: ((VisitasFragment)fragment).guardarDatos();break;
                 case TipoComponente.UBICACION: ((UbicacionFragment)fragment).guardarDatos();break;
                 case TipoComponente.GPS: ((GPSFragment)fragment).guardarDatos();break;
                 case TipoComponente.FORMULARIO: ((FormularioFragment)fragment).guardarDatos();break;

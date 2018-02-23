@@ -136,22 +136,29 @@ public class EditTextFragment extends Fragment {
     public boolean validarDatos(){
         boolean correcto = true;
         String mensaje = "";
-        int c = 0;
-        while(correcto && c < textInputLayouts.length){
-            if(textInputLayouts[c].getVisibility() == View.VISIBLE){
-                if(textInputEditTexts[c].getText().toString().trim().equals("")){
-                    correcto = false;
-                    mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";
+        if(estaHabilitado()){
+            int c = 0;
+            while(correcto && c < textInputLayouts.length){
+                if(textInputLayouts[c].getVisibility() == View.VISIBLE){
+                    if(textInputEditTexts[c].getText().toString().trim().equals("")){
+                        correcto = false;
+                        mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";
+                    }
                 }
+                c++;
             }
-            c++;
         }
         if(!correcto) mostrarMensaje(mensaje);
         return correcto;
     }
 
     public void inhabilitar(){
+        for (int i = 0; i <subpreguntas.size() ; i++) textInputEditTexts[i].setText("");
         rootView.setVisibility(View.GONE);
+    }
+
+    public void habilitar(){
+        rootView.setVisibility(View.VISIBLE);
     }
 
     public boolean estaHabilitado(){

@@ -93,11 +93,13 @@ public class RadioFragment extends Fragment {
     public void llenarVista(){
         txtPregunta.setText(pRadio.getNUMERO() + ". " + pRadio.getPREGUNTA().toUpperCase());
         for (int i = 0; i <subpreguntas.size() ; i++) {
+            final int pos = i;
             final RadioButton radioButton = radioButtons[i];
             final EditText editText = editTexts[i];
             radioButton.setVisibility(View.VISIBLE);
-            radioButton.setText(subpreguntas.get(i).getSUBPREGUNTA());
-            if(!subpreguntas.get(i).getVARDESC().equals("")){
+            final SPRadio spRadio = subpreguntas.get(i);
+            radioButton.setText(spRadio.getSUBPREGUNTA());
+            if(!spRadio.getVARDESC().equals("")){
                 editText.setVisibility(View.VISIBLE);
                 editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
                 editText.setOnKeyListener(new View.OnKeyListener() {
@@ -112,9 +114,11 @@ public class RadioFragment extends Fragment {
                         return false;
                     }
                 });
-                radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            }
+            radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(!spRadio.getVARDESC().equals("")){
                         if(isChecked){
                             editText.setEnabled(true);
                             editText.setBackgroundResource(R.drawable.edittext_enabled);
@@ -124,8 +128,11 @@ public class RadioFragment extends Fragment {
                             editText.setBackgroundResource(R.drawable.edittext_disabled);
                         }
                     }
-                });
-            }
+                    if(existeEvento()){
+                        eventoComponente();
+                    }
+                }
+            });
         }
     }
 
@@ -157,7 +164,8 @@ public class RadioFragment extends Fragment {
         data.open();
         ContentValues contentValues = new ContentValues();
         contentValues.put("ID_EMPRESA",idEmpresa);
-        contentValues.put(subpreguntas.get(1).getVARIABLE(),radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId())));
+        if(radioGroup.getCheckedRadioButtonId() == -1) contentValues.put(subpreguntas.get(1).getVARIABLE(),"-1");
+        else contentValues.put(subpreguntas.get(1).getVARIABLE(),radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId())));
         for (int i = 0; i < subpreguntas.size(); i++) {
             if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
         }
@@ -169,16 +177,18 @@ public class RadioFragment extends Fragment {
     public boolean validarDatos(){
         boolean correcto = true;
         String mensaje = "";
-        if(radioGroup.getCheckedRadioButtonId() == -1){
-            correcto = false;
-            if(mensaje.equals("")) mensaje = "PREGUNTA " + pRadio.getNUMERO() + ": DEBE SELECCIONAR UNA OPCION";
-        }else{
-            for (int i = 0; i <subpreguntas.size() ; i++) {
-                if(editTexts[i].isEnabled() && !subpreguntas.get(i).getVARDESC().equals("")){
-                    String campo = editTexts[i].getText().toString().trim();
-                    if(campo.equals("")){
-                        correcto = false;
-                        if(mensaje.equals("")) mensaje = "PREGUNTA " + pRadio.getNUMERO() + ": DEBE ESPECIFICAR";
+        if(estaHabilitado()){
+            if(radioGroup.getCheckedRadioButtonId() == -1){
+                correcto = false;
+                if(mensaje.equals("")) mensaje = "PREGUNTA " + pRadio.getNUMERO() + ": DEBE SELECCIONAR UNA OPCION";
+            }else{
+                for (int i = 0; i <subpreguntas.size() ; i++) {
+                    if(editTexts[i].isEnabled() && !subpreguntas.get(i).getVARDESC().equals("")){
+                        String campo = editTexts[i].getText().toString().trim();
+                        if(campo.equals("")){
+                            correcto = false;
+                            if(mensaje.equals("")) mensaje = "PREGUNTA " + pRadio.getNUMERO() + ": DEBE ESPECIFICAR";
+                        }
                     }
                 }
             }
@@ -190,6 +200,7 @@ public class RadioFragment extends Fragment {
     }
 
     public void inhabilitar(){
+        radioGroup.clearCheck();
         rootView.setVisibility(View.GONE);
     }
 
@@ -217,5 +228,12 @@ public class RadioFragment extends Fragment {
     public void ocultarTeclado(View view){
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public void eventoComponente(){
+
+    }
+    public boolean existeEvento(){
+        boolean existe = false;
+        return existe;
     }
 }
