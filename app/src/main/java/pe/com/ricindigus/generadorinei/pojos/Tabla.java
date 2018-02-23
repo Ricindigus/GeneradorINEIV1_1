@@ -2,6 +2,8 @@ package pe.com.ricindigus.generadorinei.pojos;
 
 import android.content.ContentValues;
 
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 
 /**
@@ -20,6 +22,13 @@ public class Tabla {
         this.MODULO = MODULO;
         this.NOMBRE = NOMBRE;
         this.TIPO = TIPO;
+    }
+
+    public Tabla() {
+        this.ID = "";
+        this.MODULO = "";
+        this.NOMBRE = "";
+        this.TIPO = "";
     }
 
     public String getID() {
@@ -53,4 +62,14 @@ public class Tabla {
     public void setTIPO(String TIPO) {
         this.TIPO = TIPO;
     }
+
+    public ContentValues toValues(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLConstantes.TABLA_ID,ID);
+        contentValues.put(SQLConstantes.TABLA_MODULO,MODULO);
+        contentValues.put(SQLConstantes.TABLA_NOMBRE,NOMBRE);
+        contentValues.put(SQLConstantes.TABLA_TIPO,TIPO);
+        return contentValues;
+    }
+
 }

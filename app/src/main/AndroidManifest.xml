@@ -28,7 +28,8 @@
         <activity
             android:name=".activities.EncuestaActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity android:name=".activities.ExportarActivity"></activity>
+        <activity android:name=".activities.ExportarActivity" />
+        <activity android:name=".activities.ImportarActivity"></activity>
     </application>
 
 </manifest>

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_marco"
-        android:orderInCategory="100"
-        android:title="Volver al Marco"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_observaciones"
-        android:orderInCategory="100"
-        android:title="Registrar observacion"
-        app:showAsAction="never" />
+    <item android:id="@+id/registrar_observacion"
+        android:title="REGISTRAR OBSERVACION"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:showAsAction="never"/>
+    <item android:id="@+id/volver_marco"
+        android:title="VOLVER AL MARCO"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:showAsAction="never"/>
 </menu>

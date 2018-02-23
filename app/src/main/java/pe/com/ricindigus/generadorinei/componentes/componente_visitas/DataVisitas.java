@@ -14,6 +14,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQ
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.DBHelper;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
  * Created by RICARDO on 1/01/2018.
@@ -26,7 +27,7 @@ public class DataVisitas {
 
     public DataVisitas(Context contexto) {
         this.contexto = contexto;
-        sqLiteOpenHelper = new DBHelper(contexto);
+        sqLiteOpenHelper = new DBHelperComponente(contexto);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
     }
 

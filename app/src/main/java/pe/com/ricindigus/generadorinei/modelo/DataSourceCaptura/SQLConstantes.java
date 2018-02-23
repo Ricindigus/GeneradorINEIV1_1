@@ -14,6 +14,8 @@ public class SQLConstantes {
     public static final String tableMarco = "marco";
     public static final String tablaProvincias = "provincias";
     public static final String tablaDistritos = "distritos";
+    public static final String tablaTablas = "tablas";
+
 
     //COLUMNAS USUARIOS
     public static final String USUARIO_ID = "ID";
@@ -64,6 +66,13 @@ public class SQLConstantes {
     public static final String MARCO_PISO = "PISO";
     public static final String MARCO_MZ = "MZ";
     public static final String MARCO_LOTE = "LOTE";
+
+
+    public static final String TABLA_ID = "ID";
+    public static final String TABLA_MODULO = "MODULO";
+    public static final String TABLA_NOMBRE = "NOMBRE";
+    public static final String TABLA_TIPO = "TIPO";
+
 
     public static final String SQL_CREATE_TABLA_USUARIOS =
             "CREATE TABLE " + tableUsuarios + "(" +
@@ -123,6 +132,15 @@ public class SQLConstantes {
                     MARCO_LOTE + " TEXT" + ");"
             ;
 
+    public static final String SQL_CREATE_TABLA_TABLAS =
+            "CREATE TABLE " + tablaTablas + "(" +
+                    TABLA_ID + " TEXT PRIMARY KEY," +
+                    TABLA_MODULO + " TEXT," +
+                    TABLA_NOMBRE + " TEXT," +
+                    TABLA_TIPO + " TEXT" + ");"
+            ;
+
+
     //WHERE
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_UBIGEO = "ID_UBI=?";
@@ -132,6 +150,9 @@ public class SQLConstantes {
     public static final String WHERE_CLAUSE_ID_OPERADOR = "OPERADOR=?";
     public static final String WHERE_CLAUSE_ID_JEFE = "JEFE=?";
     public static final String WHERE_CLAUSE_ID_OBSERVADOR = "OBSERVADOR=?";
+    public static final String WHERE_CLAUSE_TABLA_NOMBRE = "NOMBRE=?";
+    public static final String WHERE_CLAUSE_TABLA_MODULO = "MODULO=?";
+
 
     //DELETE
     public static final String SQL_DELETE_USUARIOS = "DROP TABLE " + tableUsuarios;
@@ -139,10 +160,11 @@ public class SQLConstantes {
     public static final String SQL_DELETE_MARCO = "DROP TABLE " + tableMarco;
     public static final String SQL_DELETE_PROVINCIAS = "DROP TABLE " + tablaProvincias;
     public static final String SQL_DELETE_DISTRITOS = "DROP TABLE " + tablaDistritos;
+    public static final String SQL_DELETE_TABLA = "DROP TABLE " + tablaTablas;
+
 
 
     //TRAER COLUMNAS
-
     public static final String[] ALL_COLUMNS_USUARIOS = {
             USUARIO_ID, USUARIO_PASSWORD, USUARIO_PERMISO
     };
@@ -156,6 +178,10 @@ public class SQLConstantes {
 
     public static final String[] ALL_COLUMNS_DISTRITOS = {
             DISTRITO_ID, DISTRITO_CCPP, DISTRITO_NOMBRE
+    };
+
+    public static final String[] ALL_COLUMNS_TABLAS = {
+            TABLA_ID, TABLA_MODULO, TABLA_NOMBRE, TABLA_TIPO
     };
 
     public static final String[] ALL_COLUMNS_MARCO = {

@@ -20,9 +20,9 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MARCO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_UBIGEOS);
-//        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_PROVINCIAS);
-//        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_DISTRITOS);
-        sqLiteDatabase.execSQL(SQLVisitas.SQL_CREATE_TABLA_VISITAS);
+
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_TABLAS);
+
     }
 
     @Override
@@ -30,9 +30,7 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_MARCO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_UBIGEO);
-//        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_PROVINCIAS);
-//        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_DISTRITOS);
-        sqLiteDatabase.execSQL(SQLVisitas.SQL_DELETE_VISITAS);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_TABLA);
         onCreate(sqLiteDatabase);
     }
 }

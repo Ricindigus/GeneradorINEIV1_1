@@ -116,6 +116,7 @@
 		<var>M1P12</var>
 		<var>M1P3_0</var>
 		<var>M1P12_0</var>
+		<var>OBS</var>
 	</modulo>
 	<modulo id="2" parte = "" tipo = "1" nombre = "SECCION200">
 		<var>M2P1_1</var>
@@ -133,6 +134,7 @@
 		<var>M2P3</var>
 		<var>M2P3_0</var>
 		<var>M2P4_1</var>
+		<var>OBS</var>
 	</modulo>
 	<modulo id="3" parte = "" tipo = "1" nombre = "SECCION300">
 		<var>M3P5_1</var>
@@ -143,6 +145,7 @@
 		<var>M3P3_5</var>
 		<var>M3P1</var>
 		<var>M3P4</var>
+		<var>OBS</var>
 	</modulo>
 	<modulo id="4" parte = "" tipo = "1" nombre = "SECCION400">
 		<var>M4P6_1</var>
@@ -182,5 +185,6 @@
 		<var>M4P5</var>
 		<var>M4P10</var>
 		<var>M4P10_0</var>
+		<var>OBS</var>
 	</modulo>
 </variables>

@@ -311,8 +311,8 @@ public class MarcoActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menu_importar:
-//                Intent intent1 = new Intent(MarcoActivity.this,ImportarActivity.class);
-//                startActivity(intent1);
+                Intent intent1 = new Intent(MarcoActivity.this,ImportarActivity.class);
+                startActivity(intent1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

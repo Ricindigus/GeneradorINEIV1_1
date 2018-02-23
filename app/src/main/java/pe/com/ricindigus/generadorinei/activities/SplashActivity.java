@@ -45,12 +45,14 @@ import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.OpcionSpinnerPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
+import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
+import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
@@ -76,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
+    ArrayList<Tabla> tablas = new ArrayList<Tabla>();
 
 
 
@@ -121,6 +124,7 @@ public class SplashActivity extends AppCompatActivity {
             SPRadioPullParser spRadioPullParser = new SPRadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
+            TablasPullParser tablasPullParser = new TablasPullParser();
 
 
 
@@ -141,7 +145,7 @@ public class SplashActivity extends AppCompatActivity {
             spRadios = spRadioPullParser.parseXML(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
-
+            tablas = tablasPullParser.parseXML(getApplicationContext());
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
@@ -149,7 +153,7 @@ public class SplashActivity extends AppCompatActivity {
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size()
-                + paginas.size() + opciones.size() ;
+                + paginas.size() + opciones.size() + tablas.size() ;
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -340,6 +344,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (OpcionSpinner opcionSpinner : opciones) {
                     try {
                         dataComponentes.insertarOpcion(opcionSpinner);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Tabla tabla : tablas) {
+                    try {
+                        data.insertarTabla(tabla);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

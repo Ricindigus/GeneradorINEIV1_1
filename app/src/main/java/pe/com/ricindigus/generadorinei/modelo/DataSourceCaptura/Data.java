@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.pojos.Marco;
+import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
@@ -236,6 +237,84 @@ public class Data {
     }
     //------------------FIN UBIGEO-----------------------------------------------------------------------------------------------------
 
+    //-------------------------------TABLA--------------------------------------------------------
+    public void insertarTabla(Tabla tabla){
+        ContentValues contentValues = tabla.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tablaTablas,null,contentValues);
+    }
+    public void insertarTablas(ArrayList<Tabla> tablas){
+        long items = getNumeroItemsUsuario();
+        if(items == 0){
+            for (Tabla tabla : tablas) {
+                try {
+                    insertarTabla(tabla);
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
+    public Tabla getTabla(String idTabla){
+        Tabla tabla = new Tabla();
+        String[] whereArgs = new String[]{idTabla};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaTablas,
+                    SQLConstantes.ALL_COLUMNS_TABLAS,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                tabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_ID)));
+                tabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_MODULO)));
+                tabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_NOMBRE)));
+                tabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return tabla;
+    }
+
+    public Tabla getTablaxNombre(String nombreTabla){
+        Tabla tabla = new Tabla();
+        String[] whereArgs = new String[]{nombreTabla};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaTablas,
+                    SQLConstantes.ALL_COLUMNS_TABLAS,SQLConstantes.WHERE_CLAUSE_TABLA_NOMBRE,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                tabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_ID)));
+                tabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_MODULO)));
+                tabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_NOMBRE)));
+                tabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return tabla;
+    }
+
+    public Tabla getTablaxModulo(String idModulo){
+        Tabla tabla = new Tabla();
+        String[] whereArgs = new String[]{idModulo};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaTablas,
+                    SQLConstantes.ALL_COLUMNS_TABLAS,SQLConstantes.WHERE_CLAUSE_TABLA_MODULO,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                tabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_ID)));
+                tabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_MODULO)));
+                tabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_NOMBRE)));
+                tabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantes.TABLA_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return tabla;
+    }
+
+    //---------------------------FIN TABLA--------------------------------------------------------
 
 }

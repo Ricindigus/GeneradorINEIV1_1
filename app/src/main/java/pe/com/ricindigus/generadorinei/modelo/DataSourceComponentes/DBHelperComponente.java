@@ -10,6 +10,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLForm
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.SQLGps;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.SQLUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
 
 /**
  * Created by dmorales on 23/11/2017.
@@ -38,6 +39,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_OPCION_SPINNER);
+        sqLiteDatabase.execSQL(SQLVisitas.SQL_CREATE_TABLA_VISITAS);
 
     }
 
@@ -57,6 +59,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_OPCION_SPINNER);
+        sqLiteDatabase.execSQL(SQLVisitas.SQL_DELETE_VISITAS);
         onCreate(sqLiteDatabase);
     }
 }

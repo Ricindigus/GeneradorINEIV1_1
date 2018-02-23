@@ -10,9 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
+import pe.com.ricindigus.generadorinei.pojos.Tabla;
 
 /**
  * Created by dmorales on 08/01/2018.
@@ -67,8 +69,20 @@ public class DataTablas {
         return encontrado;
     }
 
-    public void insertarValores(String nModulo, ContentValues valores){
-        sqLiteDatabase.insert("modulo" + nModulo,null,valores);
+    public void deleteDatos(String idTabla, String idEmpresa){
+        String[] whereArgs = new String[]{idEmpresa};
+        sqLiteDatabase.delete("modulo" + idTabla,SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs);
+    }
+
+    public void deleteDatosxId(String idTabla, String id){
+        String[] whereArgs = new String[]{id};
+        sqLiteDatabase.delete("modulo" + idTabla,SQLConstantesTablas.WHERE_CLAUSE_id,whereArgs);
+    }
+
+
+
+    public void insertarValores(String idTabla, ContentValues valores){
+        sqLiteDatabase.insert("modulo" + idTabla,null,valores);
     }
 
     public void actualizarValores(String nModulo, String idempresa, ContentValues valores){
@@ -94,12 +108,12 @@ public class DataTablas {
         return valores;
     }
 
-    public String getValor(String nModulo, String variable, String idEmpresa){
+    public String getValor(String idTabla, String variable, String idEmpresa){
         String valor = "";
         String[] whereArgs = new String[]{idEmpresa};
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.query("modulo" + nModulo, new String[]{variable},SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            cursor = sqLiteDatabase.query("modulo" + idTabla, new String[]{variable},SQLConstantesTablas.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
                 valor = cursor.getString(cursor.getColumnIndex(variable));
@@ -202,4 +216,6 @@ public class DataTablas {
         }
         return columnNames;
     }
+
+
 }
