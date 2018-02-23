@@ -22,16 +22,6 @@ public class SQLConstantes {
     public static final String USUARIO_PASSWORD = "PASSWORD";
     public static final String USUARIO_PERMISO = "PERMISO";
 
-    //COLUMNAS PROVINCIAS
-    public static final String PROVINCIA_ID = "ID";
-    public static final String PROVINCIA_CCDD = "CCDD";
-    public static final String PROVINCIA_NOMBRE = "NOMBRE";
-
-    //COLUMNAS DISTRITOS
-    public static final String DISTRITO_ID = "ID";
-    public static final String DISTRITO_CCPP = "CCPP";
-    public static final String DISTRITO_NOMBRE = "NOMBRE";
-
 
     //COLUMNAS UBIGEOS
     public static final String UBIGEO_ID = "ID";
@@ -87,20 +77,6 @@ public class SQLConstantes {
                     UBIGEO_DISTRITO + " TEXT" +");"
             ;
 
-    public static final String SQL_CREATE_TABLA_PROVINCIAS =
-            "CREATE TABLE " + tablaProvincias + "(" +
-                    PROVINCIA_ID + " TEXT PRIMARY KEY," +
-                    PROVINCIA_CCDD + " TEXT, " +
-                    PROVINCIA_NOMBRE + " TEXT" +");"
-            ;
-
-    public static final String SQL_CREATE_TABLA_DISTRITOS =
-            "CREATE TABLE " + tablaDistritos + "(" +
-                    DISTRITO_ID + " TEXT PRIMARY KEY," +
-                    DISTRITO_CCPP + " TEXT, " +
-                    DISTRITO_NOMBRE + " TEXT" +");"
-            ;
-
     public static final String SQL_CREATE_TABLA_MARCO =
             "CREATE TABLE " + tableMarco + "(" +
                     MARCO_ID + " TEXT PRIMARY KEY," +
@@ -144,8 +120,6 @@ public class SQLConstantes {
     //WHERE
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_UBIGEO = "ID_UBI=?";
-    public static final String WHERE_CLAUSE_CCDD = "CCDD=?";
-    public static final String WHERE_CLAUSE_CCPP = "CCPP=?";
     public static final String WHERE_CLAUSE_ID_EMPRESA = "ID_EMPRESA=?";
     public static final String WHERE_CLAUSE_ID_OPERADOR = "OPERADOR=?";
     public static final String WHERE_CLAUSE_ID_JEFE = "JEFE=?";
@@ -158,8 +132,6 @@ public class SQLConstantes {
     public static final String SQL_DELETE_USUARIOS = "DROP TABLE " + tableUsuarios;
     public static final String SQL_DELETE_UBIGEO = "DROP TABLE " + tableUbigeo;
     public static final String SQL_DELETE_MARCO = "DROP TABLE " + tableMarco;
-    public static final String SQL_DELETE_PROVINCIAS = "DROP TABLE " + tablaProvincias;
-    public static final String SQL_DELETE_DISTRITOS = "DROP TABLE " + tablaDistritos;
     public static final String SQL_DELETE_TABLA = "DROP TABLE " + tablaTablas;
 
 
@@ -170,14 +142,6 @@ public class SQLConstantes {
     };
     public static final String[] ALL_COLUMNS_UBIGEOS = {
             UBIGEO_ID, UBIGEO_ID_UBI,UBIGEO_DISTRITO
-    };
-
-    public static final String[] ALL_COLUMNS_PROVINCIAS = {
-            PROVINCIA_ID, PROVINCIA_CCDD, PROVINCIA_NOMBRE
-    };
-
-    public static final String[] ALL_COLUMNS_DISTRITOS = {
-            DISTRITO_ID, DISTRITO_CCPP, DISTRITO_NOMBRE
     };
 
     public static final String[] ALL_COLUMNS_TABLAS = {
