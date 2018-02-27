@@ -3,7 +3,6 @@ package pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
 
 /**
  * Created by dmorales on 13/12/2017.

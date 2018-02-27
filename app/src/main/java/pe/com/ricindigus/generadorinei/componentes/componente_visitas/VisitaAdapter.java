@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 
 /**
  * Created by otin016 on 28/06/2017.

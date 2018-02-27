@@ -24,6 +24,7 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
@@ -31,7 +32,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTabla
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditTextFragment extends Fragment {
+public class EditTextFragment extends ComponenteFragment {
     private DataComponentes dataComponentes;
     private PEditText pEditText;
     private ArrayList<SPEditText> subpreguntas;

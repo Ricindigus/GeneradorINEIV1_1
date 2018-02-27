@@ -24,23 +24,23 @@ import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFor
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.DataGPS;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.DataVisitas;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.Visita;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
+import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.OpcionSpinnerPullParser;
@@ -48,6 +48,7 @@ import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
 import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
+import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
@@ -79,6 +80,8 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
     ArrayList<Tabla> tablas = new ArrayList<Tabla>();
+    ArrayList<Evento> eventos = new ArrayList<Evento>();
+
 
 
 
@@ -125,6 +128,7 @@ public class SplashActivity extends AppCompatActivity {
             PaginaPullParser paginaPullParser = new PaginaPullParser();
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
             TablasPullParser tablasPullParser = new TablasPullParser();
+            EventosPullParser eventosPullParser = new EventosPullParser();
 
 
 
@@ -146,6 +150,7 @@ public class SplashActivity extends AppCompatActivity {
             paginas = paginaPullParser.parseXML(getApplicationContext());
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
             tablas = tablasPullParser.parseXML(getApplicationContext());
+            eventos = eventosPullParser.parseXML(getApplicationContext());
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
@@ -153,7 +158,7 @@ public class SplashActivity extends AppCompatActivity {
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size()
-                + paginas.size() + opciones.size() + tablas.size() ;
+                + paginas.size() + opciones.size() + tablas.size() + eventos.size() ;
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -353,6 +358,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (Tabla tabla : tablas) {
                     try {
                         data.insertarTabla(tabla);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Evento evento : eventos) {
+                    try {
+                        dataComponentes.insertarEvento(evento);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

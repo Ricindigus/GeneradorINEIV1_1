@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_gps;
+package pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.SQLUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**

@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CheckBoxFragment extends Fragment {
+public class CheckBoxFragment extends ComponenteFragment {
 
     private Context context;
     private PCheckBox pCheckBox;
@@ -87,6 +88,7 @@ public class CheckBoxFragment extends Fragment {
         cargarDatos();
     }
 
+    @Override
     public void llenarVista(){
         txtPregunta.setText(pCheckBox.getNUMERO() + ". " + pCheckBox.getPREGUNTA().toUpperCase());
         for (int i = 0; i <subpreguntas.size() ; i++) {
@@ -147,6 +149,7 @@ public class CheckBoxFragment extends Fragment {
         }
     }
 
+    @Override
     public void cargarDatos(){
         DataTablas data = new DataTablas(context);
         data.open();
@@ -170,6 +173,7 @@ public class CheckBoxFragment extends Fragment {
         data.close();
     }
 
+    @Override
     public void guardarDatos(){
         DataTablas data = new DataTablas(context);
         data.open();
@@ -191,6 +195,7 @@ public class CheckBoxFragment extends Fragment {
         data.close();
     }
 
+    @Override
     public boolean validarDatos(){
         boolean correcto = false;
         String mensaje = "";
@@ -215,15 +220,18 @@ public class CheckBoxFragment extends Fragment {
         return correcto;
     }
 
+    @Override
     public void inhabilitar(){
         for (int i = 0; i < subpreguntas.size() ; i++) checkBoxes[i].setChecked(false);
         rootView.setVisibility(View.GONE);
     }
 
+    @Override
     public void habilitar(){
         rootView.setVisibility(View.VISIBLE);
     }
 
+    @Override
     public boolean estaHabilitado(){
         boolean habilitado = false;
         if(rootView.getVisibility() == View.VISIBLE) habilitado = true;
@@ -242,6 +250,7 @@ public class CheckBoxFragment extends Fragment {
         alertDialog.show();
     }
 
+    @Override
     public String getNumModulo(){
         return pCheckBox.getMODULO();
     }

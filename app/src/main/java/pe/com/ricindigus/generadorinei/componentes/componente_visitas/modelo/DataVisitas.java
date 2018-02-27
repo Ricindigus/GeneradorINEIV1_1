@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
+package pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,10 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.DBHelper;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**

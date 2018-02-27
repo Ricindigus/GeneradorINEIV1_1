@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion;
+package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo;
 
 /**
  * Created by dmorales on 29/01/2018.

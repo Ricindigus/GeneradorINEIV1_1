@@ -1,0 +1,16 @@
+package pe.com.ricindigus.generadorinei.interfaces;
+
+/**
+ * Created by dmorales on 26/02/2018.
+ */
+
+public interface ComponenteInterfaz {
+    public void inhabilitar();
+    public void habilitar();
+    public void guardarDatos();
+    public boolean validarDatos();
+    public boolean estaHabilitado();
+    public String getNumModulo();
+    public void cargarDatos();
+    public void llenarVista();
+}

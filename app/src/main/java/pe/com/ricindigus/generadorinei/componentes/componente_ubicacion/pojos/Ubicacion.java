@@ -1,8 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion;
+package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos;
 
 import android.content.ContentValues;
 
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
 
 /**
  * Created by dmorales on 29/01/2018.

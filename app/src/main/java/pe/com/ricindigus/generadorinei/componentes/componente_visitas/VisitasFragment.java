@@ -23,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -37,17 +36,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VisitasFragment extends Fragment {
+public class VisitasFragment extends ComponenteFragment {
     private LinearLayoutManager linearLayoutManager;
     private VisitaAdapter visitaAdapter;
     private RecyclerView recyclerView;
@@ -780,6 +780,27 @@ public class VisitasFragment extends Fragment {
 
         dataTablas.close();
     }
+
+    @Override
+    public void llenarVista() {
+
+    }
+
+    @Override
+    public void inhabilitar() {
+
+    }
+
+    @Override
+    public void habilitar() {
+
+    }
+
+    @Override
+    public void guardarDatos() {
+
+    }
+
     public boolean validarDatos(){
         boolean valido = true;
         String mensaje = "";
@@ -798,6 +819,16 @@ public class VisitasFragment extends Fragment {
             mostrarMensaje(mensaje);
         }
         return valido;
+    }
+
+    @Override
+    public boolean estaHabilitado() {
+        return false;
+    }
+
+    @Override
+    public String getNumModulo() {
+        return null;
     }
 
     public String checkDigito (int number) {

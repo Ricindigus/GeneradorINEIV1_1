@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_gps;
+package pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo;
 
 /**
  * Created by dmorales on 29/01/2018.

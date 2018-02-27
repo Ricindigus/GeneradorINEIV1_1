@@ -33,6 +33,7 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
@@ -40,7 +41,7 @@ import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FormularioFragment extends Fragment {
+public class FormularioFragment extends ComponenteFragment {
 
     private View rootView;
     private DataComponentes dataComponentes;
@@ -297,6 +298,11 @@ public class FormularioFragment extends Fragment {
 
     public void inhabilitar(){
         rootView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void habilitar() {
+        rootView.setVisibility(View.VISIBLE);
     }
 
     public boolean estaHabilitado(){

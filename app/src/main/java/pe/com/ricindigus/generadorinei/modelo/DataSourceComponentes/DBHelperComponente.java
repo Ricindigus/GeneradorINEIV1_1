@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.SQLGps;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.SQLUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 
 /**
  * Created by dmorales on 23/11/2017.
@@ -28,6 +28,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_ENCUESTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_PAGINAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_EVENTOS);
         sqLiteDatabase.execSQL(SQLEditText.SQL_CREATE_TABLA_EDITTEXT);
         sqLiteDatabase.execSQL(SQLEditText.SQL_CREATE_TABLA_SPEDITTEXT);
         sqLiteDatabase.execSQL(SQLCheckBox.SQL_CREATE_TABLA_CHECKBOX);
@@ -41,6 +42,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_OPCION_SPINNER);
         sqLiteDatabase.execSQL(SQLVisitas.SQL_CREATE_TABLA_VISITAS);
 
+
     }
 
     @Override
@@ -48,6 +50,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_ENCUESTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_PAGINAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_EVENTOS);
         sqLiteDatabase.execSQL(SQLEditText.SQL_DELETE_EDITTEXT);
         sqLiteDatabase.execSQL(SQLEditText.SQL_DELETE_SPEDITTEXT);
         sqLiteDatabase.execSQL(SQLCheckBox.SQL_DELETE_CHECKBOX);

@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
+import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.DataCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
@@ -40,34 +42,34 @@ import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFor
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.DataGPS;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.DataUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.DataVisitas;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.Visita;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExpandListAdapter;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment;
-import pe.com.ricindigus.generadorinei.fragments.M2P1Fragment;
 import pe.com.ricindigus.generadorinei.fragments.NombreSeccionFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
+import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.Tabla;
 
-public class EncuestaActivity extends AppCompatActivity {
+public class EncuestaActivity extends AppCompatActivity implements ActividadInterfaz {
     private ArrayList<String> listDataHeader;
     private ExpandableListView expListView;
     private HashMap<String, List<String>> listDataChild;
@@ -103,16 +105,16 @@ public class EncuestaActivity extends AppCompatActivity {
         btnAtras = (Button) findViewById(R.id.btn_anterior);
         btnSiguiente = (Button) findViewById(R.id.btn_siguiente);
         layoutScrolleable = (LinearLayout) findViewById(R.id.layout_componente_scrolleable);
-        lytComponente1 =  (LinearLayout)findViewById(R.id.layout_componente1);
-        lytComponente2 =  (LinearLayout)findViewById(R.id.layout_componente2);
-        lytComponente3 =  (LinearLayout)findViewById(R.id.layout_componente3);
-        lytComponente4 =  (LinearLayout)findViewById(R.id.layout_componente4);
-        lytComponente5 =  (LinearLayout)findViewById(R.id.layout_componente5);
-        lytComponente6 =  (LinearLayout)findViewById(R.id.layout_componente6);
-        lytComponente7 =  (LinearLayout)findViewById(R.id.layout_componente7);
-        lytComponente8 =  (LinearLayout)findViewById(R.id.layout_componente8);
-        lytComponente9 =  (LinearLayout)findViewById(R.id.layout_componente9);
-        lytComponente10 =  (LinearLayout)findViewById(R.id.layout_componente10);
+        lytComponente1 = (LinearLayout) findViewById(R.id.layout_componente1);
+        lytComponente2 = (LinearLayout) findViewById(R.id.layout_componente2);
+        lytComponente3 = (LinearLayout) findViewById(R.id.layout_componente3);
+        lytComponente4 = (LinearLayout) findViewById(R.id.layout_componente4);
+        lytComponente5 = (LinearLayout) findViewById(R.id.layout_componente5);
+        lytComponente6 = (LinearLayout) findViewById(R.id.layout_componente6);
+        lytComponente7 = (LinearLayout) findViewById(R.id.layout_componente7);
+        lytComponente8 = (LinearLayout) findViewById(R.id.layout_componente8);
+        lytComponente9 = (LinearLayout) findViewById(R.id.layout_componente9);
+        lytComponente10 = (LinearLayout) findViewById(R.id.layout_componente10);
 
         setSupportActionBar(toolbar);
 
@@ -120,15 +122,15 @@ public class EncuestaActivity extends AppCompatActivity {
         d.open();
         d.close();
 
-        final Bundle recupera=getIntent().getExtras();
-        if(recupera != null){
+        final Bundle recupera = getIntent().getExtras();
+        if (recupera != null) {
             idEmpresa = recupera.getString("idEmpresa");
         }
 
 
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        numeroPaginasTotal = (int)dataComponentes.getNumeroItemsPaginas();
+        numeroPaginasTotal = (int) dataComponentes.getNumeroItemsPaginas();
         dataComponentes.close();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,10 +145,10 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnAtras);
-                if(posicionFragment - 1 >= 1){
+                if (posicionFragment - 1 >= 1) {
                     posicionFragment--;
-                    setNombreSeccion(posicionFragment,-1);
-                    setPagina(posicionFragment,-1);
+                    setNombreSeccion(posicionFragment, -1);
+                    setPagina(posicionFragment, -1);
                 }
             }
         });
@@ -155,30 +157,22 @@ public class EncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ocultarTeclado(btnSiguiente);
-                if(validarPagina(posicionFragment)){
+                if (validarPagina(posicionFragment)) {
                     guardarPagina(posicionFragment);
-                    dataComponentes = new DataComponentes(getApplicationContext());
-                    dataComponentes.open();
-                    boolean puedeSetear = false;
-                    while(!puedeSetear){
-                        if(posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
-                        else posicionFragment = 1;
-                        Pagina pagina = dataComponentes.getPagina(posicionFragment+"");
-                        if(pagina.getPGHAB().equals("1"))puedeSetear = true;
-                    }
-                    dataComponentes.close();
-                    setNombreSeccion(posicionFragment,1);
-                    setPagina(posicionFragment,1);
+                    if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
+                    else posicionFragment = 1;
+                    setNombreSeccion(posicionFragment, 1);
+                    setPagina(posicionFragment, 1);
                 }
             }
         });
-        setNombreSeccion(1,1);
-        setPagina(1,1);
+        setNombreSeccion(1, 1);
+        setPagina(1, 1);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_encuesta,menu);
+        getMenuInflater().inflate(R.menu.menu_encuesta, menu);
         return true;
     }
 
@@ -186,17 +180,18 @@ public class EncuestaActivity extends AppCompatActivity {
         menu.clear();
         DataComponentes dtc = new DataComponentes(this);
         dtc.open();
-        String mod = dtc.getPagina(posicionFragment+"").getMODULO();
+        String mod = dtc.getPagina(posicionFragment + "").getMODULO();
         dtc.close();
         int num = 0;
-        try{
+        try {
             num = Integer.parseInt(mod);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
         }
-        if(num != 0) getMenuInflater().inflate(R.menu.menu_encuesta, menu);
+        if (num != 0) getMenuInflater().inflate(R.menu.menu_encuesta, menu);
         else getMenuInflater().inflate(R.menu.menu_simple, menu);
         return super.onPrepareOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         final int id = item.getItemId();
@@ -221,7 +216,7 @@ public class EncuestaActivity extends AppCompatActivity {
             alert.show();
             return true;
         }
-        if( id == R.id.registrar_observacion){
+        if (id == R.id.registrar_observacion) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_observaciones, null);
             LinearLayout lytObservaciones = dialogView.findViewById(R.id.dialog_lytObservaciones);
@@ -230,7 +225,7 @@ public class EncuestaActivity extends AppCompatActivity {
 
             DataComponentes dtc = new DataComponentes(this);
             dtc.open();
-            String mod = dtc.getPagina(posicionFragment+"").getMODULO();
+            String mod = dtc.getPagina(posicionFragment + "").getMODULO();
             dtc.close();
             Data d = new Data(this);
             d.open();
@@ -239,13 +234,13 @@ public class EncuestaActivity extends AppCompatActivity {
             d.close();
             DataTablas dT = new DataTablas(this);
             dT.open();
-            String obs = dT.getValor(idTabla,"OBS",idEmpresa);
+            String obs = dT.getValor(idTabla, "OBS", idEmpresa);
             dT.close();
             final String observaciones = obs;
             dialog.setView(dialogView);
             dialog.setTitle("OBSERVACIONES " + tabla.getNOMBRE());
-            dialog.setPositiveButton("Guardar",null);
-            dialog.setNegativeButton("Cancelar",null);
+            dialog.setPositiveButton("Guardar", null);
+            dialog.setNegativeButton("Cancelar", null);
             final AlertDialog alertDialog = dialog.create();
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
@@ -259,9 +254,10 @@ public class EncuestaActivity extends AppCompatActivity {
                             DataTablas dT = new DataTablas(EncuestaActivity.this);
                             dT.open();
                             ContentValues contentValues = new ContentValues();
-                            contentValues.put("OBS",edtObservaciones.getText().toString());
-                            if(dT.existenDatos(idTabla,idEmpresa)) dT.actualizarValores(idTabla,idEmpresa,contentValues);
-                            else dT.insertarValores(idTabla,contentValues);
+                            contentValues.put("OBS", edtObservaciones.getText().toString());
+                            if (dT.existenDatos(idTabla, idEmpresa))
+                                dT.actualizarValores(idTabla, idEmpresa, contentValues);
+                            else dT.insertarValores(idTabla, contentValues);
                             dT.close();
                             alertDialog.dismiss();
                         }
@@ -275,21 +271,19 @@ public class EncuestaActivity extends AppCompatActivity {
     }
 
 
-
-
-    public void setNombreSeccion(int nPagina, int direccion){
+    public void setNombreSeccion(int nPagina, int direccion) {
         String nombreSeccion = "";
         int numeroDePagina = nPagina;
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        String mod = dataComponentes.getPagina(numeroDePagina+"").getMODULO();
-        if(!mod.equals(moduloActual))nombreSeccion = dataComponentes.getModulo(mod).getTITULO();
-        if(!nombreSeccion.equals(nombreSeccionActual)){
+        String mod = dataComponentes.getPagina(numeroDePagina + "").getMODULO();
+        if (!mod.equals(moduloActual)) nombreSeccion = dataComponentes.getModulo(mod).getTITULO();
+        if (!nombreSeccion.equals(nombreSeccionActual)) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            if(direccion > 0){
+            if (direccion > 0) {
                 fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-            }else{
+            } else {
                 fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
             }
             NombreSeccionFragment nombreSeccionFragment = new NombreSeccionFragment(nombreSeccion);
@@ -301,17 +295,17 @@ public class EncuestaActivity extends AppCompatActivity {
         dataComponentes.close();
     }
 
-    public void setPagina(int numeroPagina, int direccion){
+    public void setPagina(int numeroPagina, int direccion) {
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         dataComponentes.close();
         int tipo = Integer.parseInt(pagina.getTIPO1());
-        if(tipo == TipoComponente.VISITAS) setPaginaScrolleable(numeroPagina,direccion);
-        else setPaginaNormal(numeroPagina,direccion);
+        if (tipo == TipoComponente.VISITAS) setPaginaScrolleable(numeroPagina, direccion);
+        else setPaginaNormal(numeroPagina, direccion);
     }
 
-    public void setPaginaScrolleable(int numeroPagina, int direccion){
+    public void setPaginaScrolleable(int numeroPagina, int direccion) {
         layoutScrolleable.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -320,34 +314,34 @@ public class EncuestaActivity extends AppCompatActivity {
         dataComponentes.open();
         dataVisitas.open();
 
-        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         String idComponente = pagina.getIDP1();
         String tipoComponente = pagina.getTIPO1();
         int layoutComponente = R.id.layout_componente_scrolleable;
-        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5,
-                R.id.layout_componente6, R.id.layout_componente7,R.id.layout_componente8,R.id.layout_componente9,R.id.layout_componente10};
+        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2, R.id.layout_componente3, R.id.layout_componente4, R.id.layout_componente5,
+                R.id.layout_componente6, R.id.layout_componente7, R.id.layout_componente8, R.id.layout_componente9, R.id.layout_componente10};
         for (int i = 0; i < layouts.length; i++) {
-            if(fragmentManager.findFragmentById(layouts[i]) != null)
+            if (fragmentManager.findFragmentById(layouts[i]) != null)
                 fragmentTransaction.detach(fragmentManager.findFragmentById(layouts[i]));
         }
-        switch (Integer.parseInt(tipoComponente)){
+        switch (Integer.parseInt(tipoComponente)) {
             case TipoComponente.VISITAS:
                 Visita visita = dataVisitas.getVisita(idComponente);
-                fragmentComponente = new VisitasFragment(EncuestaActivity.this,idEmpresa,visita);
+                fragmentComponente = new VisitasFragment(EncuestaActivity.this, idEmpresa, visita);
                 break;
         }
-        fragmentTransaction.replace(layoutComponente, fragmentComponente,idComponente);
+        fragmentTransaction.replace(layoutComponente, fragmentComponente, idComponente);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         dataComponentes.close();
         dataVisitas.close();
     }
 
-    public void setPaginaNormal(int numeroPagina, int direccion){
+    public void setPaginaNormal(int numeroPagina, int direccion) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(layoutScrolleable.getVisibility() == View.VISIBLE){
+        if (layoutScrolleable.getVisibility() == View.VISIBLE) {
             fragmentTransaction.remove(fragmentManager.findFragmentById(R.id.layout_componente_scrolleable));
             layoutScrolleable.setVisibility(View.GONE);
         }
@@ -366,66 +360,59 @@ public class EncuestaActivity extends AppCompatActivity {
         dataRadio.open();
         dataGPS.open();
 
-        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
                 pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
-        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
-                pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
-        String[] habilitado = {pagina.getPRHAB1(), pagina.getPRHAB2(), pagina.getPRHAB3(), pagina.getPRHAB4(), pagina.getPRHAB5(),
-                pagina.getPRHAB6(), pagina.getPRHAB7(), pagina.getPRHAB8(), pagina.getPRHAB9(), pagina.getPRHAB10()};
-        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2,R.id.layout_componente3,R.id.layout_componente4,R.id.layout_componente5,
-                R.id.layout_componente6, R.id.layout_componente7,R.id.layout_componente8,R.id.layout_componente9,R.id.layout_componente10};
+        String[] tipos = {pagina.getTIPO1(), pagina.getTIPO2(), pagina.getTIPO3(), pagina.getTIPO4(), pagina.getTIPO5(),
+                pagina.getTIPO6(), pagina.getTIPO7(), pagina.getTIPO8(), pagina.getTIPO9(), pagina.getTIPO10()};
+        int[] layouts = {R.id.layout_componente1, R.id.layout_componente2, R.id.layout_componente3, R.id.layout_componente4, R.id.layout_componente5,
+                R.id.layout_componente6, R.id.layout_componente7, R.id.layout_componente8, R.id.layout_componente9, R.id.layout_componente10};
         for (int i = 0; i < ids.length; i++) {
-            if(!ids[i].equals("")){
-                int tipo= Integer.parseInt(tipos[i]);
-                switch (tipo){
+            if (!ids[i].equals("")) {
+                int tipo = Integer.parseInt(tipos[i]);
+                switch (tipo) {
                     case TipoComponente.UBICACION:
                         Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
-                        UbicacionFragment ubicacionFragment = new UbicacionFragment(EncuestaActivity.this,idEmpresa,ubicacion);
-                        if(habilitado[i].equals("0")) ubicacionFragment.inhabilitar();
+                        UbicacionFragment ubicacionFragment = new UbicacionFragment(EncuestaActivity.this, idEmpresa, ubicacion);
                         fragmentComponente = ubicacionFragment;
                         break;
                     case TipoComponente.GPS:
                         GPS gps = dataGPS.getGPS(ids[i]);
-                        GPSFragment gpsFragment = new GPSFragment(EncuestaActivity.this,idEmpresa,gps);
-                        if(habilitado[i].equals("0")) gpsFragment.inhabilitar();
+                        GPSFragment gpsFragment = new GPSFragment(EncuestaActivity.this, idEmpresa, gps);
+
                         fragmentComponente = gpsFragment;
                         break;
                     case TipoComponente.FORMULARIO:
                         Formulario formulario = dataFormulario.getFormulario(ids[i]);
                         ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(ids[i]);
-                        FormularioFragment formularioFragment = new FormularioFragment(formulario,formularios,EncuestaActivity.this,idEmpresa);
-                        if(habilitado[i].equals("0")) formularioFragment.inhabilitar();
+                        FormularioFragment formularioFragment = new FormularioFragment(formulario, formularios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = formularioFragment;
                         break;
                     case TipoComponente.EDITTEXT:
                         PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
-                        EditTextFragment editTextFragment = new EditTextFragment(pEditText,spEditTexts,EncuestaActivity.this,idEmpresa);
-                        if(habilitado[i].equals("0")) editTextFragment.inhabilitar();
+                        EditTextFragment editTextFragment = new EditTextFragment(pEditText, spEditTexts, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = editTextFragment;
                         break;
                     case TipoComponente.CHECKBOX:
                         PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
                         ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
-                        CheckBoxFragment checkBoxFragment = new CheckBoxFragment(PCheckBox,spCheckBoxes,EncuestaActivity.this,idEmpresa);
-                        if(habilitado[i].equals("0")) checkBoxFragment.inhabilitar();
+                        CheckBoxFragment checkBoxFragment = new CheckBoxFragment(PCheckBox, spCheckBoxes, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = checkBoxFragment;
                         break;
                     case TipoComponente.RADIO:
                         PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
-                        RadioFragment radioFragment = new RadioFragment(PRadio,spRadios,EncuestaActivity.this,idEmpresa);
-                        if(habilitado[i].equals("0")) radioFragment.inhabilitar();
+                        RadioFragment radioFragment = new RadioFragment(PRadio, spRadios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = radioFragment;
                         break;
 //                    case TipoComponente.M2P1:
 //                        fragmentComponente = new M2P1Fragment();
 //                        break;
                 }
-                fragmentTransaction.replace(layouts[i], fragmentComponente,ids[i]);
-            }else{
-                if(fragmentManager.findFragmentById(layouts[i]) != null) {
+                fragmentTransaction.replace(layouts[i], fragmentComponente, ids[i]);
+            } else {
+                if (fragmentManager.findFragmentById(layouts[i]) != null) {
                     fragmentTransaction.remove(fragmentManager.findFragmentById(layouts[i]));
                 }
             }
@@ -441,61 +428,42 @@ public class EncuestaActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public boolean validarPagina(int numeroPagina){
+    public boolean validarPagina(int numeroPagina) {
         boolean valido = true;
         FragmentManager fragmentManager = getSupportFragmentManager();
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
                 pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
-        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
-                pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
         int indice = 0;
-        while(!ids[indice].equals("") && valido){
-            Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
-            switch (Integer.parseInt(tipos[indice])){
-                case TipoComponente.VISITAS: valido = valido && ((VisitasFragment)fragment).validarDatos();break;
-                case TipoComponente.UBICACION: valido = valido && ((UbicacionFragment)fragment).validarDatos();break;
-                case TipoComponente.GPS: valido = valido && ((GPSFragment)fragment).validarDatos();break;
-                case TipoComponente.FORMULARIO: valido = valido && ((FormularioFragment)fragment).validarDatos();break;
-                case TipoComponente.EDITTEXT: valido = valido && ((EditTextFragment)fragment).validarDatos();break;
-                case TipoComponente.CHECKBOX: valido = valido && ((CheckBoxFragment)fragment).validarDatos();break;
-                case TipoComponente.RADIO: valido = valido && ((RadioFragment)fragment).validarDatos();break;
-            }
+        while (!ids[indice].equals("") && valido) {
+            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(ids[indice]);
+            componenteFragment.validarDatos();
             indice++;
         }
         dataComponentes.close();
         return valido;
     }
 
-    public void guardarPagina(int numeroPagina){
+    public void guardarPagina(int numeroPagina) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        Pagina pagina = dataComponentes.getPagina(numeroPagina+"");
+        Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
                 pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
-        String[] tipos = {pagina.getTIPO1(),pagina.getTIPO2(),pagina.getTIPO3(),pagina.getTIPO4(),pagina.getTIPO5(),
-                pagina.getTIPO6(),pagina.getTIPO7(),pagina.getTIPO8(),pagina.getTIPO9(),pagina.getTIPO10()};
         int indice = 0;
-        while(!ids[indice].equals("")){
-            Fragment fragment = fragmentManager.findFragmentByTag(ids[indice]);
-            switch (Integer.parseInt(tipos[indice])){
-                case TipoComponente.UBICACION: ((UbicacionFragment)fragment).guardarDatos();break;
-                case TipoComponente.GPS: ((GPSFragment)fragment).guardarDatos();break;
-                case TipoComponente.FORMULARIO: ((FormularioFragment)fragment).guardarDatos();break;
-                case TipoComponente.EDITTEXT: ((EditTextFragment)fragment).guardarDatos();break;
-                case TipoComponente.CHECKBOX: ((CheckBoxFragment)fragment).guardarDatos();break;
-                case TipoComponente.RADIO: ((RadioFragment)fragment).guardarDatos();break;
-            }
+        while (!ids[indice].equals("")) {
+            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(ids[indice]);
+            componenteFragment.guardarDatos();
             indice++;
         }
         dataComponentes.close();
     }
 
-    public void ocultarTeclado(View view){
-        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+    public void ocultarTeclado(View view) {
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -544,9 +512,9 @@ public class EncuestaActivity extends AppCompatActivity {
                 Modulo m = modulos.get(groupPosition);
                 ArrayList<Pagina> paginas = dataComp.getPaginasxModulo(m.getID());
                 int numPagina = Integer.parseInt(paginas.get(childPosition).getID());
-                if(numPagina < posicionFragment)setNombreSeccion(numPagina,-1);
-                else setNombreSeccion(numPagina,1);
-                setPagina(numPagina,1);
+                if (numPagina < posicionFragment) setNombreSeccion(numPagina, -1);
+                else setNombreSeccion(numPagina, 1);
+                setPagina(numPagina, 1);
                 posicionFragment = numPagina;
                 dataComp.close();
                 return false;
@@ -558,28 +526,58 @@ public class EncuestaActivity extends AppCompatActivity {
         dataComponentes = new DataComponentes(this);
         dataComponentes.open();
         ArrayList<Modulo> modulos = dataComponentes.getAllModulos();
-        for (Modulo m : modulos){
+        for (Modulo m : modulos) {
             //pone la cabecera
             listDataHeader.add(m.getCABECERA());
             ArrayList<Pagina> paginas = dataComponentes.getPaginasxModulo(m.getID());
             List<String> subItems = new ArrayList<String>();
             //busca los subtitulos
-            for (Pagina p: paginas){
+            for (Pagina p : paginas) {
                 ArrayList<String> ids = dataComponentes.getIdsPagina(p.getID());
                 String subTitulo = "";
-                if(ids.size() == 1) subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0));
+                if (ids.size() == 1)
+                    subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0));
                 else subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0)) +
-                        " - P" + getNumPregunta(ids.get((ids.size()-1)));
+                        " - P" + getNumPregunta(ids.get((ids.size() - 1)));
                 subItems.add(subTitulo);
             }
             //agrega cabecera y subtitulos
-            listDataChild.put(listDataHeader.get(listDataHeader.size()-1), subItems);
+            listDataChild.put(listDataHeader.get(listDataHeader.size() - 1), subItems);
         }
         dataComponentes.close();
     }
 
-    public String getNumPregunta(String idP){
-        String codigo = idP.substring(idP.indexOf("P")+1);
+    public String getNumPregunta(String idP) {
+        String codigo = idP.substring(idP.indexOf("P") + 1);
         return codigo;
     }
+
+    @Override
+    public void realizarEvento(String variable, String valor, String columna) {
+        DataComponentes dataComponentes = new DataComponentes(EncuestaActivity.this);
+        dataComponentes.open();
+        ArrayList<Evento> eventos = dataComponentes.getEventos(variable, valor);
+        for (Evento evento : eventos) {
+            ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(columna, evento.getACCION());
+            dataComponentes.actualizarPagina(evento.getIDPAG(),contentValues);
+            if(componenteFragment != null){
+                if(evento.getACCION().equals("1")) componenteFragment.habilitar();
+                else componenteFragment.inhabilitar();
+            }
+        }
+        dataComponentes.close();
+    }
+
+    @Override
+    public boolean existeEvento(String variable, String valor) {
+        boolean existe = false;
+        DataComponentes dataComponentes = new DataComponentes(EncuestaActivity.this);
+        dataComponentes.open();
+        existe = dataComponentes.existeEvento(variable, valor);
+        dataComponentes.close();
+        return existe;
+    }
 }
+

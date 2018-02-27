@@ -1,6 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
+package pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos;
 
 import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 
 /**
  * Created by dmorales on 28/12/2017.

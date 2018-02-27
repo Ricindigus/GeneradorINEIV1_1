@@ -1,0 +1,10 @@
+package pe.com.ricindigus.generadorinei.interfaces;
+
+/**
+ * Created by dmorales on 26/02/2018.
+ */
+
+public interface ActividadInterfaz {
+    public void realizarEvento(String variable, String valor, String columna);
+    public boolean existeEvento(String variable, String valor);
+}

@@ -255,93 +255,8 @@ public class Pagina {
         this.IDP10 = IDP10;
     }
 
-    public String getPGHAB() {
-        return PGHAB;
-    }
 
-    public void setPGHAB(String PGHAB) {
-        this.PGHAB = PGHAB;
-    }
 
-    public String getPRHAB1() {
-        return PRHAB1;
-    }
-
-    public void setPRHAB1(String PRHAB1) {
-        this.PRHAB1 = PRHAB1;
-    }
-
-    public String getPRHAB2() {
-        return PRHAB2;
-    }
-
-    public void setPRHAB2(String PRHAB2) {
-        this.PRHAB2 = PRHAB2;
-    }
-
-    public String getPRHAB3() {
-        return PRHAB3;
-    }
-
-    public void setPRHAB3(String PRHAB3) {
-        this.PRHAB3 = PRHAB3;
-    }
-
-    public String getPRHAB4() {
-        return PRHAB4;
-    }
-
-    public void setPRHAB4(String PRHAB4) {
-        this.PRHAB4 = PRHAB4;
-    }
-
-    public String getPRHAB5() {
-        return PRHAB5;
-    }
-
-    public void setPRHAB5(String PRHAB5) {
-        this.PRHAB5 = PRHAB5;
-    }
-
-    public String getPRHAB6() {
-        return PRHAB6;
-    }
-
-    public void setPRHAB6(String PRHAB6) {
-        this.PRHAB6 = PRHAB6;
-    }
-
-    public String getPRHAB7() {
-        return PRHAB7;
-    }
-
-    public void setPRHAB7(String PRHAB7) {
-        this.PRHAB7 = PRHAB7;
-    }
-
-    public String getPRHAB8() {
-        return PRHAB8;
-    }
-
-    public void setPRHAB8(String PRHAB8) {
-        this.PRHAB8 = PRHAB8;
-    }
-
-    public String getPRHAB9() {
-        return PRHAB9;
-    }
-
-    public void setPRHAB9(String PRHAB9) {
-        this.PRHAB9 = PRHAB9;
-    }
-
-    public String getPRHAB10() {
-        return PRHAB10;
-    }
-
-    public void setPRHAB10(String PRHAB10) {
-        this.PRHAB10 = PRHAB10;
-    }
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
@@ -367,17 +282,6 @@ public class Pagina {
         contentValues.put(SQLConstantesComponente.PAGINA_TP9,TIPO9);
         contentValues.put(SQLConstantesComponente.PAGINA_IDP10,IDP10);
         contentValues.put(SQLConstantesComponente.PAGINA_TP10,TIPO10);
-        contentValues.put(SQLConstantesComponente.PAGINA_PGHAB,PGHAB);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB1,PRHAB1);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB2,PRHAB2);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB3,PRHAB3);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB4,PRHAB4);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB5,PRHAB5);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB6,PRHAB6);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB7,PRHAB7);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB8,PRHAB8);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB9,PRHAB9);
-        contentValues.put(SQLConstantesComponente.PAGINA_PRHAB10,PRHAB10);
         return contentValues;
     }
 }

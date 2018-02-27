@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
+import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -55,7 +57,9 @@ public class DataComponentes {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPaginas);
     }
 
-
+    public long getNumeroItemsEventos(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaEventos);
+    }
 
 
 
@@ -64,6 +68,7 @@ public class DataComponentes {
         ContentValues contentValues = encuesta.toValues();
         sqLiteDatabase.insert(SQLConstantesComponente.tablaEncuestas,null,contentValues);
     }
+
 
     public void InsertarEncuestas(ArrayList<Encuesta> encuestas){
         long items = getNumeroItemsEncuesta();
@@ -116,6 +121,10 @@ public class DataComponentes {
             }
         }
     }
+    public void actualizarPagina(String idPagina, ContentValues contentValues){
+        String[] whereArgs = new String[]{idPagina};
+        sqLiteDatabase.update(SQLConstantesComponente.tablaPaginas,contentValues,SQLConstantesComponente.WHERE_CLAUSE_ID,whereArgs);
+    }
     public Pagina getPagina(String idPagina){
         Pagina pagina = new Pagina();
         String[] whereArgs = new String[]{idPagina};
@@ -147,17 +156,6 @@ public class DataComponentes {
                 pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
                 pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
                 pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
-                pagina.setPGHAB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PGHAB)));
-                pagina.setPRHAB1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB1)));
-                pagina.setPRHAB2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB2)));
-                pagina.setPRHAB3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB3)));
-                pagina.setPRHAB4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB4)));
-                pagina.setPRHAB5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB5)));
-                pagina.setPRHAB6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB6)));
-                pagina.setPRHAB7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB7)));
-                pagina.setPRHAB8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB8)));
-                pagina.setPRHAB9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB9)));
-                pagina.setPRHAB10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB10)));
             }
         }finally{
             if(cursor != null) cursor.close();
@@ -196,17 +194,6 @@ public class DataComponentes {
                 pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
                 pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
                 pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
-                pagina.setPGHAB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PGHAB)));
-                pagina.setPRHAB1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB1)));
-                pagina.setPRHAB2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB2)));
-                pagina.setPRHAB3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB3)));
-                pagina.setPRHAB4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB4)));
-                pagina.setPRHAB5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB5)));
-                pagina.setPRHAB6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB6)));
-                pagina.setPRHAB7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB7)));
-                pagina.setPRHAB8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB8)));
-                pagina.setPRHAB9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB9)));
-                pagina.setPRHAB10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_PRHAB10)));
                 paginas.add(pagina);
             }
         }finally{
@@ -347,4 +334,65 @@ public class DataComponentes {
         }
         return opcionSpinners;
     }
+    //FIN OPCIONES
+
+    //INICIO EVENTOS
+    public void insertarEvento(Evento evento){
+        ContentValues contentValues = evento.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaEventos,null,contentValues);
+    }
+
+    public void InsertarEventos(ArrayList<Evento> eventos){
+        long items = getNumeroItemsEventos();
+        if(items == 0){
+            for (Evento evento : eventos) {
+                try {
+                    insertarEvento(evento);
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public ArrayList<Evento> getEventos(String variable, String valor) {
+        ArrayList<Evento> eventos = new ArrayList<Evento>();
+        String[] whereArgs = new String[]{variable, valor};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaEventos,
+                    SQLConstantesComponente.ALL_COLUMNS_EVENTOS, SQLConstantesComponente.WHERE_CLAUSE_VAR + " AND " + SQLConstantesComponente.WHERE_CLAUSE_VAL
+                    , whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                Evento evento = new Evento();
+                evento.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ID)));
+                evento.setVAR(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAR)));
+                evento.setVAL(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAL)));
+                evento.setIDPREG(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREG)));
+                evento.setIDPAG(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAG)));
+                evento.setIDOCU(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDOCU)));
+                evento.setACCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+                eventos.add(evento);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return eventos;
+    }
+
+    public boolean existeEvento(String variable, String valor){
+        boolean encontrado = false;
+        String[] whereArgs = new String[]{variable, valor};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaEventos,
+                    SQLConstantesComponente.ALL_COLUMNS_EVENTOS, SQLConstantesComponente.WHERE_CLAUSE_VAR + " AND " + SQLConstantesComponente.WHERE_CLAUSE_VAL
+                    , whereArgs, null, null, null);
+            if(cursor.getCount() > 0) encontrado = true;
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        return encontrado;
+    }
+    //FIN EVENTOS
 }

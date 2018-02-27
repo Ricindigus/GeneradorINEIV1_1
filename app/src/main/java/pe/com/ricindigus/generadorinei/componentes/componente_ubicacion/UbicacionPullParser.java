@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
+
 
 /**
  * Created by dmorales on 30/01/2018.

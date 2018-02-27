@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -38,12 +37,15 @@ import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
+import pe.com.ricindigus.generadorinei.interfaces.ComponenteInterfaz;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener,
+public class GPSFragment extends ComponenteFragment implements GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks,
         LocationListener {
 
@@ -136,6 +138,12 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
         if(!valido) mostrarMensaje("DEBE CAPTURAR LAS COORDENADAS GPS");
         return valido;
     }
+
+    @Override
+    public void habilitar() {
+        rootView.setVisibility(View.VISIBLE);
+    }
+
     public void guardarDatos(){
         DataTablas data = new DataTablas(contexto);
         data.open();
@@ -168,6 +176,14 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
     public void inhabilitar(){
         rootView.setVisibility(View.GONE);
     }
+
+    @Override
+    public boolean estaHabilitado(){
+        boolean habilitado = false;
+        if(rootView.getVisibility() == View.VISIBLE) habilitado = true;
+        return habilitado;
+    }
+
     public String getNumModulo(){
         return gps.getMODULO();
     }
@@ -324,20 +340,4 @@ public class GPSFragment extends Fragment implements GoogleApiClient.OnConnectio
         super.onStop();
     }
 
-    //    @Override
-//    public void onPause() {
-//        super.onPause();
-//        apiClient.stopAutoManage(getActivity());
-//        apiClient.disconnect();
-//    }
-
-//    public void activarApiClient(){
-//        if (apiClient == null){
-//            apiClient = new GoogleApiClient.Builder(getActivity().getApplicationContext())
-//                    .enableAutoManage(getActivity(), this)
-//                    .addConnectionCallbacks(this)
-//                    .addApi(LocationServices.API)
-//                    .build();
-//        }
-//    }
 }

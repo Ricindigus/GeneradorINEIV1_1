@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.pojos.Usuario;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 
 /**
  * Created by dmorales on 07/02/2018.

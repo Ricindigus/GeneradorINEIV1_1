@@ -1,6 +1,8 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_gps;
+package pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos;
 
 import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
 
 /**
  * Created by dmorales on 29/01/2018.

@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +20,8 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
@@ -28,7 +29,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTabla
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UbicacionFragment extends Fragment {
+public class UbicacionFragment extends ComponenteFragment {
 
     private View rootView;
     private Spinner spDepartamentos;
@@ -262,6 +263,11 @@ public class UbicacionFragment extends Fragment {
 
     public void inhabilitar(){
         rootView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void habilitar() {
+        rootView.setVisibility(View.VISIBLE);
     }
 
     public boolean estaHabilitado(){

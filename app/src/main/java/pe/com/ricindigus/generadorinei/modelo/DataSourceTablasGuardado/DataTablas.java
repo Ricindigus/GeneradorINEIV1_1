@@ -4,17 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.SQLVisitas;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
-import pe.com.ricindigus.generadorinei.pojos.Modulo;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
 
 /**
  * Created by dmorales on 08/01/2018.

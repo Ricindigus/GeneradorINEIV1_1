@@ -1,20 +1,14 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion;
+package pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
-import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 
 /**
  * Created by dmorales on 29/01/2018.

@@ -2,6 +2,7 @@ package pe.com.ricindigus.generadorinei.componentes.componente_radio;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,12 +27,14 @@ import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
+import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
+import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RadioFragment extends Fragment {
+public class RadioFragment extends ComponenteFragment{
 
     private String idEmpresa;
     private PRadio pRadio;
@@ -90,6 +93,7 @@ public class RadioFragment extends Fragment {
         cargarDatos();
     }
 
+    @Override
     public void llenarVista(){
         txtPregunta.setText(pRadio.getNUMERO() + ". " + pRadio.getPREGUNTA().toUpperCase());
         for (int i = 0; i <subpreguntas.size() ; i++) {
@@ -118,6 +122,10 @@ public class RadioFragment extends Fragment {
             radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String valor = "";
+                    if(isChecked) valor = "1";
+                    else valor = "0";
+
                     if(!spRadio.getVARDESC().equals("")){
                         if(isChecked){
                             editText.setEnabled(true);
@@ -128,14 +136,17 @@ public class RadioFragment extends Fragment {
                             editText.setBackgroundResource(R.drawable.edittext_disabled);
                         }
                     }
-                    if(existeEvento()){
-                        eventoComponente();
-                    }
+//                    ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
+//                    if(actividadInterfaz.existeEvento(spRadio.getVARIABLE(),valor)){
+//                        actividadInterfaz.realizarEvento(spRadio.getVARIABLE(),valor,"PRHAB"+pos);
+//                    }
+
                 }
             });
         }
     }
 
+    @Override
     public void cargarDatos(){
         DataTablas data = new DataTablas(context);
         data.open();
@@ -159,6 +170,7 @@ public class RadioFragment extends Fragment {
         data.close();
     }
 
+    @Override
     public void guardarDatos(){
         DataTablas data = new DataTablas(context);
         data.open();
@@ -174,6 +186,7 @@ public class RadioFragment extends Fragment {
         data.close();
     }
 
+    @Override
     public boolean validarDatos(){
         boolean correcto = true;
         String mensaje = "";
@@ -199,11 +212,18 @@ public class RadioFragment extends Fragment {
         return correcto;
     }
 
+    @Override
     public void inhabilitar(){
         radioGroup.clearCheck();
         rootView.setVisibility(View.GONE);
     }
 
+    @Override
+    public void habilitar() {
+        rootView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public boolean estaHabilitado(){
         boolean habilitado = false;
         if(rootView.getVisibility() == View.VISIBLE) habilitado = true;
@@ -222,18 +242,14 @@ public class RadioFragment extends Fragment {
         alertDialog.show();
     }
 
+    @Override
     public String getNumModulo(){
         return pRadio.getMODULO();
     }
+
     public void ocultarTeclado(View view){
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-    public void eventoComponente(){
 
-    }
-    public boolean existeEvento(){
-        boolean existe = false;
-        return existe;
-    }
 }

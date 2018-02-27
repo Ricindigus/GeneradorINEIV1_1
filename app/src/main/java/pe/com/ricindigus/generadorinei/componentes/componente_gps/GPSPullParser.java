@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 
 
 /**

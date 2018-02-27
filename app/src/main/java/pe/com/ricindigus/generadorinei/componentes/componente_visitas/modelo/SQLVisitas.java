@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_visitas;
+package pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo;
 
 /**
  * Created by RICARDO on 1/01/2018.
