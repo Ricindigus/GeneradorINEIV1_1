@@ -15,6 +15,8 @@ public class SQLConstantes {
     public static final String tablaProvincias = "provincias";
     public static final String tablaDistritos = "distritos";
     public static final String tablaTablas = "tablas";
+    public static final String tablaPaginador = "paginador";
+    public static final String tablaControlador = "controlador";
 
 
     //COLUMNAS USUARIOS

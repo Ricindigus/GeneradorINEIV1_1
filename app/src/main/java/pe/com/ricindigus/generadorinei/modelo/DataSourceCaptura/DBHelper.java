@@ -4,14 +4,19 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.parser.ControladorPullParser;
+
 /**
  * Created by dmorales on 13/12/2017.
  */
 
 public class DBHelper extends SQLiteOpenHelper{
     public static final int DB_VERSION = 1;
+    private Context contexto;
     public DBHelper(Context context) {
         super(context, SQLConstantes.DB, null, DB_VERSION);
+        this.contexto = context;
     }
 
     @Override
@@ -19,9 +24,20 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MARCO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_UBIGEOS);
-
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_TABLAS);
-
+        ControladorPullParser controladorPullParser = new ControladorPullParser();
+        String crearControlador = controladorPullParser.parseXML(contexto);
+        sqLiteDatabase.execSQL(crearControlador);
+        DataComponentes dataComponentes = new DataComponentes(contexto);
+        dataComponentes.open();
+        long nPaginas = dataComponentes.getNumeroItemsPaginas();
+        String crearControladorPaginas = "CREATE TABLE " + SQLConstantes.tablaPaginador+ "(" +
+                "ID_EMPRESA" + " TEXT PRIMARY KEY";
+        for (int i = 1; i <= nPaginas; i++) {
+            crearControladorPaginas = crearControladorPaginas + "," + "p"+ i + " TEXT";
+        }
+        crearControladorPaginas = crearControladorPaginas + ");";
+        sqLiteDatabase.execSQL(crearControladorPaginas);
     }
 
     @Override
@@ -30,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_UBIGEO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_TABLA);
+        sqLiteDatabase.execSQL("DROP TABLE " + SQLConstantes.tablaControlador);
+        sqLiteDatabase.execSQL("DROP TABLE " + SQLConstantes.tablaPaginador);
         onCreate(sqLiteDatabase);
     }
 }

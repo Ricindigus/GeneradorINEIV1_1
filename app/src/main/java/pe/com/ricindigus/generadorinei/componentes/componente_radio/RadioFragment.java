@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
@@ -53,7 +55,7 @@ public class RadioFragment extends ComponenteFragment{
     private int[] idEdits = {R.id.radio_descripcion1, R.id.radio_descripcion2, R.id.radio_descripcion3, R.id.radio_descripcion4, R.id.radio_descripcion5,
             R.id.radio_descripcion6, R.id.radio_descripcion7, R.id.radio_descripcion8, R.id.radio_descripcion9, R.id.radio_descripcion10, R.id.radio_descripcion11,
             R.id.radio_descripcion12, R.id.radio_descripcion13, R.id.radio_descripcion14, R.id.radio_descripcion15};
-
+    private boolean cargandoDatos = false;
     public RadioFragment() {
         // Required empty public constructor
     }
@@ -97,11 +99,11 @@ public class RadioFragment extends ComponenteFragment{
     public void llenarVista(){
         txtPregunta.setText(pRadio.getNUMERO() + ". " + pRadio.getPREGUNTA().toUpperCase());
         for (int i = 0; i <subpreguntas.size() ; i++) {
-            final int pos = i;
+            final SPRadio spRadio = subpreguntas.get(i);
             final RadioButton radioButton = radioButtons[i];
             final EditText editText = editTexts[i];
             radioButton.setVisibility(View.VISIBLE);
-            final SPRadio spRadio = subpreguntas.get(i);
+
             radioButton.setText(spRadio.getSUBPREGUNTA());
             if(!spRadio.getVARDESC().equals("")){
                 editText.setVisibility(View.VISIBLE);
@@ -119,13 +121,11 @@ public class RadioFragment extends ComponenteFragment{
                     }
                 });
             }
+
+
             radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    String valor = "";
-                    if(isChecked) valor = "1";
-                    else valor = "0";
-
                     if(!spRadio.getVARDESC().equals("")){
                         if(isChecked){
                             editText.setEnabled(true);
@@ -136,38 +136,54 @@ public class RadioFragment extends ComponenteFragment{
                             editText.setBackgroundResource(R.drawable.edittext_disabled);
                         }
                     }
-//                    ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
-//                    if(actividadInterfaz.existeEvento(spRadio.getVARIABLE(),valor)){
-//                        actividadInterfaz.realizarEvento(spRadio.getVARIABLE(),valor,"PRHAB"+pos);
-//                    }
-
                 }
             });
         }
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = group.findViewById(checkedId);
+                int posicion = group.indexOfChild(radioButton)/2;
+                Toast.makeText(context, ""+posicion, Toast.LENGTH_SHORT).show();
+                ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
+                if(actividadInterfaz.existeEvento(pRadio.getID(),posicion + "")){
+                    actividadInterfaz.realizarEvento(pRadio.getID(),posicion + "",cargandoDatos);
+                }
+            }
+        });
     }
 
     @Override
     public void cargarDatos(){
-        DataTablas data = new DataTablas(context);
-        data.open();
-        String valorCheck;
-        String valorEspecifique;
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
-            valorCheck = data.getValor(getNumModulo(),subpreguntas.get(1).getVARIABLE(),idEmpresa);
-            if(valorCheck != null ){
-                if (!valorCheck.equals("")){
-                    int childPos = Integer.parseInt(valorCheck);
-                    if(childPos != -1) ((RadioButton) radioGroup.getChildAt(childPos)).setChecked(true);
+        Data d = new Data(context);
+        d.open();
+        if(d.preguntaHabilitada(idEmpresa,pRadio.getID())){
+            cargandoDatos = true;
+            DataTablas data = new DataTablas(context);
+            data.open();
+            String valorCheck;
+            String valorEspecifique;
+            if(data.existenDatos(getNumModulo(),idEmpresa)){
+                valorCheck = data.getValor(getNumModulo(),subpreguntas.get(1).getVARIABLE(),idEmpresa);
+                if(valorCheck != null ){
+                    if (!valorCheck.equals("")){
+                        int childPos = Integer.parseInt(valorCheck);
+                        if(childPos != -1) ((RadioButton) radioGroup.getChildAt(childPos*2)).setChecked(true);
+                    }
+                }
+                for (int i = 0; i < subpreguntas.size() ; i++) {
+                    if(!subpreguntas.get(i).getVARDESC().equals("")){
+                        valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
+                        if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
+                    }
                 }
             }
-            for (int i = 0; i < subpreguntas.size() ; i++) {
-                if(!subpreguntas.get(i).getVARDESC().equals("")){
-                    valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
-                    if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
-                }
-            }
+            data.close();
+            cargandoDatos = false;
+        }else{
+            inhabilitar();
         }
-        data.close();
+
     }
 
     @Override
@@ -177,7 +193,7 @@ public class RadioFragment extends ComponenteFragment{
         ContentValues contentValues = new ContentValues();
         contentValues.put("ID_EMPRESA",idEmpresa);
         if(radioGroup.getCheckedRadioButtonId() == -1) contentValues.put(subpreguntas.get(1).getVARIABLE(),"-1");
-        else contentValues.put(subpreguntas.get(1).getVARIABLE(),radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId())));
+        else contentValues.put(subpreguntas.get(1).getVARIABLE(),radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId()))/2);
         for (int i = 0; i < subpreguntas.size(); i++) {
             if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
         }

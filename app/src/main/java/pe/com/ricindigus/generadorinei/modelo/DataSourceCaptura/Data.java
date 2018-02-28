@@ -317,4 +317,55 @@ public class Data {
 
     //---------------------------FIN TABLA--------------------------------------------------------
 
+    //CONTROLADOR DE PREGUNTAS
+    public boolean preguntaHabilitada(String idEmpresa, String idPregunta){
+        boolean habilitado = true;
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, null,
+                    SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                String valor = cursor.getString(cursor.getColumnIndex(idPregunta));
+                if(valor != null){
+                    if(valor.equals("0")) habilitado = false;
+                }
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return habilitado;
+    }
+
+
+    public boolean paginaHabilitada(String idEmpresa, String idPagina){
+        boolean habilitado = true;
+        String[] whereArgs = new String[]{idEmpresa};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query("controlador", new String[]{idPagina},
+                    SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                String valor = cursor.getString(cursor.getColumnIndex(idPagina));
+                if(valor != null){
+                    if(valor.equals("0")) habilitado = false;
+                }
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return habilitado;
+    }
+
+    public void actualizarControlador(String idEmpresa, ContentValues contentValues){
+        String[] whereArgs = new String[]{idEmpresa};
+        if(contentValues != null) sqLiteDatabase.update(SQLConstantes.tablaControlador, contentValues, SQLConstantes.WHERE_CLAUSE_ID_EMPRESA, whereArgs);
+    }
+
+    public void actualizarPaginador(String idEmpresa, ContentValues contentValues){
+        String[] whereArgs = new String[]{idEmpresa};
+        if(contentValues != null) sqLiteDatabase.update(SQLConstantes.tablaPaginador, contentValues, SQLConstantes.WHERE_CLAUSE_ID_EMPRESA, whereArgs);
+    }
 }

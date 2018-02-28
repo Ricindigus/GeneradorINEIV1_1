@@ -121,10 +121,6 @@ public class DataComponentes {
             }
         }
     }
-    public void actualizarPagina(String idPagina, ContentValues contentValues){
-        String[] whereArgs = new String[]{idPagina};
-        sqLiteDatabase.update(SQLConstantesComponente.tablaPaginas,contentValues,SQLConstantesComponente.WHERE_CLAUSE_ID,whereArgs);
-    }
     public Pagina getPagina(String idPagina){
         Pagina pagina = new Pagina();
         String[] whereArgs = new String[]{idPagina};

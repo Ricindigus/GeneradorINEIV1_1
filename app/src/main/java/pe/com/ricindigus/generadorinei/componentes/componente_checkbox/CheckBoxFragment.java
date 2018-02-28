@@ -151,6 +151,7 @@ public class CheckBoxFragment extends ComponenteFragment {
 
     @Override
     public void cargarDatos(){
+
         DataTablas data = new DataTablas(context);
         data.open();
         String valorCheck;

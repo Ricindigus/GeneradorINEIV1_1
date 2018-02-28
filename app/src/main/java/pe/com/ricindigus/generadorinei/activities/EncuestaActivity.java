@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,6 +92,10 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private DataCheckBox dataCheckBox;
     private DataRadio dataRadio;
     private DataGPS dataGPS;
+    private ContentValues contentPaginador;
+    private ContentValues contentControlador;
+
+
 
     private Toolbar toolbar;
     private LinearLayout lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5,
@@ -159,13 +164,21 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 ocultarTeclado(btnSiguiente);
                 if (validarPagina(posicionFragment)) {
                     guardarPagina(posicionFragment);
+                    data = new Data(EncuestaActivity.this);
+                    data.open();
+                    data.actualizarControlador(idEmpresa, contentControlador);
+                    data.actualizarPaginador(idEmpresa, contentPaginador);
+                    contentControlador = null;
+                    contentPaginador = null;
                     if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
                     else posicionFragment = 1;
                     setNombreSeccion(posicionFragment, 1);
                     setPagina(posicionFragment, 1);
+                    data.close();
                 }
             }
         });
+
         setNombreSeccion(1, 1);
         setPagina(1, 1);
     }
@@ -439,7 +452,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         int indice = 0;
         while (!ids[indice].equals("") && valido) {
             ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(ids[indice]);
-            componenteFragment.validarDatos();
+            valido = componenteFragment.validarDatos();
             indice++;
         }
         dataComponentes.close();
@@ -553,21 +566,37 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     }
 
     @Override
-    public void realizarEvento(String variable, String valor, String columna) {
+    public void realizarEvento(String variable, String valor, boolean cargandoDatos) {
         DataComponentes dataComponentes = new DataComponentes(EncuestaActivity.this);
         dataComponentes.open();
+        Data dat = new Data(this);
+        dat.open();
         ArrayList<Evento> eventos = dataComponentes.getEventos(variable, valor);
-        for (Evento evento : eventos) {
-            ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(columna, evento.getACCION());
-            dataComponentes.actualizarPagina(evento.getIDPAG(),contentValues);
-            if(componenteFragment != null){
-                if(evento.getACCION().equals("1")) componenteFragment.habilitar();
-                else componenteFragment.inhabilitar();
+        //controlador
+        if(!cargandoDatos){
+            for (Evento evento : eventos) {
+                if(contentControlador == null) contentControlador = new ContentValues();
+                contentControlador.put(evento.getIDOCU(), evento.getACCION());
+                ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+                if(componenteFragment != null){
+                    if(evento.getACCION().equals("1")) componenteFragment.habilitar();
+                    else componenteFragment.inhabilitar();
+                }
             }
         }
+        //paginador
+        String idPag = eventos.get(0).getIDPAG();
+        ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
+        boolean deshabilitarPagina = true;
+        for (String idPregunta : ids){
+            if(dat.preguntaHabilitada(idEmpresa,idPregunta)) deshabilitarPagina = false;
+        }
+        if(deshabilitarPagina){
+            if(contentPaginador == null) contentPaginador = new ContentValues();
+            contentPaginador.put(idPag, "0");
+        }
         dataComponentes.close();
+        dat.close();
     }
 
     @Override
@@ -579,5 +608,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes.close();
         return existe;
     }
+
+
 }
 

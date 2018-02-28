@@ -40,6 +40,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visi
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
@@ -87,14 +88,15 @@ public class SplashActivity extends AppCompatActivity {
 
 
     Data data;
+    DataComponentes dataComponentes;
     DataVisitas dataVisitas;
     DataUbicacion dataUbicacion;
     DataGPS dataGPS;
     DataFormulario dataFormulario;
-    DataComponentes dataComponentes;
     DataEditText dataEditText;
     DataCheckBox dataCheckBox;
     DataRadio dataRadio;
+    DataTablas dataTablas;
 
 
     int maximo = 0;
@@ -182,10 +184,10 @@ public class SplashActivity extends AppCompatActivity {
             String mensaje = "";
             String mensaje1 = "";
             int i = 1;
-            data = new Data(getApplicationContext());
-            data.open();
             dataComponentes = new DataComponentes(getApplicationContext());
             dataComponentes.open();
+            data = new Data(getApplicationContext());
+            data.open();
             dataVisitas = new DataVisitas(getApplicationContext());
             dataVisitas.open();
             dataUbicacion = new DataUbicacion(getApplicationContext());
@@ -200,6 +202,9 @@ public class SplashActivity extends AppCompatActivity {
             dataCheckBox.open();
             dataRadio = new DataRadio(getApplicationContext());
             dataRadio.open();
+            dataTablas = new DataTablas(getApplicationContext());
+            dataTablas.open();
+
             long items = data.getNumeroItemsMarco();
             if(items == 0){
                 for (Marco marco : marcos) {
@@ -390,6 +395,7 @@ public class SplashActivity extends AppCompatActivity {
             dataEditText.close();
             dataCheckBox.close();
             dataRadio.close();
+            dataTablas.close();
             return mensaje;
         }
 

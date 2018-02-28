@@ -5,6 +5,6 @@ package pe.com.ricindigus.generadorinei.interfaces;
  */
 
 public interface ActividadInterfaz {
-    public void realizarEvento(String variable, String valor, String columna);
+    public void realizarEvento(String variable, String valor, boolean cargandoDatos);
     public boolean existeEvento(String variable, String valor);
 }
