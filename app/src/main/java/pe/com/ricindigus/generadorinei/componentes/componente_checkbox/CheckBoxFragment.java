@@ -24,6 +24,8 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
+import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
@@ -46,6 +48,7 @@ public class CheckBoxFragment extends ComponenteFragment {
     int[] idLinear = {R.id.checkbox_sp1, R.id.checkbox_sp2, R.id.checkbox_sp3, R.id.checkbox_sp4, R.id.checkbox_sp5, R.id.checkbox_sp6, R.id.checkbox_sp7,
             R.id.checkbox_sp8, R.id.checkbox_sp9, R.id.checkbox_sp10, R.id.checkbox_sp11, R.id.checkbox_sp12, R.id.checkbox_sp13, R.id.checkbox_sp14,
             R.id.checkbox_sp15, R.id.checkbox_sp16, R.id.checkbox_sp17, R.id.checkbox_sp18, R.id.checkbox_sp19, R.id.checkbox_sp20};
+    private boolean cargandoDatos = false;
 
     public CheckBoxFragment() {
         // Required empty public constructor
@@ -144,6 +147,13 @@ public class CheckBoxFragment extends ComponenteFragment {
                         }
                     }
                     //AQUI IRAN LOS EVENTOS DE FLUJOS
+                    String valor = "";
+                    if (isChecked) valor = "1";
+                    else valor = "0";
+                    ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
+                    if(actividadInterfaz.existeEvento(spCheckBox.getVARIABLE(),valor)){
+                        actividadInterfaz.realizarEvento(spCheckBox.getVARIABLE(),valor,cargandoDatos);
+                    }
                 }
             });
         }
@@ -151,27 +161,35 @@ public class CheckBoxFragment extends ComponenteFragment {
 
     @Override
     public void cargarDatos(){
-
-        DataTablas data = new DataTablas(context);
-        data.open();
-        String valorCheck;
-        String valorEspecifique;
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
-            for (int i = 0; i < subpreguntas.size() ; i++) {
-                valorCheck = data.getValor(getNumModulo(),subpreguntas.get(i).getVARIABLE(),idEmpresa);
-                if(valorCheck != null){
-                    if (valorCheck.equals("1")){
-                        checkBoxes[i].setChecked(true);
-                        if(!subpreguntas.get(i).getVARDESC().equals("")){
-                            valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
-                            if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
+        Data d = new Data(context);
+        d.open();
+        if(d.getNumeroControladores(idEmpresa,pCheckBox.getID()) == 0){
+            cargandoDatos = true;
+            DataTablas data = new DataTablas(context);
+            data.open();
+            String valorCheck;
+            String valorEspecifique;
+            if(data.existenDatos(getNumModulo(),idEmpresa)){
+                for (int i = 0; i < subpreguntas.size() ; i++) {
+                    valorCheck = data.getValor(getNumModulo(),subpreguntas.get(i).getVARIABLE(),idEmpresa);
+                    if(valorCheck != null){
+                        if (valorCheck.equals("1")){
+                            checkBoxes[i].setChecked(true);
+                            if(!subpreguntas.get(i).getVARDESC().equals("")){
+                                valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
+                                if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
+                            }
                         }
-                    }
 //                    if (valorCheck.equals("0")) checkBoxes[i].setChecked(false);
+                    }
                 }
             }
+            data.close();
+            cargandoDatos = false;
+        }else{
+            inhabilitar();
         }
-        data.close();
+
     }
 
     @Override

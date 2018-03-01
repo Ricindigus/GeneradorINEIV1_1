@@ -1,5 +1,6 @@
 package pe.com.ricindigus.generadorinei.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
@@ -39,6 +40,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.Dat
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
@@ -205,8 +207,14 @@ public class SplashActivity extends AppCompatActivity {
             dataTablas = new DataTablas(getApplicationContext());
             dataTablas.open();
 
+
             long items = data.getNumeroItemsMarco();
             if(items == 0){
+
+//                String[] columnas = data.getNombreColumnas(SQLConstantes.tablaControlador);
+//                ContentValues contentValues = new ContentValues();
+//                for (String c : columnas) contentValues.put(c,"");
+
                 for (Marco marco : marcos) {
                     try {
                         data.insertarMarco(marco);
@@ -378,6 +386,15 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
+//                for (Marco marco : marcos) {
+//                    try {
+//                        data.insertarControlador(marco.getID(),contentValues);
+//                    }catch (SQLiteException e){
+//                        e.printStackTrace();
+//                    }
+//                    publishProgress(i,(int)Math.floor(i/carga));
+//                    i++;
+//                }
                 mensaje = "LISTO, BIENVENIDO";
             }else{
                 try {
@@ -407,7 +424,7 @@ public class SplashActivity extends AppCompatActivity {
             if(values[0] < marcos.size()) texto = "CARGANDO MARCO " + contador +"%";
             if(values[0] > marcos.size() && values[0] < marcos.size()+usuarios.size()) texto = "CARGANDO USUARIOS " + contador +"%";
             if(values[0] > marcos.size()+usuarios.size() && values[0] < marcos.size()+usuarios.size()+ ubigeos.size()) texto = "CARGANDO UBIGEO " + contador +"%";
-            if(values[0] > marcos.size()+usuarios.size() + ubigeos.size() && values[0] < maximo) texto = "CARGANDO ENCUESTA " + contador +"%";
+            if(values[0] > marcos.size() +usuarios.size() + ubigeos.size() && values[0] < maximo) texto = "CARGANDO ENCUESTA " + contador +"%";
             txtMensaje.setText(texto);
             progressBar.setProgress(values[0]);
             progressBar1.setProgress(values[0]);

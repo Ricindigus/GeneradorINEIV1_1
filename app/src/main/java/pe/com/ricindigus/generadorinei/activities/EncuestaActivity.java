@@ -65,6 +65,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitasFra
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
+import pe.com.ricindigus.generadorinei.pojos.Controlador;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -166,9 +167,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                     guardarPagina(posicionFragment);
                     data = new Data(EncuestaActivity.this);
                     data.open();
-                    data.actualizarControlador(idEmpresa, contentControlador);
                     data.actualizarPaginador(idEmpresa, contentPaginador);
-                    contentControlador = null;
                     contentPaginador = null;
                     if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
                     else posicionFragment = 1;
@@ -575,12 +574,23 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         //controlador
         if(!cargandoDatos){
             for (Evento evento : eventos) {
-                if(contentControlador == null) contentControlador = new ContentValues();
-                contentControlador.put(evento.getIDOCU(), evento.getACCION());
+//                if(contentControlador == null) contentControlador = new ContentValues();
+//                contentControlador.put(evento.getIDOCU(), evento.getACCION());
+//                //validar antes de realizar evento
                 ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
                 if(componenteFragment != null){
-                    if(evento.getACCION().equals("1")) componenteFragment.habilitar();
-                    else componenteFragment.inhabilitar();
+                    if(evento.getACCION().equals("1")) {
+                        String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
+                        if(dat.existeControlador(idControlador)) dat.eliminarControlador(idControlador);
+                        if (dat.getNumeroControladores(idEmpresa,evento.getIDOCU()) == 0){
+                            componenteFragment.habilitar();
+                        }
+                    }
+                    else {
+                        String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
+                        dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDOCU(),evento.getVAR()));
+                        componenteFragment.inhabilitar();
+                    }
                 }
             }
         }
@@ -589,11 +599,11 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
         boolean deshabilitarPagina = true;
         for (String idPregunta : ids){
-            if(dat.preguntaHabilitada(idEmpresa,idPregunta)) deshabilitarPagina = false;
+            if(dat.getNumeroControladores(idEmpresa,idPregunta) == 0) deshabilitarPagina = false;
         }
         if(deshabilitarPagina){
             if(contentPaginador == null) contentPaginador = new ContentValues();
-            contentPaginador.put(idPag, "0");
+            contentPaginador.put("p" + idPag, "0");
         }
         dataComponentes.close();
         dat.close();

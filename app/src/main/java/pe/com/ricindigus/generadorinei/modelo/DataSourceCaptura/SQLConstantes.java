@@ -18,6 +18,13 @@ public class SQLConstantes {
     public static final String tablaPaginador = "paginador";
     public static final String tablaControlador = "controlador";
 
+    //COLUMNAS CONTROLADOR
+    public static final String CONTROLADOR_ID = "ID";
+    public static final String CONTROLADOR_ID_EMPRESA = "ID_EMPRESA";
+    public static final String CONTROLADOR_ID_PREGUNTA = "ID_PREGUNTA";
+    public static final String CONTROLADOR_VARIABLE = "VARIABLE";
+
+
 
     //COLUMNAS USUARIOS
     public static final String USUARIO_ID = "ID";
@@ -65,6 +72,13 @@ public class SQLConstantes {
     public static final String TABLA_NOMBRE = "NOMBRE";
     public static final String TABLA_TIPO = "TIPO";
 
+    public static final String SQL_CREATE_TABLA_CONTROLADOR =
+            "CREATE TABLE " + tablaControlador + "(" +
+                    CONTROLADOR_ID + " TEXT PRIMARY KEY," +
+                    CONTROLADOR_ID_EMPRESA + " TEXT," +
+                    CONTROLADOR_ID_PREGUNTA + " TEXT," +
+                    CONTROLADOR_VARIABLE + " TEXT" + ");"
+            ;
 
     public static final String SQL_CREATE_TABLA_USUARIOS =
             "CREATE TABLE " + tableUsuarios + "(" +
@@ -123,6 +137,7 @@ public class SQLConstantes {
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_UBIGEO = "ID_UBI=?";
     public static final String WHERE_CLAUSE_ID_EMPRESA = "ID_EMPRESA=?";
+    public static final String WHERE_CLAUSE_ID_PREGUNTA = "ID_PREGUNTA=?";
     public static final String WHERE_CLAUSE_ID_OPERADOR = "OPERADOR=?";
     public static final String WHERE_CLAUSE_ID_JEFE = "JEFE=?";
     public static final String WHERE_CLAUSE_ID_OBSERVADOR = "OBSERVADOR=?";
@@ -135,12 +150,20 @@ public class SQLConstantes {
     public static final String SQL_DELETE_UBIGEO = "DROP TABLE " + tableUbigeo;
     public static final String SQL_DELETE_MARCO = "DROP TABLE " + tableMarco;
     public static final String SQL_DELETE_TABLA = "DROP TABLE " + tablaTablas;
+    public static final String SQL_DELETE_CONTROLADOR = "DROP TABLE " + tablaControlador;
+    public static final String SQL_DELETE_PAGINADOR = "DROP TABLE " + tablaPaginador;
+
+
 
 
 
     //TRAER COLUMNAS
     public static final String[] ALL_COLUMNS_USUARIOS = {
             USUARIO_ID, USUARIO_PASSWORD, USUARIO_PERMISO
+    };
+
+    public static final String[] ALL_COLUMNS_CONTROLADOR = {
+            CONTROLADOR_ID,CONTROLADOR_ID_EMPRESA, CONTROLADOR_ID_PREGUNTA, CONTROLADOR_VARIABLE
     };
     public static final String[] ALL_COLUMNS_UBIGEOS = {
             UBIGEO_ID, UBIGEO_ID_UBI,UBIGEO_DISTRITO

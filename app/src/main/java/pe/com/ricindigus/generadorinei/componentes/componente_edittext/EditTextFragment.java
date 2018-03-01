@@ -25,6 +25,7 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEd
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
@@ -47,6 +48,7 @@ public class EditTextFragment extends ComponenteFragment {
 
     private TextInputLayout[] textInputLayouts;
     private TextInputEditText[] textInputEditTexts;
+    private boolean cargandoDatos = false;
 
 
     public EditTextFragment() {
@@ -107,15 +109,23 @@ public class EditTextFragment extends ComponenteFragment {
     }
 
     public void cargarDatos(){
-        DataTablas data = new DataTablas(context);
-        data.open();
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
-            String[] variables = new String[subpreguntas.size()];
-            for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
-            String[] valores = data.getValores(getNumModulo(),variables,idEmpresa);
-            for (int i = 0; i < valores.length; i++) {if(valores[i] != null) textInputEditTexts[i].setText(valores[i]);}
+        Data d = new Data(context);
+        d.open();
+        if(d.getNumeroControladores(idEmpresa,pEditText.getID()) == 0){
+            cargandoDatos = true;
+            DataTablas data = new DataTablas(context);
+            data.open();
+            if(data.existenDatos(getNumModulo(),idEmpresa)){
+                String[] variables = new String[subpreguntas.size()];
+                for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
+                String[] valores = data.getValores(getNumModulo(),variables,idEmpresa);
+                for (int i = 0; i < valores.length; i++) {if(valores[i] != null) textInputEditTexts[i].setText(valores[i]);}
+            }
+            data.close();
+            cargandoDatos = false;
+        }else{
+            inhabilitar();
         }
-        data.close();
     }
 
     public void guardarDatos(){

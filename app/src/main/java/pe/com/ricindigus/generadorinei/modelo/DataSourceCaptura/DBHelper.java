@@ -25,9 +25,13 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_UBIGEOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_TABLAS);
-        ControladorPullParser controladorPullParser = new ControladorPullParser();
-        String crearControlador = controladorPullParser.parseXML(contexto);
-        sqLiteDatabase.execSQL(crearControlador);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CONTROLADOR);
+
+
+//        ControladorPullParser controladorPullParser = new ControladorPullParser();
+//        String crearControlador = controladorPullParser.parseXML(contexto);
+//        sqLiteDatabase.execSQL(crearControlador);
+
         DataComponentes dataComponentes = new DataComponentes(contexto);
         dataComponentes.open();
         long nPaginas = dataComponentes.getNumeroItemsPaginas();
@@ -46,8 +50,8 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_UBIGEO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_TABLA);
-        sqLiteDatabase.execSQL("DROP TABLE " + SQLConstantes.tablaControlador);
-        sqLiteDatabase.execSQL("DROP TABLE " + SQLConstantes.tablaPaginador);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_CONTROLADOR);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_PAGINADOR);
         onCreate(sqLiteDatabase);
     }
 }

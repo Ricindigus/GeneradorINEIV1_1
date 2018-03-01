@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
+import pe.com.ricindigus.generadorinei.pojos.Controlador;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
@@ -318,25 +321,25 @@ public class Data {
     //---------------------------FIN TABLA--------------------------------------------------------
 
     //CONTROLADOR DE PREGUNTAS
-    public boolean preguntaHabilitada(String idEmpresa, String idPregunta){
-        boolean habilitado = true;
-        String[] whereArgs = new String[]{idEmpresa};
-        Cursor cursor = null;
-        try{
-            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, null,
-                    SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
-            if(cursor.getCount() == 1){
-                cursor.moveToFirst();
-                String valor = cursor.getString(cursor.getColumnIndex(idPregunta));
-                if(valor != null){
-                    if(valor.equals("0")) habilitado = false;
-                }
-            }
-        }finally{
-            if(cursor != null) cursor.close();
-        }
-        return habilitado;
-    }
+//    public boolean preguntaHabilitada(String idEmpresa, String idPregunta){
+//        boolean habilitado = true;
+//        String[] whereArgs = new String[]{idEmpresa};
+//        Cursor cursor = null;
+//        try{
+//            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, null,
+//                    SQLConstantes.WHERE_CLAUSE_ID_EMPRESA,whereArgs,null,null,null);
+//            if(cursor.getCount() == 1){
+//                cursor.moveToFirst();
+//                String valor = cursor.getString(cursor.getColumnIndex(idPregunta));
+//                if(valor != null){
+//                    if(valor.equals("0")) habilitado = false;
+//                }
+//            }
+//        }finally{
+//            if(cursor != null) cursor.close();
+//        }
+//        return habilitado;
+//    }
 
 
     public boolean paginaHabilitada(String idEmpresa, String idPagina){
@@ -359,13 +362,62 @@ public class Data {
         return habilitado;
     }
 
-    public void actualizarControlador(String idEmpresa, ContentValues contentValues){
-        String[] whereArgs = new String[]{idEmpresa};
-        if(contentValues != null) sqLiteDatabase.update(SQLConstantes.tablaControlador, contentValues, SQLConstantes.WHERE_CLAUSE_ID_EMPRESA, whereArgs);
+    public void insertarControlador(Controlador controlador){
+        ContentValues contentValues = controlador.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tablaControlador,null,contentValues);
+    }
+
+    public void eliminarControlador(String idControlador){
+        String[] whereArgs = new String[]{idControlador};
+        sqLiteDatabase.delete(SQLConstantes.tablaControlador,SQLConstantes.WHERE_CLAUSE_ID,whereArgs);
+    }
+
+    public boolean existeControlador(String idControlador){
+        boolean encontrado = false;
+        String[] whereArgs = new String[]{idControlador};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, SQLConstantes.ALL_COLUMNS_CONTROLADOR,
+                    SQLConstantes.WHERE_CLAUSE_ID, whereArgs, null, null, null);
+            if(cursor.getCount() > 0) encontrado = true;
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        return encontrado;
+    }
+
+    public int getNumeroControladores(String idEmpresa, String idPregunta){
+        int numero = 0;
+        String[] whereArgs = new String[]{idEmpresa, idPregunta};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, SQLConstantes.ALL_COLUMNS_CONTROLADOR,
+                    SQLConstantes.WHERE_CLAUSE_ID_EMPRESA + " AND " + SQLConstantes.WHERE_CLAUSE_ID_PREGUNTA,
+                    whereArgs,null,null,null);
+            if(cursor != null) numero = cursor.getCount();
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return numero;
     }
 
     public void actualizarPaginador(String idEmpresa, ContentValues contentValues){
         String[] whereArgs = new String[]{idEmpresa};
         if(contentValues != null) sqLiteDatabase.update(SQLConstantes.tablaPaginador, contentValues, SQLConstantes.WHERE_CLAUSE_ID_EMPRESA, whereArgs);
+    }
+
+    public String[] getNombreColumnas(String nombreTabla){
+        Cursor cursor = null;
+        String[] columnNames = null;
+        try{
+            cursor = sqLiteDatabase.query(nombreTabla, null, null,null, null, null, null);
+        }finally {
+            if(cursor != null) {
+                cursor.moveToFirst();
+                columnNames = cursor.getColumnNames();
+                cursor.close();
+            }
+        }
+        return columnNames;
     }
 }

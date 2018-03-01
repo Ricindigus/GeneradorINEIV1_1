@@ -144,7 +144,6 @@ public class RadioFragment extends ComponenteFragment{
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton = group.findViewById(checkedId);
                 int posicion = group.indexOfChild(radioButton)/2;
-                Toast.makeText(context, ""+posicion, Toast.LENGTH_SHORT).show();
                 ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
                 if(actividadInterfaz.existeEvento(pRadio.getID(),posicion + "")){
                     actividadInterfaz.realizarEvento(pRadio.getID(),posicion + "",cargandoDatos);
@@ -157,7 +156,7 @@ public class RadioFragment extends ComponenteFragment{
     public void cargarDatos(){
         Data d = new Data(context);
         d.open();
-        if(d.preguntaHabilitada(idEmpresa,pRadio.getID())){
+        if(d.getNumeroControladores(idEmpresa,pRadio.getID()) == 0){
             cargandoDatos = true;
             DataTablas data = new DataTablas(context);
             data.open();
