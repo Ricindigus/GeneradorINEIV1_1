@@ -19,12 +19,14 @@ import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 public class EventosPullParser {
     public static final String EVENTO_ID = "ID";
-    public static final String EVENTO_IDPREG = "IDPREG";
+    public static final String EVENTO_IDPAGA = "IDPAGA";
+    public static final String EVENTO_IDPAGB = "IDPAGB";
+    public static final String EVENTO_IDPREGA = "IDPREGA";
+    public static final String EVENTO_IDPREGB = "IDPREGB";
     public static final String EVENTO_VAR = "VAR";
     public static final String EVENTO_VAL = "VAL";
-    public static final String EVENTO_IDOCU = "IDOCU";
-    public static final String EVENTO_IDPAG = "IDPAG";
     public static final String EVENTO_ACCION = "ACCION";
+
 
 
 
@@ -69,9 +71,10 @@ public class EventosPullParser {
         if(currentEvento != null && currentTag != null){
             switch (currentTag){
                 case EVENTO_ID: currentEvento.setID(xmlText);break;
-                case EVENTO_IDOCU: currentEvento.setIDOCU(xmlText);break;
-                case EVENTO_IDPAG: currentEvento.setIDPAG(xmlText);break;
-                case EVENTO_IDPREG: currentEvento.setIDPREG(xmlText);break;
+                case EVENTO_IDPAGA: currentEvento.setIDPAGA(xmlText);break;
+                case EVENTO_IDPAGB: currentEvento.setIDPAGB(xmlText);break;
+                case EVENTO_IDPREGA: currentEvento.setIDPREGA(xmlText);break;
+                case EVENTO_IDPREGB: currentEvento.setIDPREGB(xmlText);break;
                 case EVENTO_VAL: currentEvento.setVAL(xmlText);break;
                 case EVENTO_VAR: currentEvento.setVAR(xmlText);break;
                 case EVENTO_ACCION: currentEvento.setACCION(xmlText);break;

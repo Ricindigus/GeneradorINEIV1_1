@@ -210,11 +210,6 @@ public class SplashActivity extends AppCompatActivity {
 
             long items = data.getNumeroItemsMarco();
             if(items == 0){
-
-//                String[] columnas = data.getNombreColumnas(SQLConstantes.tablaControlador);
-//                ContentValues contentValues = new ContentValues();
-//                for (String c : columnas) contentValues.put(c,"");
-
                 for (Marco marco : marcos) {
                     try {
                         data.insertarMarco(marco);
@@ -386,15 +381,6 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-//                for (Marco marco : marcos) {
-//                    try {
-//                        data.insertarControlador(marco.getID(),contentValues);
-//                    }catch (SQLiteException e){
-//                        e.printStackTrace();
-//                    }
-//                    publishProgress(i,(int)Math.floor(i/carga));
-//                    i++;
-//                }
                 mensaje = "LISTO, BIENVENIDO";
             }else{
                 try {

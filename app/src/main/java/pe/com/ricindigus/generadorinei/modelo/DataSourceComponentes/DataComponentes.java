@@ -351,6 +351,35 @@ public class DataComponentes {
         }
     }
 
+
+
+    public ArrayList<Evento> getEventos(String idPagina) {
+        ArrayList<Evento> eventos = new ArrayList<Evento>();
+        String[] whereArgs = new String[]{idPagina};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaEventos, SQLConstantesComponente.ALL_COLUMNS_EVENTOS,
+                    SQLConstantesComponente.WHERE_CLAUSE_IDPAGB, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                Evento evento = new Evento();
+                evento.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ID)));
+                evento.setVAR(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAR)));
+                evento.setVAL(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAL)));
+                evento.setIDPREGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGA)));
+                evento.setIDPREGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGB)));
+                evento.setIDPAGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGA)));
+                evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGB)));
+                evento.setACCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+                eventos.add(evento);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return eventos;
+    }
+
+
+
     public ArrayList<Evento> getEventos(String variable, String valor) {
         ArrayList<Evento> eventos = new ArrayList<Evento>();
         String[] whereArgs = new String[]{variable, valor};
@@ -364,10 +393,12 @@ public class DataComponentes {
                 evento.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ID)));
                 evento.setVAR(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAR)));
                 evento.setVAL(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAL)));
-                evento.setIDPREG(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREG)));
-                evento.setIDPAG(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAG)));
-                evento.setIDOCU(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDOCU)));
-                evento.setACCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+                evento.setIDPREGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGA)));
+                evento.setIDPREGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGB)));
+                evento.setIDPAGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGA)));
+                evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGB)));
+                evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+
                 eventos.add(evento);
             }
         }finally {
@@ -376,13 +407,13 @@ public class DataComponentes {
         return eventos;
     }
 
-    public boolean existeEvento(String variable, String valor){
+    public boolean existeEvento(String variable){
         boolean encontrado = false;
-        String[] whereArgs = new String[]{variable, valor};
+        String[] whereArgs = new String[]{variable};
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaEventos,
-                    SQLConstantesComponente.ALL_COLUMNS_EVENTOS, SQLConstantesComponente.WHERE_CLAUSE_VAR + " AND " + SQLConstantesComponente.WHERE_CLAUSE_VAL
+                    SQLConstantesComponente.ALL_COLUMNS_EVENTOS, SQLConstantesComponente.WHERE_CLAUSE_VAR
                     , whereArgs, null, null, null);
             if(cursor.getCount() > 0) encontrado = true;
         }finally {

@@ -372,6 +372,11 @@ public class Data {
         sqLiteDatabase.delete(SQLConstantes.tablaControlador,SQLConstantes.WHERE_CLAUSE_ID,whereArgs);
     }
 
+    public void deleteAllControladores(){
+        sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tablaControlador);
+    }
+
+
     public boolean existeControlador(String idControlador){
         boolean encontrado = false;
         String[] whereArgs = new String[]{idControlador};

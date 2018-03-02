@@ -145,7 +145,7 @@ public class RadioFragment extends ComponenteFragment{
                 RadioButton radioButton = group.findViewById(checkedId);
                 int posicion = group.indexOfChild(radioButton)/2;
                 ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
-                if(actividadInterfaz.existeEvento(pRadio.getID(),posicion + "")){
+                if(actividadInterfaz.existeEvento(pRadio.getID())){
                     actividadInterfaz.realizarEvento(pRadio.getID(),posicion + "",cargandoDatos);
                 }
             }

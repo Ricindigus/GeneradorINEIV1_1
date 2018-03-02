@@ -11,21 +11,25 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstante
 
 public class Evento {
     private String ID;
-    private String IDPREG;
+    private String IDPREGA;
+    private String IDPREGB;
     private String VAR;
     private String VAL;
-    private String IDOCU;
-    private String IDPAG;
+    private String IDPAGA;
+    private String IDPAGB;
     private String ACCION;
+
 
     public Evento() {
         this.ID = "";
-        this.IDPREG = "";
+        this.IDPREGA = "";
+        this.IDPREGB = "";
         this.VAR = "";
         this.VAL = "";
-        this.IDOCU = "";
-        this.IDPAG = "";
+        this.IDPAGA = "";
+        this.IDPAGB = "";
         this.ACCION = "";
+
     }
 
     public String getID() {
@@ -36,12 +40,20 @@ public class Evento {
         this.ID = ID;
     }
 
-    public String getIDPREG() {
-        return IDPREG;
+    public String getIDPREGA() {
+        return IDPREGA;
     }
 
-    public void setIDPREG(String IDPREG) {
-        this.IDPREG = IDPREG;
+    public void setIDPREGA(String IDPREGA) {
+        this.IDPREGA = IDPREGA;
+    }
+
+    public String getIDPREGB() {
+        return IDPREGB;
+    }
+
+    public void setIDPREGB(String IDPREGB) {
+        this.IDPREGB = IDPREGB;
     }
 
     public String getVAR() {
@@ -60,20 +72,20 @@ public class Evento {
         this.VAL = VAL;
     }
 
-    public String getIDOCU() {
-        return IDOCU;
+    public String getIDPAGA() {
+        return IDPAGA;
     }
 
-    public void setIDOCU(String IDOCU) {
-        this.IDOCU = IDOCU;
+    public void setIDPAGA(String IDPAGA) {
+        this.IDPAGA = IDPAGA;
     }
 
-    public String getIDPAG() {
-        return IDPAG;
+    public String getIDPAGB() {
+        return IDPAGB;
     }
 
-    public void setIDPAG(String IDPAG) {
-        this.IDPAG = IDPAG;
+    public void setIDPAGB(String IDPAGB) {
+        this.IDPAGB = IDPAGB;
     }
 
     public String getACCION() {
@@ -87,11 +99,12 @@ public class Evento {
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLConstantesComponente.EVENTO_ID,ID);
-        contentValues.put(SQLConstantesComponente.EVENTO_IDPREG,IDPREG);
+        contentValues.put(SQLConstantesComponente.EVENTO_IDPREGA,IDPREGA);
+        contentValues.put(SQLConstantesComponente.EVENTO_IDPREGB,IDPREGB);
         contentValues.put(SQLConstantesComponente.EVENTO_VAR,VAR);
         contentValues.put(SQLConstantesComponente.EVENTO_VAL,VAL);
-        contentValues.put(SQLConstantesComponente.EVENTO_IDOCU,IDOCU);
-        contentValues.put(SQLConstantesComponente.EVENTO_IDPAG,IDPAG);
+        contentValues.put(SQLConstantesComponente.EVENTO_IDPAGA,IDPAGA);
+        contentValues.put(SQLConstantesComponente.EVENTO_IDPAGB,IDPAGB);
         contentValues.put(SQLConstantesComponente.EVENTO_ACCION,ACCION);
         return contentValues;
     }

@@ -28,10 +28,6 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CONTROLADOR);
 
 
-//        ControladorPullParser controladorPullParser = new ControladorPullParser();
-//        String crearControlador = controladorPullParser.parseXML(contexto);
-//        sqLiteDatabase.execSQL(crearControlador);
-
         DataComponentes dataComponentes = new DataComponentes(contexto);
         dataComponentes.open();
         long nPaginas = dataComponentes.getNumeroItemsPaginas();

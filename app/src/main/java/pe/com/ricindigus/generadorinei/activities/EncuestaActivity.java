@@ -24,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +77,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private ExpandListAdapter listAdapter;
     private Button btnAtras;
     private Button btnSiguiente;
-    private int moduloActual = 0;
+    private String idModuloActual = "";
     private int posicionFragment = 1;
     private Fragment fragmentActual = new Fragment();
     private Fragment fragmentComponente = new Fragment();
@@ -288,9 +287,9 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         int numeroDePagina = nPagina;
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
-        String mod = dataComponentes.getPagina(numeroDePagina + "").getMODULO();
-        if (!mod.equals(moduloActual)) nombreSeccion = dataComponentes.getModulo(mod).getTITULO();
-        if (!nombreSeccion.equals(nombreSeccionActual)) {
+        String idModulo = dataComponentes.getPagina(numeroDePagina + "").getMODULO();
+        if (!idModulo.equals(idModuloActual)) {
+            nombreSeccion = dataComponentes.getModulo(idModulo).getTITULO();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if (direccion > 0) {
@@ -302,7 +301,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             fragmentTransaction.replace(R.id.textoNombreSeccion, nombreSeccionFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-            nombreSeccionActual = nombreSeccion;
+            idModuloActual = idModulo;
         }
         dataComponentes.close();
     }
@@ -350,6 +349,30 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     }
 
     public void setPaginaNormal(int numeroPagina, int direccion) {
+        DataComponentes dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        DataTablas dataTablas = new DataTablas(EncuestaActivity.this);
+        dataTablas.open();
+        Data d = new Data(this);
+        d.open();
+        d.deleteAllControladores();
+        ArrayList<Evento> eventos =  new ArrayList<Evento>();
+        eventos = dataComponentes.getEventos(numeroPagina+"");
+        if(eventos.size() > 0){
+            for (Evento e : eventos){
+                String variable = e.getVAR();
+                String valor = e.getVAL();
+                String modulo = dataComponentes.getPagina(numeroPagina + "").getMODULO();
+                if(dataTablas.getValor(modulo,variable,idEmpresa).equals(valor)){
+                    String idControlador = idEmpresa + e.getIDPREGB() + variable;
+                    d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPREGB(),variable));
+                }
+            }
+        }
+        dataTablas.close();
+        dataComponentes.close();
+        d.close();
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -570,29 +593,28 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes.open();
         Data dat = new Data(this);
         dat.open();
-        ArrayList<Evento> eventos = dataComponentes.getEventos(variable, valor);
-        //controlador
-        for (Evento evento : eventos) {
-            if(evento.getACCION().equals("1")) {
-                String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
-                if(dat.existeControlador(idControlador)) dat.eliminarControlador(idControlador);
-                if(!cargandoDatos){
-                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+        DataTablas dataTablas = new DataTablas(this);
+        dataTablas.open();
+        ArrayList<Evento> eventos = dataComponentes.getEventos(variable,valor);
+        if(!cargandoDatos){
+            for (Evento evento : eventos) {
+                if(evento.getACCION().equals("1")) {
+                    String idControlador = idEmpresa+evento.getIDPREGB()+evento.getVAR();
+                    if(dat.existeControlador(idControlador)) dat.eliminarControlador(idControlador);
+                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDPREGB());
                     if(componenteFragment != null){
-                        if (dat.getNumeroControladores(idEmpresa,evento.getIDOCU()) == 0) componenteFragment.habilitar();
+                        if (dat.getNumeroControladores(idEmpresa,evento.getIDPREGB()) == 0) componenteFragment.habilitar();
                     }
                 }
-            }
-            else {
-                String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
-                if(!dat.existeControlador(idControlador))dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDOCU(),evento.getVAR()));
-                if(!cargandoDatos){
-                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+                else {
+                    String idControlador = idEmpresa+evento.getIDPREGB()+evento.getVAR();
+                    if(!dat.existeControlador(idControlador))dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDPREGB(),evento.getVAR()));
+                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDPREGB());
                     if(componenteFragment != null) componenteFragment.inhabilitar();
-
                 }
             }
         }
+
 //        //paginador
 //        String idPag = eventos.get(0).getIDPAG();
 //        ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
@@ -609,11 +631,11 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     }
 
     @Override
-    public boolean existeEvento(String variable, String valor) {
+    public boolean existeEvento(String variable) {
         boolean existe = false;
         DataComponentes dataComponentes = new DataComponentes(EncuestaActivity.this);
         dataComponentes.open();
-        existe = dataComponentes.existeEvento(variable, valor);
+        existe = dataComponentes.existeEvento(variable);
         dataComponentes.close();
         return existe;
     }

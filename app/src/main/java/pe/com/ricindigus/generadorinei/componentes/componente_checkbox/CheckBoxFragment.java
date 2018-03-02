@@ -151,7 +151,7 @@ public class CheckBoxFragment extends ComponenteFragment {
                     if (isChecked) valor = "1";
                     else valor = "0";
                     ActividadInterfaz actividadInterfaz = (ActividadInterfaz) getActivity();
-                    if(actividadInterfaz.existeEvento(spCheckBox.getVARIABLE(),valor)){
+                    if(actividadInterfaz.existeEvento(spCheckBox.getVARIABLE())){
                         actividadInterfaz.realizarEvento(spCheckBox.getVARIABLE(),valor,cargandoDatos);
                     }
                 }

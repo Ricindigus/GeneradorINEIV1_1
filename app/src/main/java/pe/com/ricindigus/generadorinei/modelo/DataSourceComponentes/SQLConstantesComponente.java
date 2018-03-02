@@ -62,12 +62,15 @@ public class SQLConstantesComponente {
 
     //COLUMNAS EVENTOS
     public static final String EVENTO_ID = "ID";
-    public static final String EVENTO_IDPREG = "IDPREG";
+    public static final String EVENTO_IDPAGA = "IDPAGA";
+    public static final String EVENTO_IDPAGB = "IDPAGB";
+    public static final String EVENTO_IDPREGA = "IDPREGA";
+    public static final String EVENTO_IDPREGB = "IDPREGB";
     public static final String EVENTO_VAR = "VAR";
     public static final String EVENTO_VAL = "VAL";
-    public static final String EVENTO_IDOCU = "IDOCU";
-    public static final String EVENTO_IDPAG = "IDPAG";
     public static final String EVENTO_ACCION = "ACCION";
+
+
 
 
 
@@ -125,12 +128,13 @@ public class SQLConstantesComponente {
     public static final String SQL_CREATE_TABLA_EVENTOS =
             "CREATE TABLE " + tablaEventos + "(" +
                     EVENTO_ID + " TEXT PRIMARY KEY," +
-                    EVENTO_IDPREG + " TEXT," +
+                    EVENTO_IDPAGA + " TEXT," +
+                    EVENTO_IDPAGB + " TEXT," +
                     EVENTO_VAR + " TEXT," +
                     EVENTO_VAL + " TEXT," +
-                    EVENTO_IDOCU + " TEXT," +
-                    EVENTO_IDPAG + " TEXT," +
-                    EVENTO_ACCION + " TEXT" + ");"
+                    EVENTO_ACCION + " TEXT," +
+                    EVENTO_IDPREGA+ " TEXT," +
+                    EVENTO_IDPREGB + " TEXT" + ");"
             ;
 
     //CLAUSULA WHERE BUSQUEDA (WHERE)
@@ -139,6 +143,8 @@ public class SQLConstantesComponente {
     public static final String WHERE_CLAUSE_MODULO_PAGINA = "MODULO=?";
     public static final String WHERE_CLAUSE_VAR = "VAR=?";
     public static final String WHERE_CLAUSE_VAL = "VAL=?";
+    public static final String WHERE_CLAUSE_IDPAGB = "IDPAGB=?";
+
 
 
     //BORRADO DE TABLAS (DELETE)
@@ -162,9 +168,8 @@ public class SQLConstantesComponente {
     };
 
     public static final String[] ALL_COLUMNS_EVENTOS = {
-            EVENTO_ID, EVENTO_IDOCU,EVENTO_VAR,
-            EVENTO_VAL,EVENTO_IDPREG,EVENTO_IDPAG,
-            EVENTO_ACCION
+            EVENTO_ID, EVENTO_IDPREGA,EVENTO_IDPREGB ,EVENTO_VAR,
+            EVENTO_VAL,EVENTO_IDPAGA, EVENTO_IDPAGB, EVENTO_ACCION
     };
 
     public static final String[] ALL_COLUMNS_PAGINAS = {
