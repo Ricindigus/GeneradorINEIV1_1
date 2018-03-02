@@ -386,6 +386,20 @@ public class Data {
         return encontrado;
     }
 
+    public boolean existeControladorPagina(String idPregunta){
+        boolean encontrado = false;
+        String[] whereArgs = new String[]{idPregunta};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, SQLConstantes.ALL_COLUMNS_CONTROLADOR,
+                    SQLConstantes.WHERE_CLAUSE_ID_PREGUNTA, whereArgs, null, null, null);
+            if(cursor.getCount() > 0) encontrado = true;
+        }finally {
+            if(cursor != null)cursor.close();
+        }
+        return encontrado;
+    }
+
     public int getNumeroControladores(String idEmpresa, String idPregunta){
         int numero = 0;
         String[] whereArgs = new String[]{idEmpresa, idPregunta};

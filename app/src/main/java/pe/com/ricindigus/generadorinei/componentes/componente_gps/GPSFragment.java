@@ -100,10 +100,10 @@ public class GPSFragment extends ComponenteFragment implements GoogleApiClient.O
             @Override
             public void onClick(View view) {
                 toggleLocationUpdates(btnGPS.isChecked());
-                if(btnGPS.isChecked()){
+                if(!btnGPS.isChecked()){
                     txtAltitud.setText("99.999999");
-                    txtAltitud.setText("99.999999");
-                    txtAltitud.setText("99.999999");
+                    txtLatitud.setText("99.999999");
+                    txtLongitud.setText("99.999999");
                 }
             }
         });

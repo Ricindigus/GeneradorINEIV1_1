@@ -165,15 +165,15 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 ocultarTeclado(btnSiguiente);
                 if (validarPagina(posicionFragment)) {
                     guardarPagina(posicionFragment);
-                    data = new Data(EncuestaActivity.this);
-                    data.open();
-                    data.actualizarPaginador(idEmpresa, contentPaginador);
-                    contentPaginador = null;
+//                    data = new Data(EncuestaActivity.this);
+//                    data.open();
+//                    data.actualizarPaginador(idEmpresa, contentPaginador);
+//                    contentPaginador = null;
                     if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
                     else posicionFragment = 1;
                     setNombreSeccion(posicionFragment, 1);
                     setPagina(posicionFragment, 1);
-                    data.close();
+//                    data.close();
                 }
             }
         });
@@ -572,41 +572,40 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dat.open();
         ArrayList<Evento> eventos = dataComponentes.getEventos(variable, valor);
         //controlador
-        if(!cargandoDatos){
-            for (Evento evento : eventos) {
-//                if(contentControlador == null) contentControlador = new ContentValues();
-//                contentControlador.put(evento.getIDOCU(), evento.getACCION());
-//                //validar antes de realizar evento
-                ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
-                if(componenteFragment != null){
-                    if(evento.getACCION().equals("1")) {
-                        String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
-                        if(dat.existeControlador(idControlador)) dat.eliminarControlador(idControlador);
-                        if (dat.getNumeroControladores(idEmpresa,evento.getIDOCU()) == 0){
-                            componenteFragment.habilitar();
-                        }
-                    }
-                    else {
-                        String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
-                        dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDOCU(),evento.getVAR()));
-                        componenteFragment.inhabilitar();
+        for (Evento evento : eventos) {
+            if(evento.getACCION().equals("1")) {
+                String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
+                if(dat.existeControlador(idControlador)) dat.eliminarControlador(idControlador);
+                if(!cargandoDatos){
+                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+                    if(componenteFragment != null){
+                        if (dat.getNumeroControladores(idEmpresa,evento.getIDOCU()) == 0) componenteFragment.habilitar();
                     }
                 }
             }
+            else {
+                String idControlador = idEmpresa+evento.getIDOCU()+evento.getVAR();
+                if(!dat.existeControlador(idControlador))dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDOCU(),evento.getVAR()));
+                if(!cargandoDatos){
+                    ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDOCU());
+                    if(componenteFragment != null) componenteFragment.inhabilitar();
+
+                }
+            }
         }
-        //paginador
-        String idPag = eventos.get(0).getIDPAG();
-        ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
-        boolean deshabilitarPagina = true;
-        for (String idPregunta : ids){
-            if(dat.getNumeroControladores(idEmpresa,idPregunta) == 0) deshabilitarPagina = false;
-        }
-        if(deshabilitarPagina){
-            if(contentPaginador == null) contentPaginador = new ContentValues();
-            contentPaginador.put("p" + idPag, "0");
-        }
-        dataComponentes.close();
-        dat.close();
+//        //paginador
+//        String idPag = eventos.get(0).getIDPAG();
+//        ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
+//        boolean deshabilitarPagina = true;
+//        for (String idPregunta : ids){
+//            if(!dat.existeControladorPagina(idPregunta)) deshabilitarPagina = false;
+//        }
+//        if(deshabilitarPagina){
+//            if(contentPaginador == null) contentPaginador = new ContentValues();
+//            contentPaginador.put("p" + idPag, "0");
+//        }
+//        dataComponentes.close();
+//        dat.close();
     }
 
     @Override

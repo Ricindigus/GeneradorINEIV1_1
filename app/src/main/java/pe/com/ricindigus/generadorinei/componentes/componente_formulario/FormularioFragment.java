@@ -14,9 +14,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -123,10 +125,22 @@ public class FormularioFragment extends ComponenteFragment {
             final EditText editText = editTexts[i];
             final EditText edtEspecifique = edtEspecifiques[i];
             final Spinner spinner = spinners[i];
+            final LinearLayout layoutSpinner = layoutSpinners[i];
             cardViews[i].setVisibility(View.VISIBLE);
             textViews[i].setText(spFormulario.getSUBPREGUNTA());
             if(!spFormulario.getVARE().equals("")) {
                 editText.setVisibility(View.VISIBLE);
+                editText.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                        if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            ocultarTeclado(editText);
+                            layoutSpinner.requestFocus();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
                 if(Integer.parseInt(spFormulario.getTIPO()) == TipoInput.TEXTO) {
                     editText.setInputType(InputType.TYPE_CLASS_TEXT);
                     editText.setFilters(new InputFilter[]{
@@ -150,6 +164,17 @@ public class FormularioFragment extends ComponenteFragment {
                 spinners[i].setAdapter(adapter);
 
                 if(!spFormulario.getVARESP().equals("")){
+                    edtEspecifique.setOnKeyListener(new View.OnKeyListener() {
+                        @Override
+                        public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                            if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                                ocultarTeclado(edtEspecifique);
+                                layoutSpinner.requestFocus();
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
                     if(Integer.parseInt(spFormulario.getTIPESP()) == TipoInput.TEXTO) {
                         edtEspecifique.setInputType(InputType.TYPE_CLASS_TEXT);
                         edtEspecifique.setFilters(new InputFilter[]{
@@ -327,7 +352,10 @@ public class FormularioFragment extends ComponenteFragment {
         return formulario.getMODULO();
     }
 
-
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
 
 }

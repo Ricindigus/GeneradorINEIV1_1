@@ -14,9 +14,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
@@ -91,17 +93,30 @@ public class EditTextFragment extends ComponenteFragment {
         txtPregunta.setText(pEditText.getNUMERO() + ". " + pEditText.getPREGUNTA().toUpperCase());
         for (int i = 0; i < subpreguntas.size(); i++) {
             SPEditText spEditText = subpreguntas.get(i);
-            textInputLayouts[i].setVisibility(View.VISIBLE);
-            textInputLayouts[i].setHint(spEditText.getSUBPREGUNTA());
+            final TextInputLayout textInputLayout = textInputLayouts[i];
+            final TextInputEditText textInputEditText = textInputEditTexts[i];
+            textInputEditText.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                    if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        ocultarTeclado(textInputEditText);
+                        textInputLayout.requestFocus();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            textInputLayout.setVisibility(View.VISIBLE);
+            textInputLayout.setHint(spEditText.getSUBPREGUNTA());
             if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
-                textInputEditTexts[i].setInputType(InputType.TYPE_CLASS_TEXT);
-                textInputEditTexts[i].setFilters(new InputFilter[]{
+                textInputEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+                textInputEditText.setFilters(new InputFilter[]{
                         new InputFilter.AllCaps(),
                         new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
                 });
             }else{
-                textInputEditTexts[i].setTransformationMethod(new NumericKeyBoardTransformationMethod());
-                textInputEditTexts[i].setFilters(new InputFilter[]{
+                textInputEditText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+                textInputEditText.setFilters(new InputFilter[]{
                         new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
                 });
             }
@@ -189,7 +204,10 @@ public class EditTextFragment extends ComponenteFragment {
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
     public String getNumModulo(){
         return pEditText.getMODULO();
     }
