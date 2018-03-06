@@ -57,6 +57,9 @@ public class Data {
     public long getNumeroItemsMarco(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tableMarco);
     }
+    public long getNumeroItemsControlador(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tablaControlador);
+    }
 
 
     public Marco getMarco(String idEmpresa){

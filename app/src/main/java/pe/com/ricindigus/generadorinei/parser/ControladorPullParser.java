@@ -19,38 +19,38 @@ public class ControladorPullParser {
     String currentTag = null;
 
 
-    public String parseXML(Context context){
-        createControlador = "CREATE TABLE controlador("
-                + "ID_EMPRESA" + " TEXT PRIMARY KEY";
-        try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            factory.setNamespaceAware(true);
-            XmlPullParser xpp = factory.newPullParser();
-            try {
-                InputStream stream = context.getAssets().open("controlador.xml");
-                xpp.setInput(stream,null);
-
-                int eventType = xpp.getEventType();
-
-                while(eventType != XmlPullParser.END_DOCUMENT){
-                    if(eventType == XmlPullParser.START_TAG){
-                        handleStarTag(xpp);
-                    }else if(eventType == XmlPullParser.END_TAG){
-                        handleEndTag(xpp.getName());
-                    }else if(eventType == XmlPullParser.TEXT){
-                        handleText(xpp.getText());
-                    }
-                    eventType = xpp.next();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        return createControlador;
-    }
+//    public String parseXML(Context context){
+//        createControlador = "CREATE TABLE controlador("
+//                + "ID_EMPRESA" + " TEXT PRIMARY KEY";
+//        try {
+//            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+//            factory.setNamespaceAware(true);
+//            XmlPullParser xpp = factory.newPullParser();
+//            try {
+//                InputStream stream = context.getAssets().open("controlador.xml");
+//                xpp.setInput(stream,null);
+//
+//                int eventType = xpp.getEventType();
+//
+//                while(eventType != XmlPullParser.END_DOCUMENT){
+//                    if(eventType == XmlPullParser.START_TAG){
+//                        handleStarTag(xpp);
+//                    }else if(eventType == XmlPullParser.END_TAG){
+//                        handleEndTag(xpp.getName());
+//                    }else if(eventType == XmlPullParser.TEXT){
+//                        handleText(xpp.getText());
+//                    }
+//                    eventType = xpp.next();
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        } catch (XmlPullParserException e) {
+//            e.printStackTrace();
+//        }
+//        return createControlador;
+//    }
 
     private void handleStarTag(XmlPullParser xpp) {
         currentTag = xpp.getName();

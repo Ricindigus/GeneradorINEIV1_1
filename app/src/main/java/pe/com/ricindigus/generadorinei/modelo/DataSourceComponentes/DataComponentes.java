@@ -397,7 +397,7 @@ public class DataComponentes {
                 evento.setIDPREGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGB)));
                 evento.setIDPAGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGA)));
                 evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGB)));
-                evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+                evento.setACCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
 
                 eventos.add(evento);
             }

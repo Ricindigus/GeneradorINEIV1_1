@@ -355,20 +355,25 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataTablas.open();
         Data d = new Data(this);
         d.open();
+        long cant1 = d.getNumeroItemsControlador();
         d.deleteAllControladores();
+        long cant2 = d.getNumeroItemsControlador();
         ArrayList<Evento> eventos =  new ArrayList<Evento>();
         eventos = dataComponentes.getEventos(numeroPagina+"");
         if(eventos.size() > 0){
             for (Evento e : eventos){
-                String variable = e.getVAR();
-                String valor = e.getVAL();
-                String modulo = dataComponentes.getPagina(numeroPagina + "").getMODULO();
-                if(dataTablas.getValor(modulo,variable,idEmpresa).equals(valor)){
-                    String idControlador = idEmpresa + e.getIDPREGB() + variable;
-                    d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPREGB(),variable));
+                if(e.getACCION().equals("0")){
+                    String variable = e.getVAR();
+                    String valor = e.getVAL();
+                    String modulo = dataComponentes.getPagina(numeroPagina + "").getMODULO();
+                    if(dataTablas.getValor(modulo,variable,idEmpresa).equals(valor)){
+                        String idControlador = idEmpresa + e.getIDPREGB() + variable;
+                        d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPREGB(),variable));
+                    }
                 }
             }
         }
+        long cant3 = d.getNumeroItemsControlador();
         dataTablas.close();
         dataComponentes.close();
         d.close();
@@ -626,8 +631,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
 //            if(contentPaginador == null) contentPaginador = new ContentValues();
 //            contentPaginador.put("p" + idPag, "0");
 //        }
-//        dataComponentes.close();
-//        dat.close();
+        dataComponentes.close();
+        dat.close();
     }
 
     @Override
