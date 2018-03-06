@@ -21,6 +21,7 @@ public class SQLConstantes {
     //COLUMNAS CONTROLADOR
     public static final String CONTROLADOR_ID = "ID";
     public static final String CONTROLADOR_ID_EMPRESA = "ID_EMPRESA";
+    public static final String CONTROLADOR_ID_PAGINA = "ID_PAGINA";
     public static final String CONTROLADOR_ID_PREGUNTA = "ID_PREGUNTA";
     public static final String CONTROLADOR_VARIABLE = "VARIABLE";
 
@@ -76,6 +77,7 @@ public class SQLConstantes {
             "CREATE TABLE " + tablaControlador + "(" +
                     CONTROLADOR_ID + " TEXT PRIMARY KEY," +
                     CONTROLADOR_ID_EMPRESA + " TEXT," +
+                    CONTROLADOR_ID_PAGINA + " TEXT," +
                     CONTROLADOR_ID_PREGUNTA + " TEXT," +
                     CONTROLADOR_VARIABLE + " TEXT" + ");"
             ;
@@ -137,6 +139,7 @@ public class SQLConstantes {
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_UBIGEO = "ID_UBI=?";
     public static final String WHERE_CLAUSE_ID_EMPRESA = "ID_EMPRESA=?";
+    public static final String WHERE_CLAUSE_ID_PAGINA = "ID_PAGINA=?";
     public static final String WHERE_CLAUSE_ID_PREGUNTA = "ID_PREGUNTA=?";
     public static final String WHERE_CLAUSE_ID_OPERADOR = "OPERADOR=?";
     public static final String WHERE_CLAUSE_ID_JEFE = "JEFE=?";
@@ -163,7 +166,7 @@ public class SQLConstantes {
     };
 
     public static final String[] ALL_COLUMNS_CONTROLADOR = {
-            CONTROLADOR_ID,CONTROLADOR_ID_EMPRESA, CONTROLADOR_ID_PREGUNTA, CONTROLADOR_VARIABLE
+            CONTROLADOR_ID,CONTROLADOR_ID_EMPRESA, CONTROLADOR_ID_PAGINA,CONTROLADOR_ID_PREGUNTA, CONTROLADOR_VARIABLE
     };
     public static final String[] ALL_COLUMNS_UBIGEOS = {
             UBIGEO_ID, UBIGEO_ID_UBI,UBIGEO_DISTRITO

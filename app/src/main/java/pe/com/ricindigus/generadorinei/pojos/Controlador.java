@@ -12,12 +12,14 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstante
 public class Controlador {
     private String ID;
     private String ID_EMPRESA;
+    private String ID_PAGINA;
     private String ID_PREGUNTA;
     private String VARIABLE;
 
-    public Controlador(String ID, String ID_EMPRESA, String ID_PREGUNTA, String VARIABLE) {
+    public Controlador(String ID, String ID_EMPRESA, String ID_PAGINA, String ID_PREGUNTA, String VARIABLE) {
         this.ID = ID;
         this.ID_EMPRESA = ID_EMPRESA;
+        this.ID_PAGINA = ID_PAGINA;
         this.ID_PREGUNTA = ID_PREGUNTA;
         this.VARIABLE = VARIABLE;
     }
@@ -58,6 +60,7 @@ public class Controlador {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLConstantes.CONTROLADOR_ID,ID);
         contentValues.put(SQLConstantes.CONTROLADOR_ID_EMPRESA,ID_EMPRESA);
+        contentValues.put(SQLConstantes.CONTROLADOR_ID_PAGINA,ID_PAGINA);
         contentValues.put(SQLConstantes.CONTROLADOR_ID_PREGUNTA,ID_PREGUNTA);
         contentValues.put(SQLConstantes.CONTROLADOR_VARIABLE,VARIABLE);
         return contentValues;

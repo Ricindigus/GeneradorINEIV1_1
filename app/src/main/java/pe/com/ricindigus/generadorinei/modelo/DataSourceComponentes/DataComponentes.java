@@ -378,7 +378,32 @@ public class DataComponentes {
         return eventos;
     }
 
-
+    public ArrayList<Evento> getEventosInhabilitar(String idPagina) {
+        ArrayList<Evento> eventos = new ArrayList<Evento>();
+        String[] whereArgs = new String[]{idPagina};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaEventos, SQLConstantesComponente.ALL_COLUMNS_EVENTOS,
+                    SQLConstantesComponente.WHERE_CLAUSE_IDPAGB, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                if(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)).equals("0")){
+                    Evento evento = new Evento();
+                    evento.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ID)));
+                    evento.setVAR(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAR)));
+                    evento.setVAL(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_VAL)));
+                    evento.setIDPREGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGA)));
+                    evento.setIDPREGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPREGB)));
+                    evento.setIDPAGA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGA)));
+                    evento.setIDPAGB(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_IDPAGB)));
+                    evento.setACCION(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.EVENTO_ACCION)));
+                    eventos.add(evento);
+                }
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return eventos;
+    }
 
     public ArrayList<Evento> getEventos(String variable, String valor) {
         ArrayList<Evento> eventos = new ArrayList<Evento>();

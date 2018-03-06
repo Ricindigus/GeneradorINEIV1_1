@@ -151,9 +151,12 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             public void onClick(View v) {
                 ocultarTeclado(btnAtras);
                 if (posicionFragment - 1 >= 1) {
-                    posicionFragment--;
-                    setNombreSeccion(posicionFragment, -1);
+                    do{
+                        posicionFragment--;
+                    }while(!validoSetearPagina(posicionFragment));
                     setPagina(posicionFragment, -1);
+                    setNombreSeccion(posicionFragment, -1);
+
                 }
             }
         });
@@ -164,21 +167,52 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 ocultarTeclado(btnSiguiente);
                 if (validarPagina(posicionFragment)) {
                     guardarPagina(posicionFragment);
-//                    data = new Data(EncuestaActivity.this);
-//                    data.open();
-//                    data.actualizarPaginador(idEmpresa, contentPaginador);
-//                    contentPaginador = null;
-                    if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
-                    else posicionFragment = 1;
-                    setNombreSeccion(posicionFragment, 1);
+                    do{
+                        if (posicionFragment + 1 <= numeroPaginasTotal) posicionFragment++;
+                        else posicionFragment = 1;
+                    }while(!validoSetearPagina(posicionFragment));
                     setPagina(posicionFragment, 1);
-//                    data.close();
+                    setNombreSeccion(posicionFragment, 1);
                 }
             }
         });
 
         setNombreSeccion(1, 1);
         setPagina(1, 1);
+    }
+
+    public boolean validoSetearPagina(int pagina){
+        boolean correcto = false;
+        DataComponentes dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes.open();
+        DataTablas dataTablas = new DataTablas(EncuestaActivity.this);
+        dataTablas.open();
+        Data d = new Data(this);
+        d.open();
+        d.deleteAllControladores();
+        ArrayList<Evento> eventos =  new ArrayList<Evento>();
+        eventos = dataComponentes.getEventos(pagina+"");
+        if(eventos.size() > 0){
+            for (Evento e : eventos){
+                if(e.getACCION().equals("0")){
+                    String variable = e.getVAR();
+                    String valor = e.getVAL();
+                    String modulo = dataComponentes.getPagina(pagina + "").getMODULO();
+                    if(dataTablas.getValor(modulo,variable,idEmpresa).equals(valor)){
+                        String idControlador = idEmpresa + e.getIDPREGB() + variable;
+                        d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPAGB(),e.getIDPREGB(),variable));
+                    }
+                }
+            }
+        }
+        ArrayList<String> ids = dataComponentes.getIdsPagina(pagina+"");
+        for (String idPregunta : ids){
+            if(!d.existeControladorPagina(idPregunta)) correcto = true;
+        }
+        dataTablas.close();
+        dataComponentes.close();
+        d.close();
+        return correcto;
     }
 
     @Override
@@ -355,9 +389,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataTablas.open();
         Data d = new Data(this);
         d.open();
-        long cant1 = d.getNumeroItemsControlador();
         d.deleteAllControladores();
-        long cant2 = d.getNumeroItemsControlador();
         ArrayList<Evento> eventos =  new ArrayList<Evento>();
         eventos = dataComponentes.getEventos(numeroPagina+"");
         if(eventos.size() > 0){
@@ -368,12 +400,11 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                     String modulo = dataComponentes.getPagina(numeroPagina + "").getMODULO();
                     if(dataTablas.getValor(modulo,variable,idEmpresa).equals(valor)){
                         String idControlador = idEmpresa + e.getIDPREGB() + variable;
-                        d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPREGB(),variable));
+                        d.insertarControlador(new Controlador(idControlador,idEmpresa,e.getIDPAGB(),e.getIDPREGB(),variable));
                     }
                 }
             }
         }
-        long cant3 = d.getNumeroItemsControlador();
         dataTablas.close();
         dataComponentes.close();
         d.close();
@@ -613,24 +644,14 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 }
                 else {
                     String idControlador = idEmpresa+evento.getIDPREGB()+evento.getVAR();
-                    if(!dat.existeControlador(idControlador))dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDPREGB(),evento.getVAR()));
+                    if(!dat.existeControlador(idControlador))dat.insertarControlador(new Controlador(idControlador,idEmpresa,evento.getIDPAGB(),evento.getIDPREGB(),evento.getVAR()));
                     ComponenteFragment componenteFragment = (ComponenteFragment)getSupportFragmentManager().findFragmentByTag(evento.getIDPREGB());
                     if(componenteFragment != null) componenteFragment.inhabilitar();
                 }
             }
         }
 
-//        //paginador
-//        String idPag = eventos.get(0).getIDPAG();
-//        ArrayList<String> ids = dataComponentes.getIdsPagina(idPag);
-//        boolean deshabilitarPagina = true;
-//        for (String idPregunta : ids){
-//            if(!dat.existeControladorPagina(idPregunta)) deshabilitarPagina = false;
-//        }
-//        if(deshabilitarPagina){
-//            if(contentPaginador == null) contentPaginador = new ContentValues();
-//            contentPaginador.put("p" + idPag, "0");
-//        }
+
         dataComponentes.close();
         dat.close();
     }
