@@ -19,6 +19,7 @@ import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
+import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 /**
  * Created by dmorales on 13/12/2017.
@@ -447,4 +448,55 @@ public class DataComponentes {
         return encontrado;
     }
     //FIN EVENTOS
+
+
+
+    public void insertarVariable(Variable variable){
+        ContentValues contentValues = variable.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaVariables,null,contentValues);
+    }
+
+    public ArrayList<Variable> getVariablesxPregunta(String idPregunta) {
+        ArrayList<Variable> variables = new ArrayList<Variable>();
+        String[] whereArgs = new String[]{idPregunta};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaVariables, SQLConstantesComponente.ALL_COLUMNS_VARIABLES,
+                    SQLConstantesComponente.WHERE_CLAUSE_PREGUNTA, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                Variable variable = new Variable();
+                variable.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_ID)));
+                variable.setTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_TABLA)));
+                variable.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PREGUNTA)));
+                variable.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PAGINA)));
+                variable.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_MODULO)));
+                variables.add(variable);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return variables;
+    }
+
+    public ArrayList<Variable> getVariablesxPagina(String idPagina) {
+        ArrayList<Variable> variables = new ArrayList<Variable>();
+        String[] whereArgs = new String[]{idPagina};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaVariables, SQLConstantesComponente.ALL_COLUMNS_VARIABLES,
+                    SQLConstantesComponente.WHERE_CLAUSE_PAGINA, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                Variable variable = new Variable();
+                variable.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_ID)));
+                variable.setTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_TABLA)));
+                variable.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PREGUNTA)));
+                variable.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PAGINA)));
+                variable.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_MODULO)));
+                variables.add(variable);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return variables;
+    }
 }

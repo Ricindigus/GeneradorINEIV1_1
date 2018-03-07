@@ -17,6 +17,7 @@ import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
+import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 /**
  * Created by dmorales on 13/12/2017.
@@ -406,6 +407,29 @@ public class Data {
             if(cursor != null)cursor.close();
         }
         return encontrado;
+    }
+
+    public ArrayList<Controlador> getControladoresActualizar(String idPaginaExcepcion) {
+        ArrayList<Controlador> controladores = new ArrayList<Controlador>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaControlador, SQLConstantes.ALL_COLUMNS_CONTROLADOR,
+                    null, null, null, null, null);
+            while(cursor.moveToNext()){
+                if(!cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_ID_PAGINA)).equals(idPaginaExcepcion)){
+                    Controlador controlador = new Controlador();
+                    controlador.setID(cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_ID)));
+                    controlador.setID_EMPRESA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_ID_EMPRESA)));
+                    controlador.setID_PAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_ID_PAGINA)));
+                    controlador.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_ID_PREGUNTA)));
+                    controlador.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLConstantes.CONTROLADOR_VARIABLE)));
+                    controladores.add(controlador);
+                }
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return controladores;
     }
 
     public int getNumeroControladores(String idEmpresa, String idPregunta){

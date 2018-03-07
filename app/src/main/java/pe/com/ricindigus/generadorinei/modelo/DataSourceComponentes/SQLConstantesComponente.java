@@ -13,6 +13,8 @@ public class SQLConstantesComponente {
     public static final String tablaModulos = "modulos";
     public static final String tablaOpcionSpinner = "opciones";
     public static final String tablaEventos = "eventos";
+    public static final String tablaVariables = "variables";
+
 
 
 
@@ -70,7 +72,12 @@ public class SQLConstantesComponente {
     public static final String EVENTO_VAL = "VAL";
     public static final String EVENTO_ACCION = "ACCION";
 
-
+    //COLUMNAS VARIABLES
+    public static final String VARIABLE_ID = "ID";
+    public static final String VARIABLE_TABLA = "TABLA";
+    public static final String VARIABLE_MODULO = "MODULO";
+    public static final String VARIABLE_PAGINA = "PAGINA";
+    public static final String VARIABLE_PREGUNTA = "PREGUNTA";
 
 
 
@@ -137,6 +144,15 @@ public class SQLConstantesComponente {
                     EVENTO_IDPREGB + " TEXT" + ");"
             ;
 
+    public static final String SQL_CREATE_TABLA_VARIABLES =
+            "CREATE TABLE " + tablaVariables + "(" +
+                    VARIABLE_ID + " TEXT PRIMARY KEY," +
+                    VARIABLE_MODULO + " TEXT," +
+                    VARIABLE_PAGINA + " TEXT," +
+                    VARIABLE_PREGUNTA + " TEXT," +
+                    VARIABLE_TABLA + " TEXT" + ");"
+            ;
+
     //CLAUSULA WHERE BUSQUEDA (WHERE)
     public static final String WHERE_CLAUSE_ID = "ID=?";
     public static final String WHERE_CLAUSE_ID_VARIABLE = "IDVARIABLE=?";
@@ -144,6 +160,10 @@ public class SQLConstantesComponente {
     public static final String WHERE_CLAUSE_VAR = "VAR=?";
     public static final String WHERE_CLAUSE_VAL = "VAL=?";
     public static final String WHERE_CLAUSE_IDPAGB = "IDPAGB=?";
+    public static final String WHERE_CLAUSE_PREGUNTA = "PREGUNTA=?";
+    public static final String WHERE_CLAUSE_PAGINA = "PAGINA=?";
+
+
 
 
 
@@ -153,14 +173,18 @@ public class SQLConstantesComponente {
     public static final String SQL_DELETE_PAGINAS = "DROP TABLE " + tablaPaginas;
     public static final String SQL_DELETE_OPCION_SPINNER = "DROP TABLE " + tablaOpcionSpinner;
     public static final String SQL_DELETE_EVENTOS = "DROP TABLE " + tablaEventos;
-
-
+    public static final String SQL_DELETE_VARIABLES = "DROP TABLE " + tablaVariables;
 
 
 
     //TRAER TODAS LAS COLUMNAS
     public static final String[] ALL_COLUMNS_ENCUESTA = {
             ENCUESTA_ID, ENCUESTA_TITULO
+    };
+
+
+    public static final String[] ALL_COLUMNS_VARIABLES = {
+            VARIABLE_ID, VARIABLE_TABLA, VARIABLE_PREGUNTA, VARIABLE_PAGINA,VARIABLE_MODULO
     };
 
     public static final String[] ALL_COLUMNS_MODULOS = {

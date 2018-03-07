@@ -69,6 +69,7 @@ import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 public class EncuestaActivity extends AppCompatActivity implements ActividadInterfaz {
     private ArrayList<String> listDataHeader;
@@ -518,6 +519,25 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     }
 
     public void guardarPagina(int numeroPagina) {
+        Data data = new Data(this);
+        DataComponentes dataComponentes = new DataComponentes(this);
+        DataTablas dataTablas = new DataTablas(this);
+        dataTablas.open();
+        dataComponentes.open();
+        data.open();
+        ArrayList<Controlador> controladors = data.getControladoresActualizar(numeroPagina+"");
+        if(controladors.size() > 0){
+            for (Controlador c : controladors){
+                for (Variable v : dataComponentes.getVariablesxPregunta(c.getID_PREGUNTA())){
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(v.getID(),"");
+                    dataTablas.actualizarValores(v.getTABLA(),idEmpresa,contentValues);
+                }
+            }
+        }
+        data.close();
+        dataComponentes.close();
+        dataTablas.close();
         FragmentManager fragmentManager = getSupportFragmentManager();
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();

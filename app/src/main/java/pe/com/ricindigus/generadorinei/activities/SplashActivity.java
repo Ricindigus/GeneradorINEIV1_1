@@ -51,6 +51,7 @@ import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
 import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
+import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
@@ -59,6 +60,7 @@ import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
+import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -84,8 +86,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
     ArrayList<Tabla> tablas = new ArrayList<Tabla>();
     ArrayList<Evento> eventos = new ArrayList<Evento>();
-
-
+    ArrayList<Variable> variables = new ArrayList<Variable>();
 
 
 
@@ -133,6 +134,7 @@ public class SplashActivity extends AppCompatActivity {
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
             TablasPullParser tablasPullParser = new TablasPullParser();
             EventosPullParser eventosPullParser = new EventosPullParser();
+            VariablesPullParser variablesPullParser = new VariablesPullParser();
 
 
 
@@ -155,6 +157,7 @@ public class SplashActivity extends AppCompatActivity {
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
             tablas = tablasPullParser.parseXML(getApplicationContext());
             eventos = eventosPullParser.parseXML(getApplicationContext());
+            variables = variablesPullParser.parseXML(getApplicationContext());
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
@@ -162,7 +165,7 @@ public class SplashActivity extends AppCompatActivity {
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size()
-                + paginas.size() + opciones.size() + tablas.size() + eventos.size() ;
+                + paginas.size() + opciones.size() + tablas.size() + eventos.size() + variables.size() ;
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -375,6 +378,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (Evento evento : eventos) {
                     try {
                         dataComponentes.insertarEvento(evento);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (Variable variable : variables) {
+                    try {
+                        dataComponentes.insertarVariable(variable);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

@@ -27,7 +27,7 @@ public class TablaGuardadoPullParser {
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
             try {
-                InputStream stream = context.getAssets().open("variables.xml");
+                InputStream stream = context.getAssets().open("tablas.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();

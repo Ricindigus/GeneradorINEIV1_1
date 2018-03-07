@@ -24,6 +24,14 @@ public class Controlador {
         this.VARIABLE = VARIABLE;
     }
 
+    public Controlador() {
+        this.ID = "";
+        this.ID_EMPRESA = "";
+        this.ID_PAGINA = "";
+        this.ID_PREGUNTA = "";
+        this.VARIABLE = "";
+    }
+
     public String getID() {
         return ID;
     }
@@ -54,6 +62,14 @@ public class Controlador {
 
     public void setVARIABLE(String VARIABLE) {
         this.VARIABLE = VARIABLE;
+    }
+
+    public String getID_PAGINA() {
+        return ID_PAGINA;
+    }
+
+    public void setID_PAGINA(String ID_PAGINA) {
+        this.ID_PAGINA = ID_PAGINA;
     }
 
     public ContentValues toValues(){
