@@ -43,6 +43,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
+import pe.com.ricindigus.generadorinei.parser.EncuestaPullParser;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
@@ -52,6 +53,7 @@ import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
+import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
@@ -87,6 +89,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Tabla> tablas = new ArrayList<Tabla>();
     ArrayList<Evento> eventos = new ArrayList<Evento>();
     ArrayList<Variable> variables = new ArrayList<Variable>();
+    ArrayList<Encuesta> encuestas = new ArrayList<Encuesta>();
 
 
 
@@ -135,6 +138,7 @@ public class SplashActivity extends AppCompatActivity {
             TablasPullParser tablasPullParser = new TablasPullParser();
             EventosPullParser eventosPullParser = new EventosPullParser();
             VariablesPullParser variablesPullParser = new VariablesPullParser();
+            EncuestaPullParser encuestaPullParser = new EncuestaPullParser();
 
 
 
@@ -158,13 +162,14 @@ public class SplashActivity extends AppCompatActivity {
             tablas = tablasPullParser.parseXML(getApplicationContext());
             eventos = eventosPullParser.parseXML(getApplicationContext());
             variables = variablesPullParser.parseXML(getApplicationContext());
+            encuestas = encuestaPullParser.parseXML(getApplicationContext());
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
                 + ubicaciones.size() + gpsArrayList.size() + formularios.size()
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
-                + pRadios.size() + spRadios.size()
+                + pRadios.size() + spRadios.size() + encuestas.size()
                 + paginas.size() + opciones.size() + tablas.size() + eventos.size() + variables.size() ;
         carga = (maximo*1.00)/100.00;
 
@@ -213,6 +218,15 @@ public class SplashActivity extends AppCompatActivity {
 
             long items = data.getNumeroItemsMarco();
             if(items == 0){
+                for (Encuesta encuesta : encuestas) {
+                    try {
+                        dataComponentes.insertarEncuesta(encuesta);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
                 for (Marco marco : marcos) {
                     try {
                         data.insertarMarco(marco);

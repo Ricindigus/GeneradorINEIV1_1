@@ -8,28 +8,40 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private TextView txtTituloEncuesta;
     private TextInputEditText txtUsuario;
     private TextInputEditText txtPassword;
     private Button btnIngresar;
     private LinearLayout layoutPrincipal;
     private Data data;
+    private DataComponentes dataComponentes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        txtTituloEncuesta = (TextView) findViewById(R.id.login_titulo_encuesta);
         txtUsuario = (TextInputEditText) findViewById(R.id.login_input_usuario);
         txtPassword = (TextInputEditText) findViewById(R.id.login_input_password);
         btnIngresar = (Button) findViewById(R.id.login_boton_ingresar);
         data = new Data(this);
+        dataComponentes = new DataComponentes(this);
+        dataComponentes.open();
+        Encuesta encuesta = dataComponentes.getEncuesta();
 
+        txtTituloEncuesta.setText(encuesta.getTITULO());
         txtUsuario.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
         txtPassword.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
 

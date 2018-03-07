@@ -39,7 +39,7 @@ public class Encuesta {
     }
 
     public ContentValues toValues(){
-        ContentValues contentValues = new ContentValues(2);
+        ContentValues contentValues = new ContentValues();
         contentValues.put(SQLConstantesComponente.ENCUESTA_ID,ID);
         contentValues.put(SQLConstantesComponente.ENCUESTA_TITULO,TITULO);
         return contentValues;
