@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo.SQLFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;

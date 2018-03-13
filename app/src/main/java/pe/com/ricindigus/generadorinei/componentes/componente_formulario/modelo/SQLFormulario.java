@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_formulario;
+package pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo;
 
 /**
  * Created by dmorales on 30/01/2018.

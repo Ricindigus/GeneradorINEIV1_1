@@ -10,10 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SQLFormulario;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;

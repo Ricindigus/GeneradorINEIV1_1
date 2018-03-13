@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -32,13 +30,12 @@ import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.SPFormulario;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoInput;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
-import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 
 /**
  * A simple {@link Fragment} subclass.

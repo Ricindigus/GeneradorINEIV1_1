@@ -1,6 +1,5 @@
 package pe.com.ricindigus.generadorinei.activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
@@ -21,10 +20,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.Da
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo.DataFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioPullParser;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.SPFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSPullParser;
@@ -40,7 +39,6 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.Dat
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.EncuestaPullParser;

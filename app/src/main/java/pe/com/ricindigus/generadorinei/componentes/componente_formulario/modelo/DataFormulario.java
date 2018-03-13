@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.componentes.componente_formulario;
+package pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.SPFormulario;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**

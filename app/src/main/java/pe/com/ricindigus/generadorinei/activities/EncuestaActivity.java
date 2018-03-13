@@ -38,10 +38,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCh
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.DataFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.Formulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo.DataFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.FormularioFragment;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.SPFormulario;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.SPFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.GPSFragment;
@@ -97,9 +97,9 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private ContentValues contentControlador;
 
 
-
+    private View lytFocus;
     private Toolbar toolbar;
-    private LinearLayout lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5,
+    private LinearLayout  lytComponente1, lytComponente2, lytComponente3, lytComponente4, lytComponente5,
             lytComponente6, lytComponente7, lytComponente8, lytComponente9, lytComponente10, layoutScrolleable;
     private int numeroPaginasTotal;
 
@@ -111,6 +111,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         btnAtras = (Button) findViewById(R.id.btn_anterior);
         btnSiguiente = (Button) findViewById(R.id.btn_siguiente);
         layoutScrolleable = (LinearLayout) findViewById(R.id.layout_componente_scrolleable);
+        lytFocus =  findViewById(R.id.layout_focus);
         lytComponente1 = (LinearLayout) findViewById(R.id.layout_componente1);
         lytComponente2 = (LinearLayout) findViewById(R.id.layout_componente2);
         lytComponente3 = (LinearLayout) findViewById(R.id.layout_componente3);
@@ -157,8 +158,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                     }while(!validoSetearPagina(posicionFragment));
                     setPagina(posicionFragment, -1);
                     setNombreSeccion(posicionFragment, -1);
-
                 }
+
             }
         });
 
