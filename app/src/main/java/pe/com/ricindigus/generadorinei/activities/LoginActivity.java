@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         txtUsuario.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
         txtPassword.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
 
-        txtUsuario.setText("OPER001");
-        txtPassword.setText("INEI1");
+        txtUsuario.setText("ADMI");
+        txtPassword.setText("1234");
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,11 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }else{
-                        Toast.makeText(LoginActivity.this, "USUARIO O CONTRASEÑA INCORRECTA", Toast.LENGTH_SHORT).show();
+                        if(txtUsuario.getText().toString().equals("ADMI") && txtPassword.getText().toString().equals("1234")){
+                            Intent intent = new Intent(getApplicationContext(),CreacionActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else Toast.makeText(LoginActivity.this, "USUARIO O CONTRASEÑA INCORRECTA", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     Toast.makeText(LoginActivity.this, "Debe ingresar USUARIO y CONTRASEÑA", Toast.LENGTH_SHORT).show();
