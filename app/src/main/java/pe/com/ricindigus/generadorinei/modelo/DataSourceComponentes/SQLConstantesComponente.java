@@ -80,6 +80,8 @@ public class SQLConstantesComponente {
     public static final String VARIABLE_PREGUNTA = "PREGUNTA";
 
 
+    //COLUMNAS INFO TABLAS
+
 
 
     //CREACION DE TABLAS (CREATE)

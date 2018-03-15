@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
 
 /**
  * Created by RICARDO on 1/01/2018.
@@ -93,6 +94,44 @@ public class DataVisitas {
             if(cursor != null) cursor.close();
         }
         return visita;
+    }
+
+    public ArrayList<Visita> getAllVisitas(){
+        ArrayList<Visita> visitas = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLVisitas.tableVisitas, null, null,null,null,null,null);
+            if(cursor.moveToNext()){
+                Visita visita = new Visita();
+                visita.setID(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_ID)));
+                visita.setMODULO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_MODULO)));
+                visita.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_NUMERO)));
+                visita.setVARNUM(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARNUM)));
+                visita.setVARDIA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARDIA)));
+                visita.setVARMES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMES)));
+                visita.setVARANIO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARANIO)));
+                visita.setVARHORI(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORI)));
+                visita.setVARMINI(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINI)));
+                visita.setVARHORF(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORF)));
+                visita.setVARMINF(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINF)));
+                visita.setVARRES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRES)));
+                visita.setVARDIAP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARDIAP)));
+                visita.setVARMESP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMESP)));
+                visita.setVARANIOP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARANIOP)));
+                visita.setVARHORP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARHORP)));
+                visita.setVARMINP(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARMINP)));
+                visita.setVARRESFINAL(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESFINAL)));
+                visita.setVARRESDIA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESDIA)));
+                visita.setVARRESMES(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESMES)));
+                visita.setVARRESANIO(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESANIO)));
+                visita.setVARRESHORA(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESHORA)));
+                visita.setVARRESMIN(cursor.getString(cursor.getColumnIndex(SQLVisitas.VISITA_VARRESMIN)));
+                visitas.add(visita);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return visitas;
     }
 
 }

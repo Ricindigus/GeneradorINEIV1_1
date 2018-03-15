@@ -81,6 +81,25 @@ public class DataFormulario {
         return formulario;
     }
 
+    public ArrayList<Formulario> getAllFormulario(){
+        ArrayList<Formulario> formularios = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLFormulario.tablaFormulario, null,null,null,null,null,null);
+            while(cursor.moveToNext()){
+                Formulario formulario = new Formulario();
+                formulario.setID(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_ID)));
+                formulario.setMODULO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_MODULO)));
+                formulario.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_NUMERO)));
+                formulario.setTITULO(cursor.getString(cursor.getColumnIndex(SQLFormulario.FORMULARIO_TITULO)));
+                formularios.add(formulario);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return formularios;
+    }
+
     public void insertarSPFormulario(SPFormulario spFormulario){
         ContentValues contentValues = spFormulario.toValues();
         sqLiteDatabase.insert(SQLFormulario.tablaSPFormulario,null,contentValues);
@@ -126,4 +145,34 @@ public class DataFormulario {
         }
         return spFormularios;
     }
+
+    public ArrayList<SPFormulario> getAllSPFormularios() {
+        ArrayList<SPFormulario> spFormularios = new ArrayList<SPFormulario>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLFormulario.tablaSPFormulario,null,null,null, null, null, null);
+
+            while(cursor.moveToNext()){
+                SPFormulario spFormulario = new SPFormulario();
+                spFormulario.setID(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_ID)));
+                spFormulario.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_IDPREGUNTA)));
+                spFormulario.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_SUBPREGUNTA)));
+                spFormulario.setVARE(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARE)));
+                spFormulario.setLONG(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_LONG)));
+                spFormulario.setTIPO(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_TIPO)));
+                spFormulario.setVARS(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARS)));
+                spFormulario.setVARESP(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARESP)));
+                spFormulario.setTIPESP(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_TIPESP)));
+                spFormulario.setLONESP(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_LONESP)));
+                spFormulario.setHABESP(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_HABESP)));
+                spFormulario.setVARCK(cursor.getString(cursor.getColumnIndex(SQLFormulario.SP_FORMU_VARCK)));
+                spFormularios.add(spFormulario);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return spFormularios;
+    }
+
+
 }

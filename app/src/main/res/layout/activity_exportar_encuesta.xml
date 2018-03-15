@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.activities.ExportarEncuestaActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/textGrande"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:text="EXPORTAR ENCUESTA CREADA" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/texto_exportar_encuesta_creada"/>
+    <ImageView
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/exportar_encuesta"
+        android:tint="@color/colorPrimaryDark"/>
+    <Button
+        android:id="@+id/exportar_encuesta_btnExportar"
+        android:layout_margin="@dimen/margin10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXPORTAR ENCUESTA"
+        android:textSize="@dimen/textoMedium"
+        android:theme="@style/RaisedButtonDark2"/>
+    <ProgressBar
+        android:id="@+id/exportar_encuesta_progreso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/exportar_encuesta_txtMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exportando..."
+        android:gravity="center"/>
+</LinearLayout>

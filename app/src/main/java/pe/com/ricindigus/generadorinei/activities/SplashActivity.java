@@ -308,7 +308,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 for (PEditText pEditText : pEditTexts) {
                     try {
-                        dataEditText.insertarPOJOEditText(pEditText);
+                        dataEditText.insertarPEditText(pEditText);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -326,7 +326,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 for (PCheckBox pCheckBox : pCheckBoxes) {
                     try {
-                        dataCheckBox.insertarPOJOCheckBox(pCheckBox);
+                        dataCheckBox.insertarPCheckBox(pCheckBox);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -344,7 +344,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 for (PRadio PRadio : pRadios) {
                     try {
-                        dataRadio.insertarPOJORadio(PRadio);
+                        dataRadio.insertarPRadio(PRadio);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

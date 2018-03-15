@@ -37,7 +37,7 @@ public class DataEditText {
         sqLiteOpenHelper.close();
     }
 
-    public long getNumeroItemsPOJOEditText(){
+    public long getNumeroItemsPEditText(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLEditText.tablaEditText);
     }
 
@@ -45,23 +45,23 @@ public class DataEditText {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLEditText.tablaSPEditText);
     }
 
-    public void insertarPOJOEditText(PEditText PEditText){
+    public void insertarPEditText(PEditText PEditText){
         ContentValues contentValues = PEditText.toValues();
         sqLiteDatabase.insert(SQLEditText.tablaEditText,null,contentValues);
     }
     public void insertarPOJOEditTexts(ArrayList<PEditText> editTexts){
-        long items = getNumeroItemsPOJOEditText();
+        long items = getNumeroItemsPEditText();
         if(items == 0){
             for (PEditText pEditText : editTexts) {
                 try {
-                    insertarPOJOEditText(pEditText);
+                    insertarPEditText(pEditText);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
             }
         }
     }
-    public PEditText getPOJOEditText(String idPOJOEditText){
+    public PEditText getPEditText(String idPOJOEditText){
         PEditText pEditText = new PEditText();
         String[] whereArgs = new String[]{idPOJOEditText};
         Cursor cursor = null;
@@ -81,6 +81,24 @@ public class DataEditText {
         return pEditText;
     }
 
+    public ArrayList<PEditText> getAllPEditText(){
+        ArrayList<PEditText> pEditTexts = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLEditText.tablaEditText, null,null,null,null,null,null);
+            while(cursor.moveToNext()){
+                PEditText pEditText = new PEditText();
+                pEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_ID)));
+                pEditText.setMODULO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_MODULO)));
+                pEditText.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_NUMERO)));
+                pEditText.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.EDITTEXT_PREGUNTA)));
+                pEditTexts.add(pEditText);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return pEditTexts;
+    }
     public void insertarSPEditText(SPEditText spEditText){
         ContentValues contentValues = spEditText.toValues();
         sqLiteDatabase.insert(SQLEditText.tablaSPEditText,null,contentValues);
@@ -105,6 +123,28 @@ public class DataEditText {
         try{
             cursor = sqLiteDatabase.query(SQLEditText.tablaSPEditText,
                     SQLEditText.ALL_COLUMNS_SPEDITTEXT, SQLEditText.WHERE_CLAUSE_ID_PREGUNTA, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                SPEditText spEditText = new SPEditText();
+                spEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_ID)));
+                spEditText.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_ID_PREGUNTA)));
+                spEditText.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_SUBPREGUNTA)));
+                spEditText.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_VARIABLE)));
+                spEditText.setTIPO(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_TIPO)));
+                spEditText.setLONGITUD(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_LONGITUD)));
+                spEditTexts.add(spEditText);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return spEditTexts;
+    }
+
+    public ArrayList<SPEditText> getAllSPEditTexts() {
+        ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLEditText.tablaSPEditText,
+                   null,null,null, null, null, null);
             while(cursor.moveToNext()){
                 SPEditText spEditText = new SPEditText();
                 spEditText.setID(cursor.getString(cursor.getColumnIndex(SQLEditText.SPEDITTEXT_ID)));

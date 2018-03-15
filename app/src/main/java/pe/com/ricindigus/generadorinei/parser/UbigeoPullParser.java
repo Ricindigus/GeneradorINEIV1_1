@@ -32,7 +32,7 @@ public class UbigeoPullParser {
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("ubigeo.xml");
+                InputStream stream = context.getAssets().open("general/ubigeo.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();

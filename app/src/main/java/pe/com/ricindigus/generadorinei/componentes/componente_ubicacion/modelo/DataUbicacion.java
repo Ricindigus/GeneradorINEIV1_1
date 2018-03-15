@@ -7,6 +7,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
@@ -50,8 +52,7 @@ public class DataUbicacion {
         try{
             cursor = sqLiteDatabase.query(SQLUbicacion.tablaUbicacion,
                     SQLUbicacion.ALL_COLUMNS_UBICACION, SQLUbicacion.WHERE_CLAUSE_ID,whereArgs,null,null,null);
-            if(cursor.getCount() == 1){
-                cursor.moveToFirst();
+            while(cursor.moveToNext()){
                 ubicacion.setID(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_ID)));
                 ubicacion.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_NUM)));
                 ubicacion.setMODULO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_MODULO)));
@@ -63,5 +64,26 @@ public class DataUbicacion {
             if(cursor != null) cursor.close();
         }
         return ubicacion;
+    }
+
+    public ArrayList<Ubicacion> getAllUbicacion(){
+        ArrayList<Ubicacion> ubicaciones= new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLUbicacion.tablaUbicacion, null, null, null,null,null,null);
+            while(cursor.moveToNext()){
+                Ubicacion ubicacion = new Ubicacion();
+                ubicacion.setID(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_ID)));
+                ubicacion.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_NUM)));
+                ubicacion.setMODULO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_MODULO)));
+                ubicacion.setVARDEP(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DEPARTAMENTO)));
+                ubicacion.setVARDIS(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_DISTRITO)));
+                ubicacion.setVARPRO(cursor.getString(cursor.getColumnIndex(SQLUbicacion.UBICACION_PROVINCIA)));
+                ubicaciones.add(ubicacion);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return ubicaciones;
     }
 }

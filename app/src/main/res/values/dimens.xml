@@ -10,4 +10,5 @@
     <dimen name="textoMedium">20sp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="margin10dp">10dp</dimen>
+    <dimen name="margin15dp">15dp</dimen>
 </resources>

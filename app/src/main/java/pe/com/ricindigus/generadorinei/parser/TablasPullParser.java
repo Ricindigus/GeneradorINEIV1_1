@@ -54,6 +54,7 @@ public class TablasPullParser {
             currentTabla = new Tabla(
                     xpp.getAttributeValue(0) + xpp.getAttributeValue(1),
                     xpp.getAttributeValue(0) ,
+                    xpp.getAttributeValue(1) ,
                     xpp.getAttributeValue(3),
                     xpp.getAttributeValue(2));
         }

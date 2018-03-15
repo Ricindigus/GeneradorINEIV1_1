@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="pe.com.ricindigus.generadorinei.activities.CargarEncuestaActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/textGrande"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:text="CARGAR ENCUESTA EXISTENTE" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/texto_cargar_encuesta_existente"/>
+    <ImageView
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/cargar_encuesta"
+        android:tint="@color/colorPrimaryDark"/>
+    <Button
+        android:layout_margin="@dimen/margin10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CARGAR ENCUESTA"
+        android:textSize="@dimen/textoMedium"
+        android:theme="@style/RaisedButtonDark2"/>
+</LinearLayout>

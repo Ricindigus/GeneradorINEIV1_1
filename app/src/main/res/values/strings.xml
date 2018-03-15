@@ -167,6 +167,8 @@
     <string name="m2p1_p181_ck7">INDECOPI?</string>
     <string name="m2p1_p181_ck8">Otro?</string>
     <string name="m2p1_p181_ck9">NO SABE</string>
+    <string name="texto_exportar_encuesta_creada">Esta encuesta será exportada a la carpeta /GENERADOR en archivos xml.</string>
+    <string name="texto_cargar_encuesta_existente">Se cargará los archivos XML de la encuesta existente en la carpeta /GENERADOR</string>
 
 
     <string-array name="departamentos">

@@ -56,7 +56,7 @@ public class MarcoPullParser {
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("marco.xml");
+                InputStream stream = context.getAssets().open("general/marco.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();

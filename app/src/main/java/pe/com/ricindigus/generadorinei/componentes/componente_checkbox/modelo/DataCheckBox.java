@@ -37,7 +37,7 @@ public class DataCheckBox {
         sqLiteOpenHelper.close();
     }
 
-    public long getNumeroItemsPOJOCheckBox(){
+    public long getNumeroItemsPCheckBox(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLCheckBox.tablaCheckBox);
     }
     public long getNumeroItemsSPCheckBox(){
@@ -45,23 +45,23 @@ public class DataCheckBox {
     }
 
     //INICIO CHECKBOX
-    public void insertarPOJOCheckBox(PCheckBox PCheckBox){
+    public void insertarPCheckBox(PCheckBox PCheckBox){
         ContentValues contentValues = PCheckBox.toValues();
         sqLiteDatabase.insert(SQLCheckBox.tablaCheckBox,null,contentValues);
     }
-    public void insertarPOJOCheckBoxs(ArrayList<PCheckBox> PCheckBoxes){
-        long items = getNumeroItemsPOJOCheckBox();
+    public void insertarPCheckBoxs(ArrayList<PCheckBox> PCheckBoxes){
+        long items = getNumeroItemsPCheckBox();
         if(items == 0){
             for (PCheckBox PCheckBox : PCheckBoxes) {
                 try {
-                    insertarPOJOCheckBox(PCheckBox);
+                    insertarPCheckBox(PCheckBox);
                 }catch (SQLiteException e){
                     e.printStackTrace();
                 }
             }
         }
     }
-    public PCheckBox getPOJOCheckbox(String idCCheckbox){
+    public PCheckBox getPCheckbox(String idCCheckbox){
         PCheckBox PCheckBox = new PCheckBox();
         String[] whereArgs = new String[]{idCCheckbox};
         Cursor cursor = null;
@@ -79,6 +79,26 @@ public class DataCheckBox {
             if(cursor != null) cursor.close();
         }
         return PCheckBox;
+    }
+
+    public ArrayList<PCheckBox> getAllPCheckbox(){
+        ArrayList<PCheckBox> pCheckBoxes = new ArrayList<PCheckBox>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLCheckBox.tablaCheckBox,
+                    null,null,null,null,null,null);
+            if(cursor.moveToNext()){
+                PCheckBox pCheckBox = new PCheckBox();
+                pCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_ID)));
+                pCheckBox.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_MODULO)));
+                pCheckBox.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_NUMERO)));
+                pCheckBox.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.CHECKBOX_PREGUNTA )));
+                pCheckBoxes.add(pCheckBox);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return pCheckBoxes;
     }
     //FIN CHECKBOX
 
@@ -106,6 +126,29 @@ public class DataCheckBox {
         try{
             cursor = sqLiteDatabase.query(SQLCheckBox.tablaSPCheckBox,
                     SQLCheckBox.ALL_COLUMNS_SPCHECKBOX, SQLCheckBox.WHERE_CLAUSE_ID_PREGUNTA, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                SPCheckBox spCheckBox = new SPCheckBox();
+                spCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_ID)));
+                spCheckBox.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_ID_PREGUNTA)));
+                spCheckBox.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_SUBPREGUNTA)));
+                spCheckBox.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_VARIABLE)));
+                spCheckBox.setVARDESC(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_VARDESC)));
+                spCheckBox.setDESHAB(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_DESHAB)));
+                spCheckBoxs.add(spCheckBox);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return spCheckBoxs;
+    }
+
+
+    public ArrayList<SPCheckBox> getAllSPCheckBoxs() {
+        ArrayList<SPCheckBox> spCheckBoxs = new ArrayList<SPCheckBox>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLCheckBox.tablaSPCheckBox,
+                    null,null,null, null, null, null);
             while(cursor.moveToNext()){
                 SPCheckBox spCheckBox = new SPCheckBox();
                 spCheckBox.setID(cursor.getString(cursor.getColumnIndex(SQLCheckBox.SPCHECKBOX_ID)));

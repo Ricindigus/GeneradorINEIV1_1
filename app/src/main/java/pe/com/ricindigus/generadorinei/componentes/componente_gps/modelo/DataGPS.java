@@ -7,6 +7,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
@@ -64,5 +66,26 @@ public class DataGPS {
             if(cursor != null) cursor.close();
         }
         return gps;
+    }
+
+    public ArrayList<GPS> getAllGPS(){
+        ArrayList<GPS> gpsArrayList = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLGps.tablaGPS, null, null,null,null,null,null);
+            while(cursor.moveToNext()){
+                GPS gps = new GPS();
+                gps.setID(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_ID)));
+                gps.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_NUMERO)));
+                gps.setMODULO(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_MODULO)));
+                gps.setVARALT(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_ALTITUD)));
+                gps.setVARLAT(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_LATITUD)));
+                gps.setVARLONG(cursor.getString(cursor.getColumnIndex(SQLGps.GPS_LONGITUD)));
+                gpsArrayList.add(gps);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return gpsArrayList;
     }
 }

@@ -127,11 +127,6 @@ public class ExportarActivity extends AppCompatActivity {
     }
     public void exportarEmpresa(String idEmpresa){
         String nombreArchivo = idEmpresa + ".xml";
-//        Marco marco;
-//        data = new Data(this);
-//        data.open();
-//        marco = data.getMarco(idEmpresa);
-//        data.close();
 
         XmlSerializer serializer = Xml.newSerializer();
         StringWriter writer = new StringWriter();
@@ -140,35 +135,6 @@ public class ExportarActivity extends AppCompatActivity {
             serializer.startDocument("utf-8", true);
             serializer.startTag("", "ENCUESTA");
             serializer.attribute("", "id",idEmpresa);
-//            serializer.startTag("", "MARCO");
-//            escribirCampoXml(serializer,"ID",marco.getID());
-//            escribirCampoXml(serializer, SQLConstantes.MARCO_RUC,marco.getRUC());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_RAZON_SOCIAL,marco.getRAZON_SOCIAL());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_NOMBRE_COMERCIAL,marco.getNOMBRE_COMERCIAL());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_OPERADOR,marco.getOPERADOR());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_JEFE,marco.getJEFE());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_OBSERVADOR,marco.getOBSERVADOR());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_ANIO,marco.getANIO());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_MES,marco.getMES());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_PERIODO,marco.getPERIODO());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_CCDD,marco.getCCDD());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_DEPARTAMENTO,marco.getDEPARTAMENTO());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_CCPP,marco.getCCPP());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_PROVINCIA,marco.getPROVINCIA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_CCDI,marco.getCCDI());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_DISTRITO,marco.getDISTRITO());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_T_EMPRESA,marco.getT_EMPRESA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_FRENTE,marco.getFRENTE());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_ZONA,marco.getZONA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_MANZANA,marco.getMANZANA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_CAT_VIA,marco.getCAT_VIA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_NOM_VIA,marco.getNOM_VIA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_PUERTA,marco.getPUERTA());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_INTERIOR,marco.getINTERIOR());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_PISO,marco.getPISO());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_MZ,marco.getMZ());
-//            escribirCampoXml(serializer,SQLConstantes.MARCO_LOTE,marco.getLOTE());
-//            serializer.endTag("", "MARCO");
 
             dataComponentes = new DataComponentes(this);
             dataComponentes.open();
@@ -207,7 +173,7 @@ public class ExportarActivity extends AppCompatActivity {
             serializer.endTag("", "ENCUESTA");
             serializer.endDocument();
             String result = writer.toString();
-            File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+            File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERAPP_EXPORTACION");
             nuevaCarpeta.mkdirs();
             File file = new File(nuevaCarpeta, nombreArchivo);
             IOHelper.writeToFile(file,result);

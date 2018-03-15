@@ -13,13 +13,15 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConsta
 public class Tabla {
     private String ID;
     private String MODULO;
+    private String PARTE;
     private String NOMBRE;
     private String TIPO;
 
 
-    public Tabla(String ID, String MODULO, String NOMBRE, String TIPO) {
+    public Tabla(String ID, String MODULO, String PARTE, String NOMBRE, String TIPO) {
         this.ID = ID;
         this.MODULO = MODULO;
+        this.PARTE = PARTE;
         this.NOMBRE = NOMBRE;
         this.TIPO = TIPO;
     }
@@ -27,6 +29,7 @@ public class Tabla {
     public Tabla() {
         this.ID = "";
         this.MODULO = "";
+        this.PARTE = "";
         this.NOMBRE = "";
         this.TIPO = "";
     }

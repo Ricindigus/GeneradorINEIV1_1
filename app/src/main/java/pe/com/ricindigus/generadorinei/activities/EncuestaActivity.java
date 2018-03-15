@@ -462,19 +462,19 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                         fragmentComponente = formularioFragment;
                         break;
                     case TipoComponente.EDITTEXT:
-                        PEditText pEditText = dataEditText.getPOJOEditText(ids[i]);
+                        PEditText pEditText = dataEditText.getPEditText(ids[i]);
                         ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
                         EditTextFragment editTextFragment = new EditTextFragment(pEditText, spEditTexts, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = editTextFragment;
                         break;
                     case TipoComponente.CHECKBOX:
-                        PCheckBox PCheckBox = dataCheckBox.getPOJOCheckbox(ids[i]);
+                        PCheckBox PCheckBox = dataCheckBox.getPCheckbox(ids[i]);
                         ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
                         CheckBoxFragment checkBoxFragment = new CheckBoxFragment(PCheckBox, spCheckBoxes, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = checkBoxFragment;
                         break;
                     case TipoComponente.RADIO:
-                        PRadio PRadio = dataRadio.getPOJORadio(ids[i]);
+                        PRadio PRadio = dataRadio.getPRadio(ids[i]);
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
                         RadioFragment radioFragment = new RadioFragment(PRadio, spRadios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = radioFragment;

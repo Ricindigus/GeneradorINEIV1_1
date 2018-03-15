@@ -31,7 +31,7 @@ public class UsuariosPullParser {
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("usuarios.xml");
+                InputStream stream = context.getAssets().open("general/usuarios.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
