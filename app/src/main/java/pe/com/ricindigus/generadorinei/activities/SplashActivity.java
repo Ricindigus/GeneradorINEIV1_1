@@ -31,23 +31,23 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataR
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.SPRadioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.VisitaPullParser;
+import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.DataVersion;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.EncuestaPullParser;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
+import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.OpcionSpinnerPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
-import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
@@ -57,7 +57,7 @@ import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
@@ -84,7 +84,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
-    ArrayList<Tabla> tablas = new ArrayList<Tabla>();
+    ArrayList<InfoTabla> infoTablas = new ArrayList<InfoTabla>();
     ArrayList<Evento> eventos = new ArrayList<Evento>();
     ArrayList<Variable> variables = new ArrayList<Variable>();
     ArrayList<Encuesta> encuestas = new ArrayList<Encuesta>();
@@ -114,11 +114,17 @@ public class SplashActivity extends AppCompatActivity {
         progressBar1 = (ProgressBar) findViewById(R.id.marco_progreso1);
 
 
+
         data = new Data(getApplicationContext());
         data.open();
         long items1 = data.getNumeroItemsMarco();
         data.close();
         if(items1 == 0){
+            DataVersion dataVersion = new DataVersion(this);
+            dataVersion.open();
+            dataVersion.insertarVersionesIniciales();
+            dataVersion.close();
+
             MarcoPullParser marcoPullParser = new MarcoPullParser();
             UsuariosPullParser usuarioParser = new UsuariosPullParser();
             VisitaPullParser visitaPullParser = new VisitaPullParser();
@@ -130,10 +136,9 @@ public class SplashActivity extends AppCompatActivity {
             EditTextPullParser editTextPullParser = new EditTextPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
-            SPRadioPullParser spRadioPullParser = new SPRadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
-            TablasPullParser tablasPullParser = new TablasPullParser();
+            InfoTablasPullParser infoTablasPullParser = new InfoTablasPullParser();
             EventosPullParser eventosPullParser = new EventosPullParser();
             VariablesPullParser variablesPullParser = new VariablesPullParser();
             EncuestaPullParser encuestaPullParser = new EncuestaPullParser();
@@ -154,10 +159,10 @@ public class SplashActivity extends AppCompatActivity {
             pCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
             spCheckBoxes = checkBoxPullParser.parseXMLSPCheckBox(getApplicationContext());
             pRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
-            spRadios = spRadioPullParser.parseXML(getApplicationContext());
+            spRadios = radioPullParser.parseXMLSPRadio(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
-            tablas = tablasPullParser.parseXML(getApplicationContext());
+            infoTablas = infoTablasPullParser.parseXML(getApplicationContext());
             eventos = eventosPullParser.parseXML(getApplicationContext());
             variables = variablesPullParser.parseXML(getApplicationContext());
             encuestas = encuestaPullParser.parseXML(getApplicationContext());
@@ -168,7 +173,7 @@ public class SplashActivity extends AppCompatActivity {
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size() + encuestas.size()
-                + paginas.size() + opciones.size() + tablas.size() + eventos.size() + variables.size() ;
+                + paginas.size() + opciones.size() + infoTablas.size() + eventos.size() + variables.size() ;
         carga = (maximo*1.00)/100.00;
 
         progressBar.setMax(maximo);
@@ -210,8 +215,7 @@ public class SplashActivity extends AppCompatActivity {
             dataCheckBox.open();
             dataRadio = new DataRadio(getApplicationContext());
             dataRadio.open();
-            dataTablas = new DataTablas(getApplicationContext());
-            dataTablas.open();
+
 
 
             long items = data.getNumeroItemsMarco();
@@ -378,9 +382,9 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-                for (Tabla tabla : tablas) {
+                for (InfoTabla infoTabla : infoTablas) {
                     try {
-                        data.insertarTabla(tabla);
+                        dataComponentes.insertarInfoTablas(infoTabla);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -405,6 +409,11 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
+
+                //CODIGO DE CREACION DE TABLAS
+                dataTablas = new DataTablas(getApplicationContext());
+                dataTablas.open();
+                dataTablas.close();
                 mensaje = "LISTO, BIENVENIDO";
             }else{
                 try {
@@ -422,7 +431,7 @@ public class SplashActivity extends AppCompatActivity {
             dataEditText.close();
             dataCheckBox.close();
             dataRadio.close();
-            dataTablas.close();
+
             return mensaje;
         }
 

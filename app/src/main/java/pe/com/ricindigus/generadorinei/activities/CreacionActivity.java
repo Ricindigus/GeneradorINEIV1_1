@@ -1,9 +1,12 @@
 package pe.com.ricindigus.generadorinei.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ public class CreacionActivity extends AppCompatActivity {
     LinearLayout lytCargar;
     LinearLayout lytExportar;
     LinearLayout lytEditar;
+    Button btnCerrarSesion;
 
 
 
@@ -27,6 +31,7 @@ public class CreacionActivity extends AppCompatActivity {
         lytCrear = (LinearLayout) findViewById(R.id.creacion_lyt_crear);
         lytExportar = (LinearLayout) findViewById(R.id.creacion_lyt_exportar);
         lytEditar = (LinearLayout) findViewById(R.id.creacion_lyt_editar);
+        btnCerrarSesion = (Button) findViewById(R.id.creacion_btnCerrarSesion);
 
 
         lytCargar.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +63,32 @@ public class CreacionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CreacionActivity.this,EditarEncuestaActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreacionActivity.this);
+                builder.setMessage("¿Está seguro que desea cerrar sesión en la aplicación?")
+                        .setTitle("Aviso")
+                        .setCancelable(false)
+                        .setNegativeButton("No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                })
+                        .setPositiveButton("Sí",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent = new Intent(CreacionActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 

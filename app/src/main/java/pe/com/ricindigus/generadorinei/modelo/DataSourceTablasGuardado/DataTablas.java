@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.DataVersion;
+import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.SQLVersion;
+
 /**
  * Created by dmorales on 08/01/2018.
  */
@@ -19,7 +22,11 @@ public class DataTablas {
 
     public DataTablas(Context contexto) {
         this.contexto = contexto;
-        sqLiteOpenHelper = new DBHelperTablas(contexto);
+        DataVersion dataVersion = new DataVersion(contexto);
+        dataVersion.open();
+        int version = Integer.parseInt(dataVersion.getVersion(SQLVersion.VERSION_BD_TABLAS));
+        dataVersion.close();
+        sqLiteOpenHelper = new DBHelperTablas(contexto,version);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
     }
@@ -158,6 +165,10 @@ public class DataTablas {
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * from " + tabla, null);
         if (cursor != null) cursor.moveToFirst();
         return cursor;
+    }
+
+    public void deleteTabla(String tabla){
+        sqLiteDatabase.execSQL("DROP TABLE " + tabla);
     }
 
     public Cursor getVisitas(String nModulo, String idEmpresa){

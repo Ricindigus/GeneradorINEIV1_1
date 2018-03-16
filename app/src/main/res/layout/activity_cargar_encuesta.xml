@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:layout_margin="@dimen/margenMaterial"
     tools:context="pe.com.ricindigus.generadorinei.activities.CargarEncuestaActivity">
     <TextView
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textSize="@dimen/textoMedium"
         android:text="@string/texto_cargar_encuesta_existente"/>
     <ImageView
         android:layout_marginTop="25dp"
@@ -27,10 +29,28 @@
         android:src="@drawable/cargar_encuesta"
         android:tint="@color/colorPrimaryDark"/>
     <Button
-        android:layout_margin="@dimen/margin10dp"
-        android:layout_width="wrap_content"
+        android:id="@+id/cargar_encuesta_btnCargar"
+        android:layout_marginTop="@dimen/margin10dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:text="CARGAR ENCUESTA"
         android:textSize="@dimen/textoMedium"
         android:theme="@style/RaisedButtonDark2"/>
+    <Button
+        android:id="@+id/cargar_encuesta_btnVolver"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="VOLVER"
+        android:textSize="@dimen/textoMedium"
+        android:theme="@style/RaisedButtonDark2"/>
+    <ProgressBar
+        android:id="@+id/cargar_encuesta_progreso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/cargar_encuesta_txtMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exportando..."
+        android:gravity="center"/>
 </LinearLayout>

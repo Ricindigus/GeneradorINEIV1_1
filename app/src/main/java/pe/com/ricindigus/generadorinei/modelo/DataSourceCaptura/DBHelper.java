@@ -23,7 +23,6 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MARCO);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_UBIGEOS);
-        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_TABLAS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CONTROLADOR);
 
 

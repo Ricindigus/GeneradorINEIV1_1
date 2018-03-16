@@ -14,6 +14,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -607,6 +608,28 @@ public class DataComponentes {
         return variables;
     }
 
+    public ArrayList<Variable> getVariablesxTabla(String idTabla) {
+        ArrayList<Variable> variables = new ArrayList<Variable>();
+        String[] whereArgs = new String[]{idTabla};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaVariables, SQLConstantesComponente.ALL_COLUMNS_VARIABLES,
+                    SQLConstantesComponente.WHERE_CLAUSE_TABLA, whereArgs, null, null, null);
+            while(cursor.moveToNext()){
+                Variable variable = new Variable();
+                variable.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_ID)));
+                variable.setTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_TABLA)));
+                variable.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PREGUNTA)));
+                variable.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_PAGINA)));
+                variable.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.VARIABLE_MODULO)));
+                variables.add(variable);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return variables;
+    }
+
     public ArrayList<Variable> getVariablesxPagina(String idPagina) {
         ArrayList<Variable> variables = new ArrayList<Variable>();
         String[] whereArgs = new String[]{idPagina};
@@ -649,5 +672,100 @@ public class DataComponentes {
         return variables;
     }
 
+    public void insertarInfoTablas(InfoTabla infoTabla){
+        ContentValues contentValues = infoTabla.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaInfoTablas,null,contentValues);
+    }
+
+
+    public InfoTabla getInfoTablas(String idTabla) {
+        InfoTabla infoTabla = new InfoTabla();
+        String[] whereArgs = new String[]{idTabla};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaInfoTablas, SQLConstantesComponente.ALL_COLUMNS_INFOTABLAS,
+                    SQLConstantesComponente.WHERE_CLAUSE_ID,whereArgs, null, null, null);
+            if(cursor.getCount() == 1){
+                infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
+                infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
+                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
+                infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return infoTabla;
+    }
+
+    public InfoTabla getInfoTablaxNombre(String nombreTabla){
+        InfoTabla infoTabla = new InfoTabla();
+        String[] whereArgs = new String[]{nombreTabla};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaInfoTablas,
+                    SQLConstantesComponente.ALL_COLUMNS_INFOTABLAS,SQLConstantes.WHERE_CLAUSE_TABLA_NOMBRE,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
+                infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
+                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
+                infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return infoTabla;
+    }
+
+
+
+    public InfoTabla getInfoTablaxModulo(String idModulo){
+        InfoTabla infoTabla = new InfoTabla();
+        String[] whereArgs = new String[]{idModulo};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaInfoTablas,
+                    SQLConstantesComponente.ALL_COLUMNS_INFOTABLAS,SQLConstantesComponente.WHERE_CLAUSE_MODULO,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
+                infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
+                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
+                infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return infoTabla;
+    }
+
+
+        public ArrayList<InfoTabla> getAllInfoTablas() {
+        ArrayList<InfoTabla> infoTablas = new ArrayList<InfoTabla>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaInfoTablas, null,null,null, null, null, null);
+            while(cursor.moveToNext()){
+                InfoTabla infoTabla = new InfoTabla();
+                infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
+                infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
+                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
+                infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
+                infoTablas.add(infoTabla);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return infoTablas;
+    }
+
+
+    public void deleteAllElementosFromTabla(String nombreTabla){
+        sqLiteDatabase.execSQL("delete from "+ nombreTabla);
+    }
 
 }

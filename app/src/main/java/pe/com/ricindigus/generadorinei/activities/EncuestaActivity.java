@@ -68,7 +68,7 @@ import pe.com.ricindigus.generadorinei.pojos.Controlador;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 public class EncuestaActivity extends AppCompatActivity implements ActividadInterfaz {
@@ -273,19 +273,16 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             DataComponentes dtc = new DataComponentes(this);
             dtc.open();
             String mod = dtc.getPagina(posicionFragment + "").getMODULO();
+            InfoTabla infoTabla = dtc.getInfoTablaxModulo(mod);
             dtc.close();
-            Data d = new Data(this);
-            d.open();
-            Tabla tabla = d.getTablaxModulo(mod);
-            final String idTabla = tabla.getID();
-            d.close();
+            final String idTabla = infoTabla.getID();
             DataTablas dT = new DataTablas(this);
             dT.open();
             String obs = dT.getValor(idTabla, "OBS", idEmpresa);
             dT.close();
             final String observaciones = obs;
             dialog.setView(dialogView);
-            dialog.setTitle("OBSERVACIONES " + tabla.getNOMBRE());
+            dialog.setTitle("OBSERVACIONES " + infoTabla.getNOMBRE());
             dialog.setPositiveButton("Guardar", null);
             dialog.setNegativeButton("Cancelar", null);
             final AlertDialog alertDialog = dialog.create();

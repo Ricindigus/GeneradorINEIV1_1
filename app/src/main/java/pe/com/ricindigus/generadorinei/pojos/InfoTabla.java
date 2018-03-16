@@ -10,7 +10,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConsta
  * Created by dmorales on 21/02/2018.
  */
 
-public class Tabla {
+public class InfoTabla {
     private String ID;
     private String MODULO;
     private String PARTE;
@@ -18,7 +18,7 @@ public class Tabla {
     private String TIPO;
 
 
-    public Tabla(String ID, String MODULO, String PARTE, String NOMBRE, String TIPO) {
+    public InfoTabla(String ID, String MODULO, String PARTE, String NOMBRE, String TIPO) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.PARTE = PARTE;
@@ -26,7 +26,7 @@ public class Tabla {
         this.TIPO = TIPO;
     }
 
-    public Tabla() {
+    public InfoTabla() {
         this.ID = "";
         this.MODULO = "";
         this.PARTE = "";
@@ -42,20 +42,28 @@ public class Tabla {
         this.ID = ID;
     }
 
-    public String getNOMBRE() {
-        return NOMBRE;
-    }
-
-    public void setNOMBRE(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
-    }
-
     public String getMODULO() {
         return MODULO;
     }
 
     public void setMODULO(String MODULO) {
         this.MODULO = MODULO;
+    }
+
+    public String getPARTE() {
+        return PARTE;
+    }
+
+    public void setPARTE(String PARTE) {
+        this.PARTE = PARTE;
+    }
+
+    public String getNOMBRE() {
+        return NOMBRE;
+    }
+
+    public void setNOMBRE(String NOMBRE) {
+        this.NOMBRE = NOMBRE;
     }
 
     public String getTIPO() {
@@ -68,10 +76,11 @@ public class Tabla {
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLConstantes.TABLA_ID,ID);
-        contentValues.put(SQLConstantes.TABLA_MODULO,MODULO);
-        contentValues.put(SQLConstantes.TABLA_NOMBRE,NOMBRE);
-        contentValues.put(SQLConstantes.TABLA_TIPO,TIPO);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_ID,ID);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_MODULO,MODULO);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_NOMBRE,NOMBRE);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_TIPO,TIPO);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_PARTE,PARTE);
         return contentValues;
     }
 

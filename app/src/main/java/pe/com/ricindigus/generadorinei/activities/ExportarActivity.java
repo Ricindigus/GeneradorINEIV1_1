@@ -26,13 +26,12 @@ import pe.com.ricindigus.generadorinei.IOHelper;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.adapters.ExportarAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
-import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
+import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
 import pe.com.ricindigus.generadorinei.pojos.ExportarItem;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -140,15 +139,15 @@ public class ExportarActivity extends AppCompatActivity {
             dataComponentes.open();
             dataTablas = new DataTablas(this);
             dataTablas.open();
-            ArrayList<Tabla> tablas = (new TablasPullParser()).parseXML(this);
-            for(Tabla tabla : tablas){
-                String nombreTabla = tabla.getNOMBRE();
-                String idTabla = tabla.getID();
+            ArrayList<InfoTabla> infoTablas =(new InfoTablasPullParser()).parseXML(this);
+            for(InfoTabla infoTabla : infoTablas){
+                String nombreTabla = infoTabla.getNOMBRE();
+                String idTabla = infoTabla.getID();
                 if(dataTablas.existenDatos(idTabla,idEmpresa)){
                     String[] variablesTabla = dataTablas.getNombreColumnas(idTabla,idEmpresa);
-                    if(tabla.getTIPO().equals("1"))serializer.startTag("", nombreTabla);
+                    if(infoTabla.getTIPO().equals("1"))serializer.startTag("", nombreTabla);
                     else serializer.startTag("", nombreTabla + "_ITEMS");
-                    if(tabla.getTIPO().equals("1")){
+                    if(infoTabla.getTIPO().equals("1")){
                         for (String variable : variablesTabla){
                             String valor = dataTablas.getValor(idTabla,variable,idEmpresa);
                             escribirCampoXml(serializer, variable, valor);
@@ -164,7 +163,7 @@ public class ExportarActivity extends AppCompatActivity {
                             serializer.endTag("", nombreTabla);
                         }
                     }
-                    if(tabla.getTIPO().equals("1"))serializer.endTag("", nombreTabla);
+                    if(infoTabla.getTIPO().equals("1"))serializer.endTag("", nombreTabla);
                     else serializer.endTag("", nombreTabla + "_ITEMS");
                 }
             }

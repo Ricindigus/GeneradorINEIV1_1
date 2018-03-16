@@ -6,12 +6,17 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 
 /**
@@ -73,6 +78,40 @@ public class CheckBoxPullParser {
         return PCheckBoxes;
     }
 
+    public ArrayList<PCheckBox> parseXMLPCheckBox(Context context, String archivo){
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser xpp = factory.newPullParser();
+            FileInputStream fis = null;
+            try {
+                File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+                File file = new File(nuevaCarpeta, archivo);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fis = new FileInputStream(file);
+                xpp.setInput(fis, null);
+                int eventType = xpp.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    if(eventType == XmlPullParser.START_TAG){
+                        handleStarTagCheckBox(xpp.getName());
+                    }else if(eventType == XmlPullParser.END_TAG){
+                        currentTag = null;
+                    }else if(eventType == XmlPullParser.TEXT){
+                        handleTextCheckBox(xpp.getText());
+                    }
+                    eventType = xpp.next();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return PCheckBoxes;
+    }
+
     private void handleTextCheckBox(String text) {
         String xmlText = text;
         if(currentCheckBox!= null && currentTag != null){
@@ -104,6 +143,40 @@ public class CheckBoxPullParser {
                 InputStream stream = context.getAssets().open("subpreguntas_checkbox.xml");
                 xpp.setInput(stream,null);
 
+                int eventType = xpp.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    if(eventType == XmlPullParser.START_TAG){
+                        handleStarTagSPCheckBox(xpp.getName());
+                    }else if(eventType == XmlPullParser.END_TAG){
+                        currentTag = null;
+                    }else if(eventType == XmlPullParser.TEXT){
+                        handleTextSPCheckBox(xpp.getText());
+                    }
+                    eventType = xpp.next();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return spCheckBoxes;
+    }
+
+    public ArrayList<SPCheckBox> parseXMLSPCheckBox(Context context, String archivo){
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser xpp = factory.newPullParser();
+            FileInputStream fis = null;
+            try {
+                File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+                File file = new File(nuevaCarpeta, archivo);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fis = new FileInputStream(file);
+                xpp.setInput(fis, null);
                 int eventType = xpp.getEventType();
 
                 while(eventType != XmlPullParser.END_DOCUMENT){

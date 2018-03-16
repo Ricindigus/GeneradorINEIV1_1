@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
-import pe.com.ricindigus.generadorinei.parser.TablaGuardadoPullParser;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.DataVersion;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
+import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 
 /**
@@ -16,36 +18,51 @@ import pe.com.ricindigus.generadorinei.pojos.Tabla;
  */
 
 public class DBHelperTablas extends SQLiteOpenHelper {
-    public static final int DB_VERSION = 1;
     private Context contexto;
-    TablaGuardadoPullParser tablaGuardadoPullParser;
-    ArrayList<String> tablas;
-    TablasPullParser tablasPullParser;
-    ArrayList<Tabla> infoTablas;
+    ArrayList<InfoTabla> infoTablas;
+    ArrayList<Variable> variables;
 
-
-    public DBHelperTablas(Context context) {
-        super(context, SQLConstantesTablas.NOMBRE_DB, null, DB_VERSION);
+    public DBHelperTablas(Context context, int version) {
+        super(context, SQLConstantesTablas.NOMBRE_DB, null, version);
         this.contexto = context;
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        tablaGuardadoPullParser = new TablaGuardadoPullParser();
-        tablas = tablaGuardadoPullParser.parseXML(contexto);
-        for (String createTabla : tablas){
-            sqLiteDatabase.execSQL(createTabla);
+        DataComponentes dataComponentes = new DataComponentes(contexto);
+        dataComponentes.open();
+        infoTablas = dataComponentes.getAllInfoTablas();
+        for (InfoTabla infoTabla : infoTablas){
+            String crearTabla = "";
+            String idTabla= infoTabla.getID();
+            crearTabla = crearTabla + "CREATE TABLE "+ "modulo" + idTabla + "(";
+            if (infoTabla.getTIPO().equals("1")){
+                crearTabla = crearTabla + "ID_EMPRESA" + " TEXT PRIMARY KEY";
+            }else{
+                crearTabla = crearTabla + "_id" + " TEXT PRIMARY KEY,"
+                            + "ID_EMPRESA" + " TEXT";
+            }
+            variables = dataComponentes.getVariablesxTabla(idTabla);
+            for (Variable variable : variables){
+                crearTabla = crearTabla + "," + variable.getID() + " TEXT";
+            }
+            crearTabla = crearTabla + ");";
+            sqLiteDatabase.execSQL(crearTabla);
         }
+        dataComponentes.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        tablasPullParser = new TablasPullParser();
-        infoTablas = tablasPullParser.parseXML(contexto);
-        for (int i = 1; i <= infoTablas.size(); i++) {
-            sqLiteDatabase.execSQL("DROP TABLE modulo" + infoTablas.get(i).getID());
+        DataComponentes dataComponentes = new DataComponentes(contexto);
+        dataComponentes.open();
+        infoTablas = dataComponentes.getAllInfoTablas();
+        for (InfoTabla infoTabla:infoTablas) {
+            sqLiteDatabase.execSQL("DROP TABLE modulo" + infoTabla.getID());
         }
+        dataComponentes.close();
         onCreate(sqLiteDatabase);
     }
+
 }

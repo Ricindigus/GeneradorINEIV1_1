@@ -13,33 +13,34 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
-import pe.com.ricindigus.generadorinei.pojos.Modulo;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
 /**
- * Created by dmorales on 28/12/2017.
+ * Created by otin016 on 23/08/2017.
  */
 
-public class ModuloPullParser {
-    public static final String MODULO_ID = "ID";
-    public static final String MODULO_TITULO = "TITULO";
-    public static final String MODULO_CABECERA = "CABECERA";
-    public static final String MODULO_NTABLA = "NTABLA";
+public class InfoTablasPullParser {
+    public static final String INFOTABLAS_ID = "ID";
+    public static final String INFOTABLAS_MODULO = "MODULO";
+    public static final String INFOTABLAS_PARTE = "PARTE";
+    public static final String INFOTABLAS_NOMBRE = "NOMBRE";
+    public static final String INFOTABLAS_TIPO = "TIPO";
 
-    private Modulo currentModulo = null;
+    private InfoTabla currentInfoTabla = null;
     private String currentTag = null;
-    ArrayList<Modulo> modulos = new ArrayList<Modulo>();
+    ArrayList<InfoTabla> infoTablas = new ArrayList<>();
 
-    public ArrayList<Modulo> parseXML(Context context){
+    public ArrayList<InfoTabla> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("modulos.xml");
+                InputStream stream = context.getAssets().open("infotablas.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -61,10 +62,10 @@ public class ModuloPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return modulos;
+        return infoTablas;
     }
 
-    public ArrayList<Modulo> parseXML(Context context, String archivo){
+    public ArrayList<InfoTabla> parseXML(Context context, String archivo){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -95,25 +96,26 @@ public class ModuloPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return modulos;
+        return infoTablas;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentModulo!= null && currentTag != null){
+        if(currentInfoTabla!= null && currentTag != null){
             switch (currentTag){
-                case MODULO_ID:currentModulo.setID(xmlText);break;
-                case MODULO_TITULO:currentModulo.setTITULO(xmlText);break;
-                case MODULO_CABECERA:currentModulo.setCABECERA(xmlText);break;
-                case MODULO_NTABLA:currentModulo.setNTABLA(xmlText);break;
+                case INFOTABLAS_ID:currentInfoTabla.setID(xmlText);break;
+                case INFOTABLAS_MODULO:currentInfoTabla.setMODULO(xmlText);break;
+                case INFOTABLAS_NOMBRE:currentInfoTabla.setNOMBRE(xmlText);break;
+                case INFOTABLAS_PARTE:currentInfoTabla.setPARTE(xmlText);break;
+                case INFOTABLAS_TIPO:currentInfoTabla.setTIPO(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("MODULO")){
-            currentModulo = new Modulo();
-            modulos.add(currentModulo);
+        if(name.equals("INFOTABLA")){
+            currentInfoTabla = new InfoTabla();
+            infoTablas.add(currentInfoTabla);
         }else{
             currentTag = name;
         }

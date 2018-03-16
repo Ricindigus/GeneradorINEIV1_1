@@ -68,10 +68,6 @@ public class SQLConstantes {
     public static final String MARCO_LOTE = "LOTE";
 
 
-    public static final String TABLA_ID = "ID";
-    public static final String TABLA_MODULO = "MODULO";
-    public static final String TABLA_NOMBRE = "NOMBRE";
-    public static final String TABLA_TIPO = "TIPO";
 
     public static final String SQL_CREATE_TABLA_CONTROLADOR =
             "CREATE TABLE " + tablaControlador + "(" +
@@ -126,13 +122,6 @@ public class SQLConstantes {
                     MARCO_LOTE + " TEXT" + ");"
             ;
 
-    public static final String SQL_CREATE_TABLA_TABLAS =
-            "CREATE TABLE " + tablaTablas + "(" +
-                    TABLA_ID + " TEXT PRIMARY KEY," +
-                    TABLA_MODULO + " TEXT," +
-                    TABLA_NOMBRE + " TEXT," +
-                    TABLA_TIPO + " TEXT" + ");"
-            ;
 
 
     //WHERE
@@ -172,9 +161,6 @@ public class SQLConstantes {
             UBIGEO_ID, UBIGEO_ID_UBI,UBIGEO_DISTRITO
     };
 
-    public static final String[] ALL_COLUMNS_TABLAS = {
-            TABLA_ID, TABLA_MODULO, TABLA_NOMBRE, TABLA_TIPO
-    };
 
     public static final String[] ALL_COLUMNS_MARCO = {
             MARCO_ID, MARCO_RUC, MARCO_RAZON_SOCIAL, MARCO_NOMBRE_COMERCIAL,

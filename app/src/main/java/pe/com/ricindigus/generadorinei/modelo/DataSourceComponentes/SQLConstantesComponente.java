@@ -14,6 +14,8 @@ public class SQLConstantesComponente {
     public static final String tablaOpcionSpinner = "opciones";
     public static final String tablaEventos = "eventos";
     public static final String tablaVariables = "variables";
+    public static final String tablaInfoTablas = "infotablas";
+
 
 
 
@@ -81,7 +83,20 @@ public class SQLConstantesComponente {
 
 
     //COLUMNAS INFO TABLAS
+    public static final String INFOTABLAS_ID = "ID";
+    public static final String INFOTABLAS_MODULO = "MODULO";
+    public static final String INFOTABLAS_PARTE = "PARTE";
+    public static final String INFOTABLAS_NOMBRE = "NOMBRE";
+    public static final String INFOTABLAS_TIPO = "TIPO";
 
+    public static final String SQL_CREATE_TABLA_INFOTABLAS =
+            "CREATE TABLE " + tablaInfoTablas + "(" +
+                    INFOTABLAS_ID + " TEXT PRIMARY KEY," +
+                    INFOTABLAS_MODULO + " TEXT," +
+                    INFOTABLAS_NOMBRE + " TEXT," +
+                    INFOTABLAS_PARTE + " TEXT," +
+                    INFOTABLAS_TIPO + " TEXT" + ");"
+            ;
 
 
     //CREACION DE TABLAS (CREATE)
@@ -163,8 +178,10 @@ public class SQLConstantesComponente {
     public static final String WHERE_CLAUSE_VAL = "VAL=?";
     public static final String WHERE_CLAUSE_IDPAGB = "IDPAGB=?";
     public static final String WHERE_CLAUSE_PREGUNTA = "PREGUNTA=?";
+    public static final String WHERE_CLAUSE_TABLA = "TABLA=?";
     public static final String WHERE_CLAUSE_PAGINA = "PAGINA=?";
-
+    public static final String WHERE_CLAUSE_MODULO = "MODULO=?";
+    public static final String WHERE_CLAUSE_NOMBRE = "NOMBRE=?";
 
 
 
@@ -176,6 +193,8 @@ public class SQLConstantesComponente {
     public static final String SQL_DELETE_OPCION_SPINNER = "DROP TABLE " + tablaOpcionSpinner;
     public static final String SQL_DELETE_EVENTOS = "DROP TABLE " + tablaEventos;
     public static final String SQL_DELETE_VARIABLES = "DROP TABLE " + tablaVariables;
+    public static final String SQL_DELETE_INFOTABLAS = "DROP TABLE " + tablaInfoTablas;
+
 
 
 
@@ -215,6 +234,11 @@ public class SQLConstantesComponente {
     public static final String[] ALL_COLUMNS_OPCION_SPINNER = {
             OPCION_SPINNER_ID , OPCION_SPINNER_IDVARIABLE ,
             OPCION_SPINNER_NDATO, OPCION_SPINNER_DATO
+    };
+
+    public static final String[] ALL_COLUMNS_INFOTABLAS = {
+            INFOTABLAS_ID, INFOTABLAS_PARTE, INFOTABLAS_NOMBRE,
+            INFOTABLAS_MODULO,INFOTABLAS_TIPO
     };
 
 }

@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textSize="@dimen/textoMedium"
         android:text="@string/texto_exportar_encuesta_creada"/>
     <ImageView
         android:layout_marginTop="25dp"
@@ -29,10 +30,17 @@
         android:tint="@color/colorPrimaryDark"/>
     <Button
         android:id="@+id/exportar_encuesta_btnExportar"
-        android:layout_margin="@dimen/margin10dp"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/margin10dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:text="EXPORTAR ENCUESTA"
+        android:textSize="@dimen/textoMedium"
+        android:theme="@style/RaisedButtonDark2"/>
+    <Button
+        android:id="@+id/exportar_encuesta_btnVolver"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="VOLVER"
         android:textSize="@dimen/textoMedium"
         android:theme="@style/RaisedButtonDark2"/>
     <ProgressBar

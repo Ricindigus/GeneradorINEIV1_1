@@ -254,7 +254,7 @@ public class MarcoActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         if (keyCode == event.KEYCODE_BACK) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Está seguro que desea salir de la aplicación?")
+            builder.setMessage("¿Está seguro que desea cerrar sesión en la aplicación?")
                     .setTitle("Aviso")
                     .setCancelable(false)
                     .setNegativeButton("No",
@@ -266,6 +266,8 @@ public class MarcoActivity extends AppCompatActivity {
                     .setPositiveButton("Sí",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(MarcoActivity.this,LoginActivity.class);
+                                    startActivity(intent);
                                     finish();
                                 }
                             });

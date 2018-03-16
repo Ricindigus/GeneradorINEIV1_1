@@ -41,8 +41,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_OPCION_SPINNER);
         sqLiteDatabase.execSQL(SQLVisitas.SQL_CREATE_TABLA_VISITAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_INFOTABLAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_VARIABLES);
-
     }
 
     @Override

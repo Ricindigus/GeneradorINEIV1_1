@@ -46,15 +46,12 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQL
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
-import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
-import pe.com.ricindigus.generadorinei.pojos.ExportarItem;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 import static android.os.Environment.getExternalStorageDirectory;
@@ -64,6 +61,7 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
     TextView txtMensaje;
     ProgressBar progreso;
     Button btnExportar;
+    Button btnVolver;
     DataComponentes dataComponentes;
 
     @Override
@@ -73,6 +71,7 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
         txtMensaje = (TextView) findViewById(R.id.exportar_encuesta_txtMensaje);
         progreso = (ProgressBar) findViewById(R.id.exportar_encuesta_progreso);
         btnExportar = (Button) findViewById(R.id.exportar_encuesta_btnExportar);
+        btnVolver = (Button) findViewById(R.id.exportar_encuesta_btnVolver);
 
         progreso.setMax(4200);
         txtMensaje.setVisibility(View.GONE);
@@ -82,6 +81,13 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new MyAsyncTask().execute(100);
+            }
+        });
+
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -702,6 +708,40 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
         }
     }
 
+    public void exportarInfoTablasEncuesta(){
+        String nombreArchivo = "infotablas.xml";
+        XmlSerializer serializer = Xml.newSerializer();
+        StringWriter writer = new StringWriter();
+        try {
+            serializer.setOutput(writer);
+            serializer.startDocument("utf-8", true);
+            serializer.startTag("", "INFOTABLAS");
+
+            dataComponentes = new DataComponentes(this);
+            dataComponentes.open();
+            ArrayList<InfoTabla> infoTablas = dataComponentes.getAllInfoTablas();
+            String[] variablesTabla = SQLConstantesComponente.ALL_COLUMNS_INFOTABLAS;
+            for (InfoTabla infoTabla : infoTablas){
+                serializer.startTag("", "INFOTABLA");
+                for (String variable : variablesTabla){
+                    String valor = dataComponentes.getValorFromTabla(SQLConstantesComponente.tablaInfoTablas, variable, infoTabla.getID());
+                    escribirCampoXml(serializer, variable, valor);
+                }
+                serializer.endTag("","INFOTABLA");
+            }
+            dataComponentes.close();
+            serializer.endTag("", "INFOTABLAS");
+            serializer.endDocument();
+            String result = writer.toString();
+            File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+            nuevaCarpeta.mkdirs();
+            File file = new File(nuevaCarpeta, nombreArchivo);
+            IOHelper.writeToFile(file,result);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     void escribirCampoXml(XmlSerializer s, String campo,String valor){
         try {
             s.startTag("", campo);
@@ -743,6 +783,7 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
             exportarOpcionSpinnersEncuesta();
             exportarVariablesEncuesta();
             exportarEventosEncuesta();
+            exportarInfoTablasEncuesta();
             return "Listo";
         }
 

@@ -6,12 +6,17 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.SPEditText;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 
 /**
@@ -71,6 +76,40 @@ public class EditTextPullParser {
         return pEditTexts;
     }
 
+    public ArrayList<PEditText> parseXMLPEditText(Context context, String archivo){
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser xpp = factory.newPullParser();
+            FileInputStream fis = null;
+            try {
+                File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+                File file = new File(nuevaCarpeta, archivo);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fis = new FileInputStream(file);
+                xpp.setInput(fis, null);
+                int eventType = xpp.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    if(eventType == XmlPullParser.START_TAG){
+                        handleStarTagPEditText(xpp.getName());
+                    }else if(eventType == XmlPullParser.END_TAG){
+                        currentTag = null;
+                    }else if(eventType == XmlPullParser.TEXT){
+                        handleTextPEditText(xpp.getText());
+                    }
+                    eventType = xpp.next();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return pEditTexts;
+    }
+
     private void handleTextPEditText(String text) {
         String xmlText = text;
         if(currentEditText!= null && currentTag != null){
@@ -122,6 +161,41 @@ public class EditTextPullParser {
         }
         return spEditTexts;
     }
+
+    public ArrayList<SPEditText> parseXMLSPEditText(Context context, String archivo){
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser xpp = factory.newPullParser();
+            FileInputStream fis = null;
+            try {
+                File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+                File file = new File(nuevaCarpeta, archivo);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fis = new FileInputStream(file);
+                xpp.setInput(fis, null);
+                int eventType = xpp.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    if(eventType == XmlPullParser.START_TAG){
+                        handleStarTagSPEditText(xpp.getName());
+                    }else if(eventType == XmlPullParser.END_TAG){
+                        currentTag = null;
+                    }else if(eventType == XmlPullParser.TEXT){
+                        handleTextSPEditText(xpp.getText());
+                    }
+                    eventType = xpp.next();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        return spEditTexts;
+    }
+
 
     private void handleTextSPEditText(String text) {
         String xmlText = text;

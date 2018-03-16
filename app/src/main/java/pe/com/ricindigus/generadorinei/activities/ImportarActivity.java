@@ -16,17 +16,14 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
-import pe.com.ricindigus.generadorinei.parser.TablasPullParser;
-import pe.com.ricindigus.generadorinei.pojos.Marco;
-import pe.com.ricindigus.generadorinei.pojos.Tabla;
+import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -39,10 +36,10 @@ public class ImportarActivity extends AppCompatActivity {
     private DataComponentes dataComponentes;
     private DataTablas dataTablas;
     private Data data;
-    private ArrayList<Tabla> tablas = null;
+    private ArrayList<InfoTabla> infoTablas = null;
     private String currentTag = null;
     private String currentVariable = null;
-    private Tabla currentTabla = null;
+    private InfoTabla currentInfoTabla = null;
     private ContentValues currentContentValues = null;
 
 
@@ -75,14 +72,14 @@ public class ImportarActivity extends AppCompatActivity {
 
     }
     public void parseXMLImportar(String nombreArchivo){
-        tablas = (new TablasPullParser()).parseXML(this);
+        infoTablas = (new InfoTablasPullParser()).parseXML(this);
         XmlPullParserFactory factory;
         FileInputStream fis = null;
         try {
             factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
-            File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERADOR");
+            File nuevaCarpeta = new File(getExternalStorageDirectory(), "GENERAPP_EXPORTACION");
             File file = new File(nuevaCarpeta, nombreArchivo);
             FileInputStream fileInputStream = new FileInputStream(file);
             fis = new FileInputStream(file);
@@ -117,10 +114,10 @@ public class ImportarActivity extends AppCompatActivity {
     private void handleStarTag(String name) {
         boolean encontrado = false;
         int c = 0;
-        while (c < tablas.size() && !encontrado){
-            if(name.equals(tablas.get(c).getNOMBRE())) {
+        while (c < infoTablas.size() && !encontrado){
+            if(name.equals(infoTablas.get(c).getNOMBRE())) {
                 encontrado = true;
-                currentTabla = tablas.get(c);
+                currentInfoTabla = infoTablas.get(c);
                 currentContentValues = new ContentValues();
             }
             c++;
@@ -135,14 +132,14 @@ public class ImportarActivity extends AppCompatActivity {
     public void handleEndTag(String name){
         boolean encontrado = false;
         int c = 0;
-        while (c < tablas.size() && !encontrado){
-            if(name.equals(tablas.get(c).getNOMBRE())) {
+        while (c < infoTablas.size() && !encontrado){
+            if(name.equals(infoTablas.get(c).getNOMBRE())) {
                 encontrado = true;
                 DataTablas dataTablas = new DataTablas(this);
                 dataTablas.open();
-                if(tablas.get(c).getTIPO().equals("1")) dataTablas.deleteDatos(currentTabla.getID(),idEmpresa);
-                else dataTablas.deleteDatosxId(currentTabla.getID(),currentContentValues.getAsString("_id"));
-                dataTablas.insertarValores(currentTabla.getID(),currentContentValues);
+                if(infoTablas.get(c).getTIPO().equals("1")) dataTablas.deleteDatos(currentInfoTabla.getID(),idEmpresa);
+                else dataTablas.deleteDatosxId(currentInfoTabla.getID(),currentContentValues.getAsString("_id"));
+                dataTablas.insertarValores(currentInfoTabla.getID(),currentContentValues);
 
             }
             c++;
