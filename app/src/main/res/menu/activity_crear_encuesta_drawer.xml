@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_modulos"
+            android:icon="@drawable/modulos"
+            android:title="Módulos" />
+        <item
+            android:id="@+id/nav_paginas"
+            android:icon="@drawable/paginas"
+            android:title="Páginas" />
+        <item
+            android:id="@+id/nav_preguntas"
+            android:icon="@drawable/preguntas"
+            android:title="Preguntas" />
+        <item
+            android:id="@+id/nav_eventos"
+            android:icon="@drawable/eventos"
+            android:title="Eventos" />
+    </group>
+</menu>

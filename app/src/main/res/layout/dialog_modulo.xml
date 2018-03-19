@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_material">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margen_chico">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/moduloId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID MODULO"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margen_chico">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/moduloTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="TITULO MODULO"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margen_chico">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/moduloCabecera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CABECERA MODULO"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margen_chico">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/moduloTabla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="TABLA MODULO"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

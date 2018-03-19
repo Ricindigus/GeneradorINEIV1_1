@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_margin="@dimen/margenMaterial"
-    tools:context="pe.com.ricindigus.generadorinei.activities.ExportarEncuestaActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.ExportarEncuestaActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

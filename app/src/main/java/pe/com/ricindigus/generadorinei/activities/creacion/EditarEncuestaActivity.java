@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.creacion;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

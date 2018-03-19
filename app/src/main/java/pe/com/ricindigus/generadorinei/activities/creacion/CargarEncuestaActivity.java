@@ -1,6 +1,5 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.creacion;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
@@ -55,33 +47,23 @@ import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQL
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.DataVersion;
 import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.SQLVersion;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.parser.EncuestaPullParser;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
 import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
-import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.OpcionSpinnerPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
-import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
-import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
-import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
-import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
-import pe.com.ricindigus.generadorinei.pojos.Usuario;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
-import pe.com.ricindigus.generadorinei.pojos.Version;
-
-import static android.os.Environment.getExternalStorageDirectory;
 
 public class CargarEncuestaActivity extends AppCompatActivity {
     TextView txtMensaje;

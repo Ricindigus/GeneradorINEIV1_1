@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pe.com.ricindigus.generadorinei.activities.CreacionActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.CreacionActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

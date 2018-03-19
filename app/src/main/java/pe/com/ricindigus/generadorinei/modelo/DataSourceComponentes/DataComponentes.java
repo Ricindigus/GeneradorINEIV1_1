@@ -375,6 +375,14 @@ public class DataComponentes {
         }
         return modulos;
     }
+
+    public Cursor getCursorModulos(){
+        Cursor cursor = null;
+        cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaModulos,
+                    SQLConstantesComponente.ALL_COLUMNS_MODULOS,null,null,null,null,null);
+        if(cursor != null) cursor.moveToFirst();
+        return cursor;
+    }
     //FIN MODULOS
 
 

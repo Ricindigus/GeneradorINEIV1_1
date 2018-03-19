@@ -30,11 +30,14 @@
             android:configChanges="screenSize|orientation|keyboardHidden" />
         <activity android:name=".activities.ExportarActivity" />
         <activity android:name=".activities.ImportarActivity" />
-        <activity android:name=".activities.CreacionActivity" />
-        <activity android:name=".activities.CargarEncuestaActivity" />
-        <activity android:name=".activities.EditarEncuestaActivity" />
-        <activity android:name=".activities.CrearEncuestaActivity" />
-        <activity android:name=".activities.ExportarEncuestaActivity"></activity>
+        <activity android:name=".activities.creacion.CreacionActivity" />
+        <activity android:name=".activities.creacion.CargarEncuestaActivity" />
+        <activity android:name=".activities.creacion.EditarEncuestaActivity" />
+        <activity android:name=".activities.creacion.ExportarEncuestaActivity" />
+        <activity
+            android:name=".activities.creacion.CrearEncuestaActivity"
+            android:label="@string/title_activity_crear_encuesta"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

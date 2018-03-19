@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.activities.creacion.CreacionActivity;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
@@ -49,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         txtUsuario.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
         txtPassword.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
 
-        txtUsuario.setText("ADMI");
-        txtPassword.setText("1234");
+        txtUsuario.setText("OPER001");
+        txtPassword.setText("INEI1");
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.com.ricindigus.generadorinei.activities.EditarEncuestaActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.EditarEncuestaActivity">
 
 </android.support.constraint.ConstraintLayout>

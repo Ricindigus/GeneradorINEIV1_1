@@ -24,6 +24,13 @@ public class Modulo {
 
     }
 
+    public Modulo(String ID, String TITULO, String CABECERA, String NTABLA) {
+        this.ID = ID;
+        this.TITULO = TITULO;
+        this.CABECERA = CABECERA;
+        this.NTABLA = NTABLA;
+    }
+
     public String getID() {
         return ID;
     }
