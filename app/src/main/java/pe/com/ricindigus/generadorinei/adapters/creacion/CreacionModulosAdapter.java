@@ -24,16 +24,10 @@ import pe.com.ricindigus.generadorinei.pojos.Modulo;
 public class CreacionModulosAdapter extends RecyclerView.Adapter<CreacionModulosAdapter.ViewHolder>{
     ArrayList<Modulo> modulos;
     Context context;
-    OnItemClickListener onItemClickListener;
 
-    public CreacionModulosAdapter(ArrayList<Modulo> modulos, Context context, OnItemClickListener onItemClickListener) {
+    public CreacionModulosAdapter(ArrayList<Modulo> modulos, Context context) {
         this.modulos = modulos;
         this.context = context;
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int pos);
     }
 
     @Override
@@ -49,12 +43,6 @@ public class CreacionModulosAdapter extends RecyclerView.Adapter<CreacionModulos
         holder.txtTitulo.setText(modulos.get(position).getTITULO());
         holder.txtCabecera.setText(modulos.get(position).getCABECERA());
         holder.txtNombreTabla.setText(modulos.get(position).getNTABLA());
-        holder.cardViewVisita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onItemClick(view,position);
-            }
-        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

@@ -15,10 +15,12 @@ import android.view.MenuItem;
 
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.fragments.creacion.ModulosFragment;
+import pe.com.ricindigus.generadorinei.fragments.creacion.PaginasFragment;
 
 public class CrearEncuestaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,11 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        ModulosFragment modulosFragment = new ModulosFragment(CrearEncuestaActivity.this);
+        fragmentTransaction.replace(R.id.fragment_crear_encuesta, modulosFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -76,7 +83,8 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
             ModulosFragment modulosFragment = new ModulosFragment(CrearEncuestaActivity.this);
             fragmentTransaction.replace(R.id.fragment_crear_encuesta, modulosFragment,"modulos");
         } else if (id == R.id.nav_paginas) {
-
+            PaginasFragment paginasFragment = new PaginasFragment(CrearEncuestaActivity.this);
+            fragmentTransaction.replace(R.id.fragment_crear_encuesta, paginasFragment,"paginas");
         } else if (id == R.id.nav_preguntas) {
 
         } else if (id == R.id.nav_eventos) {
@@ -87,4 +95,6 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

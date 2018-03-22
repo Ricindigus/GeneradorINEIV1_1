@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +66,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.pojos.Controlador;
+import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -83,6 +85,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private Fragment fragmentActual = new Fragment();
     private Fragment fragmentComponente = new Fragment();
     private String idEmpresa = "";
+    private String idUsuario = "";
+    private String tituloEncuesta = "";
     private String nombreSeccionActual = "";
     private Data data;
     private DataComponentes dataComponentes;
@@ -132,6 +136,10 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         final Bundle recupera = getIntent().getExtras();
         if (recupera != null) {
             idEmpresa = recupera.getString("idEmpresa");
+            tituloEncuesta = recupera.getString("tituloEncuesta");
+            idUsuario = recupera.getString("idUsuario");
+
+
         }
 
 
@@ -146,6 +154,11 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView txtHeaderTitulo = (TextView) headerView.findViewById(R.id.header_txtTituloEncuesta);
+        TextView txtHeaderUsuario = (TextView) headerView.findViewById(R.id.header_txtUsuario);
+        txtHeaderTitulo.setText(tituloEncuesta);
+        txtHeaderUsuario.setText("Usuario: "+idUsuario);
         enableExpandableList();
 
         btnAtras.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,25 @@
         <item>item5</item>
     </string-array>
 
+    <string-array name="tipos_componentes">
+        <item>Seleccione tipo componente</item>
+        <item>VISITAS</item>
+        <item>UBICACION</item>
+        <item>GPS</item>
+        <item>FORMULARIO</item>
+        <item>EDITTEXT</item>
+        <item>CHECKBOX</item>
+        <item>RADIO</item>
+    </string-array>
+
+    public static final int VISITAS = 1;
+    public static final int UBICACION = 2;
+    public static final int GPS = 3;
+    public static final int FORMULARIO = 4;
+    public static final int EDITTEXT = 5;
+    public static final int CHECKBOX = 6;
+    public static final int RADIO = 7;
+
     <string-array name="sexo_spinner">
         <item>Seleccione sexo</item>
         <item>Masculino</item>

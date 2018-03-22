@@ -40,6 +40,7 @@ public class MarcoActivity extends AppCompatActivity {
     private ArrayList<String> distritos;
     private ArrayList<String> periodos;
     private String idUsuario;
+    private String tituloEncuesta;
     private String permisoUsuario;
     private Spinner spDepartamento;
     private Spinner spProvincia;
@@ -62,6 +63,7 @@ public class MarcoActivity extends AppCompatActivity {
         if(recupera != null){
             idUsuario = recupera.getString("idUsuario");
             permisoUsuario = recupera.getString("permisoUsuario");
+            tituloEncuesta = recupera.getString("tituloEncuesta");
         }
 
         spDepartamento = (Spinner) findViewById(R.id.marco_sp_departamento);
@@ -85,6 +87,8 @@ public class MarcoActivity extends AppCompatActivity {
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(), EncuestaActivity.class);
                 intent.putExtra("idEmpresa",itemMarcos.get(position).getId());
+                intent.putExtra("idUsuario",idUsuario);
+                intent.putExtra("tituloEncuesta",tituloEncuesta);
                 startActivity(intent);
             }
         });

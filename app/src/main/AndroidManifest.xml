@@ -37,7 +37,9 @@
         <activity
             android:name=".activities.creacion.CrearEncuestaActivity"
             android:label="@string/title_activity_crear_encuesta"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.creacion.activities_dialogs.IngresarModuloActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.IngresarPaginaActivity"></activity>
     </application>
 
 </manifest>

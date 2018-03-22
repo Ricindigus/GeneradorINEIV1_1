@@ -11,33 +11,29 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c91b4379">
+        android:background="#c91b4379"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
             android:src="@drawable/logo_inei_blanco"
             />
         <TextView
+            android:id="@+id/header_txtTituloEncuesta"
             android:textStyle="bold"
             android:textColor="@color/colorIcons"
             android:gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="TITULO ENCUESTA"
-            android:textSize="@dimen/textoMedium"/>
+           />
         <TextView
-            android:textStyle="bold"
+            android:id="@+id/header_txtUsuario"
             android:textColor="@color/colorIcons"
             android:gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EN EL PERU 2017"
-            android:textSize="@dimen/textoMedium"/>
+            android:layout_height="25dp"
+            android:text="OPER001"/>
     </LinearLayout>
 </LinearLayout>

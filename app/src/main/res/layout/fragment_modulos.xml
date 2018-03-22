@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/margenMaterial"
     android:orientation="vertical"
     tools:context="pe.com.ricindigus.generadorinei.fragments.creacion.ModulosFragment">
@@ -13,11 +14,14 @@
         android:gravity="center"
         android:textSize="@dimen/textoMedium"
         android:textColor="@color/colorPrimary"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin10dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="@dimen/margin10dp"
+        android:background="@drawable/borde_layout_preguntas">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_modulos"
             android:layout_width="match_parent"
@@ -29,14 +33,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/icon_agregar"
-            android:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorPrimaryDark"
             android:layout_margin="@dimen/margenMaterial"/>
     </RelativeLayout>
-    <Button
-        android:id="@+id/modulo_btnGuardar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="guardar"
-        android:theme="@style/RaisedButtonDark2"/>
+
 
 </LinearLayout>

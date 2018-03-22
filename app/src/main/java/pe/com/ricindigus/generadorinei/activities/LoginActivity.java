@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout layoutPrincipal;
     private Data data;
     private DataComponentes dataComponentes;
+    private String tituloEncuesta;
 
 
     @Override
@@ -45,8 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         dataComponentes = new DataComponentes(this);
         dataComponentes.open();
         Encuesta encuesta = dataComponentes.getEncuesta();
-
-        txtTituloEncuesta.setText(encuesta.getTITULO());
+        tituloEncuesta = encuesta.getTITULO();
+        txtTituloEncuesta.setText(tituloEncuesta);
         txtUsuario.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
         txtPassword.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(10)});
 
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(),MarcoActivity.class);
                         intent.putExtra("idUsuario",usuario.getUSUARIO_ID());
                         intent.putExtra("permisoUsuario",usuario.getUSUARIO_PERMISO());
+                        intent.putExtra("tituloEncuesta",tituloEncuesta);
 //                        createData();
                         startActivity(intent);
                         finish();
