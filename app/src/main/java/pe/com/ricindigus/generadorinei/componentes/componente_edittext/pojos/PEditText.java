@@ -22,11 +22,12 @@ public class PEditText {
         PREGUNTA = "";
     }
 
-    public PEditText(String ID, String MODULO, String NUMERO, String PREGUNTA) {
+    public PEditText(String ID, String MODULO, String NUMERO) {
+        this();
         this.ID = ID;
         this.MODULO = MODULO;
         this.NUMERO = NUMERO;
-        this.PREGUNTA = PREGUNTA;
+
     }
 
     public String getID() {

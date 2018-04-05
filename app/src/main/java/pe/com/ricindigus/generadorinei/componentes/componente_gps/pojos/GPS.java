@@ -26,6 +26,13 @@ public class GPS {
         this.VARALT = "";
     }
 
+    public GPS(String ID, String NUMERO, String MODULO) {
+        this();
+        this.ID = ID;
+        this.NUMERO = NUMERO;
+        this.MODULO = MODULO;
+    }
+
     public String getID() {
         return ID;
     }

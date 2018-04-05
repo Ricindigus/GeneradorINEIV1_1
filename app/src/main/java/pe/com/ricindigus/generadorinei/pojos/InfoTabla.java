@@ -2,9 +2,7 @@ package pe.com.ricindigus.generadorinei.pojos;
 
 import android.content.ContentValues;
 
-import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 
 /**
  * Created by dmorales on 21/02/2018.
@@ -14,15 +12,15 @@ public class InfoTabla {
     private String ID;
     private String MODULO;
     private String PARTE;
-    private String NOMBRE;
+    private String NOMBRE_XML;
     private String TIPO;
 
 
-    public InfoTabla(String ID, String MODULO, String PARTE, String NOMBRE, String TIPO) {
+    public InfoTabla(String ID, String MODULO, String PARTE, String NOMBRE_XML, String TIPO) {
         this.ID = ID;
         this.MODULO = MODULO;
         this.PARTE = PARTE;
-        this.NOMBRE = NOMBRE;
+        this.NOMBRE_XML = NOMBRE_XML;
         this.TIPO = TIPO;
     }
 
@@ -30,7 +28,7 @@ public class InfoTabla {
         this.ID = "";
         this.MODULO = "";
         this.PARTE = "";
-        this.NOMBRE = "";
+        this.NOMBRE_XML = "";
         this.TIPO = "";
     }
 
@@ -58,12 +56,12 @@ public class InfoTabla {
         this.PARTE = PARTE;
     }
 
-    public String getNOMBRE() {
-        return NOMBRE;
+    public String getNOMBRE_XML() {
+        return NOMBRE_XML;
     }
 
-    public void setNOMBRE(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
+    public void setNOMBRE_XML(String NOMBRE_XML) {
+        this.NOMBRE_XML = NOMBRE_XML;
     }
 
     public String getTIPO() {
@@ -78,7 +76,7 @@ public class InfoTabla {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLConstantesComponente.INFOTABLAS_ID,ID);
         contentValues.put(SQLConstantesComponente.INFOTABLAS_MODULO,MODULO);
-        contentValues.put(SQLConstantesComponente.INFOTABLAS_NOMBRE,NOMBRE);
+        contentValues.put(SQLConstantesComponente.INFOTABLAS_NOMBRE_XML, NOMBRE_XML);
         contentValues.put(SQLConstantesComponente.INFOTABLAS_TIPO,TIPO);
         contentValues.put(SQLConstantesComponente.INFOTABLAS_PARTE,PARTE);
         return contentValues;

@@ -5,77 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/margenMaterial"
     tools:context="pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.IngresarModuloActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="INGRESAR NUEVO MODULO"
-        android:textSize="@dimen/textGrande"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:gravity="center"/>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/modulo_txtId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/modulo_txtTitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="TITULO"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/modulo_txtCabecera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="CABECERA"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/modulo_txtNombreTabla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="NOMBRE TABLA"/>
-    </android.support.design.widget.TextInputLayout>
     <LinearLayout
-        android:layout_marginTop="@dimen/margin10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/modulo_btnGuardar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="guardar"
-            android:theme="@style/RaisedButtonDark2"/>
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/margin5dp"
+        android:paddingRight="@dimen/margin5dp"
+        android:background="@color/colorPrimary">
         <Button
             android:id="@+id/modulo_btnCancelar"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="cancelar"
-            android:theme="@style/RaisedButtonDark2"/>
+            android:textColor="@color/colorIcons"
+            android:background="@drawable/boton_cargar"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INGRESAR MODULO N°"
+                android:textSize="@dimen/textGrande"
+                android:textStyle="bold"
+                android:textColor="@color/colorIcons"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/modulo_txtId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/textGrande"
+                android:textStyle="bold"
+                android:textColor="@color/colorIcons"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        <Button
+            android:id="@+id/modulo_btnGuardar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="guardar"
+            android:textColor="@color/colorIcons"
+            android:background="@drawable/boton_cargar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/modulo_txtTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="TITULO"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/modulo_txtCabecera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="CABECERA"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/modulo_txtNombreTabla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="NOMBRE DE TABLA XML"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/modulo_txtNPaginas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:hint="NUMERO DE PAGINAS"/>
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 </LinearLayout>

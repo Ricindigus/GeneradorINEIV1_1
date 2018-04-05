@@ -15,7 +15,114 @@
         android:textSize="@dimen/textoMedium"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
+        android:padding="@dimen/margin10dp"
+        android:background="@drawable/border_layout_subpreguntas"
         android:layout_marginBottom="@dimen/margin10dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin10dp"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:id="@+id/pagina_numero"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="N°"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_modulo"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="MODULO"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP1"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP2"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP3"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP4"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo5"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP5"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo6"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP6"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo7"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP7"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo8"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP8"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo9"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP9"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/pagina_tipo10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TP10"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+    </LinearLayout>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,15 +133,6 @@
             android:id="@+id/recycler_paginas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_paginas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/icon_agregar"
-            app:backgroundTint="@color/colorPrimaryDark"
-            android:layout_margin="@dimen/margenMaterial"/>
     </RelativeLayout>
 
 

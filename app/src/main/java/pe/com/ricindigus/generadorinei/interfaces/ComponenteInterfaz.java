@@ -10,7 +10,7 @@ public interface ComponenteInterfaz {
     public void guardarDatos();
     public boolean validarDatos();
     public boolean estaHabilitado();
-    public String getNumModulo();
+    public String getIdTabla();
     public void cargarDatos();
     public void llenarVista();
 }

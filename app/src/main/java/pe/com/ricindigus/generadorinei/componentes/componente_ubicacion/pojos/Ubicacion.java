@@ -25,6 +25,13 @@ public class Ubicacion {
          MODULO = "";
     }
 
+    public Ubicacion(String ID, String NUMERO, String MODULO) {
+        this();
+        this.ID = ID;
+        this.NUMERO = NUMERO;
+        this.MODULO = MODULO;
+    }
+
     public String getID() {
         return ID;
     }

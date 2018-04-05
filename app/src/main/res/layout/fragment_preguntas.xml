@@ -1,13 +1,76 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/margenMaterial"
+    android:orientation="vertical"
     tools:context="pe.com.ricindigus.generadorinei.fragments.creacion.PreguntasFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="INGRESAR PREGUNTAS"
+        android:gravity="center"
+        android:textSize="@dimen/textoMedium"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:padding="@dimen/margin10dp"
+        android:background="@drawable/border_layout_subpreguntas"
+        android:layout_marginBottom="@dimen/margin10dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin10dp"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="N°"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="MODULO"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="TIPO"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="PREGUNTA"
+            android:textColor="@color/colorIcons"
+            android:padding="@dimen/margin5dp"/>
+    </LinearLayout>
 
-</FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/margin10dp"
+        android:background="@drawable/borde_layout_preguntas">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pregunta_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
+

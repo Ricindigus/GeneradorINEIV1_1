@@ -1,20 +1,16 @@
 package pe.com.ricindigus.generadorinei.adapters.creacion;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 
 /**
@@ -42,7 +38,7 @@ public class CreacionModulosAdapter extends RecyclerView.Adapter<CreacionModulos
         holder.txtNumero.setText(modulos.get(position).getID());
         holder.txtTitulo.setText(modulos.get(position).getTITULO());
         holder.txtCabecera.setText(modulos.get(position).getCABECERA());
-        holder.txtNombreTabla.setText(modulos.get(position).getNTABLA());
+        holder.txtNombreTabla.setText(modulos.get(position).getTABLA_XML());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

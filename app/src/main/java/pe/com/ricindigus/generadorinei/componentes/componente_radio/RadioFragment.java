@@ -2,7 +2,6 @@ package pe.com.ricindigus.generadorinei.componentes.componente_radio;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,7 +20,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -162,8 +160,8 @@ public class RadioFragment extends ComponenteFragment{
             data.open();
             String valorCheck;
             String valorEspecifique;
-            if(data.existenDatos(getNumModulo(),idEmpresa)){
-                valorCheck = data.getValor(getNumModulo(),subpreguntas.get(1).getVARIABLE(),idEmpresa);
+            if(data.existenDatos(getIdTabla(),idEmpresa)){
+                valorCheck = data.getValor(getIdTabla(),subpreguntas.get(1).getVARIABLE(),idEmpresa);
                 if(valorCheck != null ){
                     if (!valorCheck.equals("")){
                         int childPos = Integer.parseInt(valorCheck);
@@ -172,7 +170,7 @@ public class RadioFragment extends ComponenteFragment{
                 }
                 for (int i = 0; i < subpreguntas.size() ; i++) {
                     if(!subpreguntas.get(i).getVARDESC().equals("")){
-                        valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
+                        valorEspecifique = data.getValor(getIdTabla(),subpreguntas.get(i).getVARDESC(),idEmpresa);
                         if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
                     }
                 }
@@ -196,8 +194,8 @@ public class RadioFragment extends ComponenteFragment{
         for (int i = 0; i < subpreguntas.size(); i++) {
             if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
         }
-        if(!data.existenDatos(getNumModulo(),idEmpresa))data.insertarValores(getNumModulo(),contentValues);
-        else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+        if(!data.existenDatos(getIdTabla(),idEmpresa))data.insertarValores(getIdTabla(),contentValues);
+        else data.actualizarValores(getIdTabla(),idEmpresa,contentValues);
         data.close();
     }
 
@@ -258,7 +256,7 @@ public class RadioFragment extends ComponenteFragment{
     }
 
     @Override
-    public String getNumModulo(){
+    public String getIdTabla(){
         return pRadio.getMODULO();
     }
 

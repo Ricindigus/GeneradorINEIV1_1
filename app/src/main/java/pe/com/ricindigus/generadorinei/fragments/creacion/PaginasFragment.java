@@ -6,19 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.creacion.CrearEncuestaActivity;
-import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.IngresarPaginaActivity;
+import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.ConfiguracionPaginaActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionPaginasAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -28,11 +27,11 @@ import pe.com.ricindigus.generadorinei.pojos.Pagina;
  */
 public class PaginasFragment extends Fragment {
     private RecyclerView recyclerView;
-    private FloatingActionButton fab;
     private LinearLayoutManager linearLayoutManager;
     private Context context;
     private ArrayList<Pagina> paginas;
     private CreacionPaginasAdapter creacionPaginasAdapter;
+    private CreacionPaginasAdapter.OnItemClickListener onItemClickListener;
 
 
     public PaginasFragment() {
@@ -49,7 +48,6 @@ public class PaginasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_paginas, container, false);
         recyclerView =  (RecyclerView) rootView.findViewById(R.id.recycler_paginas);
-        fab = (FloatingActionButton) rootView.findViewById(R.id.fab_paginas);
         return rootView;
     }
 
@@ -61,22 +59,22 @@ public class PaginasFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         cargarDatos();
-        creacionPaginasAdapter = new CreacionPaginasAdapter(paginas, context);
-        recyclerView.setAdapter(creacionPaginasAdapter);
-
-        fab.setOnClickListener(new View.OnClickListener() {
+        onItemClickListener = new CreacionPaginasAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, IngresarPaginaActivity.class);
-                intent.putExtra("id",paginas.size()+1);
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(context, ConfiguracionPaginaActivity.class);
+                Toast.makeText(context, paginas.get(position).getID(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("id", paginas.get(position).getID());
+                intent.putExtra("modulo", paginas.get(position).getMODULO());
                 startActivity(intent);
             }
-        });
+        };
+        creacionPaginasAdapter = new CreacionPaginasAdapter(paginas, context, onItemClickListener);
+        recyclerView.setAdapter(creacionPaginasAdapter);
     }
 
     public void cargarDatos(){
         paginas = new ArrayList<>();
-        Context contexto =  context;
         DataComponentes dataComponentes = new DataComponentes(context);
         dataComponentes.open();
         paginas = dataComponentes.getAllPaginas();
@@ -87,7 +85,7 @@ public class PaginasFragment extends Fragment {
     public void onResume() {
         super.onResume();
         cargarDatos();
-        creacionPaginasAdapter = new CreacionPaginasAdapter(paginas, context);
+        creacionPaginasAdapter = new CreacionPaginasAdapter(paginas, context, onItemClickListener);
         recyclerView.setAdapter(creacionPaginasAdapter);
     }
 

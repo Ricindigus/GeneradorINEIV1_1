@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <EDITTEXTS>
-	<EDITTEXT><ID>M1P1</ID><MODULO>1</MODULO><NUMERO>1</NUMERO><PREGUNTA>Actividad económica principal de la empresa</PREGUNTA></EDITTEXT>
-	<EDITTEXT><ID>M1P2</ID><MODULO>1</MODULO><NUMERO>2</NUMERO><PREGUNTA>Actividades económicas secundarias de la empresa</PREGUNTA></EDITTEXT>
-	<EDITTEXT><ID>M1P5</ID><MODULO>1</MODULO><NUMERO>5</NUMERO><PREGUNTA>En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?</PREGUNTA></EDITTEXT>
-	<EDITTEXT><ID>M2P4</ID><MODULO>2</MODULO><NUMERO>4</NUMERO><PREGUNTA>¿En qué año implementó la norma técnica o estándar de calidad más importante?</PREGUNTA></EDITTEXT>
-	<EDITTEXT><ID>M3P5</ID><MODULO>3</MODULO><NUMERO>5</NUMERO><PREGUNTA>¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?</PREGUNTA></EDITTEXT>
-	<EDITTEXT><ID>M4P6</ID><MODULO>4</MODULO><NUMERO>6</NUMERO><PREGUNTA>Respecto a la principal certificación con la que cuenta su empresa, ¿Cuál fue el año de obtención de la certificación?</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M4P1</ID><MODULO>4</MODULO><NUMERO>1</NUMERO><PREGUNTA>Actividad económica principal de la empresa</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M4P2</ID><MODULO>4</MODULO><NUMERO>2</NUMERO><PREGUNTA>Actividades económicas secundarias de la empresa</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M4P5</ID><MODULO>4</MODULO><NUMERO>5</NUMERO><PREGUNTA>En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M5P4</ID><MODULO>5</MODULO><NUMERO>4</NUMERO><PREGUNTA>¿En qué año implementó la norma técnica o estándar de calidad más importante?</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M6P5</ID><MODULO>6</MODULO><NUMERO>5</NUMERO><PREGUNTA>¿Cuál es el gasto aproximado incurrido en las calibraciones realizadas durante el 2016?</PREGUNTA></EDITTEXT>
+	<EDITTEXT><ID>M7P6</ID><MODULO>7</MODULO><NUMERO>6</NUMERO><PREGUNTA>Respecto a la principal certificación con la que cuenta su empresa, ¿Cuál fue el año de obtención de la certificación?</PREGUNTA></EDITTEXT>
 </EDITTEXTS>

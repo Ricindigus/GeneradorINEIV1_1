@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
-import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -26,7 +24,7 @@ public class InfoTablasPullParser {
     public static final String INFOTABLAS_ID = "ID";
     public static final String INFOTABLAS_MODULO = "MODULO";
     public static final String INFOTABLAS_PARTE = "PARTE";
-    public static final String INFOTABLAS_NOMBRE = "NOMBRE";
+    public static final String INFOTABLAS_NOMBRE_XML = "NOMBRE_XML";
     public static final String INFOTABLAS_TIPO = "TIPO";
 
     private InfoTabla currentInfoTabla = null;
@@ -105,7 +103,7 @@ public class InfoTablasPullParser {
             switch (currentTag){
                 case INFOTABLAS_ID:currentInfoTabla.setID(xmlText);break;
                 case INFOTABLAS_MODULO:currentInfoTabla.setMODULO(xmlText);break;
-                case INFOTABLAS_NOMBRE:currentInfoTabla.setNOMBRE(xmlText);break;
+                case INFOTABLAS_NOMBRE_XML:currentInfoTabla.setNOMBRE_XML(xmlText);break;
                 case INFOTABLAS_PARTE:currentInfoTabla.setPARTE(xmlText);break;
                 case INFOTABLAS_TIPO:currentInfoTabla.setTIPO(xmlText);break;
             }

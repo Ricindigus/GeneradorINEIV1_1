@@ -45,7 +45,7 @@ public class DataVisitas {
         ContentValues contentValues = visita.toValues();
         sqLiteDatabase.insert(SQLVisitas.tableVisitas,null,contentValues);
     }
-    public void insertarVisita(ArrayList<Visita> visitas){
+    public void insertarVisitas(ArrayList<Visita> visitas){
         long items = getNumeroItemsVisita();
         if(items == 0){
             for (Visita visita : visitas) {

@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
-import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -26,7 +24,8 @@ public class ModuloPullParser {
     public static final String MODULO_ID = "ID";
     public static final String MODULO_TITULO = "TITULO";
     public static final String MODULO_CABECERA = "CABECERA";
-    public static final String MODULO_NTABLA = "NTABLA";
+    public static final String MODULO_TABLA_XML = "TABLA_XML";
+    public static final String MODULO_NPAGINAS = "NPAGINAS";
 
     private Modulo currentModulo = null;
     private String currentTag = null;
@@ -105,7 +104,8 @@ public class ModuloPullParser {
                 case MODULO_ID:currentModulo.setID(xmlText);break;
                 case MODULO_TITULO:currentModulo.setTITULO(xmlText);break;
                 case MODULO_CABECERA:currentModulo.setCABECERA(xmlText);break;
-                case MODULO_NTABLA:currentModulo.setNTABLA(xmlText);break;
+                case MODULO_TABLA_XML:currentModulo.setTABLA_XML(xmlText);break;
+                case MODULO_NPAGINAS:currentModulo.setNPAGINAS(xmlText);break;
             }
         }
     }

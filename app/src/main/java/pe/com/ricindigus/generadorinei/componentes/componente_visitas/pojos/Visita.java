@@ -60,6 +60,39 @@ public class Visita {
         this.VARRESMIN = "";
     }
 
+    public Visita(String ID, String MODULO, String NUMERO) {
+        this();
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+    }
+
+    public Visita(String ID, String MODULO, String NUMERO, String VARNUM, String VARDIA, String VARMES, String VARANIO, String VARHORI, String VARMINI, String VARHORF, String VARMINF, String VARRES, String VARDIAP, String VARMESP, String VARANIOP, String VARHORP, String VARMINP, String VARRESFINAL, String VARRESDIA, String VARRESMES, String VARRESANIO, String VARRESHORA, String VARRESMIN) {
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+        this.VARNUM = VARNUM;
+        this.VARDIA = VARDIA;
+        this.VARMES = VARMES;
+        this.VARANIO = VARANIO;
+        this.VARHORI = VARHORI;
+        this.VARMINI = VARMINI;
+        this.VARHORF = VARHORF;
+        this.VARMINF = VARMINF;
+        this.VARRES = VARRES;
+        this.VARDIAP = VARDIAP;
+        this.VARMESP = VARMESP;
+        this.VARANIOP = VARANIOP;
+        this.VARHORP = VARHORP;
+        this.VARMINP = VARMINP;
+        this.VARRESFINAL = VARRESFINAL;
+        this.VARRESDIA = VARRESDIA;
+        this.VARRESMES = VARRESMES;
+        this.VARRESANIO = VARRESANIO;
+        this.VARRESHORA = VARRESHORA;
+        this.VARRESMIN = VARRESMIN;
+    }
+
     public String getID() {
         return ID;
     }

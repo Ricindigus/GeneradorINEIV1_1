@@ -11,13 +11,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.SQLConstantes;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.SQLConstantesTablas;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 /**
@@ -170,6 +170,12 @@ public class DataComponentes {
             }
         }
     }
+
+    public void actualizarPagina(String idPagina, ContentValues contentValues){
+        String[] whereArgs = {idPagina};
+        sqLiteDatabase.update(SQLConstantesComponente.tablaPaginas,contentValues,SQLConstantesComponente.WHERE_CLAUSE_ID,whereArgs);
+    }
+
     public Pagina getPagina(String idPagina){
         Pagina pagina = new Pagina();
         String[] whereArgs = new String[]{idPagina};
@@ -284,8 +290,8 @@ public class DataComponentes {
         }
         return paginas;
     }
-    public ArrayList<String> getIdsPagina(String idPagina){
-        ArrayList<String> pags = new ArrayList<String>();
+    public ArrayList<String> getIdPreguntasXPagina(String idPagina){
+        ArrayList<String> preguntas = new ArrayList<String>();
         String[] whereArgs = new String[]{idPagina};
         Cursor cursor = null;
         try{
@@ -305,12 +311,40 @@ public class DataComponentes {
                         cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)),
                         cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10))
                 };
-                for (int i = 0; i < paginas.length; i++) if(!paginas[i].equals("")) pags.add(paginas[i]);
+                for (int i = 0; i < paginas.length; i++) if(!paginas[i].equals("")) preguntas.add(paginas[i]);
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return pags;
+        return preguntas;
+    }
+    public ArrayList<String> getIdTiposXPagina(String idPagina){
+        ArrayList<String> tipos = new ArrayList<String>();
+        String[] whereArgs = new String[]{idPagina};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPaginas,
+                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                String paginas[] = {
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP1)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP2)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP3)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)),
+                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10))
+                };
+                for (int i = 0; i < paginas.length; i++) if(!paginas[i].equals("")) tipos.add(paginas[i]);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return tipos;
     }
 
     //FIN PAGINAS
@@ -347,7 +381,8 @@ public class DataComponentes {
                 modulo.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_ID)));
                 modulo.setTITULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TITULO)));
                 modulo.setCABECERA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_CABECERA)));
-                modulo.setNTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NTABLA)));
+                modulo.setTABLA_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TABLA_XML)));
+                modulo.setNPAGINAS(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NPAGINAS)));
             }
         }finally {
             if(cursor != null) cursor.close();
@@ -366,8 +401,8 @@ public class DataComponentes {
                 modulo.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_ID)));
                 modulo.setTITULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TITULO)));
                 modulo.setCABECERA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_CABECERA)));
-                modulo.setNTABLA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NTABLA)));
-
+                modulo.setTABLA_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TABLA_XML)));
+                modulo.setNPAGINAS(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NPAGINAS)));
                 modulos.add(modulo);
             }
         }finally {
@@ -696,7 +731,7 @@ public class DataComponentes {
             if(cursor.getCount() == 1){
                 infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
                 infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
-                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setNOMBRE_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE_XML)));
                 infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
                 infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
             }
@@ -717,7 +752,7 @@ public class DataComponentes {
                 cursor.moveToFirst();
                 infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
                 infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
-                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setNOMBRE_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE_XML)));
                 infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
                 infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
             }
@@ -740,7 +775,7 @@ public class DataComponentes {
                 cursor.moveToFirst();
                 infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
                 infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
-                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setNOMBRE_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE_XML)));
                 infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
                 infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
             }
@@ -760,7 +795,7 @@ public class DataComponentes {
                 InfoTabla infoTabla = new InfoTabla();
                 infoTabla.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_ID)));
                 infoTabla.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_MODULO)));
-                infoTabla.setNOMBRE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE)));
+                infoTabla.setNOMBRE_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_NOMBRE_XML)));
                 infoTabla.setPARTE(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_PARTE)));
                 infoTabla.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.INFOTABLAS_TIPO)));
                 infoTablas.add(infoTabla);

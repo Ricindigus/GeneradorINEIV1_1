@@ -11,8 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
-import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 /**
@@ -22,10 +20,16 @@ import pe.com.ricindigus.generadorinei.pojos.Pagina;
 public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginasAdapter.ViewHolder>{
     ArrayList<Pagina> paginas;
     Context context;
+    OnItemClickListener onItemClickListener;
 
-    public CreacionPaginasAdapter(ArrayList<Pagina> paginas, Context context) {
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+    public CreacionPaginasAdapter(ArrayList<Pagina> paginas, Context context, OnItemClickListener onItemClickListener) {
         this.paginas = paginas;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -37,11 +41,8 @@ public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginas
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.txtId.setText(paginas.get(position).getID());
-        DataComponentes data = new DataComponentes(context);
-        data.open();
-        holder.txtModulo.setText(data.getModulo(paginas.get(position).getMODULO()).getCABECERA());
-        data.close();
+        holder.txtNPagina.setText(paginas.get(position).getID());
+        holder.txtModulo.setText("MODULO " + paginas.get(position).getMODULO());
         holder.txtTipo1.setText(paginas.get(position).getTIPO1());
         holder.txtTipo2.setText(paginas.get(position).getTIPO2());
         holder.txtTipo3.setText(paginas.get(position).getTIPO3());
@@ -52,11 +53,22 @@ public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginas
         holder.txtTipo8.setText(paginas.get(position).getTIPO8());
         holder.txtTipo9.setText(paginas.get(position).getTIPO9());
         holder.txtTipo10.setText(paginas.get(position).getTIPO10());
+        holder.cardViewPagina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onItemClick(view,position);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return paginas.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardViewPagina;
-        TextView txtId;
+        TextView txtNPagina;
         TextView txtModulo;
         TextView txtTipo1;
         TextView txtTipo2;
@@ -71,7 +83,7 @@ public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginas
         public ViewHolder(View itemView) {
             super(itemView);
             cardViewPagina = (CardView) itemView.findViewById(R.id.cardview_paginas);
-            txtId = (TextView) itemView.findViewById(R.id.pagina_id);
+            txtNPagina = (TextView) itemView.findViewById(R.id.pagina_numero);
             txtModulo = (TextView) itemView.findViewById(R.id.pagina_modulo);
             txtTipo1 = (TextView) itemView.findViewById(R.id.pagina_tipo1);
             txtTipo2 = (TextView) itemView.findViewById(R.id.pagina_tipo2);
@@ -84,10 +96,5 @@ public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginas
             txtTipo9 = (TextView) itemView.findViewById(R.id.pagina_tipo9);
             txtTipo10 = (TextView) itemView.findViewById(R.id.pagina_tipo10);
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        return paginas.size();
     }
 }

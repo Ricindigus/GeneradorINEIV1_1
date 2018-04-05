@@ -14,8 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.fragments.creacion.EventosFragment;
 import pe.com.ricindigus.generadorinei.fragments.creacion.ModulosFragment;
 import pe.com.ricindigus.generadorinei.fragments.creacion.PaginasFragment;
+import pe.com.ricindigus.generadorinei.fragments.creacion.PreguntasFragment;
 
 public class CrearEncuestaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
@@ -86,9 +88,11 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
             PaginasFragment paginasFragment = new PaginasFragment(CrearEncuestaActivity.this);
             fragmentTransaction.replace(R.id.fragment_crear_encuesta, paginasFragment,"paginas");
         } else if (id == R.id.nav_preguntas) {
-
+            PreguntasFragment preguntasFragment = new PreguntasFragment(CrearEncuestaActivity.this);
+            fragmentTransaction.replace(R.id.fragment_crear_encuesta, preguntasFragment,"preguntas");
         } else if (id == R.id.nav_eventos) {
-
+            EventosFragment eventosFragment = new EventosFragment(CrearEncuestaActivity.this);
+            fragmentTransaction.replace(R.id.fragment_crear_encuesta, eventosFragment,"eventos");
         }
         fragmentTransaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

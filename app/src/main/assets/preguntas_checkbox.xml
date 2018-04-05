@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CHECKBOXS>
-	<CHECKBOX><ID>M1P7</ID><MODULO>1</MODULO><NUMERO>7</NUMERO><PREGUNTA>¿En qué mercados vende su principal producto o servicio industrial?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M1P9</ID><MODULO>1</MODULO><NUMERO>9</NUMERO><PREGUNTA>¿Cuáles son las principales dificultades para que su empresa exporte?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M1P10</ID><MODULO>1</MODULO><NUMERO>10</NUMERO><PREGUNTA>¿Cuáles de los siguientes factores son importantes para mantenerse o posicionarse mejor en el mercado?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M1P13</ID><MODULO>1</MODULO><NUMERO>13</NUMERO><PREGUNTA>¿Cuáles fueron los motivos por los que se incorporó a una o más organizaciones o agrupaciones?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M1P14</ID><MODULO>1</MODULO><NUMERO>14</NUMERO><PREGUNTA>¿Por qué su empresa no pertenece a una organización o agrupación?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M2P1</ID><MODULO>2</MODULO><NUMERO>1</NUMERO><PREGUNTA>En su empresa, ¿Cómo establecen las características o especificaciones técnicas de sus productos o servicios industriales?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M2P5</ID><MODULO>2</MODULO><NUMERO>5</NUMERO><PREGUNTA>En el año 2016, ¿su empresa ha utilizado o ha implementado algún estándar de calidad o alguna norma técnica para elaborar su producto o prestación de sus servicios industriales?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M3P3</ID><MODULO>3</MODULO><NUMERO>3</NUMERO><PREGUNTA>¿Quién ha calibrado sus instrumentos de medición?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M4P1</ID><MODULO>4</MODULO><NUMERO>1</NUMERO><PREGUNTA>En su empresa ¿Cómo verifican la calidad de los productos o servicios industriales?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M4P3</ID><MODULO>4</MODULO><NUMERO>3</NUMERO><PREGUNTA>Su empresa cuenta con alguna de las siguientes certificaciones.</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M4P7</ID><MODULO>4</MODULO><NUMERO>7</NUMERO><PREGUNTA>¿Por qué razones certificó los procesos, gestión o productos?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M4P8</ID><MODULO>4</MODULO><NUMERO>8</NUMERO><PREGUNTA>¿Por qué no tiene certificación?</PREGUNTA></CHECKBOX>
-	<CHECKBOX><ID>M4P9</ID><MODULO>4</MODULO><NUMERO>9</NUMERO><PREGUNTA>En el año 2016 ¿El personal de la empresa, ha recibido asistencia técnica o asesoría sobre aspectos relacionados a la mejora de la calidad de sus productos o servicios industriales?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M4P7</ID><MODULO>4</MODULO><NUMERO>7</NUMERO><PREGUNTA>¿En qué mercados vende su principal producto o servicio industrial?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M4P9</ID><MODULO>4</MODULO><NUMERO>9</NUMERO><PREGUNTA>¿Cuáles son las principales dificultades para que su empresa exporte?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M4P10</ID><MODULO>4</MODULO><NUMERO>10</NUMERO><PREGUNTA>¿Cuáles de los siguientes factores son importantes para mantenerse o posicionarse mejor en el mercado?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M4P13</ID><MODULO>4</MODULO><NUMERO>13</NUMERO><PREGUNTA>¿Cuáles fueron los motivos por los que se incorporó a una o más organizaciones o agrupaciones?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M4P14</ID><MODULO>4</MODULO><NUMERO>14</NUMERO><PREGUNTA>¿Por qué su empresa no pertenece a una organización o agrupación?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M5P1</ID><MODULO>5</MODULO><NUMERO>1</NUMERO><PREGUNTA>En su empresa, ¿Cómo establecen las características o especificaciones técnicas de sus productos o servicios industriales?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M5P5</ID><MODULO>5</MODULO><NUMERO>5</NUMERO><PREGUNTA>En el año 2016, ¿su empresa ha utilizado o ha implementado algún estándar de calidad o alguna norma técnica para elaborar su producto o prestación de sus servicios industriales?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M6P3</ID><MODULO>6</MODULO><NUMERO>3</NUMERO><PREGUNTA>¿Quién ha calibrado sus instrumentos de medición?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M7P1</ID><MODULO>7</MODULO><NUMERO>1</NUMERO><PREGUNTA>En su empresa ¿Cómo verifican la calidad de los productos o servicios industriales?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M7P3</ID><MODULO>7</MODULO><NUMERO>3</NUMERO><PREGUNTA>Su empresa cuenta con alguna de las siguientes certificaciones.</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M7P7</ID><MODULO>7</MODULO><NUMERO>7</NUMERO><PREGUNTA>¿Por qué razones certificó los procesos, gestión o productos?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M7P8</ID><MODULO>7</MODULO><NUMERO>8</NUMERO><PREGUNTA>¿Por qué no tiene certificación?</PREGUNTA></CHECKBOX>
+	<CHECKBOX><ID>M7P9</ID><MODULO>7</MODULO><NUMERO>9</NUMERO><PREGUNTA>En el año 2016 ¿El personal de la empresa, ha recibido asistencia técnica o asesoría sobre aspectos relacionados a la mejora de la calidad de sus productos o servicios industriales?</PREGUNTA></CHECKBOX>
 </CHECKBOXS>

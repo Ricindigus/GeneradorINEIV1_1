@@ -130,10 +130,10 @@ public class EditTextFragment extends ComponenteFragment {
             cargandoDatos = true;
             DataTablas data = new DataTablas(context);
             data.open();
-            if(data.existenDatos(getNumModulo(),idEmpresa)){
+            if(data.existenDatos(getIdTabla(),idEmpresa)){
                 String[] variables = new String[subpreguntas.size()];
                 for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
-                String[] valores = data.getValores(getNumModulo(),variables,idEmpresa);
+                String[] valores = data.getValores(getIdTabla(),variables,idEmpresa);
                 for (int i = 0; i < valores.length; i++) {if(valores[i] != null) textInputEditTexts[i].setText(valores[i]);}
             }
             data.close();
@@ -152,10 +152,10 @@ public class EditTextFragment extends ComponenteFragment {
             String valor = textInputEditTexts[i].getText().toString();
             contentValues.put(variable, valor);
         }
-        if(!data.existenDatos(getNumModulo(),idEmpresa)){
+        if(!data.existenDatos(getIdTabla(),idEmpresa)){
             contentValues.put("ID_EMPRESA",idEmpresa);
-            data.insertarValores(getNumModulo(),contentValues);
-        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+            data.insertarValores(getIdTabla(),contentValues);
+        }else data.actualizarValores(getIdTabla(),idEmpresa,contentValues);
         data.close();
     }
 
@@ -208,7 +208,7 @@ public class EditTextFragment extends ComponenteFragment {
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-    public String getNumModulo(){
+    public String getIdTabla(){
         return pEditText.getMODULO();
     }
 }

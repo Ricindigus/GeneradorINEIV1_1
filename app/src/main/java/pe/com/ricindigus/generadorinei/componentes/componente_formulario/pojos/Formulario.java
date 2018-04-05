@@ -21,6 +21,13 @@ public class Formulario {
         this.TITULO = "";
     }
 
+    public Formulario(String ID, String MODULO, String NUMERO) {
+        this();
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+    }
+
     public String getID() {
         return ID;
     }

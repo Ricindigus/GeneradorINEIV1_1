@@ -115,7 +115,7 @@ public class ImportarActivity extends AppCompatActivity {
         boolean encontrado = false;
         int c = 0;
         while (c < infoTablas.size() && !encontrado){
-            if(name.equals(infoTablas.get(c).getNOMBRE())) {
+            if(name.equals(infoTablas.get(c).getNOMBRE_XML())) {
                 encontrado = true;
                 currentInfoTabla = infoTablas.get(c);
                 currentContentValues = new ContentValues();
@@ -133,7 +133,7 @@ public class ImportarActivity extends AppCompatActivity {
         boolean encontrado = false;
         int c = 0;
         while (c < infoTablas.size() && !encontrado){
-            if(name.equals(infoTablas.get(c).getNOMBRE())) {
+            if(name.equals(infoTablas.get(c).getNOMBRE_XML())) {
                 encontrado = true;
                 DataTablas dataTablas = new DataTablas(this);
                 dataTablas.open();

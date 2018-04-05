@@ -39,7 +39,6 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
-import pe.com.ricindigus.generadorinei.interfaces.ComponenteInterfaz;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 
 /**
@@ -119,17 +118,17 @@ public class GPSFragment extends ComponenteFragment implements GoogleApiClient.O
     public void cargarDatos(){
         DataTablas data = new DataTablas(contexto);
         data.open();
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
+        if(data.existenDatos(getIdTabla(),idEmpresa)){
             if(!gps.getVARALT().equals("")){
-                String valor = data.getValor(getNumModulo(),gps.getVARALT(),idEmpresa);
+                String valor = data.getValor(getIdTabla(),gps.getVARALT(),idEmpresa);
                 if(valor != null) txtAltitud.setText(valor);
             }
             if(!gps.getVARLAT().equals("")){
-                String valor = data.getValor(getNumModulo(),gps.getVARLAT(),idEmpresa);
+                String valor = data.getValor(getIdTabla(),gps.getVARLAT(),idEmpresa);
                 if(valor != null) txtLatitud.setText(valor);
             }
             if(!gps.getVARLONG().equals("")){
-                String valor = data.getValor(getNumModulo(),gps.getVARLONG(),idEmpresa);
+                String valor = data.getValor(getIdTabla(),gps.getVARLONG(),idEmpresa);
                 if(valor != null) txtLongitud.setText(valor);
             }
         }
@@ -156,10 +155,10 @@ public class GPSFragment extends ComponenteFragment implements GoogleApiClient.O
         if(!gps.getVARLAT().equals("")) contentValues.put(gps.getVARLAT(), txtLatitud.getText().toString());
         if(!gps.getVARLONG().equals("")) contentValues.put(gps.getVARLONG(), txtLongitud.getText().toString());
         if(!gps.getVARALT().equals("")) contentValues.put(gps.getVARALT(), txtAltitud.getText().toString());
-        if(!data.existenDatos(getNumModulo(),idEmpresa)){
+        if(!data.existenDatos(getIdTabla(),idEmpresa)){
             contentValues.put("ID_EMPRESA",idEmpresa);
-            data.insertarValores(getNumModulo(),contentValues);
-        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+            data.insertarValores(getIdTabla(),contentValues);
+        }else data.actualizarValores(getIdTabla(),idEmpresa,contentValues);
         data.close();
     }
     public void llenarVista(){
@@ -189,7 +188,7 @@ public class GPSFragment extends ComponenteFragment implements GoogleApiClient.O
         return habilitado;
     }
 
-    public String getNumModulo(){
+    public String getIdTabla(){
         return gps.getMODULO();
     }
 

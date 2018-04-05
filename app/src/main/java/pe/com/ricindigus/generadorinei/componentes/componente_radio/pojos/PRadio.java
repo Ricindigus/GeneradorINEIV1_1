@@ -23,6 +23,13 @@ public class PRadio {
         this.PREGUNTA = "";
     }
 
+    public PRadio(String ID, String MODULO, String NUMERO) {
+        this();
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+    }
+
     public String getID() {
         return ID;
     }

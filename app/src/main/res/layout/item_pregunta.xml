@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardview_pregunta"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="3dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/item_pregunta_numero"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="n"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/item_pregunta_modulo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="modulo"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/item_pregunta_idpregunta"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/item_pregunta_tipo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="tipo"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/item_pregunta_descripcion"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="tipo componente"
+            android:padding="@dimen/margin5dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

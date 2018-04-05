@@ -157,7 +157,7 @@ public class VisitasFragment extends ComponenteFragment {
         try{
             dataTablas = new DataTablas(context);
             dataTablas.open();
-            cursor = dataTablas.getVisitas(getNumModuloParte1(),idEmpresa);
+            cursor = dataTablas.getVisitas(getIdTablaParte1(),idEmpresa);
             dataTablas.close();
             if(cursor != null){
                 visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
@@ -295,8 +295,8 @@ public class VisitasFragment extends ComponenteFragment {
                             try{
                                 DataTablas dTablas = new DataTablas(context);
                                 dTablas.open();
-                                dTablas.insertarValores(getNumModuloParte1(),contentValues);
-                                cursor = dTablas.getVisitas(getNumModuloParte1(),idEmpresa);
+                                dTablas.insertarValores(getIdTablaParte1(),contentValues);
+                                cursor = dTablas.getVisitas(getIdTablaParte1(),idEmpresa);
                                 dTablas.close();
                                 if(cursor != null){
                                     visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
@@ -432,8 +432,8 @@ public class VisitasFragment extends ComponenteFragment {
                                 String idVisita = cursor.getString(cursor.getColumnIndex("_id"));
                                 dataTablas = new DataTablas(context);
                                 dataTablas.open();
-                                dataTablas.actualizarVisita(getNumModuloParte1(),idVisita,contentValues);
-                                cursor = dataTablas.getVisitas(getNumModuloParte1(),idEmpresa);
+                                dataTablas.actualizarVisita(getIdTablaParte1(),idVisita,contentValues);
+                                cursor = dataTablas.getVisitas(getIdTablaParte1(),idEmpresa);
                                 dataTablas.close();
                                 if(cursor != null){
                                     visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
@@ -468,8 +468,8 @@ public class VisitasFragment extends ComponenteFragment {
                                     String idVisita = cursor.getString(cursor.getColumnIndex("_id"));
                                     dataTablas = new DataTablas(context);
                                     dataTablas.open();
-                                    dataTablas.deleteVisita(getNumModuloParte1(),idVisita);
-                                    cursor = dataTablas.getVisitas(getNumModuloParte1(),idEmpresa);
+                                    dataTablas.deleteVisita(getIdTablaParte1(),idVisita);
+                                    cursor = dataTablas.getVisitas(getIdTablaParte1(),idEmpresa);
                                     dataTablas.close();
                                     if(cursor != null){
                                         visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
@@ -703,8 +703,8 @@ public class VisitasFragment extends ComponenteFragment {
                                 dataTablas = new DataTablas(context);
                                 dataTablas.open();
                                 cursor.moveToPosition(posicion);
-                                dataTablas.actualizarVisita(getNumModuloParte1(),cursor.getString(cursor.getColumnIndex("_id")),contentValues);
-                                cursor = dataTablas.getVisitas(getNumModuloParte1(),idEmpresa);
+                                dataTablas.actualizarVisita(getIdTablaParte1(),cursor.getString(cursor.getColumnIndex("_id")),contentValues);
+                                cursor = dataTablas.getVisitas(getIdTablaParte1(),idEmpresa);
                                 dataTablas.close();
                                 if(cursor != null){
                                     visitaAdapter = new VisitaAdapter(visita, context, cursor, onItemClickListener);
@@ -732,10 +732,10 @@ public class VisitasFragment extends ComponenteFragment {
                             contentValuesFinal.put(visita.getVARRESMIN(),minutoFin);
                             dataTablas = new DataTablas(context);
                             dataTablas.open();
-                            if(!dataTablas.existenDatos(getNumModuloParte2(),idEmpresa)){
+                            if(!dataTablas.existenDatos(getIdTablaParte2(),idEmpresa)){
                                 contentValuesFinal.put("ID_EMPRESA",idEmpresa);
-                                dataTablas.insertarValores(getNumModuloParte2(),contentValuesFinal);
-                            }else dataTablas.actualizarValores(getNumModuloParte2(),idEmpresa,contentValuesFinal);
+                                dataTablas.insertarValores(getIdTablaParte2(),contentValuesFinal);
+                            }else dataTablas.actualizarValores(getIdTablaParte2(),idEmpresa,contentValuesFinal);
                             dataTablas.close();
                             txtResultadoFinal.setText(getResources().getStringArray(R.array.array_resultado_visita)[spResultado.getSelectedItemPosition()]);
                             txtFechaFinal.setText(checkDigito(dd) + "/" + checkDigito(mm) + "/" + checkDigito(yy));
@@ -767,15 +767,15 @@ public class VisitasFragment extends ComponenteFragment {
     public void cargarDatos(){
         dataTablas = new DataTablas(context);
         dataTablas.open();
-        if(dataTablas.existenDatos(getNumModuloParte2(),idEmpresa)){
-            txtResultadoFinal.setText(getResources().getStringArray(R.array.array_resultado_visita)[Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESFINAL(),idEmpresa))]);
+        if(dataTablas.existenDatos(getIdTablaParte2(),idEmpresa)){
+            txtResultadoFinal.setText(getResources().getStringArray(R.array.array_resultado_visita)[Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESFINAL(),idEmpresa))]);
             txtFechaFinal.setText(
-                    checkDigito(Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESDIA(),idEmpresa))) +
-                            "/" + checkDigito(Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESMES(),idEmpresa))) +
-                            "/" + checkDigito(Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESANIO(),idEmpresa))));
+                    checkDigito(Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESDIA(),idEmpresa))) +
+                            "/" + checkDigito(Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESMES(),idEmpresa))) +
+                            "/" + checkDigito(Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESANIO(),idEmpresa))));
             txtHorafinal.setText(
-                    checkDigito(Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESHORA(),idEmpresa))) +
-                            ":" + checkDigito(Integer.parseInt(dataTablas.getValor(getNumModuloParte2(),visita.getVARRESMIN(),idEmpresa))));
+                    checkDigito(Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESHORA(),idEmpresa))) +
+                            ":" + checkDigito(Integer.parseInt(dataTablas.getValor(getIdTablaParte2(),visita.getVARRESMIN(),idEmpresa))));
         }
 
         dataTablas.close();
@@ -827,7 +827,7 @@ public class VisitasFragment extends ComponenteFragment {
     }
 
     @Override
-    public String getNumModulo() {
+    public String getIdTabla() {
         return null;
     }
 
@@ -849,11 +849,11 @@ public class VisitasFragment extends ComponenteFragment {
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-    public String getNumModuloParte1(){
-        return visita.getMODULO() + "1";
+    public String getIdTablaParte1(){
+        return visita.getMODULO() + "_1";
     }
-    public String getNumModuloParte2(){
-        return visita.getMODULO() + "2";
+    public String getIdTablaParte2(){
+        return visita.getMODULO() + "_2";
     }
 
 }

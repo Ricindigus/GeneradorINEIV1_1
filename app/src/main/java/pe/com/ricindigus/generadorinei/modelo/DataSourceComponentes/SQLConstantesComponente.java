@@ -28,7 +28,9 @@ public class SQLConstantesComponente {
     public static final String MODULO_ID = "ID";
     public static final String MODULO_TITULO = "TITULO";
     public static final String MODULO_CABECERA = "CABECERA";
-    public static final String MODULO_NTABLA = "NTABLA";
+    public static final String MODULO_TABLA_XML = "TABLA_XML";
+    public static final String MODULO_NPAGINAS = "NPAGINAS";
+
 
 
 
@@ -86,14 +88,14 @@ public class SQLConstantesComponente {
     public static final String INFOTABLAS_ID = "ID";
     public static final String INFOTABLAS_MODULO = "MODULO";
     public static final String INFOTABLAS_PARTE = "PARTE";
-    public static final String INFOTABLAS_NOMBRE = "NOMBRE";
+    public static final String INFOTABLAS_NOMBRE_XML = "NOMBRE_XML";
     public static final String INFOTABLAS_TIPO = "TIPO";
 
     public static final String SQL_CREATE_TABLA_INFOTABLAS =
             "CREATE TABLE " + tablaInfoTablas + "(" +
                     INFOTABLAS_ID + " TEXT PRIMARY KEY," +
                     INFOTABLAS_MODULO + " TEXT," +
-                    INFOTABLAS_NOMBRE + " TEXT," +
+                    INFOTABLAS_NOMBRE_XML + " TEXT," +
                     INFOTABLAS_PARTE + " TEXT," +
                     INFOTABLAS_TIPO + " TEXT" + ");"
             ;
@@ -137,7 +139,8 @@ public class SQLConstantesComponente {
                     MODULO_ID + " TEXT PRIMARY KEY," +
                     MODULO_TITULO + " TEXT," +
                     MODULO_CABECERA + " TEXT," +
-                    MODULO_NTABLA + " TEXT" + ");"
+                    MODULO_TABLA_XML + " TEXT," +
+                    MODULO_NPAGINAS + " TEXT" + ");"
             ;
 
 
@@ -209,7 +212,7 @@ public class SQLConstantesComponente {
     };
 
     public static final String[] ALL_COLUMNS_MODULOS = {
-            MODULO_ID, MODULO_TITULO, MODULO_CABECERA, MODULO_NTABLA
+            MODULO_ID, MODULO_TITULO, MODULO_CABECERA, MODULO_TABLA_XML, MODULO_NPAGINAS
     };
 
     public static final String[] ALL_COLUMNS_EVENTOS = {
@@ -237,7 +240,7 @@ public class SQLConstantesComponente {
     };
 
     public static final String[] ALL_COLUMNS_INFOTABLAS = {
-            INFOTABLAS_ID, INFOTABLAS_PARTE, INFOTABLAS_NOMBRE,
+            INFOTABLAS_ID, INFOTABLAS_PARTE, INFOTABLAS_NOMBRE_XML,
             INFOTABLAS_MODULO,INFOTABLAS_TIPO
     };
 

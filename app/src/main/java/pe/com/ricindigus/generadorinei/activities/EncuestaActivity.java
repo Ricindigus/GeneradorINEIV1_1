@@ -66,7 +66,6 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
 import pe.com.ricindigus.generadorinei.pojos.Controlador;
-import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -111,7 +110,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encuesta);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_encuesta);
         btnAtras = (Button) findViewById(R.id.btn_anterior);
         btnSiguiente = (Button) findViewById(R.id.btn_siguiente);
         layoutScrolleable = (LinearLayout) findViewById(R.id.layout_componente_scrolleable);
@@ -128,6 +127,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         lytComponente10 = (LinearLayout) findViewById(R.id.layout_componente10);
 
         setSupportActionBar(toolbar);
+
 
         DataTablas d = new DataTablas(this);
         d.open();
@@ -159,6 +159,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         TextView txtHeaderUsuario = (TextView) headerView.findViewById(R.id.header_txtUsuario);
         txtHeaderTitulo.setText(tituloEncuesta);
         txtHeaderUsuario.setText("Usuario: "+idUsuario);
+//        getSupportActionBar().setTitle(tituloEncuesta);
         enableExpandableList();
 
         btnAtras.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +221,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 }
             }
         }
-        ArrayList<String> ids = dataComponentes.getIdsPagina(pagina+"");
+        ArrayList<String> ids = dataComponentes.getIdPreguntasXPagina(pagina+"");
         for (String idPregunta : ids){
             if(!d.existeControladorPagina(idPregunta)) correcto = true;
         }
@@ -295,7 +296,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             dT.close();
             final String observaciones = obs;
             dialog.setView(dialogView);
-            dialog.setTitle("OBSERVACIONES " + infoTabla.getNOMBRE());
+            dialog.setTitle("OBSERVACIONES " + infoTabla.getNOMBRE_XML());
             dialog.setPositiveButton("Guardar", null);
             dialog.setNegativeButton("Cancelar", null);
             final AlertDialog alertDialog = dialog.create();
@@ -635,7 +636,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             List<String> subItems = new ArrayList<String>();
             //busca los subtitulos
             for (Pagina p : paginas) {
-                ArrayList<String> ids = dataComponentes.getIdsPagina(p.getID());
+                ArrayList<String> ids = dataComponentes.getIdPreguntasXPagina(p.getID());
                 String subTitulo = "";
                 if (ids.size() == 1)
                     subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0));

@@ -142,7 +142,7 @@ public class UbicacionFragment extends ComponenteFragment {
     public void cargarDatos(){
         dataTablas = new DataTablas(contexto);
         dataTablas.open();
-        boolean existenDatos = dataTablas.existenDatos(getNumModulo(),idEmpresa);
+        boolean existenDatos = dataTablas.existenDatos(getIdTabla(),idEmpresa);
         dataTablas.close();
         if(existenDatos){
             Thread thread = new Thread(){
@@ -153,9 +153,9 @@ public class UbicacionFragment extends ComponenteFragment {
                     dataTablas = new DataTablas(contexto);
                     data.open();
                     dataTablas.open();
-                    final String codDep = dataTablas.getValor(getNumModulo(),ubicacion.getVARDEP(),idEmpresa);
-                    final String codProv = dataTablas.getValor(getNumModulo(),ubicacion.getVARPRO(),idEmpresa);
-                    final String codDis = dataTablas.getValor(getNumModulo(),ubicacion.getVARDIS(),idEmpresa);
+                    final String codDep = dataTablas.getValor(getIdTabla(),ubicacion.getVARDEP(),idEmpresa);
+                    final String codProv = dataTablas.getValor(getIdTabla(),ubicacion.getVARPRO(),idEmpresa);
+                    final String codDis = dataTablas.getValor(getIdTabla(),ubicacion.getVARDIS(),idEmpresa);
                     final String[] provincias = contexto.getResources().getStringArray(arregloDepartamentos[Integer.parseInt(codDep)-1]);
                     final ArrayList<String> distritos = data.getUbigeos(checkDigito(Integer.parseInt(codDep))+ checkDigito(Integer.parseInt(codProv)));
                     boolean encontrado = false;
@@ -206,10 +206,10 @@ public class UbicacionFragment extends ComponenteFragment {
         contentValues.put(ubicacion.getVARDEP(), Integer.parseInt(obtenerCodigo(spDepartamentos.getSelectedItem().toString())));
         contentValues.put(ubicacion.getVARPRO(), Integer.parseInt(obtenerCodigo(spProvincias.getSelectedItem().toString())));
         contentValues.put(ubicacion.getVARDIS(), Integer.parseInt(obtenerCodigo(spDistritos.getSelectedItem().toString())));
-        if(!dataTables.existenDatos(getNumModulo(),idEmpresa)){
+        if(!dataTables.existenDatos(getIdTabla(),idEmpresa)){
             contentValues.put("ID_EMPRESA",idEmpresa);
-            dataTables.insertarValores(getNumModulo(),contentValues);
-        }else dataTables.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+            dataTables.insertarValores(getIdTabla(),contentValues);
+        }else dataTables.actualizarValores(getIdTabla(),idEmpresa,contentValues);
         dataTables.close();
     }
 
@@ -288,7 +288,7 @@ public class UbicacionFragment extends ComponenteFragment {
         alertDialog.show();
     }
 
-    public String getNumModulo(){
+    public String getIdTabla(){
         return ubicacion.getMODULO();
     }
 }

@@ -169,14 +169,14 @@ public class CheckBoxFragment extends ComponenteFragment {
             data.open();
             String valorCheck;
             String valorEspecifique;
-            if(data.existenDatos(getNumModulo(),idEmpresa)){
+            if(data.existenDatos(getIdTabla(),idEmpresa)){
                 for (int i = 0; i < subpreguntas.size() ; i++) {
-                    valorCheck = data.getValor(getNumModulo(),subpreguntas.get(i).getVARIABLE(),idEmpresa);
+                    valorCheck = data.getValor(getIdTabla(),subpreguntas.get(i).getVARIABLE(),idEmpresa);
                     if(valorCheck != null){
                         if (valorCheck.equals("1")){
                             checkBoxes[i].setChecked(true);
                             if(!subpreguntas.get(i).getVARDESC().equals("")){
-                                valorEspecifique = data.getValor(getNumModulo(),subpreguntas.get(i).getVARDESC(),idEmpresa);
+                                valorEspecifique = data.getValor(getIdTabla(),subpreguntas.get(i).getVARDESC(),idEmpresa);
                                 if(valorEspecifique != null)editTexts[i].setText(valorEspecifique);
                             }
                         }
@@ -206,11 +206,11 @@ public class CheckBoxFragment extends ComponenteFragment {
             }
             if(!subpreguntas.get(i).getVARDESC().equals(""))contentValues.put(subpreguntas.get(i).getVARDESC(),editTexts[i].getText().toString());
         }
-        if(!data.existenDatos(getNumModulo(),idEmpresa)){
+        if(!data.existenDatos(getIdTabla(),idEmpresa)){
             //insertar
             contentValues.put("ID_EMPRESA",idEmpresa);
-            data.insertarValores(getNumModulo(),contentValues);
-        }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+            data.insertarValores(getIdTabla(),contentValues);
+        }else data.actualizarValores(getIdTabla(),idEmpresa,contentValues);
         data.close();
     }
 
@@ -270,7 +270,7 @@ public class CheckBoxFragment extends ComponenteFragment {
     }
 
     @Override
-    public String getNumModulo(){
+    public String getIdTabla(){
         return pCheckBox.getMODULO();
     }
 

@@ -141,7 +141,7 @@ public class ExportarActivity extends AppCompatActivity {
             dataTablas.open();
             ArrayList<InfoTabla> infoTablas =(new InfoTablasPullParser()).parseXML(this);
             for(InfoTabla infoTabla : infoTablas){
-                String nombreTabla = infoTabla.getNOMBRE();
+                String nombreTabla = infoTabla.getNOMBRE_XML();
                 String idTabla = infoTabla.getID();
                 if(dataTablas.existenDatos(idTabla,idEmpresa)){
                     String[] variablesTabla = dataTablas.getNombreColumnas(idTabla,idEmpresa);

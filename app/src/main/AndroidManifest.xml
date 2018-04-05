@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity">
+        <activity
+            android:name=".activities.SplashActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,22 +26,48 @@
         <activity
             android:name=".activities.LoginActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity android:name=".activities.MarcoActivity" />
+        <activity
+            android:name=".activities.MarcoActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
         <activity
             android:name=".activities.EncuestaActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity android:name=".activities.ExportarActivity" />
-        <activity android:name=".activities.ImportarActivity" />
-        <activity android:name=".activities.creacion.CreacionActivity" />
-        <activity android:name=".activities.creacion.CargarEncuestaActivity" />
-        <activity android:name=".activities.creacion.EditarEncuestaActivity" />
-        <activity android:name=".activities.creacion.ExportarEncuestaActivity" />
+        <activity
+            android:name=".activities.ExportarActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.ImportarActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.creacion.CreacionActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.creacion.CargarEncuestaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.creacion.EditarEncuestaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.creacion.ExportarEncuestaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
         <activity
             android:name=".activities.creacion.CrearEncuestaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"
             android:label="@string/title_activity_crear_encuesta"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.creacion.activities_dialogs.IngresarModuloActivity" />
-        <activity android:name=".activities.creacion.activities_dialogs.IngresarPaginaActivity"></activity>
+        <activity
+            android:name=".activities.creacion.activities_dialogs.IngresarModuloActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.creacion.activities_dialogs.ConfiguracionPaginaActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.VisitasActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.GPSActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.UbicacionActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.FormularioActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.EditTextActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.CheckBoxActivity" />
+        <activity android:name=".activities.creacion.activities_dialogs.configuracion_preguntas.RadioActivity"></activity>
     </application>
 
 </manifest>

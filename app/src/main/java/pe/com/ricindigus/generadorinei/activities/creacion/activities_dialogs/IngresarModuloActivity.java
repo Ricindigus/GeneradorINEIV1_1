@@ -6,16 +6,21 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
+import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 public class IngresarModuloActivity extends AppCompatActivity {
-    TextInputEditText txtId;
+    TextView txtId;
     TextInputEditText txtTitulo;
     TextInputEditText txtCabecera;
-    TextInputEditText txtNombreTabla;
+    TextInputEditText txtTablaXml;
+    TextInputEditText txtNumPaginas;
+
     Button btnGuardar;
     Button btnCancelar;
 
@@ -24,21 +29,22 @@ public class IngresarModuloActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresar_modulo);
-        txtId = (TextInputEditText) findViewById(R.id.modulo_txtId);
+        txtId = (TextView) findViewById(R.id.modulo_txtId);
         txtTitulo = (TextInputEditText) findViewById(R.id.modulo_txtTitulo);
         txtCabecera = (TextInputEditText) findViewById(R.id.modulo_txtCabecera);
-        txtNombreTabla = (TextInputEditText) findViewById(R.id.modulo_txtNombreTabla);
+        txtTablaXml = (TextInputEditText) findViewById(R.id.modulo_txtNombreTabla);
+        txtNumPaginas = (TextInputEditText) findViewById(R.id.modulo_txtNPaginas);
         btnCancelar = (Button) findViewById(R.id.modulo_btnCancelar);
         btnGuardar = (Button) findViewById(R.id.modulo_btnGuardar);
 
         Bundle bundle = getIntent().getExtras();
         final int id = bundle.getInt("id");
         txtId.setText(id+"");
-        txtId.setEnabled(false);
 
         txtTitulo.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         txtCabecera.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-        txtNombreTabla.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        txtTablaXml.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        txtNumPaginas.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +63,16 @@ public class IngresarModuloActivity extends AppCompatActivity {
                         id+"",
                         txtTitulo.getText().toString(),
                         txtCabecera.getText().toString(),
-                        txtNombreTabla.getText().toString()
+                        txtTablaXml.getText().toString(),
+                        txtNumPaginas.getText().toString()
                 ));
+
+                int numPaginasActual = dataComponentes.getAllPaginas().size();
+                int numPaginasFinal = numPaginasActual + Integer.parseInt(txtNumPaginas.getText().toString());
+
+                for (int i = numPaginasActual + 1; i <= numPaginasFinal ; i++) {
+                    dataComponentes.insertarPagina(new Pagina(i+"",id+""));
+                }
                 dataComponentes.close();
                 finish();
             }

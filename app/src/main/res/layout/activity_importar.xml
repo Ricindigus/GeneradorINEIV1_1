@@ -29,7 +29,7 @@ tools:context="pe.com.ricindigus.generadorinei.activities.ImportarActivity">
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:textSize="20sp"
-            android:text="INGRESE EL NOMBRE DEL ARCHIVO DE LA EMPRESA A IMPORTAR"
+            android:text="INGRESE EL NOMBRE_XML DEL ARCHIVO DE LA EMPRESA A IMPORTAR"
             android:gravity="center"/>
         <EditText
             android:id="@+id/importacion_edtArchivo"

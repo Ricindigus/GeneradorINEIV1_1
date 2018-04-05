@@ -240,22 +240,22 @@ public class FormularioFragment extends ComponenteFragment {
         String valorEsp;
         String valorSp;
         String valorCheck;
-        if(data.existenDatos(getNumModulo(),idEmpresa)){
+        if(data.existenDatos(getIdTabla(),idEmpresa)){
             for (int i = 0; i < subpreguntas.size() ; i++){
                 SPFormulario spFormulario = subpreguntas.get(i);
                 if(!spFormulario.getVARE().equals("")){
-                    valorEdit = data.getValor(getNumModulo(),spFormulario.getVARE(),idEmpresa);
+                    valorEdit = data.getValor(getIdTabla(),spFormulario.getVARE(),idEmpresa);
                     if(valorEdit != null) editTexts[i].setText(valorEdit);
                 }else{
-                    valorSp = data.getValor(getNumModulo(),spFormulario.getVARS(),idEmpresa);
+                    valorSp = data.getValor(getIdTabla(),spFormulario.getVARS(),idEmpresa);
                     if(valorSp != null) spinners[i].setSelection(Integer.parseInt(valorSp));
                     if(edtEspecifiques[i].getVisibility()==View.VISIBLE) {
-                        valorEsp = data.getValor(getNumModulo(),spFormulario.getVARESP(),idEmpresa);
+                        valorEsp = data.getValor(getIdTabla(),spFormulario.getVARESP(),idEmpresa);
                         if(valorEsp != null) edtEspecifiques[i].setText(valorEsp);
                     }
                 }
                 if(!spFormulario.getVARCK().equals("")){
-                    valorCheck = data.getValor(getNumModulo(),spFormulario.getVARCK(),idEmpresa);
+                    valorCheck = data.getValor(getIdTabla(),spFormulario.getVARCK(),idEmpresa);
                     if(valorCheck != null) {if(valorCheck.equals("1"))checkBoxes[i].setChecked(true);}
                 }
             }
@@ -281,10 +281,10 @@ public class FormularioFragment extends ComponenteFragment {
                     else contentValues.put(spFormulario.getVARCK(),0);
                 }
             }
-            if(!data.existenDatos(getNumModulo(),idEmpresa)){
+            if(!data.existenDatos(getIdTabla(),idEmpresa)){
                 contentValues.put("ID_EMPRESA",idEmpresa);
-                data.insertarValores(getNumModulo(),contentValues);
-            }else data.actualizarValores(getNumModulo(),idEmpresa,contentValues);
+                data.insertarValores(getIdTabla(),contentValues);
+            }else data.actualizarValores(getIdTabla(),idEmpresa,contentValues);
             data.close();
         }
     }
@@ -345,7 +345,7 @@ public class FormularioFragment extends ComponenteFragment {
         alertDialog.show();
     }
 
-    public String getNumModulo(){
+    public String getIdTabla(){
         return formulario.getMODULO();
     }
 

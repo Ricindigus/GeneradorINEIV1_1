@@ -22,6 +22,13 @@ public class PCheckBox {
         this.PREGUNTA = "";
     }
 
+    public PCheckBox(String ID, String MODULO, String NUMERO) {
+        this();
+        this.ID = ID;
+        this.MODULO = MODULO;
+        this.NUMERO = NUMERO;
+    }
+
     public String getID() {
         return ID;
     }
