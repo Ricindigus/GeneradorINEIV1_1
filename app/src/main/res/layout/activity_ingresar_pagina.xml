@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.ConfiguracionPaginaActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.ConfiguracionPaginaActivity">
 
     <LinearLayout
         android:orientation="horizontal"

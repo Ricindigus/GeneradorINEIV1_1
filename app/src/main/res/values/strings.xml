@@ -18,6 +18,11 @@
         <item>item5</item>
     </string-array>
 
+    <string-array name="array_tipo_encuesta">
+        <item>Seleccione...</item>
+        <item>EMPRESAS</item>
+    </string-array>
+
     <string-array name="tipos_componentes">
         <item>Seleccione tipo componente</item>
         <item>VISITAS</item>

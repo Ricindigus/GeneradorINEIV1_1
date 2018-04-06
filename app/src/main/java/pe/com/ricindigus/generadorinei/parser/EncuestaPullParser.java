@@ -1,7 +1,6 @@
 package pe.com.ricindigus.generadorinei.parser;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,9 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import pe.com.ricindigus.generadorinei.activities.ImportarActivity;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
-import pe.com.ricindigus.generadorinei.pojos.Usuario;
 
 import static android.os.Environment.getExternalStorageDirectory;
 

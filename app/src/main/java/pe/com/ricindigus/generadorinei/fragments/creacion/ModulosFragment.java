@@ -10,16 +10,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
+
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.IngresarModuloActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.IngresarModuloActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionModulosAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 
 /**
@@ -32,6 +34,7 @@ public class ModulosFragment extends Fragment{
     private Context context;
     private ArrayList<Modulo> modulos;
     private CreacionModulosAdapter creacionModulosAdapter;
+    private EditText edtTituloEncuesta;
 
 
     public ModulosFragment() {
@@ -49,12 +52,16 @@ public class ModulosFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_modulos, container, false);
         recyclerView =  (RecyclerView) rootView.findViewById(R.id.recycler_modulos);
         fab = (FloatingActionButton) rootView.findViewById(R.id.fab_modulos);
+        edtTituloEncuesta = (EditText) rootView.findViewById(R.id.titulo_edtTituloEncuesta);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        edtTituloEncuesta.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -87,5 +94,12 @@ public class ModulosFragment extends Fragment{
         cargarDatos();
         creacionModulosAdapter = new CreacionModulosAdapter(modulos, context);
         recyclerView.setAdapter(creacionModulosAdapter);
+    }
+
+    public void guardarDatos(){
+        DataComponentes data = new DataComponentes(context);
+        data.open();
+        data.insertarEncuesta(new Encuesta("1",edtTituloEncuesta.getText().toString()));
+        data.close();
     }
 }

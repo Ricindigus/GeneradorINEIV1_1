@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -12,8 +12,6 @@ import android.widget.EditText;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
 
 public class GPSActivity extends AppCompatActivity {
     EditText varLatitud;

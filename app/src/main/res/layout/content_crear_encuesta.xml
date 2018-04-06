@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.CrearEncuestaActivity"
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.CrearEncuestaActivity"
     tools:showIn="@layout/app_bar_crear_encuesta">
 
 </LinearLayout>

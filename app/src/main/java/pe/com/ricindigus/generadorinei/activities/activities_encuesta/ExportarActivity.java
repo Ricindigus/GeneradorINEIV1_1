@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.activities_encuesta;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;

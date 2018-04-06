@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.activities_encuesta;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -149,7 +149,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         numeroPaginasTotal = (int) dataComponentes.getNumeroItemsPaginas();
         dataComponentes.close();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_encuesta_layout);
+        toolbar.setTitle(tituloEncuesta);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -160,7 +161,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         TextView txtHeaderUsuario = (TextView) headerView.findViewById(R.id.header_txtUsuario);
         txtHeaderTitulo.setText(tituloEncuesta);
         txtHeaderUsuario.setText("Usuario: "+idUsuario);
-//        getSupportActionBar().setTitle(tituloEncuesta);
+
+
         enableExpandableList();
 
         btnAtras.setOnClickListener(new View.OnClickListener() {

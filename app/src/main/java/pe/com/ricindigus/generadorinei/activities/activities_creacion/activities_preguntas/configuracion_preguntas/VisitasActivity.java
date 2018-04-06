@@ -1,8 +1,7 @@
-package pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.LoginActivity;
-import pe.com.ricindigus.generadorinei.activities.MarcoActivity;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
-import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 
 public class VisitasActivity extends AppCompatActivity {
     EditText varNumero;

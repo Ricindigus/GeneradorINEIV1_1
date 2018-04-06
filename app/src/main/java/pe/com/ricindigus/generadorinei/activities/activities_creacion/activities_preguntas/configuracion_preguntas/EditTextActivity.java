@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

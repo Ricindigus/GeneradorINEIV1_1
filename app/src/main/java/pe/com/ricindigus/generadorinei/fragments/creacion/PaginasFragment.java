@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.ConfiguracionPaginaActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.ConfiguracionPaginaActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionPaginasAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;

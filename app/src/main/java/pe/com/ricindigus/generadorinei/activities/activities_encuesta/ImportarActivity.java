@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.activities_encuesta;
 
 import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;

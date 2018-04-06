@@ -8,10 +8,6 @@
             android:icon="@drawable/modulos"
             android:title="Módulos" />
         <item
-            android:id="@+id/nav_paginas"
-            android:icon="@drawable/paginas"
-            android:title="Páginas" />
-        <item
             android:id="@+id/nav_preguntas"
             android:icon="@drawable/preguntas"
             android:title="Preguntas" />
@@ -19,5 +15,9 @@
             android:id="@+id/nav_eventos"
             android:icon="@drawable/eventos"
             android:title="Eventos" />
+        <item
+            android:id="@+id/nav_guardar"
+            android:icon="@drawable/guardar"
+            android:title="Guardar y Salir" />
     </group>
 </menu>

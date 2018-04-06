@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas.RadioActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas.RadioActivity">
 
 </android.support.constraint.ConstraintLayout>

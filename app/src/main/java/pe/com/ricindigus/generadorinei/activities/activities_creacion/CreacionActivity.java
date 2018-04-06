@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.creacion;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -94,6 +94,7 @@ public class CreacionActivity extends AppCompatActivity {
                                 });
                 AlertDialog alert = builder.create();
                 alert.show();
+
 
             }
         });

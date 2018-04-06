@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pe.com.ricindigus.generadorinei.activities.MarcoActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_encuesta.MarcoActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/marco_toolbar"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;

@@ -34,4 +34,7 @@ public class EventosFragment extends Fragment {
         return rootView;
     }
 
+    public void guardarDatos(){
+
+    }
 }

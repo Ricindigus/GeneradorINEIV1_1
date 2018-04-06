@@ -1,15 +1,9 @@
-package pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas;
 
 
 import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,23 +12,7 @@ import android.widget.TextView;
 
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.DataCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo.DataFormulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_formulario.pojos.Formulario;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
-import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
-import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
-import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 public class ConfiguracionPaginaActivity extends AppCompatActivity {
     TextView txtId;

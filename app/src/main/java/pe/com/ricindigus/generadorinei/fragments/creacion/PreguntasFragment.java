@@ -16,11 +16,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas.VisitasActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionPreguntasAdapter;
-import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
-import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
-import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.Pregunta;

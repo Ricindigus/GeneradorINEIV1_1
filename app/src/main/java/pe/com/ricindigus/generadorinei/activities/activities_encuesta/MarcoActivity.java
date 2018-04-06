@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities;
+package pe.com.ricindigus.generadorinei.activities.activities_encuesta;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.R;
+import pe.com.ricindigus.generadorinei.activities.LoginActivity;
 import pe.com.ricindigus.generadorinei.adapters.EncuestadoAdapter;
 import pe.com.ricindigus.generadorinei.adapters.MarcoAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
@@ -66,6 +67,7 @@ public class MarcoActivity extends AppCompatActivity {
             tituloEncuesta = recupera.getString("tituloEncuesta");
         }
 
+        myToolbar.setTitle(tituloEncuesta);
         spDepartamento = (Spinner) findViewById(R.id.marco_sp_departamento);
         spProvincia = (Spinner) findViewById(R.id.marco_sp_provincia);
         spDistrito = (Spinner) findViewById(R.id.marco_sp_distrito);

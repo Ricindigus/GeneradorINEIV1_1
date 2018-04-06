@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.com.ricindigus.generadorinei.activities.creacion.CrearEncuestaActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.CrearEncuestaActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
