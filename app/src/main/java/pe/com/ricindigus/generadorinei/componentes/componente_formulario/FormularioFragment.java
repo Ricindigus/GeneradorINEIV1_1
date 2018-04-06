@@ -39,6 +39,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTabla
 
 /**
  * A simple {@link Fragment} subclass.
+ * Ricardo Morales
  */
 public class FormularioFragment extends ComponenteFragment {
 
