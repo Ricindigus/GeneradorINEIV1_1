@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -20,23 +21,27 @@ import static android.os.Environment.getExternalStorageDirectory;
  * Created by dmorales on 28/12/2017.
  */
 
-public class PaginaPullParser {
-    public static final String PAGINA_ID = "_id";
-    public static final String PAGINA_MODULO = "MODULO";
+public class PreguntaPullParser {
+    public static final String PREGUNTA_ID = "_id";
+    public static final String PREGUNTA_MODULO = "MODULO";
+    public static final String PREGUNTA_PAGINA = "PAGINA";
+    public static final String PREGUNTA_NUMERO = "NUMERO";
+    public static final String PREGUNTA_TIPO = "TIPO";
 
 
-    private Pagina currentPagina = null;
+
+    private Pregunta currentPregunta = null;
     private String currentTag = null;
-    ArrayList<Pagina> paginas = new ArrayList<Pagina>();
+    ArrayList<Pregunta> preguntas = new ArrayList<>();
 
-    public ArrayList<Pagina> parseXML(Context context){
+    public ArrayList<Pregunta> parseXML(Context context){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
 
             try {
-                InputStream stream = context.getAssets().open("paginas.xml");
+                InputStream stream = context.getAssets().open("preguntas.xml");
                 xpp.setInput(stream,null);
 
                 int eventType = xpp.getEventType();
@@ -58,10 +63,10 @@ public class PaginaPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return paginas;
+        return preguntas;
     }
 
-    public ArrayList<Pagina> parseXML(Context context, String archivo){
+    public ArrayList<Pregunta> parseXML(Context context, String archivo){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -92,23 +97,26 @@ public class PaginaPullParser {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
-        return paginas;
+        return preguntas;
     }
 
     private void handleText(String text) {
         String xmlText = text;
-        if(currentPagina!= null && currentTag != null){
+        if(currentPregunta != null && currentTag != null){
             switch (currentTag){
-                case PAGINA_ID:currentPagina.set_id(xmlText);break;
-                case PAGINA_MODULO:currentPagina.setMODULO(xmlText);break;
+                case PREGUNTA_ID:currentPregunta.set_id(xmlText);break;
+                case PREGUNTA_MODULO:currentPregunta.setMODULO(xmlText);break;
+                case PREGUNTA_NUMERO:currentPregunta.setNUMERO(xmlText);break;
+                case PREGUNTA_PAGINA:currentPregunta.setPAGINA(xmlText);break;
+                case PREGUNTA_TIPO:currentPregunta.setTIPO(xmlText);break;
             }
         }
     }
 
     private void handleStarTag(String name) {
-        if(name.equals("PAGINA")){
-            currentPagina = new Pagina();
-            paginas.add(currentPagina);
+        if(name.equals("PREGUNTA")){
+            currentPregunta = new Pregunta();
+            preguntas.add(currentPregunta);
         }else{
             currentTag = name;
         }

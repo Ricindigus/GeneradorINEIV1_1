@@ -28,6 +28,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_ENCUESTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_PAGINAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_PREGUNTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_CREATE_TABLA_EVENTOS);
         sqLiteDatabase.execSQL(SQLEditText.SQL_CREATE_TABLA_EDITTEXT);
         sqLiteDatabase.execSQL(SQLEditText.SQL_CREATE_TABLA_SPEDITTEXT);
@@ -50,6 +51,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_ENCUESTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_MODULOS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_PAGINAS);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_PREGUNTAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_EVENTOS);
         sqLiteDatabase.execSQL(SQLEditText.SQL_DELETE_EDITTEXT);
         sqLiteDatabase.execSQL(SQLEditText.SQL_DELETE_SPEDITTEXT);
@@ -62,6 +64,7 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_OPCION_SPINNER);
+        sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_INFOTABLAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_VARIABLES);
         sqLiteDatabase.execSQL(SQLVisitas.SQL_DELETE_VISITAS);
         onCreate(sqLiteDatabase);

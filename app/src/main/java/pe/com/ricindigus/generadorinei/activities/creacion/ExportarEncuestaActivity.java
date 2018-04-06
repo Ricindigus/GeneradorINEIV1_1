@@ -180,7 +180,7 @@ public class ExportarEncuestaActivity extends AppCompatActivity {
             for (Pagina p : paginas){
                 serializer.startTag("", "PAGINA");
                 for (String variable : variablesTabla){
-                    String valor = dataComponentes.getValorFromTabla(SQLConstantesComponente.tablaPaginas, variable, p.getID());
+                    String valor = dataComponentes.getValorFromTabla(SQLConstantesComponente.tablaPaginas, variable, p.get_id());
                     escribirCampoXml(serializer, variable, valor);
                 }
                 serializer.endTag("","PAGINA");

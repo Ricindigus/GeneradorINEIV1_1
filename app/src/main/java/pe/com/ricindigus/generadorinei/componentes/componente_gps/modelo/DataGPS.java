@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -40,6 +41,9 @@ public class DataGPS {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLGps.tablaGPS);
     }
 
+    public void actualizarGPS(String idPregunta, ContentValues contentValues){
+        sqLiteDatabase.update(SQLGps.tablaGPS, contentValues, SQLGps.WHERE_CLAUSE_ID,new String[]{idPregunta});
+    }
 
     public void insertarGPS(GPS gps){
         ContentValues contentValues = gps.toValues();

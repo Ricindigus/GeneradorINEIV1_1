@@ -195,7 +195,7 @@ public class CargarEncuestaActivity extends AppCompatActivity {
 //            dt.open();
 //            infoTablas = dataComponentes.getAllInfoTablas();
 //            for (InfoTabla infoTabla:infoTablas) {
-//                dt.deleteTabla("modulo"+infoTabla.getID());
+//                dt.deleteTabla("modulo"+infoTabla.get_id());
 //            }
 //            dt.close();
 

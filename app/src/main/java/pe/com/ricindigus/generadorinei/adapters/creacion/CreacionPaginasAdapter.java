@@ -41,18 +41,18 @@ public class CreacionPaginasAdapter extends RecyclerView.Adapter<CreacionPaginas
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.txtNPagina.setText(paginas.get(position).getID());
+        holder.txtNPagina.setText(paginas.get(position).get_id());
         holder.txtModulo.setText("MODULO " + paginas.get(position).getMODULO());
-        holder.txtTipo1.setText(paginas.get(position).getTIPO1());
-        holder.txtTipo2.setText(paginas.get(position).getTIPO2());
-        holder.txtTipo3.setText(paginas.get(position).getTIPO3());
-        holder.txtTipo4.setText(paginas.get(position).getTIPO4());
-        holder.txtTipo5.setText(paginas.get(position).getTIPO5());
-        holder.txtTipo6.setText(paginas.get(position).getTIPO6());
-        holder.txtTipo7.setText(paginas.get(position).getTIPO7());
-        holder.txtTipo8.setText(paginas.get(position).getTIPO8());
-        holder.txtTipo9.setText(paginas.get(position).getTIPO9());
-        holder.txtTipo10.setText(paginas.get(position).getTIPO10());
+//        holder.txtTipo1.setText(paginas.get(position).getTIPO1());
+//        holder.txtTipo2.setText(paginas.get(position).getTIPO2());
+//        holder.txtTipo3.setText(paginas.get(position).getTIPO3());
+//        holder.txtTipo4.setText(paginas.get(position).getTIPO4());
+//        holder.txtTipo5.setText(paginas.get(position).getTIPO5());
+//        holder.txtTipo6.setText(paginas.get(position).getTIPO6());
+//        holder.txtTipo7.setText(paginas.get(position).getTIPO7());
+//        holder.txtTipo8.setText(paginas.get(position).getTIPO8());
+//        holder.txtTipo9.setText(paginas.get(position).getTIPO9());
+//        holder.txtTipo10.setText(paginas.get(position).getTIPO10());
         holder.cardViewPagina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

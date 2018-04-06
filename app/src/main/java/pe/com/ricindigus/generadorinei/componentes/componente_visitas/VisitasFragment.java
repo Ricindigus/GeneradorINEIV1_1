@@ -753,7 +753,7 @@ public class VisitasFragment extends ComponenteFragment {
         boolean correcto = true;
         return correcto;
     }
-//
+
 //    public boolean tieneVisitas(){
 //        boolean correcto = true;
 //        if(visitas.size() == 0) correcto = false;
@@ -764,6 +764,7 @@ public class VisitasFragment extends ComponenteFragment {
 //        if(visitas.get(visitas.size()-1).getV_RESULTADO().equals("")) correcto = false;
 //        return correcto;
 //    }
+
     public void cargarDatos(){
         dataTablas = new DataTablas(context);
         dataTablas.open();

@@ -133,50 +133,50 @@ public class ConfiguracionPaginaActivity extends AppCompatActivity {
                     if(!numeroPregunta.equals("")){
                         contentValues.put("IDP" + (i+1), "M" + modulo + "P" + numeroPregunta);
                         contentValues.put("TIPO" + (i+1), tipoPregunta+"");
-                        switch (tipoPregunta){
-                            case TipoComponente.VISITAS:
-                                DataVisitas dataVisitas = new DataVisitas(ConfiguracionPaginaActivity.this);
-                                dataVisitas.open();
-                                dataVisitas.insertarVisita(new Visita("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataVisitas.close();
-                                break;
-                            case TipoComponente.UBICACION:
-                                DataUbicacion dataUbicacion = new DataUbicacion(ConfiguracionPaginaActivity.this);
-                                dataUbicacion.open();
-                                dataUbicacion.insertarUbicacion(new Ubicacion("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataUbicacion.close();
-                                break;
-                            case TipoComponente.GPS:
-                                DataGPS dataGPS = new DataGPS(ConfiguracionPaginaActivity.this);
-                                dataGPS.open();
-                                dataGPS.insertarGPS(new GPS("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataGPS.close();
-                                break;
-                            case TipoComponente.FORMULARIO:
-                                DataFormulario dataFormulario = new DataFormulario(ConfiguracionPaginaActivity.this);
-                                dataFormulario.open();
-                                dataFormulario.insertarFormulario(new Formulario("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataFormulario.close();
-                                break;
-                            case TipoComponente.EDITTEXT:
-                                DataEditText dataEditText = new DataEditText(ConfiguracionPaginaActivity.this);
-                                dataEditText.open();
-                                dataEditText.insertarPEditText(new PEditText("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataEditText.close();
-                                break;
-                            case TipoComponente.CHECKBOX:
-                                DataCheckBox dataCheckBox = new DataCheckBox(ConfiguracionPaginaActivity.this);
-                                dataCheckBox.open();
-                                dataCheckBox.insertarPCheckBox(new PCheckBox("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataCheckBox.close();
-                                break;
-                            case TipoComponente.RADIO:
-                                DataRadio dataRadio = new DataRadio(ConfiguracionPaginaActivity.this);
-                                dataRadio.open();
-                                dataRadio.insertarPRadio(new PRadio("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
-                                dataRadio.close();
-                                break;
-                        }
+//                        switch (tipoPregunta){
+//                            case TipoComponente.VISITAS:
+//                                DataVisitas dataVisitas = new DataVisitas(ConfiguracionPaginaActivity.this);
+//                                dataVisitas.open();
+//                                dataVisitas.insertarVisita(new Visita("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataVisitas.close();
+//                                break;
+//                            case TipoComponente.UBICACION:
+//                                DataUbicacion dataUbicacion = new DataUbicacion(ConfiguracionPaginaActivity.this);
+//                                dataUbicacion.open();
+//                                dataUbicacion.insertarUbicacion(new Ubicacion("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataUbicacion.close();
+//                                break;
+//                            case TipoComponente.GPS:
+//                                DataGPS dataGPS = new DataGPS(ConfiguracionPaginaActivity.this);
+//                                dataGPS.open();
+//                                dataGPS.insertarGPS(new GPS("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataGPS.close();
+//                                break;
+//                            case TipoComponente.FORMULARIO:
+//                                DataFormulario dataFormulario = new DataFormulario(ConfiguracionPaginaActivity.this);
+//                                dataFormulario.open();
+//                                dataFormulario.insertarFormulario(new Formulario("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataFormulario.close();
+//                                break;
+//                            case TipoComponente.EDITTEXT:
+//                                DataEditText dataEditText = new DataEditText(ConfiguracionPaginaActivity.this);
+//                                dataEditText.open();
+//                                dataEditText.insertarPEditText(new PEditText("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataEditText.close();
+//                                break;
+//                            case TipoComponente.CHECKBOX:
+//                                DataCheckBox dataCheckBox = new DataCheckBox(ConfiguracionPaginaActivity.this);
+//                                dataCheckBox.open();
+//                                dataCheckBox.insertarPCheckBox(new PCheckBox("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataCheckBox.close();
+//                                break;
+//                            case TipoComponente.RADIO:
+//                                DataRadio dataRadio = new DataRadio(ConfiguracionPaginaActivity.this);
+//                                dataRadio.open();
+//                                dataRadio.insertarPRadio(new PRadio("M" + modulo + "P" + numeroPregunta,modulo+"",numeroPregunta+""));
+//                                dataRadio.close();
+//                                break;
+//                        }
                     }
                 }
                 dataComponentes.actualizarPagina(id+"",contentValues);

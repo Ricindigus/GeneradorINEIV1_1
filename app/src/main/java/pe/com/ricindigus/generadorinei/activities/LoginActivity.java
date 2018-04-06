@@ -62,8 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     data.open();
                     usuario = data.getUsuario(txtUsuario.getText().toString());
                     data.close();
-                    if(usuario.getUSUARIO_ID().equals(txtUsuario.getText().toString()) &&
-                            usuario.getUSUARIO_PASSWORD().equals(txtPassword.getText().toString())){
+                    if(usuario.getUSUARIO_PASSWORD().equals(txtPassword.getText().toString())){
                         Intent intent = new Intent(getApplicationContext(),MarcoActivity.class);
                         intent.putExtra("idUsuario",usuario.getUSUARIO_ID());
                         intent.putExtra("permisoUsuario",usuario.getUSUARIO_PERMISO());

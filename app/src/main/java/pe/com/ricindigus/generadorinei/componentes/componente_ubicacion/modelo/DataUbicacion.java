@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DBHelperComponente;
 
 /**
@@ -39,6 +40,9 @@ public class DataUbicacion {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLUbicacion.tablaUbicacion);
     }
 
+    public void actualizarUbicacion(String idPregunta, ContentValues contentValues){
+        sqLiteDatabase.update(SQLUbicacion.tablaUbicacion, contentValues,SQLVisitas.WHERE_CLAUSE_ID,new String[]{idPregunta});
+    }
 
     public void insertarUbicacion(Ubicacion ubicacion){
         ContentValues contentValues = ubicacion.toValues();
@@ -65,7 +69,18 @@ public class DataUbicacion {
         }
         return ubicacion;
     }
-
+    public boolean existeUbicacion(String idUbicacion){
+        String[] whereArgs = new String[]{idUbicacion};
+        Cursor cursor = null;
+        boolean existe = false;
+        try{
+            cursor = sqLiteDatabase.query(SQLUbicacion.tablaUbicacion, SQLUbicacion.ALL_COLUMNS_UBICACION, SQLUbicacion.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if (cursor.getCount() == 1) existe = true;
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return existe;
+    }
     public ArrayList<Ubicacion> getAllUbicacion(){
         ArrayList<Ubicacion> ubicaciones= new ArrayList<>();
         Cursor cursor = null;

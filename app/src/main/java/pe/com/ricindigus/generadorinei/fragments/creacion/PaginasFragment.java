@@ -63,8 +63,8 @@ public class PaginasFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(context, ConfiguracionPaginaActivity.class);
-                Toast.makeText(context, paginas.get(position).getID(), Toast.LENGTH_SHORT).show();
-                intent.putExtra("id", paginas.get(position).getID());
+                Toast.makeText(context, paginas.get(position).get_id(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("id", paginas.get(position).get_id());
                 intent.putExtra("modulo", paginas.get(position).getMODULO());
                 startActivity(intent);
             }

@@ -41,10 +41,16 @@ public class DataVisitas {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLVisitas.tableVisitas);
     }
 
+
+    public void actualizarVisita(String idPregunta, ContentValues contentValues){
+        sqLiteDatabase.update(SQLVisitas.tableVisitas, contentValues,SQLVisitas.WHERE_CLAUSE_ID,new String[]{idPregunta});
+    }
+
     public void insertarVisita(Visita visita){
         ContentValues contentValues = visita.toValues();
         sqLiteDatabase.insert(SQLVisitas.tableVisitas,null,contentValues);
     }
+
     public void insertarVisitas(ArrayList<Visita> visitas){
         long items = getNumeroItemsVisita();
         if(items == 0){
@@ -57,6 +63,22 @@ public class DataVisitas {
             }
         }
     }
+
+
+    public boolean existeVisita(String idVisita){
+        boolean existe = false;
+        String[] whereArgs = new String[]{idVisita};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLVisitas.tableVisitas, SQLVisitas.ALL_COLUMNS_VISITAS,
+                    SQLVisitas.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if(cursor.getCount() == 1) existe = true;
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return existe;
+    }
+
     public Visita getVisita(String idVisita){
         Visita visita = new Visita();
         String[] whereArgs = new String[]{idVisita};

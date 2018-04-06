@@ -14,7 +14,7 @@
             android:id="@+id/moduloId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID MODULO"
+            android:hint="_id MODULO"
             android:inputType="number"/>
     </android.support.design.widget.TextInputLayout>
 

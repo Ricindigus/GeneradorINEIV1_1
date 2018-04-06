@@ -70,6 +70,7 @@ import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
 
 public class EncuestaActivity extends AppCompatActivity implements ActividadInterfaz {
@@ -221,9 +222,9 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 }
             }
         }
-        ArrayList<String> ids = dataComponentes.getIdPreguntasXPagina(pagina+"");
-        for (String idPregunta : ids){
-            if(!d.existeControladorPagina(idPregunta)) correcto = true;
+        ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(pagina+"");
+        for (Pregunta p : preguntas){
+            if(!d.existeControladorPagina(p.get_id())) correcto = true;
         }
         dataTablas.close();
         dataComponentes.close();
@@ -357,13 +358,15 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
+        ArrayList<Pregunta> preguntas =  dataComponentes.getPreguntasXPagina(numeroPagina + "");
+        if(preguntas.size() == 1){
+            if (Integer.parseInt(preguntas.get(0).getTIPO()) == TipoComponente.VISITAS) setPaginaVisita(numeroPagina, direccion);
+            else setPaginaNormal(numeroPagina, direccion);
+        }else setPaginaNormal(numeroPagina, direccion);
         dataComponentes.close();
-        int tipo = Integer.parseInt(pagina.getTIPO1());
-        if (tipo == TipoComponente.VISITAS) setPaginaScrolleable(numeroPagina, direccion);
-        else setPaginaNormal(numeroPagina, direccion);
     }
 
-    public void setPaginaScrolleable(int numeroPagina, int direccion) {
+    public void setPaginaVisita(int numeroPagina, int direccion) {
         layoutScrolleable.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -373,8 +376,9 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataVisitas.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
-        String idComponente = pagina.getIDP1();
-        String tipoComponente = pagina.getTIPO1();
+        ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
+        String idComponente = preguntas.get(0).get_id();
+        String tipoComponente = preguntas.get(0).getTIPO();
         int layoutComponente = R.id.layout_componente_scrolleable;
         int[] layouts = {R.id.layout_componente1, R.id.layout_componente2, R.id.layout_componente3, R.id.layout_componente4, R.id.layout_componente5,
                 R.id.layout_componente6, R.id.layout_componente7, R.id.layout_componente8, R.id.layout_componente9, R.id.layout_componente10};
@@ -396,7 +400,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     }
 
     public void setPaginaNormal(int numeroPagina, int direccion) {
-        DataComponentes dataComponentes = new DataComponentes(getApplicationContext());
+        dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         DataTablas dataTablas = new DataTablas(EncuestaActivity.this);
         dataTablas.open();
@@ -445,48 +449,45 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataGPS.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
-        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
-                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
-        String[] tipos = {pagina.getTIPO1(), pagina.getTIPO2(), pagina.getTIPO3(), pagina.getTIPO4(), pagina.getTIPO5(),
-                pagina.getTIPO6(), pagina.getTIPO7(), pagina.getTIPO8(), pagina.getTIPO9(), pagina.getTIPO10()};
+        ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
         int[] layouts = {R.id.layout_componente1, R.id.layout_componente2, R.id.layout_componente3, R.id.layout_componente4, R.id.layout_componente5,
                 R.id.layout_componente6, R.id.layout_componente7, R.id.layout_componente8, R.id.layout_componente9, R.id.layout_componente10};
-        for (int i = 0; i < ids.length; i++) {
-            if (!ids[i].equals("")) {
-                int tipo = Integer.parseInt(tipos[i]);
+        for (int i = 0; i < layouts.length; i++) {
+            if (i<preguntas.size()) {
+                int tipo = Integer.parseInt(preguntas.get(i).getTIPO());
                 switch (tipo) {
                     case TipoComponente.UBICACION:
-                        Ubicacion ubicacion = dataUbicacion.getUbicacion(ids[i]);
+                        Ubicacion ubicacion = dataUbicacion.getUbicacion(preguntas.get(i).get_id());
                         UbicacionFragment ubicacionFragment = new UbicacionFragment(EncuestaActivity.this, idEmpresa, ubicacion);
                         fragmentComponente = ubicacionFragment;
                         break;
                     case TipoComponente.GPS:
-                        GPS gps = dataGPS.getGPS(ids[i]);
+                        GPS gps = dataGPS.getGPS(preguntas.get(i).get_id());
                         GPSFragment gpsFragment = new GPSFragment(EncuestaActivity.this, idEmpresa, gps);
 
                         fragmentComponente = gpsFragment;
                         break;
                     case TipoComponente.FORMULARIO:
-                        Formulario formulario = dataFormulario.getFormulario(ids[i]);
-                        ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(ids[i]);
+                        Formulario formulario = dataFormulario.getFormulario(preguntas.get(i).get_id());
+                        ArrayList<SPFormulario> formularios = dataFormulario.getSPFormularios(preguntas.get(i).get_id());
                         FormularioFragment formularioFragment = new FormularioFragment(formulario, formularios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = formularioFragment;
                         break;
                     case TipoComponente.EDITTEXT:
-                        PEditText pEditText = dataEditText.getPEditText(ids[i]);
-                        ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(ids[i]);
+                        PEditText pEditText = dataEditText.getPEditText(preguntas.get(i).get_id());
+                        ArrayList<SPEditText> spEditTexts = dataEditText.getSPEditTexts(preguntas.get(i).get_id());
                         EditTextFragment editTextFragment = new EditTextFragment(pEditText, spEditTexts, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = editTextFragment;
                         break;
                     case TipoComponente.CHECKBOX:
-                        PCheckBox PCheckBox = dataCheckBox.getPCheckbox(ids[i]);
-                        ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(ids[i]);
+                        PCheckBox PCheckBox = dataCheckBox.getPCheckbox(preguntas.get(i).get_id());
+                        ArrayList<SPCheckBox> spCheckBoxes = dataCheckBox.getSPCheckBoxs(preguntas.get(i).get_id());
                         CheckBoxFragment checkBoxFragment = new CheckBoxFragment(PCheckBox, spCheckBoxes, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = checkBoxFragment;
                         break;
                     case TipoComponente.RADIO:
-                        PRadio PRadio = dataRadio.getPRadio(ids[i]);
-                        ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(ids[i]);
+                        PRadio PRadio = dataRadio.getPRadio(preguntas.get(i).get_id());
+                        ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(preguntas.get(i).get_id());
                         RadioFragment radioFragment = new RadioFragment(PRadio, spRadios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = radioFragment;
                         break;
@@ -494,7 +495,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
 //                        fragmentComponente = new M2P1Fragment();
 //                        break;
                 }
-                fragmentTransaction.replace(layouts[i], fragmentComponente, ids[i]);
+                fragmentTransaction.replace(layouts[i], fragmentComponente, preguntas.get(i).get_id());
             } else {
                 if (fragmentManager.findFragmentById(layouts[i]) != null) {
                     fragmentTransaction.remove(fragmentManager.findFragmentById(layouts[i]));
@@ -518,11 +519,12 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
-        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
-                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+//        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
+//                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+        ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
         int indice = 0;
-        while (!ids[indice].equals("") && valido) {
-            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(ids[indice]);
+        while (indice<preguntas.size() && valido) {
+            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(preguntas.get(indice).get_id());
             valido = componenteFragment.validarDatos();
             indice++;
         }
@@ -554,11 +556,13 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
-        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
-                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+//        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
+//                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
+//
+        ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
         int indice = 0;
-        while (!ids[indice].equals("")) {
-            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(ids[indice]);
+        while (indice < preguntas.size()) {
+            ComponenteFragment componenteFragment = (ComponenteFragment) fragmentManager.findFragmentByTag(preguntas.get(indice).get_id());
             componenteFragment.guardarDatos();
             indice++;
         }
@@ -614,7 +618,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                 ArrayList<Modulo> modulos = dataComp.getAllModulos();
                 Modulo m = modulos.get(groupPosition);
                 ArrayList<Pagina> paginas = dataComp.getPaginasxModulo(m.getID());
-                int numPagina = Integer.parseInt(paginas.get(childPosition).getID());
+                int numPagina = Integer.parseInt(paginas.get(childPosition).get_id());
                 if (numPagina < posicionFragment) setNombreSeccion(numPagina, -1);
                 else setNombreSeccion(numPagina, 1);
                 setPagina(numPagina, 1);
@@ -636,12 +640,12 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
             List<String> subItems = new ArrayList<String>();
             //busca los subtitulos
             for (Pagina p : paginas) {
-                ArrayList<String> ids = dataComponentes.getIdPreguntasXPagina(p.getID());
+                ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(p.get_id());
                 String subTitulo = "";
-                if (ids.size() == 1)
-                    subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0));
-                else subTitulo = "Modulo " + p.getMODULO() + ": P" + getNumPregunta(ids.get(0)) +
-                        " - P" + getNumPregunta(ids.get((ids.size() - 1)));
+                if (preguntas.size() == 1)
+                    subTitulo = "Modulo " + p.getMODULO() + ": P" + preguntas.get(0).getNUMERO();
+                else subTitulo = "Modulo " + p.getMODULO() + ": P" + preguntas.get(0).getNUMERO() +
+                        " - P" + preguntas.get((preguntas.size() - 1)).getNUMERO();
                 subItems.add(subTitulo);
             }
             //agrega cabecera y subtitulos

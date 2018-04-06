@@ -53,6 +53,10 @@ public class DataComponentes {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPaginas);
     }
 
+    public long getNumeroItemsPreguntas(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPreguntas);
+    }
+
     public long getNumeroItemsOpciones(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLConstantesComponente.tablaPaginas);
     }
@@ -173,7 +177,7 @@ public class DataComponentes {
 
     public void actualizarPagina(String idPagina, ContentValues contentValues){
         String[] whereArgs = {idPagina};
-        sqLiteDatabase.update(SQLConstantesComponente.tablaPaginas,contentValues,SQLConstantesComponente.WHERE_CLAUSE_ID,whereArgs);
+        sqLiteDatabase.update(SQLConstantesComponente.tablaPaginas,contentValues,SQLConstantesComponente.WHERE_CLAUSE_id,whereArgs);
     }
 
     public Pagina getPagina(String idPagina){
@@ -182,31 +186,11 @@ public class DataComponentes {
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPaginas,
-                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantesComponente.WHERE_CLAUSE_id,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                pagina.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
+                pagina.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
                 pagina.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_MODULO)));
-                pagina.setIDP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP1)));
-                pagina.setIDP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP2)));
-                pagina.setIDP3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP3)));
-                pagina.setIDP4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP4)));
-                pagina.setIDP5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP5)));
-                pagina.setIDP6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP6)));
-                pagina.setIDP7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP7)));
-                pagina.setIDP8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP8)));
-                pagina.setIDP9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)));
-                pagina.setIDP10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10)));
-                pagina.setTIPO1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP1)));
-                pagina.setTIPO2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP2)));
-                pagina.setTIPO3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP3)));
-                pagina.setTIPO4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)));
-                pagina.setTIPO5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)));
-                pagina.setTIPO6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)));
-                pagina.setTIPO7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)));
-                pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
-                pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
-                pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
             }
         }finally{
             if(cursor != null) cursor.close();
@@ -222,28 +206,8 @@ public class DataComponentes {
                     null,null,null,null,null,null);
             while (cursor.moveToNext()){
                 Pagina pagina = new Pagina();
-                pagina.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
+                pagina.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
                 pagina.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_MODULO)));
-                pagina.setIDP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP1)));
-                pagina.setIDP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP2)));
-                pagina.setIDP3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP3)));
-                pagina.setIDP4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP4)));
-                pagina.setIDP5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP5)));
-                pagina.setIDP6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP6)));
-                pagina.setIDP7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP7)));
-                pagina.setIDP8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP8)));
-                pagina.setIDP9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)));
-                pagina.setIDP10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10)));
-                pagina.setTIPO1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP1)));
-                pagina.setTIPO2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP2)));
-                pagina.setTIPO3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP3)));
-                pagina.setTIPO4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)));
-                pagina.setTIPO5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)));
-                pagina.setTIPO6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)));
-                pagina.setTIPO7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)));
-                pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
-                pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
-                pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
                 paginas.add(pagina);
             }
         }finally{
@@ -261,28 +225,8 @@ public class DataComponentes {
                     SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantesComponente.WHERE_CLAUSE_MODULO_PAGINA,whereArgs,null,null,null);
             while(cursor.moveToNext()){
                 Pagina pagina = new Pagina();
-                pagina.setID(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
+                pagina.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
                 pagina.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_MODULO)));
-                pagina.setIDP1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP1)));
-                pagina.setIDP2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP2)));
-                pagina.setIDP3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP3)));
-                pagina.setIDP4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP4)));
-                pagina.setIDP5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP5)));
-                pagina.setIDP6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP6)));
-                pagina.setIDP7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP7)));
-                pagina.setIDP8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP8)));
-                pagina.setIDP9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)));
-                pagina.setIDP10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10)));
-                pagina.setTIPO1(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP1)));
-                pagina.setTIPO2(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP2)));
-                pagina.setTIPO3(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP3)));
-                pagina.setTIPO4(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)));
-                pagina.setTIPO5(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)));
-                pagina.setTIPO6(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)));
-                pagina.setTIPO7(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)));
-                pagina.setTIPO8(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)));
-                pagina.setTIPO9(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)));
-                pagina.setTIPO10(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10)));
                 paginas.add(pagina);
             }
         }finally{
@@ -290,61 +234,79 @@ public class DataComponentes {
         }
         return paginas;
     }
-    public ArrayList<String> getIdPreguntasXPagina(String idPagina){
-        ArrayList<String> preguntas = new ArrayList<String>();
+
+    public void insertarPregunta(Pregunta pregunta){
+        ContentValues contentValues = pregunta.toValues();
+        sqLiteDatabase.insert(SQLConstantesComponente.tablaPreguntas,null,contentValues);
+    }
+
+    public void actualizarPregunta(String idPregunta, ContentValues contentValues){
+        sqLiteDatabase.update(SQLConstantesComponente.tablaPreguntas, contentValues, SQLConstantesComponente.WHERE_CLAUSE_id,new String[]{idPregunta});
+    }
+
+    public Pregunta getPregunta(String idPregunta){
+        Pregunta pregunta = new Pregunta();
+        String[] whereArgs = new String[]{idPregunta};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPreguntas,
+                    SQLConstantesComponente.ALL_COLUMNS_PREGUNTAS,SQLConstantesComponente.WHERE_CLAUSE_id,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                pregunta.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_ID)));
+                pregunta.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_MODULO)));
+                pregunta.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_PAGINA)));
+                pregunta.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_NUMERO)));
+                pregunta.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_TIPO)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return pregunta;
+    }
+
+    public ArrayList<Pregunta> getPreguntasXPagina(String idPagina){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
         String[] whereArgs = new String[]{idPagina};
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPaginas,
-                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
-            if(cursor.getCount() == 1){
-                cursor.moveToFirst();
-                String paginas[] = {
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP1)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP2)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP3)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP4)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP5)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP6)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP7)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP8)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP9)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_IDP10))
-                };
-                for (int i = 0; i < paginas.length; i++) if(!paginas[i].equals("")) preguntas.add(paginas[i]);
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPreguntas,
+                    SQLConstantesComponente.ALL_COLUMNS_PREGUNTAS,SQLConstantesComponente.WHERE_CLAUSE_PAGINA,whereArgs,null,null,null);
+            while (cursor.moveToNext()){
+                Pregunta pregunta = new Pregunta();
+                pregunta.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_ID)));
+                pregunta.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_MODULO)));
+                pregunta.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_PAGINA)));
+                pregunta.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_NUMERO)));
+                pregunta.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_TIPO)));
+                preguntas.add(pregunta);
             }
         }finally{
             if(cursor != null) cursor.close();
         }
         return preguntas;
     }
-    public ArrayList<String> getIdTiposXPagina(String idPagina){
-        ArrayList<String> tipos = new ArrayList<String>();
-        String[] whereArgs = new String[]{idPagina};
+
+    public ArrayList<Pregunta> getPreguntasXModulo(String idModulo){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        String[] whereArgs = new String[]{idModulo};
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPaginas,
-                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
-            if(cursor.getCount() == 1){
-                cursor.moveToFirst();
-                String paginas[] = {
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP1)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP2)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP3)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP4)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP5)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP6)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP7)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP8)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP9)),
-                        cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_TP10))
-                };
-                for (int i = 0; i < paginas.length; i++) if(!paginas[i].equals("")) tipos.add(paginas[i]);
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPreguntas,
+                    SQLConstantesComponente.ALL_COLUMNS_PREGUNTAS,SQLConstantesComponente.WHERE_CLAUSE_MODULO,whereArgs,null,null,null);
+            while (cursor.moveToNext()){
+                Pregunta pregunta = new Pregunta();
+                pregunta.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_ID)));
+                pregunta.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_MODULO)));
+                pregunta.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_PAGINA)));
+                pregunta.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_NUMERO)));
+                pregunta.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_TIPO)));
+                preguntas.add(pregunta);
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return tipos;
+        return preguntas;
     }
 
     //FIN PAGINAS

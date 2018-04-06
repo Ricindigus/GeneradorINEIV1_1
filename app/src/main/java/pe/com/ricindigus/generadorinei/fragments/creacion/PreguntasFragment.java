@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.activities.creacion.activities_dialogs.configuracion_preguntas.VisitasActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionPreguntasAdapter;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
 import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
@@ -60,17 +62,20 @@ public class PreguntasFragment extends Fragment {
         onItemClickListener = new CreacionPreguntasAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                switch (Integer.parseInt(preguntas.get(position).getTipoComponente())){
-                    case TipoComponente.VISITAS:
-                        startActivity(new Intent(context, VisitasActivity.class));
-                        break;
-                    case TipoComponente.UBICACION:break;
-                    case TipoComponente.GPS:break;
-                    case TipoComponente.FORMULARIO:break;
-                    case TipoComponente.EDITTEXT:break;
-                    case TipoComponente.CHECKBOX:break;
-                    case TipoComponente.RADIO:break;
-                }
+                Intent intent;
+//                switch (Integer.parseInt(preguntas.get(position).getTipoComponente())){
+//                    case TipoComponente.VISITAS:
+//                        intent = new Intent(context, VisitasActivity.class);
+//                        intent.putExtra("id",preguntas.get(position).getIdPregunta());
+//                        startActivity(new Intent(context, VisitasActivity.class));
+//                        break;
+//                    case TipoComponente.UBICACION:break;
+//                    case TipoComponente.GPS:break;
+//                    case TipoComponente.FORMULARIO:break;
+//                    case TipoComponente.EDITTEXT:break;
+//                    case TipoComponente.CHECKBOX:break;
+//                    case TipoComponente.RADIO:break;
+//                }
             }
         };
         creacionPreguntasAdapter = new CreacionPreguntasAdapter(preguntas,context, onItemClickListener);
@@ -85,14 +90,44 @@ public class PreguntasFragment extends Fragment {
         dataComponentes.open();
         ArrayList<Pagina> paginas = dataComponentes.getAllPaginas();
         for (Pagina p : paginas){
-            ArrayList<String> idPreguntas = dataComponentes.getIdPreguntasXPagina(p.getID());
-            ArrayList<String> idTipos = dataComponentes.getIdTiposXPagina(p.getID());
-            for (int i = 0; i < idPreguntas.size(); i++) {
-                String idPregunta = idPreguntas.get(i);
-                String idTipo = idTipos.get(i);
-                String numeroPregunta = idPregunta.substring(idPregunta.indexOf('P')+1);
-                preguntas.add(new Pregunta(numeroPregunta,p.getMODULO(),idPregunta,idTipo,""));
-            }
+//            ArrayList<String> idPreguntas = dataComponentes.getIdPreguntasXPagina(p.get_id());
+//            ArrayList<String> idTipos = dataComponentes.getIdTiposXPagina(p.get_id());
+//            for (int i = 0; i < idPreguntas.size(); i++) {
+//                String idPregunta = idPreguntas.get(i);
+//                String idTipo = idTipos.get(i);
+//                String descripcion = "";
+//                switch (Integer.parseInt(idTipo)){
+//                    case TipoComponente.VISITAS:
+//                        DataVisitas dataVisitas = new DataVisitas(context);
+//                        dataVisitas.open();
+//                        if(dataVisitas.existeVisita(idPregunta)) descripcion = "PREGUNTA REGISTRADA OK";
+//                        else descripcion = "SIN REGISTRAR";
+//                        dataVisitas.close();
+//                        break;
+//                    case TipoComponente.UBICACION:
+//                        DataUbicacion dataUbicacion =  new DataUbicacion(context);
+//                        dataUbicacion.open();
+//                        if (dataUbicacion.existeUbicacion(idPregunta)) descripcion = "PREGUNTA REGISTRADA OK";
+//                        dataUbicacion.close();
+//                        break;
+//                    case TipoComponente.GPS:break;
+//                    case TipoComponente.FORMULARIO:break;
+//                    case TipoComponente.EDITTEXT:break;
+//                    case TipoComponente.CHECKBOX:break;
+//                    case TipoComponente.RADIO:break;
+//
+//                }
+//                String numeroPregunta = idPregunta.substring(idPregunta.indexOf('P')+1);
+////                preguntas.add(new Pregunta(numeroPregunta,p.getMODULO(),idPregunta,idTipo,""));
+//            }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cargarDatos();
+        creacionPreguntasAdapter = new CreacionPreguntasAdapter(preguntas, context, onItemClickListener);
+        recyclerView.setAdapter(creacionPreguntasAdapter);
     }
 }

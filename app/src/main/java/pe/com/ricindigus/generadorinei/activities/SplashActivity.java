@@ -48,6 +48,7 @@ import pe.com.ricindigus.generadorinei.parser.MarcoPullParser;
 import pe.com.ricindigus.generadorinei.parser.ModuloPullParser;
 import pe.com.ricindigus.generadorinei.parser.OpcionSpinnerPullParser;
 import pe.com.ricindigus.generadorinei.parser.PaginaPullParser;
+import pe.com.ricindigus.generadorinei.parser.PreguntaPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
@@ -58,6 +59,7 @@ import pe.com.ricindigus.generadorinei.pojos.Modulo;
 import pe.com.ricindigus.generadorinei.pojos.OpcionSpinner;
 import pe.com.ricindigus.generadorinei.pojos.Pagina;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 import pe.com.ricindigus.generadorinei.pojos.Ubigeo;
 import pe.com.ricindigus.generadorinei.pojos.Usuario;
 import pe.com.ricindigus.generadorinei.pojos.Variable;
@@ -88,8 +90,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Evento> eventos = new ArrayList<Evento>();
     ArrayList<Variable> variables = new ArrayList<Variable>();
     ArrayList<Encuesta> encuestas = new ArrayList<Encuesta>();
-
-
+    ArrayList<Pregunta> preguntas = new ArrayList<>();
 
     Data data;
     DataComponentes dataComponentes;
@@ -142,6 +143,7 @@ public class SplashActivity extends AppCompatActivity {
             EventosPullParser eventosPullParser = new EventosPullParser();
             VariablesPullParser variablesPullParser = new VariablesPullParser();
             EncuestaPullParser encuestaPullParser = new EncuestaPullParser();
+            PreguntaPullParser preguntaPullParser =  new PreguntaPullParser();
 
 
 
@@ -166,10 +168,12 @@ public class SplashActivity extends AppCompatActivity {
             eventos = eventosPullParser.parseXML(getApplicationContext());
             variables = variablesPullParser.parseXML(getApplicationContext());
             encuestas = encuestaPullParser.parseXML(getApplicationContext());
+            preguntas = preguntaPullParser.parseXML(getApplicationContext());
+
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
-                + ubicaciones.size() + gpsArrayList.size() + formularios.size()
+                + ubicaciones.size() + gpsArrayList.size() + formularios.size() + preguntas.size()
                 + pEditTexts.size() + spEditTexts.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size() + encuestas.size()
@@ -265,6 +269,16 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
+                for (Pregunta pregunta : preguntas) {
+                    try {
+                        dataComponentes.insertarPregunta(pregunta);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+
                 for (Visita visita : visitas) {
                     try {
                         dataVisitas.insertarVisita(visita);

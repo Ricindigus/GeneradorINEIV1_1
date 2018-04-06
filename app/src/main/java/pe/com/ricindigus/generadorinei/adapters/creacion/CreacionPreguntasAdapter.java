@@ -42,11 +42,11 @@ public class CreacionPreguntasAdapter extends RecyclerView.Adapter<CreacionPregu
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.txtNumero.setText(preguntas.get(position).getNumero());
-        holder.txtModulo.setText(preguntas.get(position).getModulo());
-        holder.txtIdPregunta.setText(preguntas.get(position).getIdPregunta());
-        holder.txtTipo.setText(NombreComponente.values()[Integer.parseInt(preguntas.get(position).getTipoComponente())].name());
-        holder.txtDescripcion.setText(preguntas.get(position).getDescripcion());
+        holder.txtNumero.setText(preguntas.get(position).getNUMERO());
+        holder.txtModulo.setText(preguntas.get(position).getMODULO());
+        holder.txtIdPregunta.setText(preguntas.get(position).get_id());
+        holder.txtTipo.setText(NombreComponente.values()[Integer.parseInt(preguntas.get(position).getTIPO())].name());
+//        holder.txtDescripcion.setText(preguntas.get(position).getDescripcion());
         holder.cardViewPregunta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,69 +1,84 @@
 package pe.com.ricindigus.generadorinei.pojos;
 
+import android.content.ContentValues;
+
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+
 /**
  * Created by RICARDO on 3/04/2018.
  */
 
 public class Pregunta {
-    private String numero;
-    private String modulo;
-    private String idPregunta;
-    private String tipoComponente;
-    private String descripcion;
+    private String _id;
+    private String MODULO;
+    private String PAGINA;
+    private String NUMERO;
+    private String TIPO;
 
-    public Pregunta(String numero, String modulo, String idPregunta, String tipoComponente, String descripcion) {
-        this.numero = numero;
-        this.modulo = modulo;
-        this.idPregunta = idPregunta;
-        this.tipoComponente = tipoComponente;
-        this.descripcion = descripcion;
+
+    public Pregunta(String _id, String ID_PREGUNTA, String MODULO, String PAGINA, String NUMERO, String TIPO) {
+        this._id = _id;
+        this.MODULO = MODULO;
+        this.PAGINA = PAGINA;
+        this.NUMERO = NUMERO;
+        this.TIPO = TIPO;
     }
 
     public Pregunta() {
-        this.idPregunta = "";
-        this.numero = "";
-        this.modulo = "";
-        this.tipoComponente = "";
-        this.descripcion = "";
+        this._id = "";
+        this.MODULO = "";
+        this.PAGINA = "";
+        this.NUMERO = "";
+        this.TIPO = "";
     }
 
-    public String getNumero() {
-        return numero;
+    public String get_id() {
+        return _id;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String getModulo() {
-        return modulo;
+    public String getMODULO() {
+        return MODULO;
     }
 
-    public void setModulo(String modulo) {
-        this.modulo = modulo;
+    public void setMODULO(String MODULO) {
+        this.MODULO = MODULO;
     }
 
-    public String getIdPregunta() {
-        return idPregunta;
+    public String getPAGINA() {
+        return PAGINA;
     }
 
-    public void setIdPregunta(String idPregunta) {
-        this.idPregunta = idPregunta;
+    public void setPAGINA(String PAGINA) {
+        this.PAGINA = PAGINA;
     }
 
-    public String getTipoComponente() {
-        return tipoComponente;
+    public String getNUMERO() {
+        return NUMERO;
     }
 
-    public void setTipoComponente(String tipoComponente) {
-        this.tipoComponente = tipoComponente;
+    public void setNUMERO(String NUMERO) {
+        this.NUMERO = NUMERO;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getTIPO() {
+        return TIPO;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setTIPO(String TIPO) {
+        this.TIPO = TIPO;
+    }
+
+    public ContentValues toValues(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLConstantesComponente.PREGUNTA_ID, _id);
+        contentValues.put(SQLConstantesComponente.PREGUNTA_MODULO,MODULO);
+        contentValues.put(SQLConstantesComponente.PREGUNTA_PAGINA,PAGINA);
+        contentValues.put(SQLConstantesComponente.PREGUNTA_NUMERO,NUMERO);
+        contentValues.put(SQLConstantesComponente.PREGUNTA_TIPO,TIPO);
+        return contentValues;
     }
 }
