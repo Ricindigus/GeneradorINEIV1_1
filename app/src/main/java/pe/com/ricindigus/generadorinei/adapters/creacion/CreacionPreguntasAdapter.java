@@ -21,16 +21,10 @@ import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 public class CreacionPreguntasAdapter extends RecyclerView.Adapter<CreacionPreguntasAdapter.ViewHolder>{
     ArrayList<Pregunta> preguntas;
     Context context;
-    OnItemClickListener onItemClickListener;
 
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
-    }
-
-    public CreacionPreguntasAdapter(ArrayList<Pregunta> preguntas, Context context, OnItemClickListener onItemClickListener) {
+    public CreacionPreguntasAdapter(ArrayList<Pregunta> preguntas, Context context) {
         this.preguntas = preguntas;
         this.context = context;
-        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -42,17 +36,11 @@ public class CreacionPreguntasAdapter extends RecyclerView.Adapter<CreacionPregu
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.txtNumero.setText(preguntas.get(position).getNUMERO());
+        holder.txtId.setText(preguntas.get(position).get_id());
         holder.txtModulo.setText(preguntas.get(position).getMODULO());
-        holder.txtIdPregunta.setText(preguntas.get(position).get_id());
+        holder.txtPagina.setText(preguntas.get(position).getPAGINA());
+        holder.txtNumero.setText(preguntas.get(position).getNUMERO());
         holder.txtTipo.setText(NombreComponente.values()[Integer.parseInt(preguntas.get(position).getTIPO())].name());
-//        holder.txtDescripcion.setText(preguntas.get(position).getDescripcion());
-        holder.cardViewPregunta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onItemClick(view,position);
-            }
-        });
     }
 
     @Override
@@ -62,20 +50,20 @@ public class CreacionPreguntasAdapter extends RecyclerView.Adapter<CreacionPregu
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardViewPregunta;
-        TextView txtNumero;
+        TextView txtId;
         TextView txtModulo;
-        TextView txtIdPregunta;
+        TextView txtPagina;
+        TextView txtNumero;
         TextView txtTipo;
-        TextView txtDescripcion;
 
         public ViewHolder(View itemView) {
             super(itemView);
             cardViewPregunta = (CardView) itemView.findViewById(R.id.cardview_pregunta);
-            txtNumero = (TextView) itemView.findViewById(R.id.item_pregunta_numero);
+            txtId = (TextView) itemView.findViewById(R.id.item_pregunta_id);
             txtModulo = (TextView) itemView.findViewById(R.id.item_pregunta_modulo);
-            txtIdPregunta = (TextView) itemView.findViewById(R.id.item_pregunta_idpregunta);
+            txtPagina = (TextView) itemView.findViewById(R.id.item_pregunta_pagina);
+            txtNumero = (TextView) itemView.findViewById(R.id.item_pregunta_numero);
             txtTipo = (TextView) itemView.findViewById(R.id.item_pregunta_tipo);
-            txtDescripcion = (TextView) itemView.findViewById(R.id.item_pregunta_descripcion);
         }
     }
 }

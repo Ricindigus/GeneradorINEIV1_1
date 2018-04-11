@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas.VisitasActivity">
+    tools:context="pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.VisitasActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -55,6 +55,19 @@
             android:text="guardar"
             android:textColor="@color/colorIcons"
             android:background="@drawable/boton_cargar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="1dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="VARIABLES"
+            android:gravity="center"
+            android:textColor="@color/colorIcons"
+            android:textSize="@dimen/textoMedium"/>
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.configuracion_preguntas;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
+import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
 
 public class VisitasActivity extends AppCompatActivity {
     EditText varNumero;
@@ -60,7 +61,12 @@ public class VisitasActivity extends AppCompatActivity {
 
     Button btnCancelar;
     Button btnGuardar;
-    String id;
+
+    String tipo;
+    String modulo;
+    String pagina;
+    String numero;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +93,15 @@ public class VisitasActivity extends AppCompatActivity {
         varResHora = (EditText) findViewById(R.id.configuracion_visita_res_hora);
         varResMin = (EditText) findViewById(R.id.configuracion_visita_res_minuto);
 
-        id = getIntent().getExtras().getString("id");
+        btnCancelar = (Button) findViewById(R.id.configuracion_visita_btnCancelar);
+        btnGuardar = (Button) findViewById(R.id.configuracion_visita_btnGuardar);
+
+
+        tipo = getIntent().getExtras().getString("tipo");
+        modulo = getIntent().getExtras().getString("modulo");
+        pagina = getIntent().getExtras().getString("pagina");
+        numero = getIntent().getExtras().getString("numero");
+
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +136,8 @@ public class VisitasActivity extends AppCompatActivity {
                 if(validar()){
                     DataVisitas data = new DataVisitas(VisitasActivity.this);
                     data.open();
+                    Visita visita = new Visita();
+
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(SQLVisitas.VISITA_VARNUM,VARNUM);
                     contentValues.put(SQLVisitas.VISITA_VARDIA,VARDIA);
@@ -143,7 +159,7 @@ public class VisitasActivity extends AppCompatActivity {
                     contentValues.put(SQLVisitas.VISITA_VARRESANIO,VARRESANIO);
                     contentValues.put(SQLVisitas.VISITA_VARRESHORA,VARRESHORA);
                     contentValues.put(SQLVisitas.VISITA_VARRESMIN,VARRESMIN);
-                    data.actualizarVisita(id,contentValues);
+
                     data.close();
                     finish();
                 }

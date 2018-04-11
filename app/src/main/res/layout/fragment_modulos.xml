@@ -32,57 +32,59 @@
                 android:inputType="text"
                 android:background="@drawable/sumaedit_edittext_limpio"/>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MODULOS"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorIcons"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/margin10dp"
             android:paddingRight="@dimen/margin10dp"
             android:background="@color/colorPrimary">
             <TextView
-                android:id="@+id/modulo_id"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="ID"
                 android:textColor="@color/colorIcons"
-                android:padding="@dimen/margin5dp"/>
+                />
             <TextView
-                android:id="@+id/modulo_titulo"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="TITULO"
-                android:textColor="@color/colorIcons"
-                android:padding="@dimen/margin5dp"/>
+                android:textColor="@color/colorIcons"/>
             <TextView
-                android:id="@+id/modulo_cabecera"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="CABECERA"
-                android:textColor="@color/colorIcons"
-                android:padding="@dimen/margin5dp"/>
+                android:textColor="@color/colorIcons"/>
             <TextView
-                android:id="@+id/modulo_tabla"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="TABLA"
-                android:textColor="@color/colorIcons"
-                android:padding="@dimen/margin5dp"/>
+                android:textColor="@color/colorIcons"/>
             <TextView
-                android:id="@+id/modulo_pagina"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="PAGINA"
-                android:textColor="@color/colorIcons"
-                android:padding="@dimen/margin5dp"/>
+                android:textColor="@color/colorIcons"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/margin10dp"
+            android:padding="@dimen/margin5dp"
             android:orientation="vertical"
             android:background="@drawable/borde_layout_recycler">
             <android.support.v7.widget.RecyclerView

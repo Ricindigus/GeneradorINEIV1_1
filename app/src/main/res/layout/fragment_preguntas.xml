@@ -10,52 +10,49 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="INGRESAR PREGUNTAS"
+        android:text="PREGUNTAS"
         android:gravity="center"
-        android:textSize="@dimen/textoMedium"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorIcons"
         android:textStyle="bold"
-        android:padding="@dimen/margin10dp"
-        android:background="@drawable/border_layout_subpreguntas"
-        android:layout_marginBottom="@dimen/margin10dp"/>
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="1dp"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="@dimen/margin10dp"
+        android:paddingLeft="@dimen/margin5dp"
+        android:paddingRight="@dimen/margin5dp"
         android:background="@color/colorPrimary">
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="N°"
-            android:textColor="@color/colorIcons"
-            android:padding="@dimen/margin5dp"/>
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="MODULO"
-            android:textColor="@color/colorIcons"
-            android:padding="@dimen/margin5dp"/>
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="_id"
-            android:textColor="@color/colorIcons"
-            android:padding="@dimen/margin5dp"/>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="TIPO"
-            android:textColor="@color/colorIcons"
-            android:padding="@dimen/margin5dp"/>
+            android:text="ID"
+            android:textColor="@color/colorIcons"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="PREGUNTA"
-            android:textColor="@color/colorIcons"
-            android:padding="@dimen/margin5dp"/>
+            android:text="MODULO"
+            android:textColor="@color/colorIcons"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="PAGINA"
+            android:textColor="@color/colorIcons"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="NUMERO"
+            android:textColor="@color/colorIcons"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="TIPO"
+            android:textColor="@color/colorIcons"/>
     </LinearLayout>
 
 
@@ -69,6 +66,15 @@
             android:id="@+id/pregunta_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_preguntas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_agregar"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_margin="@dimen/margenMaterial"/>
     </RelativeLayout>
 
 

@@ -11,14 +11,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
-import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.IngresarModuloActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.IngresarModuloActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionModulosAdapter;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
@@ -78,6 +80,18 @@ public class ModulosFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
+        edtTituloEncuesta.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    ocultarTeclado(edtTituloEncuesta);
+                    recyclerView.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void cargarDatos(){
@@ -101,5 +115,10 @@ public class ModulosFragment extends Fragment{
         data.open();
         data.insertarEncuesta(new Encuesta("1",edtTituloEncuesta.getText().toString()));
         data.close();
+    }
+
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

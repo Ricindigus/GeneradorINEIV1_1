@@ -1,6 +1,7 @@
 package pe.com.ricindigus.generadorinei.activities.activities_creacion;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
@@ -25,7 +28,6 @@ import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.S
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 import pe.com.ricindigus.generadorinei.fragments.creacion.EventosFragment;
 import pe.com.ricindigus.generadorinei.fragments.creacion.ModulosFragment;
-import pe.com.ricindigus.generadorinei.fragments.creacion.PaginasFragment;
 import pe.com.ricindigus.generadorinei.fragments.creacion.PreguntasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
@@ -48,6 +50,30 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                ocultarTeclado(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                ocultarTeclado(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                ocultarTeclado(drawerView);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -82,6 +108,7 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaEncuestas);
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaModulos);
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaPaginas);
+                                    dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaPreguntas);
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaEventos);
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaOpcionSpinner);
                                     dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaInfoTablas);
@@ -176,5 +203,10 @@ public class CrearEncuestaActivity extends AppCompatActivity implements Navigati
             EventosFragment eventosFragment = (EventosFragment)getSupportFragmentManager().findFragmentByTag(fragmentTag);
 
         }
+    }
+
+    public void ocultarTeclado(View view){
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

@@ -235,6 +235,23 @@ public class DataComponentes {
         return paginas;
     }
 
+    public ArrayList<String> getArregloPaginas(String idModulo){
+        ArrayList<String> paginas =  new ArrayList<>();
+        paginas.add("Seleccione pagina");
+        String[] whereArgs = new String[]{idModulo};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPaginas,
+                    SQLConstantesComponente.ALL_COLUMNS_PAGINAS,SQLConstantesComponente.WHERE_CLAUSE_MODULO_PAGINA,whereArgs,null,null,null);
+            while(cursor.moveToNext()){
+                paginas.add(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PAGINA_ID)));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return paginas;
+    }
+
     public void insertarPregunta(Pregunta pregunta){
         ContentValues contentValues = pregunta.toValues();
         sqLiteDatabase.insert(SQLConstantesComponente.tablaPreguntas,null,contentValues);
@@ -309,6 +326,27 @@ public class DataComponentes {
         return preguntas;
     }
 
+    public ArrayList<Pregunta> getAllPreguntas(){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaPreguntas,
+                   null,null,null,null,null,null);
+            while (cursor.moveToNext()){
+                Pregunta pregunta = new Pregunta();
+                pregunta.set_id(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_ID)));
+                pregunta.setMODULO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_MODULO)));
+                pregunta.setPAGINA(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_PAGINA)));
+                pregunta.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_NUMERO)));
+                pregunta.setTIPO(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.PREGUNTA_TIPO)));
+                preguntas.add(pregunta);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return preguntas;
+    }
+
     //FIN PAGINAS
 
 
@@ -366,6 +404,25 @@ public class DataComponentes {
                 modulo.setTABLA_XML(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_TABLA_XML)));
                 modulo.setNPAGINAS(cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_NPAGINAS)));
                 modulos.add(modulo);
+            }
+        }finally {
+            if(cursor != null) cursor.close();
+        }
+        return modulos;
+    }
+
+    public ArrayList<String> getArregloModulos(){
+        ArrayList<String> modulos = new ArrayList<>();
+        modulos.add("Seleccione modulo");
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantesComponente.tablaModulos,
+                    SQLConstantesComponente.ALL_COLUMNS_MODULOS,null,null,null,null,null);
+            while(cursor.moveToNext()){
+                String mod = "";
+                mod = cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_ID)) + "-"
+                        + cursor.getString(cursor.getColumnIndex(SQLConstantesComponente.MODULO_CABECERA));
+                modulos.add(mod);
             }
         }finally {
             if(cursor != null) cursor.close();

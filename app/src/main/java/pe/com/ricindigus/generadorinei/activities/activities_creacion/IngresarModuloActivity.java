@@ -1,4 +1,4 @@
-package pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas;
+package pe.com.ricindigus.generadorinei.activities.activities_creacion;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -66,11 +66,8 @@ public class IngresarModuloActivity extends AppCompatActivity {
                         txtTablaXml.getText().toString(),
                         txtNumPaginas.getText().toString()
                 ));
-
-                int numPaginasActual = dataComponentes.getAllPaginas().size();
-                int numPaginasFinal = numPaginasActual + Integer.parseInt(txtNumPaginas.getText().toString());
-
-                for (int i = numPaginasActual + 1; i <= numPaginasFinal ; i++) {
+                int numPaginas = Integer.parseInt(txtNumPaginas.getText().toString());
+                for (int i = 1; i <= numPaginas; i++) {
                     dataComponentes.insertarPagina(new Pagina(i+"",id+""));
                 }
                 dataComponentes.close();

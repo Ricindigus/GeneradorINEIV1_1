@@ -35,25 +35,28 @@ public class CreacionModulosAdapter extends RecyclerView.Adapter<CreacionModulos
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.txtNumero.setText(modulos.get(position).getID());
+        holder.txtId.setText(modulos.get(position).getID());
         holder.txtTitulo.setText(modulos.get(position).getTITULO());
         holder.txtCabecera.setText(modulos.get(position).getCABECERA());
         holder.txtNombreTabla.setText(modulos.get(position).getTABLA_XML());
+        holder.txtNumeroPagina.setText(modulos.get(position).getNPAGINAS());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        CardView cardViewVisita;
-        TextView txtNumero;
+        CardView cardView;
+        TextView txtId;
         TextView txtTitulo;
         TextView txtCabecera;
         TextView txtNombreTabla;
+        TextView txtNumeroPagina;
         public ViewHolder(View itemView) {
             super(itemView);
-            cardViewVisita = (CardView) itemView.findViewById(R.id.cardview_modulos);
-            txtNumero = (TextView) itemView.findViewById(R.id.modulo_id);
+            cardView = (CardView) itemView.findViewById(R.id.cardview_modulos);
+            txtId = (TextView) itemView.findViewById(R.id.modulo_id);
             txtTitulo = (TextView) itemView.findViewById(R.id.modulo_titulo);
             txtCabecera = (TextView) itemView.findViewById(R.id.modulo_cabecera);
             txtNombreTabla = (TextView) itemView.findViewById(R.id.modulo_tabla);
+            txtNumeroPagina = (TextView) itemView.findViewById(R.id.modulo_pagina);
         }
     }
 

@@ -4,7 +4,7 @@
     android:id="@+id/cardview_modulos"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_marginBottom="@dimen/margin5dp"
+    android:layout_marginBottom="1dp"
     >
     <LinearLayout
         android:orientation="horizontal"

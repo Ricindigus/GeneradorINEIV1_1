@@ -53,22 +53,19 @@
         <activity
             android:name=".activities.activities_creacion.CrearEncuestaActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustNothing"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
             android:label="@string/title_activity_crear_encuesta"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.activities_creacion.activities_preguntas.IngresarModuloActivity"
+            android:name=".activities.activities_creacion.IngresarModuloActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity
-            android:name=".activities.activities_creacion.activities_preguntas.ConfiguracionPaginaActivity"
-            android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.VisitasActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.GPSActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.UbicacionActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.FormularioActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.EditTextActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.CheckBoxActivity" />
-        <activity android:name=".activities.activities_creacion.activities_preguntas.configuracion_preguntas.RadioActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.VisitasActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.GPSActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.UbicacionActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.FormularioActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.EditTextActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.CheckBoxActivity" />
+        <activity android:name=".activities.activities_creacion.activities_preguntas.RadioActivity" />
     </application>
 
 </manifest>
