@@ -79,6 +79,18 @@ public class DataVisitas {
         return existe;
     }
 
+    public boolean existenVisitas(){
+        boolean existe = false;
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLVisitas.tableVisitas, SQLVisitas.ALL_COLUMNS_VISITAS, null,null,null,null,null);
+            if(cursor.getCount() > 0) existe = true;
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return existe;
+    }
+
     public Visita getVisita(String idVisita){
         Visita visita = new Visita();
         String[] whereArgs = new String[]{idVisita};

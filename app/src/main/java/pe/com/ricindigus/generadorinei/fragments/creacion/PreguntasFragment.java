@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.CheckBoxActivity;
 import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.EditTextActivity;
@@ -87,6 +88,7 @@ public class PreguntasFragment extends Fragment {
                 final Spinner spModulos = (Spinner) dialogView.findViewById(R.id.dialog_pregunta_spModulo);
                 final Spinner spPaginas = (Spinner) dialogView.findViewById(R.id.dialog_pregunta_spPagina);
                 final EditText edtNumero = (EditText) dialogView.findViewById(R.id.dialog_pregunta_txtNumero);
+                edtNumero.setTransformationMethod(new NumericKeyBoardTransformationMethod());
                 DataComponentes data = new DataComponentes(context);
                 data.open();
                 ArrayList<String> modulos = data.getArregloModulos();
@@ -133,7 +135,7 @@ public class PreguntasFragment extends Fragment {
                                     }
                                     intent.putExtra("tipo",spTipoPreguntas.getSelectedItemPosition()+"");
                                     intent.putExtra("modulo",spModulos.getSelectedItemPosition()+"");
-                                    intent.putExtra("modulo",spPaginas.getSelectedItemPosition()+"");
+                                    intent.putExtra("pagina",spPaginas.getSelectedItemPosition()+"");
                                     intent.putExtra("numero",edtNumero.getText().toString());
                                     startActivity(intent);
                                     alertDialog.dismiss();

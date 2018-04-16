@@ -9,6 +9,35 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
+    <string name="visita_V_NUM">V_NUM</string>
+    <string name="visita_V_DIA">V_DIA</string>
+    <string name="visita_V_MES">V_MES</string>
+    <string name="visita_V_ANIO">V_ANIO</string>
+    <string name="visita_V_HI">V_HI</string>
+    <string name="visita_V_MI">V_MI</string>
+    <string name="visita_V_HF">V_HF</string>
+    <string name="visita_V_MF">V_MF</string>
+    <string name="visita_V_RES">V_RES</string>
+    <string name="visita_V_PROX_DIA">V_PROX_DIA</string>
+    <string name="visita_V_PROX_MES">V_PROX_MES</string>
+    <string name="visita_V_PROX_ANIO">V_PROX_ANIO</string>
+    <string name="visita_V_PROX_HORA">V_PROX_HORA</string>
+    <string name="visita_V_PROX_MIN">V_PROX_MIN</string>
+    <string name="visita_RES_FINAL">RES_FINAL</string>
+    <string name="visita_RES_DIA">RES_DIA</string>
+    <string name="visita_RES_MES">RES_MES</string>
+    <string name="visita_RES_ANIO">RES_ANIO</string>
+    <string name="visita_RES_HORA">RES_HORA</string>
+    <string name="visita_RES_MIN">RES_MIN</string>
+
+    <string name="ubicacion_CAR_DD">CAR_DD</string>
+    <string name="ubicacion_CAR_PV">CAR_PV</string>
+    <string name="ubicacion_CAR_DS">CAR_DS</string>
+
+    <string name="gps_CAR_LAT">CAR_LAT</string>
+    <string name="gps_CAR_LONG">CAR_LONG</string>
+    <string name="gps_CAR_ALT">CAR_ALT</string>
+
     <string-array name="item_spinner">
         <item>Seleccione...</item>
         <item>item1</item>
@@ -32,6 +61,12 @@
         <item>EDITTEXT</item>
         <item>CHECKBOX</item>
         <item>RADIO</item>
+    </string-array>
+
+    <string-array name="tipos_modulos">
+        <item>Seleccione tipo</item>
+        <item>VISITAS</item>
+        <item>ESTANDAR</item>
     </string-array>
 
     <!--public static final int VISITAS = 1;-->

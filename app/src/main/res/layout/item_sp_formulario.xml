@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardview_modulos"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="1dp"
+    >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/sp_formulario_id"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/sp_formulario_pregunta"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="pregunta"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/sp_formulario_tipo"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="tipo"
+            android:padding="@dimen/margin5dp"/>
+        <TextView
+            android:id="@+id/sp_formulario_check"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="check"
+            android:padding="@dimen/margin5dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

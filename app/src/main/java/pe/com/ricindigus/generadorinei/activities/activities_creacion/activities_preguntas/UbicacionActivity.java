@@ -12,6 +12,9 @@ import android.widget.EditText;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
+import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 public class UbicacionActivity extends AppCompatActivity {
 
@@ -21,7 +24,13 @@ public class UbicacionActivity extends AppCompatActivity {
     private String VARDEP = "";
     private String VARPRO = "";
     private String VARDIS = "";
-    String id;
+
+    String tipo;
+    String modulo;
+    String pagina;
+    String numero;
+    String idPregunta;
+
 
     Button btnCancelar;
     Button btnGuardar;
@@ -34,8 +43,14 @@ public class UbicacionActivity extends AppCompatActivity {
         varDepartamento = (EditText) findViewById(R.id.configuracion_ubicacion_departamento);
         varProvincia = (EditText) findViewById(R.id.configuracion_ubicacion_provincia);
         varDistrito = (EditText) findViewById(R.id.configuracion_ubicacion_distrito);
+        btnCancelar = (Button) findViewById(R.id.configuracion_ubicacion_btnCancelar);
+        btnGuardar = (Button) findViewById(R.id.configuracion_ubicacion_btnGuardar);
 
-        id = getIntent().getExtras().getString("id");
+        tipo = getIntent().getExtras().getString("tipo");
+        modulo = getIntent().getExtras().getString("modulo");
+        pagina = getIntent().getExtras().getString("pagina");
+        numero = getIntent().getExtras().getString("numero");
+        idPregunta = "M" + modulo + "P" + numero;
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,14 +67,29 @@ public class UbicacionActivity extends AppCompatActivity {
                 VARDIS = varDistrito.getText().toString();
 
                 if(validar()){
+                    DataComponentes dataComponentes =  new DataComponentes(UbicacionActivity.this);
                     DataUbicacion data = new DataUbicacion(UbicacionActivity.this);
                     data.open();
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(SQLUbicacion.UBICACION_DEPARTAMENTO,VARDEP);
-                    contentValues.put(SQLUbicacion.UBICACION_PROVINCIA,VARPRO);
-                    contentValues.put(SQLUbicacion.UBICACION_DISTRITO,VARDIS);
-                    data.actualizarUbicacion(id,contentValues);
+                    dataComponentes.open();
+                    Ubicacion ubicacion = new Ubicacion();
+                    ubicacion.setID(idPregunta);
+                    ubicacion.setMODULO(modulo);
+                    ubicacion.setNUMERO(numero);
+                    ubicacion.setVARDEP(VARDEP);
+                    ubicacion.setVARPRO(VARPRO);
+                    ubicacion.setVARDIS(VARDIS);
+                    data.insertarUbicacion(ubicacion);
+
+                    Pregunta pregunta = new Pregunta();
+                    pregunta.set_id(idPregunta);
+                    pregunta.setTIPO(tipo);
+                    pregunta.setMODULO(modulo);
+                    pregunta.setPAGINA(pagina);
+                    pregunta.setNUMERO(numero);
+                    dataComponentes.insertarPregunta(pregunta);
+
                     data.close();
+                    dataComponentes.close();
                     finish();
                 }
             }

@@ -72,6 +72,7 @@ public class CreacionActivity extends AppCompatActivity {
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaEncuestas);
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaModulos);
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaPaginas);
+                                        dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaPreguntas);
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaEventos);
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaOpcionSpinner);
                                         dataComponentes.deleteAllElementosFromTabla(SQLConstantesComponente.tablaInfoTablas);

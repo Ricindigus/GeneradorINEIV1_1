@@ -18,7 +18,7 @@
             android:id="@+id/configuracion_formulario_btnCancelar"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="cancelar"
+            android:text="ANTERIOR"
             android:textColor="@color/colorIcons"
             android:background="@drawable/boton_cargar"/>
 
@@ -52,21 +52,103 @@
             android:id="@+id/configuracion_formulario_btnGuardar"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="guardar"
+            android:text="SIGUIENTE"
             android:textColor="@color/colorIcons"
             android:background="@drawable/boton_cargar"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/formulario_titulo"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="TITULO FORMULARIO"
-        android:textColor="@color/colorIcons"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="@color/greyBluePrimaryDark"/>
-    <include layout="@layout/input_formulario_sp_layout" android:id="@+id/formulario_sp1"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margenMaterial">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingLeft="@dimen/margin5dp"
+            android:layout_marginBottom="@dimen/margin10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="TITULO FORMULARIO"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/margenMaterial"/>
+            <EditText
+                android:id="@+id/titulo_edtTituloEncuesta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin5dp"
+                android:inputType="text"
+                android:background="@drawable/sumaedit_edittext_limpio"/>
+        </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:text="SUBPREGUNTAS FORMULARIO"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorIcons"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin10dp"
+            android:paddingRight="@dimen/margin10dp"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:textColor="@color/colorIcons"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="PREGUNTA"
+                android:textColor="@color/colorIcons"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="TIPO"
+                android:textColor="@color/colorIcons"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="CHECK NO TIENE"
+                android:textColor="@color/colorIcons"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin5dp"
+            android:orientation="vertical"
+            android:background="@drawable/borde_layout_recycler">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_modulos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_subpreguntas_formulario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/icon_agregar"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:layout_margin="@dimen/margenMaterial"/>
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
 
 

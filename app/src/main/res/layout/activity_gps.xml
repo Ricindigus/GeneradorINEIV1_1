@@ -79,6 +79,8 @@
                     android:id="@+id/configuracion_gps_longitud"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/gps_CAR_LONG"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -97,6 +99,8 @@
                     android:id="@+id/configuracion_gps_latitud"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/gps_CAR_LAT"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -115,6 +119,8 @@
                     android:id="@+id/configuracion_gps_altitud"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/gps_CAR_ALT"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
         </LinearLayout>

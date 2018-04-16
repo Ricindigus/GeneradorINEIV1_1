@@ -3,11 +3,13 @@ package pe.com.ricindigus.generadorinei.fragments.creacion;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
@@ -16,15 +18,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.activities.activities_creacion.IngresarModuloActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.CheckBoxActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.EditTextActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.FormularioActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.GPSActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.RadioActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.UbicacionActivity;
+import pe.com.ricindigus.generadorinei.activities.activities_creacion.activities_preguntas.VisitasActivity;
 import pe.com.ricindigus.generadorinei.adapters.creacion.CreacionModulosAdapter;
+import pe.com.ricindigus.generadorinei.constantesglobales.TipoComponente;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
+import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
 import pe.com.ricindigus.generadorinei.pojos.Modulo;
+import pe.com.ricindigus.generadorinei.pojos.Pagina;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,6 +96,56 @@ public class ModulosFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                View dialogView = getActivity().getLayoutInflater().inflate(R.layout.dialog_tipo_modulo,null);
+                final Spinner spTipoModulo = (Spinner) dialogView.findViewById(R.id.dialog_tipo_componente_spinner);
+                builder.setTitle("SELECCIONE EL TIPO DE MODULO");
+                builder.setView(dialogView);
+                builder.setPositiveButton("ACEPTAR", null);
+                builder.setNegativeButton("CANCELAR",null);
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                int id = modulos.size() + 1;
+                                if (spTipoModulo.getSelectedItemPosition() > 0){
+                                    if(spTipoModulo.getSelectedItemPosition() == 2){
+                                        Intent intent = new Intent(context, IngresarModuloActivity.class);
+                                        intent.putExtra("id",id + "");
+                                        startActivity(intent);
+                                    }else{
+                                        DataComponentes dataComponentes = new DataComponentes(context);
+                                        dataComponentes.open();
+                                        dataComponentes.insertarModulo(
+                                                new Modulo(id + "", "VISITAS", "VISITAS", "VISITAS", "1")
+                                        );
+                                        onResume();
+                                        int numPag = dataComponentes.getAllPaginas().size();
+                                        dataComponentes.insertarPagina(new Pagina((numPag+1)+"",id+""));
+                                        dataComponentes.insertarInfoTablas(new InfoTabla(id+"_1",id+"","1","VISITAS","2"));
+                                        dataComponentes.insertarInfoTablas(new InfoTabla(id+"_2",id+"","2","RESULTADO","1"));
+                                        dataComponentes.close();
+                                    }
+                                    alertDialog.dismiss();
+                                }else{
+                                    Toast.makeText(context, "DEBE SELECCIONAR UN TIPO DE MODULO", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+                alertDialog.show();
+            }
+        });
+
 
         edtTituloEncuesta.setOnKeyListener(new View.OnKeyListener() {
             @Override

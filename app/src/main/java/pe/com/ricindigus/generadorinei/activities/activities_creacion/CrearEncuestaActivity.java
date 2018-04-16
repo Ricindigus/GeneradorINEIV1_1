@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.ArrayList;
+
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
@@ -31,6 +33,7 @@ import pe.com.ricindigus.generadorinei.fragments.creacion.ModulosFragment;
 import pe.com.ricindigus.generadorinei.fragments.creacion.PreguntasFragment;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.SQLConstantesComponente;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 public class CrearEncuestaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;

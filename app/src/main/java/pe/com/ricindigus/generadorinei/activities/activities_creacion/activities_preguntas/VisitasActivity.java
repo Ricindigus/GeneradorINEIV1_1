@@ -13,6 +13,8 @@ import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.DataVisitas;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.pojos.Visita;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 public class VisitasActivity extends AppCompatActivity {
     EditText varNumero;
@@ -66,6 +68,8 @@ public class VisitasActivity extends AppCompatActivity {
     String modulo;
     String pagina;
     String numero;
+    String idPregunta;
+
 
 
     @Override
@@ -101,7 +105,7 @@ public class VisitasActivity extends AppCompatActivity {
         modulo = getIntent().getExtras().getString("modulo");
         pagina = getIntent().getExtras().getString("pagina");
         numero = getIntent().getExtras().getString("numero");
-
+        idPregunta = "M" + modulo + "P" + numero;
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,33 +138,8 @@ public class VisitasActivity extends AppCompatActivity {
                 VARRESHORA = varResHora.getText().toString();
                 VARRESMIN = varResMin.getText().toString();
                 if(validar()){
-                    DataVisitas data = new DataVisitas(VisitasActivity.this);
-                    data.open();
-                    Visita visita = new Visita();
-
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(SQLVisitas.VISITA_VARNUM,VARNUM);
-                    contentValues.put(SQLVisitas.VISITA_VARDIA,VARDIA);
-                    contentValues.put(SQLVisitas.VISITA_VARMES,VARMES);
-                    contentValues.put(SQLVisitas.VISITA_VARANIO,VARANIO);
-                    contentValues.put(SQLVisitas.VISITA_VARHORI,VARHORI);
-                    contentValues.put(SQLVisitas.VISITA_VARMINI,VARMINI);
-                    contentValues.put(SQLVisitas.VISITA_VARHORF,VARHORF);
-                    contentValues.put(SQLVisitas.VISITA_VARMINF,VARMINF);
-                    contentValues.put(SQLVisitas.VISITA_VARRES,VARRES);
-                    contentValues.put(SQLVisitas.VISITA_VARDIAP,VARDIAP);
-                    contentValues.put(SQLVisitas.VISITA_VARMESP,VARMESP);
-                    contentValues.put(SQLVisitas.VISITA_VARANIOP,VARANIOP);
-                    contentValues.put(SQLVisitas.VISITA_VARHORP,VARHORP);
-                    contentValues.put(SQLVisitas.VISITA_VARMINP,VARMINP);
-                    contentValues.put(SQLVisitas.VISITA_VARRESFINAL,VARRESFINAL);
-                    contentValues.put(SQLVisitas.VISITA_VARRESDIA,VARRESDIA);
-                    contentValues.put(SQLVisitas.VISITA_VARRESMES,VARRESMES);
-                    contentValues.put(SQLVisitas.VISITA_VARRESANIO,VARRESANIO);
-                    contentValues.put(SQLVisitas.VISITA_VARRESHORA,VARRESHORA);
-                    contentValues.put(SQLVisitas.VISITA_VARRESMIN,VARRESMIN);
-
-                    data.close();
+                    if(existeVisita()) actualizar();
+                    else guardar();
                     finish();
                 }
             }
@@ -190,5 +169,85 @@ public class VisitasActivity extends AppCompatActivity {
         });
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void guardar(){
+        DataComponentes dataComponentes =  new DataComponentes(VisitasActivity.this);
+        DataVisitas data = new DataVisitas(VisitasActivity.this);
+        dataComponentes.open();
+        data.open();
+        Visita visita = new Visita();
+        visita.setID(idPregunta);
+        visita.setMODULO(modulo);
+        visita.setNUMERO(numero);
+        visita.setVARNUM(VARNUM);
+        visita.setVARDIA(VARDIA);
+        visita.setVARMES(VARMES);
+        visita.setVARANIO(VARANIO);
+        visita.setVARHORI(VARHORI);
+        visita.setVARMINI(VARMINI);
+        visita.setVARHORF(VARHORF);
+        visita.setVARMINF(VARMINF);
+        visita.setVARRES(VARRES);
+        visita.setVARDIAP(VARDIAP);
+        visita.setVARMESP(VARMESP);
+        visita.setVARANIOP(VARANIOP);
+        visita.setVARHORP(VARHORP);
+        visita.setVARMINP(VARMINP);
+        visita.setVARRESFINAL(VARRESFINAL);
+        visita.setVARRESDIA(VARRESDIA);
+        visita.setVARRESMES(VARRESMES);
+        visita.setVARRESANIO(VARRESANIO);
+        visita.setVARRESHORA(VARRESHORA);
+        visita.setVARRESMIN(VARRESMIN);
+        data.insertarVisita(visita);
+
+        Pregunta pregunta = new Pregunta();
+        pregunta.set_id(idPregunta);
+        pregunta.setTIPO(tipo);
+        pregunta.setMODULO(modulo);
+        pregunta.setPAGINA(pagina);
+        pregunta.setNUMERO(numero);
+        dataComponentes.insertarPregunta(pregunta);
+
+        data.close();
+        dataComponentes.close();
+    }
+    public void actualizar(){
+        DataVisitas dataVisitas =  new DataVisitas(VisitasActivity.this);
+
+        dataVisitas.open();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLVisitas.VISITA_VARNUM,VARNUM);
+        contentValues.put(SQLVisitas.VISITA_VARDIA,VARDIA);
+        contentValues.put(SQLVisitas.VISITA_VARMES,VARMES);
+        contentValues.put(SQLVisitas.VISITA_VARANIO,VARANIO);
+        contentValues.put(SQLVisitas.VISITA_VARHORI,VARHORI);
+        contentValues.put(SQLVisitas.VISITA_VARMINI,VARMINI);
+        contentValues.put(SQLVisitas.VISITA_VARHORF,VARHORF);
+        contentValues.put(SQLVisitas.VISITA_VARMINF,VARMINF);
+        contentValues.put(SQLVisitas.VISITA_VARRES,VARRES);
+        contentValues.put(SQLVisitas.VISITA_VARDIAP,VARDIAP);
+        contentValues.put(SQLVisitas.VISITA_VARMESP,VARMESP);
+        contentValues.put(SQLVisitas.VISITA_VARANIOP,VARANIOP);
+        contentValues.put(SQLVisitas.VISITA_VARHORP,VARHORP);
+        contentValues.put(SQLVisitas.VISITA_VARMINP,VARMINP);
+        contentValues.put(SQLVisitas.VISITA_VARRESFINAL,VARRESFINAL);
+        contentValues.put(SQLVisitas.VISITA_VARRESDIA,VARRESDIA);
+        contentValues.put(SQLVisitas.VISITA_VARRESMES,VARRESMES);
+        contentValues.put(SQLVisitas.VISITA_VARRESANIO,VARRESANIO);
+        contentValues.put(SQLVisitas.VISITA_VARRESHORA,VARRESHORA);
+        contentValues.put(SQLVisitas.VISITA_VARRESMIN,VARRESMIN);
+        dataVisitas.actualizarVisita(idPregunta,contentValues);
+        dataVisitas.close();
+    }
+
+    public boolean existeVisita(){
+        boolean existe =  false;
+        DataVisitas dataVisitas =  new DataVisitas(VisitasActivity.this);
+        dataVisitas.open();
+        if (dataVisitas.existeVisita(idPregunta)) existe = true;
+        dataVisitas.close();
+        return existe;
     }
 }

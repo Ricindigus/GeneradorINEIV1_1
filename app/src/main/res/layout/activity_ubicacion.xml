@@ -79,6 +79,8 @@
                     android:id="@+id/configuracion_ubicacion_departamento"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/ubicacion_CAR_DD"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -97,6 +99,8 @@
                     android:id="@+id/configuracion_ubicacion_provincia"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:paddingLeft="@dimen/margin5dp"
+                    android:text="@string/ubicacion_CAR_PV"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -115,6 +119,8 @@
                     android:id="@+id/configuracion_ubicacion_distrito"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:paddingLeft="@dimen/margin5dp"
+                    android:text="@string/ubicacion_CAR_DS"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
         </LinearLayout>

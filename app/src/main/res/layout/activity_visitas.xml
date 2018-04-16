@@ -92,6 +92,8 @@
                     android:id="@+id/configuracion_visita_numero"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_NUM"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -110,6 +112,8 @@
                     android:id="@+id/configuracion_visita_dia"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_DIA"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -128,6 +132,8 @@
                     android:id="@+id/configuracion_visita_mes"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_MES"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -146,6 +152,8 @@
                     android:id="@+id/configuracion_visita_anio"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_ANIO"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -164,6 +172,8 @@
                     android:id="@+id/configuracion_visita_hora_inicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/visita_V_HI"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -182,6 +192,8 @@
                     android:id="@+id/configuracion_visita_minuto_inicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/visita_V_MI"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -200,6 +212,8 @@
                     android:id="@+id/configuracion_visita_hora_final"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_HF"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -218,6 +232,8 @@
                     android:id="@+id/configuracion_visita_minuto_final"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_MF"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -236,6 +252,8 @@
                     android:id="@+id/configuracion_visita_resultado"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_RES"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -254,6 +272,8 @@
                     android:id="@+id/configuracion_visita_dia_prox"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_PROX_DIA"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -272,6 +292,8 @@
                     android:id="@+id/configuracion_visita_mes_prox"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_PROX_MES"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -290,6 +312,8 @@
                     android:id="@+id/configuracion_visita_anio_prox"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_PROX_ANIO"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -308,6 +332,8 @@
                     android:id="@+id/configuracion_visita_hora_prox"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_PROX_HORA"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -326,6 +352,8 @@
                     android:id="@+id/configuracion_visita_min_prox"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_V_PROX_MIN"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -344,6 +372,8 @@
                     android:id="@+id/configuracion_visita_resultado_final"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_FINAL"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -362,6 +392,7 @@
                     android:id="@+id/configuracion_visita_res_dia"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_DIA"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -380,6 +411,8 @@
                     android:id="@+id/configuracion_visita_res_mes"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_MES"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -398,6 +431,8 @@
                     android:id="@+id/configuracion_visita_res_anio"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_ANIO"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -416,6 +451,8 @@
                     android:id="@+id/configuracion_visita_res_hora"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_HORA"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
             <LinearLayout
@@ -434,6 +471,8 @@
                     android:id="@+id/configuracion_visita_res_minuto"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:text="@string/visita_RES_MIN"
+                    android:paddingLeft="@dimen/margin5dp"
                     android:background="@drawable/edittext_enabled"/>
             </LinearLayout>
         </LinearLayout>

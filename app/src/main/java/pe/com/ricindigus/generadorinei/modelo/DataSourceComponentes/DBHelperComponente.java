@@ -61,8 +61,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLRadio.SQL_DELETE_SPRADIO);
         sqLiteDatabase.execSQL(SQLUbicacion.SQL_DELETE_UBICACION);
         sqLiteDatabase.execSQL(SQLGps.SQL_DELETE_GPS);
-        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
-        sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_SP_FORMULARIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_DELETE_FORMULARIO);
+        sqLiteDatabase.execSQL(SQLFormulario.SQL_DELETE_SP_FORMULARIO);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_OPCION_SPINNER);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_INFOTABLAS);
         sqLiteDatabase.execSQL(SQLConstantesComponente.SQL_DELETE_VARIABLES);

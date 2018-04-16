@@ -38,7 +38,7 @@ public class IngresarModuloActivity extends AppCompatActivity {
         btnGuardar = (Button) findViewById(R.id.modulo_btnGuardar);
 
         Bundle bundle = getIntent().getExtras();
-        final int id = bundle.getInt("id");
+        final String id = bundle.getString("id");
         txtId.setText(id+"");
 
         txtTitulo.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
@@ -60,14 +60,16 @@ public class IngresarModuloActivity extends AppCompatActivity {
                 DataComponentes dataComponentes = new DataComponentes(IngresarModuloActivity.this);
                 dataComponentes.open();
                 dataComponentes.insertarModulo(new Modulo(
-                        id+"",
+                        id,
                         txtTitulo.getText().toString(),
                         txtCabecera.getText().toString(),
                         txtTablaXml.getText().toString(),
                         txtNumPaginas.getText().toString()
                 ));
+                int nActualPags = dataComponentes.getAllPaginas().size();
+
                 int numPaginas = Integer.parseInt(txtNumPaginas.getText().toString());
-                for (int i = 1; i <= numPaginas; i++) {
+                for (int i = (nActualPags + 1); i <= (nActualPags + numPaginas); i++) {
                     dataComponentes.insertarPagina(new Pagina(i+"",id+""));
                 }
                 dataComponentes.close();

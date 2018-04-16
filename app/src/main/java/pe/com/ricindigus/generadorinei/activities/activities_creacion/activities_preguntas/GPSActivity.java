@@ -12,6 +12,9 @@ import android.widget.EditText;
 import pe.com.ricindigus.generadorinei.R;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.DataGPS;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
+import pe.com.ricindigus.generadorinei.componentes.componente_gps.pojos.GPS;
+import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
+import pe.com.ricindigus.generadorinei.pojos.Pregunta;
 
 public class GPSActivity extends AppCompatActivity {
     EditText varLatitud;
@@ -21,10 +24,16 @@ public class GPSActivity extends AppCompatActivity {
     private String VARLAT = "";
     private String VARLONG = "";
     private String VARALT = "";
-    String id;
 
     Button btnCancelar;
     Button btnGuardar;
+
+    String tipo;
+    String modulo;
+    String pagina;
+    String numero;
+    String idPregunta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +42,14 @@ public class GPSActivity extends AppCompatActivity {
         varLatitud = (EditText) findViewById(R.id.configuracion_gps_latitud);
         varLongitud = (EditText) findViewById(R.id.configuracion_gps_longitud);
         varAltitud = (EditText) findViewById(R.id.configuracion_gps_altitud);
+        btnCancelar = (Button) findViewById(R.id.configuracion_gps_btnCancelar);
+        btnGuardar = (Button) findViewById(R.id.configuracion_gps_btnGuardar);
 
-        id = getIntent().getExtras().getString("id");
+        tipo = getIntent().getExtras().getString("tipo");
+        modulo = getIntent().getExtras().getString("modulo");
+        pagina = getIntent().getExtras().getString("pagina");
+        numero = getIntent().getExtras().getString("numero");
+        idPregunta = "M" + modulo + "P" + numero;
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,14 +66,26 @@ public class GPSActivity extends AppCompatActivity {
                 VARLONG = varLongitud.getText().toString();
 
                 if(validar()){
+                    DataComponentes dataComponentes =  new DataComponentes(GPSActivity.this);
                     DataGPS data = new DataGPS(GPSActivity.this);
                     data.open();
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(SQLGps.GPS_ALTITUD,VARALT);
-                    contentValues.put(SQLGps.GPS_LATITUD,VARLAT);
-                    contentValues.put(SQLGps.GPS_LONGITUD,VARLONG);
-                    data.actualizarGPS(id,contentValues);
+                    dataComponentes.open();
+                    GPS gps = new GPS(idPregunta,numero,modulo);
+                    gps.setVARALT(VARALT);
+                    gps.setVARLAT(VARLAT);
+                    gps.setVARLONG(VARLONG);
+                    data.insertarGPS(gps);
+
+                    Pregunta pregunta = new Pregunta();
+                    pregunta.set_id(idPregunta);
+                    pregunta.setTIPO(tipo);
+                    pregunta.setMODULO(modulo);
+                    pregunta.setPAGINA(pagina);
+                    pregunta.setNUMERO(numero);
+                    dataComponentes.insertarPregunta(pregunta);
+
                     data.close();
+                    dataComponentes.close();
                     finish();
                 }
             }
