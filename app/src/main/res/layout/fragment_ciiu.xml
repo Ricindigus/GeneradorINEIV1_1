@@ -1,0 +1,31 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margenMaterial"
+    tools:context="pe.com.ricindigus.generadorinei.componentes.componente_ciiu._CIIUFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margenMaterial">
+        <TextView
+            android:id="@+id/ciiu_pregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="n. texto de la pregunta"
+            android:textColor="@color/colorIneiPrimary"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margenMaterial">
+            <include layout="@layout/ciiu_sp_layout" android:id="@+id/ciiu_sp1" android:visibility="gone"/>
+            <include layout="@layout/ciiu_sp_layout" android:id="@+id/ciiu_sp2" android:visibility="gone"/>
+            <include layout="@layout/ciiu_sp_layout" android:id="@+id/ciiu_sp3" android:visibility="gone"/>
+            <include layout="@layout/ciiu_sp_layout" android:id="@+id/ciiu_sp4" android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+

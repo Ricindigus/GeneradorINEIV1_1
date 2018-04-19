@@ -14,11 +14,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
@@ -36,20 +39,21 @@ import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTabla
  * A simple {@link Fragment} subclass.
  */
 public class EditTextFragment extends ComponenteFragment {
-    private DataComponentes dataComponentes;
     private PEditText pEditText;
     private ArrayList<SPEditText> subpreguntas;
     private Context context;
     private String idEmpresa;
-    private String idEditText;
+
+
     private TextView txtPregunta;
-    private TextInputLayout edtLyt1,edtLyt2,edtLyt3;
-    private TextInputEditText edtSP1,edtSP2,edtSP3;
-    private CardView editTextCardView;
+    private LinearLayout edtLyt1,edtLyt2,edtLyt3;
+    private EditText edtSP1,edtSP2,edtSP3;
+    private TextView txt1, txt2, txt3;
     private View rootView;
 
-    private TextInputLayout[] textInputLayouts;
-    private TextInputEditText[] textInputEditTexts;
+    private LinearLayout[] linearLayouts;
+    private EditText[] editTexts;
+    private TextView[] textViews;
     private boolean cargandoDatos = false;
 
 
@@ -71,14 +75,20 @@ public class EditTextFragment extends ComponenteFragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_edit_text, container, false);
         txtPregunta = rootView.findViewById(R.id.edittext_pregunta);
-        edtLyt1 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp1);
-        edtLyt2 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp2);
-        edtLyt3 = (TextInputLayout) rootView.findViewById(R.id.edittext_sp3);
-        edtSP1 = (TextInputEditText) edtLyt1.findViewById(R.id.edit_text_input);
-        edtSP2 = (TextInputEditText) edtLyt2.findViewById(R.id.edit_text_input);
-        edtSP3 = (TextInputEditText) edtLyt3.findViewById(R.id.edit_text_input);
-        textInputLayouts = new TextInputLayout[]{edtLyt1,edtLyt2,edtLyt3};
-        textInputEditTexts = new TextInputEditText[]{edtSP1,edtSP2,edtSP3};
+        edtLyt1 = (LinearLayout) rootView.findViewById(R.id.edittext_sp1);
+        edtLyt2 = (LinearLayout) rootView.findViewById(R.id.edittext_sp2);
+        edtLyt3 = (LinearLayout) rootView.findViewById(R.id.edittext_sp3);
+        edtSP1 = (EditText) edtLyt1.findViewById(R.id.edit_text_input);
+        edtSP2 = (EditText) edtLyt2.findViewById(R.id.edit_text_input);
+        edtSP3 = (EditText) edtLyt3.findViewById(R.id.edit_text_input);
+        txt1 = (TextView) edtLyt1.findViewById(R.id.edit_text_input_texto);
+        txt2 = (TextView) edtLyt2.findViewById(R.id.edit_text_input_texto);
+        txt3 = (TextView) edtLyt3.findViewById(R.id.edit_text_input_texto);
+
+
+        linearLayouts = new LinearLayout[]{edtLyt1,edtLyt2,edtLyt3};
+        editTexts = new EditText[]{edtSP1,edtSP2,edtSP3};
+        textViews = new TextView[]{txt1, txt2, txt3};
         return rootView;
     }
 
@@ -93,30 +103,31 @@ public class EditTextFragment extends ComponenteFragment {
         txtPregunta.setText(pEditText.getNUMERO() + ". " + pEditText.getPREGUNTA().toUpperCase());
         for (int i = 0; i < subpreguntas.size(); i++) {
             SPEditText spEditText = subpreguntas.get(i);
-            final TextInputLayout textInputLayout = textInputLayouts[i];
-            final TextInputEditText textInputEditText = textInputEditTexts[i];
-            textInputEditText.setOnKeyListener(new View.OnKeyListener() {
+            final LinearLayout linearLayout = linearLayouts[i];
+            final EditText editText = editTexts[i];
+            final TextView textView = textViews[i];
+            editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                     if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                        ocultarTeclado(textInputEditText);
-                        textInputLayout.requestFocus();
+                        ocultarTeclado(editText);
+                        linearLayout.requestFocus();
                         return true;
                     }
                     return false;
                 }
             });
-            textInputLayout.setVisibility(View.VISIBLE);
-            textInputLayout.setHint(spEditText.getSUBPREGUNTA());
+            linearLayout.setVisibility(View.VISIBLE);
+            textView.setText(spEditText.getSUBPREGUNTA());
             if(Integer.parseInt(spEditText.getTIPO()) == TipoInput.TEXTO) {
-                textInputEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-                textInputEditText.setFilters(new InputFilter[]{
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                editText.setFilters(new InputFilter[]{
                         new InputFilter.AllCaps(),
                         new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
                 });
             }else{
-                textInputEditText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
-                textInputEditText.setFilters(new InputFilter[]{
+                editText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+                editText.setFilters(new InputFilter[]{
                         new InputFilter.LengthFilter(Integer.parseInt(spEditText.getLONGITUD()))
                 });
             }
@@ -134,7 +145,7 @@ public class EditTextFragment extends ComponenteFragment {
                 String[] variables = new String[subpreguntas.size()];
                 for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
                 String[] valores = data.getValores(getIdTabla(),variables,idEmpresa);
-                for (int i = 0; i < valores.length; i++) {if(valores[i] != null) textInputEditTexts[i].setText(valores[i]);}
+                for (int i = 0; i < valores.length; i++) {if(valores[i] != null) editTexts[i].setText(valores[i]);}
             }
             data.close();
             cargandoDatos = false;
@@ -149,7 +160,7 @@ public class EditTextFragment extends ComponenteFragment {
         ContentValues contentValues = new ContentValues();
         for (int i = 0; i < subpreguntas.size(); i++) {
             String variable = subpreguntas.get(i).getVARIABLE();
-            String valor = textInputEditTexts[i].getText().toString();
+            String valor = editTexts[i].getText().toString();
             contentValues.put(variable, valor);
         }
         if(!data.existenDatos(getIdTabla(),idEmpresa)){
@@ -164,9 +175,9 @@ public class EditTextFragment extends ComponenteFragment {
         String mensaje = "";
         if(estaHabilitado()){
             int c = 0;
-            while(correcto && c < textInputLayouts.length){
-                if(textInputLayouts[c].getVisibility() == View.VISIBLE){
-                    if(textInputEditTexts[c].getText().toString().trim().equals("")){
+            while(correcto && c < linearLayouts.length){
+                if(linearLayouts[c].getVisibility() == View.VISIBLE){
+                    if(editTexts[c].getText().toString().trim().equals("")){
                         correcto = false;
                         mensaje = "PREGUNTA " + pEditText.getNUMERO() + ": COMPLETE LA PREGUNTA";
                     }
@@ -179,7 +190,7 @@ public class EditTextFragment extends ComponenteFragment {
     }
 
     public void inhabilitar(){
-        for (int i = 0; i <subpreguntas.size() ; i++) textInputEditTexts[i].setText("");
+        for (int i = 0; i <subpreguntas.size() ; i++) editTexts[i].setText("");
         rootView.setVisibility(View.GONE);
     }
 

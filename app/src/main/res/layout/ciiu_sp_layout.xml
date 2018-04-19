@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/ciiu_lyt"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    android:padding="@dimen/margin10dp"
+    android:layout_margin="@dimen/margin5dp"
+    android:background="@drawable/border_layout_subpreguntas"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Actividad Secundaria"
+    android:layout_marginLeft="@dimen/margin5dp"
+    android:layout_marginBottom="@dimen/margin5dp"/>
+
+<EditText
+    android:id="@+id/ciiu_edt"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_marginBottom="@dimen/margin10dp"
+    android:background="@drawable/fondo_edit_text"
+    android:inputType="text"
+    android:completionThreshold="1"
+    android:maxLength="300"
+    android:layout_marginLeft="@dimen/margin5dp"
+    android:paddingLeft="@dimen/margin5dp"/>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="@dimen/margin5dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CIIU"
+        android:layout_marginRight="@dimen/margin10dp"/>
+    <TextView
+        android:id="@+id/ciiu_ciiu"
+        android:paddingLeft="@dimen/margin5dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginRight="@dimen/margin10dp"
+        android:background="@drawable/fondo_edit_text"/>
+    <AutoCompleteTextView
+        android:id="@+id/ciiu_autocomplete"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/margin5dp"
+        android:layout_height="30dp"
+        android:background="@drawable/fondo_edit_text"
+        android:inputType="text"
+        android:completionThreshold="1"
+        android:maxLength="300"/>
+</LinearLayout>
+<CheckBox
+    android:id="@+id/ciiu_check"
+    android:layout_marginTop="@dimen/margin5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="No tengo otra actividad secundaria"/>
+</LinearLayout>
