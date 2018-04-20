@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CIIUS>
+    <CIIU><ID>111</ID><DESCRIPCION>Cultivo de cereales (excepto arroz), legumbres y semillas oleaginosas</DESCRIPCION></CIIU>
+    <CIIU><ID>112</ID><DESCRIPCION>Cultivo de arroz</DESCRIPCION></CIIU>
+    <CIIU><ID>113</ID><DESCRIPCION>Cultivo de hortalizas y melones, raíces y tubérculos</DESCRIPCION></CIIU>
+    <CIIU><ID>114</ID><DESCRIPCION>Cultivo de caña de azúcar</DESCRIPCION></CIIU>
+    <CIIU><ID>115</ID><DESCRIPCION>Cultivo de tabaco</DESCRIPCION></CIIU>
+    <CIIU><ID>116</ID><DESCRIPCION>Cultivo de plantas de fibra</DESCRIPCION></CIIU>
+    <CIIU><ID>119</ID><DESCRIPCION>Cultivo de otras plantas no perennes</DESCRIPCION></CIIU>
+    <CIIU><ID>121</ID><DESCRIPCION>Cultivo de uva</DESCRIPCION></CIIU>
+    <CIIU><ID>122</ID><DESCRIPCION>Cultivo de frutas tropicales y subtropicales</DESCRIPCION></CIIU>
+    <CIIU><ID>123</ID><DESCRIPCION>Cultivo de cítricos</DESCRIPCION></CIIU>
+    <CIIU><ID>124</ID><DESCRIPCION>Cultivo de frutas de pepita y de hueso</DESCRIPCION></CIIU>
+    <CIIU><ID>125</ID><DESCRIPCION>Cultivo de otras frutas y nueces de árboles y arbustos</DESCRIPCION></CIIU>
+    <CIIU><ID>126</ID><DESCRIPCION>Cultivo de frutos oleaginosos</DESCRIPCION></CIIU>
+    <CIIU><ID>127</ID><DESCRIPCION>Cultivo de plantas con las que se preparan bebidas</DESCRIPCION></CIIU>
+    <CIIU><ID>128</ID><DESCRIPCION>Cultivo de especias y de plantas aromáticas, medicinales y farmacéuticas</DESCRIPCION></CIIU>
+    <CIIU><ID>129</ID><DESCRIPCION>Cultivo de otras plantas perennes</DESCRIPCION></CIIU>
+    <CIIU><ID>130</ID><DESCRIPCION>Propagación de plantas</DESCRIPCION></CIIU>
+    <CIIU><ID>141</ID><DESCRIPCION>Cría de ganado bovino</DESCRIPCION></CIIU>
+    <CIIU><ID>142</ID><DESCRIPCION>Cría de caballos y otros equinos</DESCRIPCION></CIIU>
+    <CIIU><ID>143</ID><DESCRIPCION>Cría de camellos y otros camélidos</DESCRIPCION></CIIU>
+    <CIIU><ID>144</ID><DESCRIPCION>Cría de ovejas y cabras</DESCRIPCION></CIIU>
+    <CIIU><ID>145</ID><DESCRIPCION>Cría de cerdos</DESCRIPCION></CIIU>
+    <CIIU><ID>146</ID><DESCRIPCION>Cría de aves de corral</DESCRIPCION></CIIU>
+    <CIIU><ID>149</ID><DESCRIPCION>Cría de otros animales</DESCRIPCION></CIIU>
+    <CIIU><ID>150</ID><DESCRIPCION>Cultivo de productos agrícolas en combinación con la cría de animales (explotación mixta)</DESCRIPCION></CIIU>
+    <CIIU><ID>161</ID><DESCRIPCION>Actividades de apoyo a la agricultura</DESCRIPCION></CIIU>
+    <CIIU><ID>162</ID><DESCRIPCION>Actividades de apoyo a la ganadería</DESCRIPCION></CIIU>
+    <CIIU><ID>163</ID><DESCRIPCION>Actividades poscosecha</DESCRIPCION></CIIU>
+    <CIIU><ID>164</ID><DESCRIPCION>Tratamiento de semillas para propagación</DESCRIPCION></CIIU>
+    <CIIU><ID>170</ID><DESCRIPCION>Caza ordinaria y mediante trampas y actividades de servicios conexas</DESCRIPCION></CIIU>
+    <CIIU><ID>1071</ID><DESCRIPCION>Elaboración de productos de panadería</DESCRIPCION></CIIU>
+    <CIIU><ID>1072</ID><DESCRIPCION>Elaboración de azúcar</DESCRIPCION></CIIU>
+    <CIIU><ID>1073</ID><DESCRIPCION>Elaboración de cacao y chocolate y de productos de confitería</DESCRIPCION></CIIU>
+    <CIIU><ID>1074</ID><DESCRIPCION>Elaboración de macarrones, fideos, alcuzcuz y productos farináceos similares</DESCRIPCION></CIIU>
+    <CIIU><ID>1075</ID><DESCRIPCION>Elaboración de comidas y platos preparados</DESCRIPCION></CIIU>
+    <CIIU><ID>1079</ID><DESCRIPCION>Elaboración de otros productos alimenticios n.c.p.</DESCRIPCION></CIIU>
+</CIIUS>

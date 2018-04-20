@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import pe.com.ricindigus.generadorinei.pojos.CIIU;
 import pe.com.ricindigus.generadorinei.pojos.Controlador;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
 import pe.com.ricindigus.generadorinei.pojos.InfoTabla;
@@ -41,6 +42,9 @@ public class Data {
 
     public long getNumeroItemsUbigeo(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tableUbigeo);
+    }
+    public long getNumeroItemsCiiu(){
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tablaCiius);
     }
     public long getNumeroItemsProvincias(){
         return DatabaseUtils.queryNumEntries(sqLiteDatabase,SQLConstantes.tablaProvincias);
@@ -383,4 +387,39 @@ public class Data {
         }
         return columnNames;
     }
+
+    //----------------------UBIGEOS-------------------------------------------------------------------------------------------------------
+    public void insertarCiiu(CIIU ciiu){
+        ContentValues contentValues = ciiu.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tablaCiius,null,contentValues);
+    }
+    public void insertarCiius(ArrayList<CIIU> ciius){
+        long items = getNumeroItemsUbigeo();
+        if(items == 0){
+            for (CIIU ciiu : ciius) {
+                try {
+                    insertarCiiu(ciiu);
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public ArrayList<String> getCiius(){
+        ArrayList<String> ciius = new ArrayList<String>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaCiius, null,null,null,null,null,null);
+            while(cursor.moveToNext()){
+                String ciiu = "[" + cursor.getString(cursor.getColumnIndex(SQLConstantes.CIIU_ID)) + "] "
+                + cursor.getString(cursor.getColumnIndex(SQLConstantes.CIIU_DESCRIPCION));
+                ciius.add(ciiu);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return ciius;
+    }
+    //------------------FIN UBIGEO-----------------------------------------------------------------------------------------------------
+
 }

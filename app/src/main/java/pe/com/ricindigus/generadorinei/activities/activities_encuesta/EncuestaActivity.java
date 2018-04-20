@@ -31,6 +31,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.CIIUFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.SPCiiu;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
@@ -96,6 +100,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private DataEditText dataEditText;
     private DataCheckBox dataCheckBox;
     private DataRadio dataRadio;
+    private DataCiiu dataCiiu;
     private DataGPS dataGPS;
     private ContentValues contentPaginador;
     private ContentValues contentControlador;
@@ -441,6 +446,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataEditText = new DataEditText(getApplicationContext());
         dataCheckBox = new DataCheckBox(getApplicationContext());
         dataRadio = new DataRadio(getApplicationContext());
+        dataCiiu =  new DataCiiu(getApplicationContext());
         dataGPS = new DataGPS(getApplicationContext());
         dataComponentes.open();
         dataUbicacion.open();
@@ -449,6 +455,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataCheckBox.open();
         dataRadio.open();
         dataGPS.open();
+        dataCiiu.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
@@ -492,6 +499,12 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                         ArrayList<SPRadio> spRadios = dataRadio.getSPRadios(preguntas.get(i).get_id());
                         RadioFragment radioFragment = new RadioFragment(PRadio, spRadios, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = radioFragment;
+                        break;
+                    case TipoComponente.CIIU:
+                        PCiiu pCiiu = dataCiiu.getPCiiu(preguntas.get(i).get_id());
+                        ArrayList<SPCiiu> spCiius = dataCiiu.getSPCiius(preguntas.get(i).get_id());
+                        CIIUFragment ciiuFragment = new CIIUFragment(pCiiu, spCiius, EncuestaActivity.this, idEmpresa);
+                        fragmentComponente = ciiuFragment;
                         break;
 //                    case TipoComponente.M2P1:
 //                        fragmentComponente = new M2P1Fragment();

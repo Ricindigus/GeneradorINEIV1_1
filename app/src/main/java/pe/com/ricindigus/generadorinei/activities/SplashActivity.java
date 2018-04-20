@@ -16,6 +16,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.Da
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.PCiiuPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.SPCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
@@ -41,6 +45,7 @@ import pe.com.ricindigus.generadorinei.modelo.DataControladorVersiones.DataVersi
 import pe.com.ricindigus.generadorinei.modelo.DataSourceCaptura.Data;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceComponentes.DataComponentes;
 import pe.com.ricindigus.generadorinei.modelo.DataSourceTablasGuardado.DataTablas;
+import pe.com.ricindigus.generadorinei.parser.CIIUPullParser;
 import pe.com.ricindigus.generadorinei.parser.EncuestaPullParser;
 import pe.com.ricindigus.generadorinei.parser.EventosPullParser;
 import pe.com.ricindigus.generadorinei.parser.InfoTablasPullParser;
@@ -52,6 +57,7 @@ import pe.com.ricindigus.generadorinei.parser.PreguntaPullParser;
 import pe.com.ricindigus.generadorinei.parser.UbigeoPullParser;
 import pe.com.ricindigus.generadorinei.parser.UsuariosPullParser;
 import pe.com.ricindigus.generadorinei.parser.VariablesPullParser;
+import pe.com.ricindigus.generadorinei.pojos.CIIU;
 import pe.com.ricindigus.generadorinei.pojos.Encuesta;
 import pe.com.ricindigus.generadorinei.pojos.Evento;
 import pe.com.ricindigus.generadorinei.pojos.Marco;
@@ -72,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Marco> marcos = new ArrayList<Marco>();
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     ArrayList<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
+    ArrayList<CIIU> ciius = new ArrayList<CIIU>();
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
     ArrayList<Visita> visitas = new ArrayList<Visita>();
     ArrayList<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
@@ -80,6 +87,8 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPFormulario> spFormularios = new ArrayList<SPFormulario>();
     ArrayList<PEditText> pEditTexts = new ArrayList<PEditText>();
     ArrayList<SPEditText> spEditTexts = new ArrayList<SPEditText>();
+    ArrayList<PCiiu> pCiius = new ArrayList<PCiiu>();
+    ArrayList<SPCiiu> spCiius = new ArrayList<SPCiiu>();
     ArrayList<PCheckBox> pCheckBoxes = new ArrayList<PCheckBox>();
     ArrayList<SPCheckBox> spCheckBoxes  = new ArrayList<SPCheckBox>();
     ArrayList<PRadio> pRadios = new ArrayList<PRadio>();
@@ -99,6 +108,7 @@ public class SplashActivity extends AppCompatActivity {
     DataGPS dataGPS;
     DataFormulario dataFormulario;
     DataEditText dataEditText;
+    DataCiiu dataCiiu;
     DataCheckBox dataCheckBox;
     DataRadio dataRadio;
     DataTablas dataTablas;
@@ -130,11 +140,13 @@ public class SplashActivity extends AppCompatActivity {
             UsuariosPullParser usuarioParser = new UsuariosPullParser();
             VisitaPullParser visitaPullParser = new VisitaPullParser();
             UbigeoPullParser ubigeoPullParser = new UbigeoPullParser();
+            CIIUPullParser ciiuPullParser = new CIIUPullParser();
             ModuloPullParser moduloPullParser = new ModuloPullParser();
             UbicacionPullParser ubicacionPullParser = new UbicacionPullParser();
             GPSPullParser gpsPullParser = new GPSPullParser();
             FormularioPullParser formularioPullParser = new FormularioPullParser();
             EditTextPullParser editTextPullParser = new EditTextPullParser();
+            PCiiuPullParser pCiiuPullParser =  new PCiiuPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
@@ -150,6 +162,7 @@ public class SplashActivity extends AppCompatActivity {
             marcos = marcoPullParser.parseXML(getApplicationContext());
             usuarios = usuarioParser.parseXML(getApplicationContext());
             ubigeos = ubigeoPullParser.parseXML(getApplicationContext());
+            ciius = ciiuPullParser.parseXML(getApplicationContext());
             modulos = moduloPullParser.parseXML(getApplicationContext());
             visitas = visitaPullParser.parseXML(getApplicationContext());
             ubicaciones = ubicacionPullParser.parseXML(getApplicationContext());
@@ -158,6 +171,8 @@ public class SplashActivity extends AppCompatActivity {
             spFormularios = formularioPullParser.parseXMLSPFormulario(getApplicationContext());
             pEditTexts = editTextPullParser.parseXMLPEditText(getApplicationContext());
             spEditTexts = editTextPullParser.parseXMLSPEditText(getApplicationContext());
+            pCiius = pCiiuPullParser.parseXMLPCiiu(getApplicationContext());
+            spCiius = pCiiuPullParser.parseXMLSPCiiu(getApplicationContext());
             pCheckBoxes = checkBoxPullParser.parseXMLPCheckBox(getApplicationContext());
             spCheckBoxes = checkBoxPullParser.parseXMLSPCheckBox(getApplicationContext());
             pRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
@@ -172,9 +187,9 @@ public class SplashActivity extends AppCompatActivity {
 
         }
 
-        maximo = marcos.size() + usuarios.size() + ubigeos.size() + modulos.size() + visitas.size()+
+        maximo = marcos.size() + usuarios.size() + ubigeos.size() + ciius.size()+ modulos.size() + visitas.size()+
                 + ubicaciones.size() + gpsArrayList.size() + formularios.size() + preguntas.size()
-                + pEditTexts.size() + spEditTexts.size()
+                + pEditTexts.size() + spEditTexts.size() + pCiius.size()+ spCiius.size()
                 + pCheckBoxes.size() + spCheckBoxes.size()
                 + pRadios.size() + spRadios.size() + encuestas.size()
                 + paginas.size() + opciones.size() + infoTablas.size() + eventos.size() + variables.size() ;
@@ -215,6 +230,8 @@ public class SplashActivity extends AppCompatActivity {
             dataFormulario.open();
             dataEditText = new DataEditText(getApplicationContext());
             dataEditText.open();
+            dataCiiu = new DataCiiu(getApplicationContext());
+            dataCiiu.open();
             dataCheckBox = new DataCheckBox(getApplicationContext());
             dataCheckBox.open();
             dataRadio = new DataRadio(getApplicationContext());
@@ -254,6 +271,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (Ubigeo ubigeo : ubigeos) {
                     try {
                         data.insertarUbigeo(ubigeo);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (CIIU ciiu : ciius) {
+                    try {
+                        data.insertarCiiu(ciiu);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -336,6 +362,24 @@ public class SplashActivity extends AppCompatActivity {
                 for (SPEditText spEditText : spEditTexts) {
                     try {
                         dataEditText.insertarSPEditText(spEditText);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (PCiiu pCiiu : pCiius) {
+                    try {
+                        dataCiiu.insertarPCiiu(pCiiu);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPCiiu spCiiu : spCiius) {
+                    try {
+                        dataCiiu.insertarSPCiiu(spCiiu);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }
@@ -443,6 +487,7 @@ public class SplashActivity extends AppCompatActivity {
             dataUbicacion.close();
             dataFormulario.close();
             dataEditText.close();
+            dataCiiu.close();
             dataCheckBox.close();
             dataRadio.close();
 

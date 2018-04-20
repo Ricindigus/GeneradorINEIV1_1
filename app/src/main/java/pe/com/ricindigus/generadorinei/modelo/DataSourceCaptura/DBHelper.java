@@ -24,6 +24,8 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_USUARIOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_UBIGEOS);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CONTROLADOR);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CIIU);
+
 
 
         DataComponentes dataComponentes = new DataComponentes(contexto);
@@ -46,6 +48,7 @@ public class DBHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_TABLA);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_CONTROLADOR);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_PAGINADOR);
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_DELETE_CIIU);
         onCreate(sqLiteDatabase);
     }
 }

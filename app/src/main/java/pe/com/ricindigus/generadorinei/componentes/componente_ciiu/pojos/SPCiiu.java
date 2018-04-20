@@ -11,23 +11,26 @@ import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.SQLCii
 public class SPCiiu {
     private String ID;
     private String ID_PREGUNTA;
+    private String SUBPREGUNTA;
     private String VARACT;
-    private String VARAUTO;
+    private String VARCIIU;
     private String VARCK;
 
-    public SPCiiu(String ID, String ID_PREGUNTA, String VARACT, String VARAUTO, String VARCK) {
+    public SPCiiu(String ID, String ID_PREGUNTA, String SUBPREGUNTA, String VARACT, String VARCIIU, String VARCK) {
         this.ID = ID;
         this.ID_PREGUNTA = ID_PREGUNTA;
+        this.SUBPREGUNTA = SUBPREGUNTA;
         this.VARACT = VARACT;
-        this.VARAUTO = VARAUTO;
+        this.VARCIIU = VARCIIU;
         this.VARCK = VARCK;
     }
 
     public SPCiiu() {
         this.ID = "";
         this.ID_PREGUNTA = "";
+        this.SUBPREGUNTA = "";
         this.VARACT = "";
-        this.VARAUTO = "";
+        this.VARCIIU = "";
         this.VARCK = "";
     }
 
@@ -55,12 +58,12 @@ public class SPCiiu {
         this.VARACT = VARACT;
     }
 
-    public String getVARAUTO() {
-        return VARAUTO;
+    public String getVARCIIU() {
+        return VARCIIU;
     }
 
-    public void setVARAUTO(String VARAUTO) {
-        this.VARAUTO = VARAUTO;
+    public void setVARCIIU(String VARCIIU) {
+        this.VARCIIU = VARCIIU;
     }
 
     public String getVARCK() {
@@ -71,12 +74,21 @@ public class SPCiiu {
         this.VARCK = VARCK;
     }
 
+    public String getSUBPREGUNTA() {
+        return SUBPREGUNTA;
+    }
+
+    public void setSUBPREGUNTA(String SUBPREGUNTA) {
+        this.SUBPREGUNTA = SUBPREGUNTA;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLCiiu.SPCIIU_ID,ID);
         contentValues.put(SQLCiiu.SPCIIU_ID_PREGUNTA,ID_PREGUNTA);
+        contentValues.put(SQLCiiu.SPCIIU_SUBPREGUNTA,SUBPREGUNTA);
         contentValues.put(SQLCiiu.SPCIIU_VARACT,VARACT);
-        contentValues.put(SQLCiiu.SPCIIU_VARAUTO,VARAUTO);
+        contentValues.put(SQLCiiu.SPCIIU_VARCIIU, VARCIIU);
         contentValues.put(SQLCiiu.SPCIIU_VARCK,VARCK);
         return contentValues;
     }

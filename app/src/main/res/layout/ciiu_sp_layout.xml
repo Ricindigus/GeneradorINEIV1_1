@@ -9,6 +9,7 @@
     android:background="@drawable/border_layout_subpreguntas"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <TextView
+    android:id="@+id/ciiu_txtSubpregunta"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Actividad Secundaria"
@@ -20,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="30dp"
     android:layout_marginBottom="@dimen/margin10dp"
-    android:background="@drawable/fondo_edit_text"
+    android:background="@drawable/edittext_enabled"
     android:inputType="text"
     android:completionThreshold="1"
     android:maxLength="300"
@@ -46,13 +47,13 @@
         android:gravity="center"
         android:textSize="20sp"
         android:layout_marginRight="@dimen/margin10dp"
-        android:background="@drawable/fondo_edit_text"/>
+        android:background="@drawable/edittext_enabled"/>
     <AutoCompleteTextView
         android:id="@+id/ciiu_autocomplete"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/margin5dp"
         android:layout_height="30dp"
-        android:background="@drawable/fondo_edit_text"
+        android:background="@drawable/edittext_enabled"
         android:inputType="text"
         android:completionThreshold="1"
         android:maxLength="300"/>
@@ -62,5 +63,6 @@
     android:layout_marginTop="@dimen/margin5dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="No tengo otra actividad secundaria"/>
+    android:text="No tengo otra actividad"
+    android:visibility="gone"/>
 </LinearLayout>

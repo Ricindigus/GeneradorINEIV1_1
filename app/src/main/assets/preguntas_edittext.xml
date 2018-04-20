@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <EDITTEXTS>
-	<EDITTEXT><ID>M4P1</ID><MODULO>4</MODULO><NUMERO>1</NUMERO><PREGUNTA>Actividad económica principal de la empresa</PREGUNTA></EDITTEXT>
 	<EDITTEXT><ID>M4P2</ID><MODULO>4</MODULO><NUMERO>2</NUMERO><PREGUNTA>Actividades económicas secundarias de la empresa</PREGUNTA></EDITTEXT>
 	<EDITTEXT><ID>M4P5</ID><MODULO>4</MODULO><NUMERO>5</NUMERO><PREGUNTA>En el año 2016 ¿Cuántos trabajadores tenía en promedio su empresa?</PREGUNTA></EDITTEXT>
 	<EDITTEXT><ID>M5P4</ID><MODULO>5</MODULO><NUMERO>4</NUMERO><PREGUNTA>¿En qué año implementó la norma técnica o estándar de calidad más importante?</PREGUNTA></EDITTEXT>

@@ -3,7 +3,6 @@ package pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos;
 import android.content.ContentValues;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.SQLCiiu;
-import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 
 /**
  * Created by dmorales on 19/04/2018.
@@ -63,10 +62,10 @@ public class PCiiu {
 
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLCiiu.CIIU_ID,ID);
-        contentValues.put(SQLCiiu.CIIU_MODULO,MODULO);
-        contentValues.put(SQLCiiu.CIIU_NUMERO,NUMERO);
-        contentValues.put(SQLCiiu.CIIU_PREGUNTA,PREGUNTA);
+        contentValues.put(SQLCiiu.PCIIU_ID,ID);
+        contentValues.put(SQLCiiu.PCIIU_MODULO,MODULO);
+        contentValues.put(SQLCiiu.PCIIU_NUMERO,NUMERO);
+        contentValues.put(SQLCiiu.PCIIU_PREGUNTA,PREGUNTA);
         return contentValues;
     }
 }

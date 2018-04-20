@@ -21,7 +21,7 @@ import static android.os.Environment.getExternalStorageDirectory;
  * Created by dmorales on 19/04/2018.
  */
 
-public class CIIUPullParser {
+public class PCiiuPullParser {
     //columnas pregunta edittext
     public static final String CIIU_ID = "ID";
     public static final String CIIU_MODULO = "MODULO";
@@ -31,9 +31,11 @@ public class CIIUPullParser {
     //preguntas columnas subpregunta edittext
     public static final String SPCIIU_ID = "ID";
     public static final String SPCIIU_ID_PREGUNTA = "ID_PREGUNTA";
+    public static final String SPCIIU_SUBPREGUNTA = "SUBPREGUNTA";
     public static final String SPCIIU_VARACT = "VARACT";
-    public static final String SPCIIU_VARAUTO = "VARAUTO";
+    public static final String SPCIIU_VARCIIU = "VARCIIU";
     public static final String SPCIIU_VARCK = "VARCK";
+
 
     private String currentTag = null;
     private PCiiu currentCiiu = null;
@@ -120,7 +122,7 @@ public class CIIUPullParser {
     }
 
     private void handleStarTagPCiiu(String name) {
-        if(name.equals("CIIU")){
+        if(name.equals("PCIIU")){
             currentCiiu = new PCiiu();
             pCiius.add(currentCiiu);
         }else{
@@ -200,8 +202,9 @@ public class CIIUPullParser {
             switch (currentTag){
                 case SPCIIU_ID: currentSPCiiu.setID(xmlText);break;
                 case SPCIIU_ID_PREGUNTA: currentSPCiiu.setID_PREGUNTA(xmlText);break;
+                case SPCIIU_SUBPREGUNTA: currentSPCiiu.setSUBPREGUNTA(xmlText);break;
                 case SPCIIU_VARACT: currentSPCiiu.setVARACT(xmlText);break;
-                case SPCIIU_VARAUTO: currentSPCiiu.setVARAUTO(xmlText);break;
+                case SPCIIU_VARCIIU: currentSPCiiu.setVARCIIU(xmlText);break;
                 case SPCIIU_VARCK: currentSPCiiu.setVARCK(xmlText);break;
             }
         }

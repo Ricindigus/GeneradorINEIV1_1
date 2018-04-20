@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PCIIUS>
+	<PCIIU><ID>M4P1</ID><MODULO>4</MODULO><NUMERO>1</NUMERO><PREGUNTA>Actividad económica principal de la empresa</PREGUNTA></PCIIU>
+	<PCIIU><ID>M4P2</ID><MODULO>4</MODULO><NUMERO>2</NUMERO><PREGUNTA>Actividades económicas secundarias de la empresa</PREGUNTA></PCIIU>
+</PCIIUS>

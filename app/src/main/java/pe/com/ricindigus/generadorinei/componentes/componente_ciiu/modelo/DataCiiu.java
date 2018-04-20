@@ -38,7 +38,7 @@ public class DataCiiu {
     }
 
     public long getNumeroItemsPCiiu(){
-        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLCiiu.tablaCiius);
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, SQLCiiu.tablaPCiius);
     }
 
     public long getNumeroItemsSPCiiu(){
@@ -47,9 +47,9 @@ public class DataCiiu {
 
     public void insertarPCiiu(PCiiu PCiiu){
         ContentValues contentValues = PCiiu.toValues();
-        sqLiteDatabase.insert(SQLCiiu.tablaCiius,null,contentValues);
+        sqLiteDatabase.insert(SQLCiiu.tablaPCiius,null,contentValues);
     }
-    public void insertarCiius(ArrayList<PCiiu> pCiius){
+    public void insertarPCiius(ArrayList<PCiiu> pCiius){
         long items = getNumeroItemsPCiiu();
         if(items == 0){
             for (PCiiu pCiiu : pCiius) {
@@ -66,14 +66,14 @@ public class DataCiiu {
         String[] whereArgs = new String[]{idPCiiu};
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.query(SQLCiiu.tablaCiius,
+            cursor = sqLiteDatabase.query(SQLCiiu.tablaPCiius,
                     SQLCiiu.ALL_COLUMNS_CIIU, SQLCiiu.WHERE_CLAUSE_ID,whereArgs,null,null,null);
             if(cursor.getCount() == 1){
                 cursor.moveToFirst();
-                pCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_ID)));
-                pCiiu.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_MODULO)));
-                pCiiu.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_NUMERO)));
-                pCiiu.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_PREGUNTA)));
+                pCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_ID)));
+                pCiiu.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_MODULO)));
+                pCiiu.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_NUMERO)));
+                pCiiu.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_PREGUNTA)));
             }
         }finally{
             if(cursor != null) cursor.close();
@@ -85,13 +85,13 @@ public class DataCiiu {
         ArrayList<PCiiu> pCiius = new ArrayList<>();
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.query(SQLCiiu.tablaCiius, null,null,null,null,null,null);
+            cursor = sqLiteDatabase.query(SQLCiiu.tablaPCiius, null,null,null,null,null,null);
             while(cursor.moveToNext()){
                 PCiiu pCiiu = new PCiiu();
-                pCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_ID)));
-                pCiiu.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_MODULO)));
-                pCiiu.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_NUMERO)));
-                pCiiu.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.CIIU_PREGUNTA)));
+                pCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_ID)));
+                pCiiu.setMODULO(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_MODULO)));
+                pCiiu.setNUMERO(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_NUMERO)));
+                pCiiu.setPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.PCIIU_PREGUNTA)));
                 pCiius.add(pCiiu);
             }
         }finally{
@@ -127,8 +127,9 @@ public class DataCiiu {
                 SPCiiu spCiiu = new SPCiiu();
                 spCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_ID)));
                 spCiiu.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_ID_PREGUNTA)));
+                spCiiu.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_SUBPREGUNTA)));
                 spCiiu.setVARACT(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARACT)));
-                spCiiu.setVARAUTO(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARAUTO)));
+                spCiiu.setVARCIIU(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARCIIU)));
                 spCiiu.setVARCK(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARCK)));
                 spCiius.add(spCiiu);
             }
@@ -148,8 +149,9 @@ public class DataCiiu {
                 SPCiiu spCiiu = new SPCiiu();
                 spCiiu.setID(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_ID)));
                 spCiiu.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_ID_PREGUNTA)));
+                spCiiu.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_SUBPREGUNTA)));
                 spCiiu.setVARACT(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARACT)));
-                spCiiu.setVARAUTO(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARAUTO)));
+                spCiiu.setVARCIIU(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARCIIU)));
                 spCiiu.setVARCK(cursor.getString(cursor.getColumnIndex(SQLCiiu.SPCIIU_VARCK)));
                 spCiius.add(spCiiu);
             }

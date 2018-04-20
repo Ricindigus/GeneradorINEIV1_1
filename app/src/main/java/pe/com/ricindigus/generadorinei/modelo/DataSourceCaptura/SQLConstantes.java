@@ -17,6 +17,12 @@ public class SQLConstantes {
     public static final String tablaTablas = "tablas";
     public static final String tablaPaginador = "paginador";
     public static final String tablaControlador = "controlador";
+    public static final String tablaCiius = "ciius";
+
+
+    public static final String CIIU_ID = "ID";
+    public static final String CIIU_DESCRIPCION = "DESCRIPCION";
+
 
     //COLUMNAS CONTROLADOR
     public static final String CONTROLADOR_ID = "ID";
@@ -66,6 +72,13 @@ public class SQLConstantes {
     public static final String MARCO_PISO = "PISO";
     public static final String MARCO_MZ = "MZ";
     public static final String MARCO_LOTE = "LOTE";
+
+
+    public static final String SQL_CREATE_TABLA_CIIU =
+            "CREATE TABLE " + tablaCiius + "(" +
+                    CIIU_ID + " TEXT PRIMARY KEY," +
+                    CIIU_DESCRIPCION + " TEXT" + ");"
+            ;
 
 
 
@@ -144,6 +157,7 @@ public class SQLConstantes {
     public static final String SQL_DELETE_TABLA = "DROP TABLE " + tablaTablas;
     public static final String SQL_DELETE_CONTROLADOR = "DROP TABLE " + tablaControlador;
     public static final String SQL_DELETE_PAGINADOR = "DROP TABLE " + tablaPaginador;
+    public static final String SQL_DELETE_CIIU = "DROP TABLE " + tablaCiius;
 
 
 
