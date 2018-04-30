@@ -59,7 +59,7 @@ public class CIIUFragment extends ComponenteFragment {
     private TextView[] textViewCiius;
     private AutoCompleteTextView[] autoCompleteTextViews;
     private CheckBox[] checkBoxes;
-
+    private boolean cargandoDatos = false;
     View rootView;
 
     public CIIUFragment() {
@@ -155,7 +155,30 @@ public class CIIUFragment extends ComponenteFragment {
 
     @Override
     public void cargarDatos() {
-
+        Data d = new Data(context);
+        d.open();
+        if(d.getNumeroControladores(idEmpresa,pCiiu.getID()) == 0){
+            cargandoDatos = true;
+            DataTablas data = new DataTablas(context);
+            data.open();
+            if(data.existenDatos(getIdTabla(),idEmpresa)){
+                for (int i = 0; i < spCiius.size() ; i++){
+                    SPCiiu sp = spCiius.get(i);
+                    editTexts[i].setText(data.getValor(getIdTabla(),sp.getVARACT(),idEmpresa));
+                    String codigoCiiu =  data.getValor(getIdTabla(),sp.getVARCIIU(),idEmpresa);
+                    textViewCiius[i].setText(codigoCiiu);
+                    autoCompleteTextViews[i].setText(d.getDescripcionCiiu(codigoCiiu));
+                    if(!sp.getVARCK().equals("")){
+                        if (data.getValor(getIdTabla(),sp.getVARCK(),idEmpresa).equals("1")) checkBoxes[i].setChecked(true);
+                    }
+                }
+            }
+            data.close();
+            cargandoDatos = false;
+        }else{
+            inhabilitar();
+        }
+        d.close();
     }
 
     @Override
@@ -195,31 +218,46 @@ public class CIIUFragment extends ComponenteFragment {
     @Override
     public boolean validarDatos() {
         boolean valido = true;
-        for (int i = 0; i < spCiius.size() ; i++) {
+        String mensaje = "";
+        int i = 0;
+        while(valido && i < spCiius.size()) {
             final LinearLayout linearLayout = linearLayouts[i];
             TextView textViewSp = textViewSps[i];
             final TextView textViewCiiu = textViewCiius[i];
             final EditText editText = editTexts[i];
             final AutoCompleteTextView autoCompleteTextView = autoCompleteTextViews[i];
             CheckBox checkBox = checkBoxes[i];
-            if (checkBox.getVisibility() == View.VISIBLE){
-                if(editText.getText().toString().equals("")){
-                    valido = false;
-                   mostrarMensaje("PREGUNTA " + pCiiu.getID() + ": " + "DEBE INDICAR " + spCiius.get(i).getSUBPREGUNTA().toUpperCase());
+            if(linearLayout.getVisibility() == View.VISIBLE){
+                if (checkBox.getVisibility() == View.VISIBLE ){
+                    if(!checkBox.isChecked()){
+                        if(editText.getText().toString().trim().equals("")){
+                            valido = false;
+                            mostrarMensaje("PREGUNTA " + pCiiu.getID() + ": " + "DEBE INDICAR " + spCiius.get(i).getSUBPREGUNTA().toUpperCase());
+                        }else{
+                            if(textViewCiiu.getText().toString().equals("")){
+                                valido = false;
+                                mostrarMensaje("PREGUNTA " + pCiiu.getID() + ": " + "DEBE INDICAR EL CIIU DE "+ spCiius.get(i).getSUBPREGUNTA().toUpperCase());
+                            }
+                        }
+                    }
                 }else{
-                    if(textViewCiiu.getText().toString().equals("")){
+                    if(editText.getText().toString().trim().equals("")){
+                        valido = false;
+                        mostrarMensaje("PREGUNTA " + pCiiu.getID() + ": " + "DEBE INDICAR " + spCiius.get(i).getSUBPREGUNTA().toUpperCase());
+                    }else if(textViewCiiu.getText().toString().trim().equals("")){
                         valido = false;
                         mostrarMensaje("PREGUNTA " + pCiiu.getID() + ": " + "DEBE INDICAR EL CIIU DE "+ spCiius.get(i).getSUBPREGUNTA().toUpperCase());
                     }
                 }
             }
+            i++;
         }
         return valido;
     }
 
     @Override
     public void llenarVista() {
-        txtPregunta.setText(pCiiu.getPREGUNTA());
+        txtPregunta.setText(pCiiu.getNUMERO() + "." + pCiiu.getPREGUNTA().toUpperCase());
         for (int i = 0; i < spCiius.size(); i++) {
             Data data = new Data(context);
             data.open();

@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margenMaterial"
+    android:layout_marginLeft="@dimen/margenMaterial"
+    android:layout_marginRight="@dimen/margenMaterial"
+    android:layout_marginTop="@dimen/margin5dp"
     tools:context="pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment">
     <LinearLayout
         android:layout_width="match_parent"

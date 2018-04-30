@@ -473,7 +473,6 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                     case TipoComponente.GPS:
                         GPS gps = dataGPS.getGPS(preguntas.get(i).get_id());
                         GPSFragment gpsFragment = new GPSFragment(EncuestaActivity.this, idEmpresa, gps);
-
                         fragmentComponente = gpsFragment;
                         break;
                     case TipoComponente.FORMULARIO:

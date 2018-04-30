@@ -420,6 +420,23 @@ public class Data {
         }
         return ciius;
     }
+
+    public String getDescripcionCiiu(String codigoCiiu){
+        String descripcion = "";
+        String[] whereArgs = new String[]{codigoCiiu};
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.query(SQLConstantes.tablaCiius, null,SQLConstantes.WHERE_CLAUSE_ID,whereArgs,null,null,null);
+            if(cursor.getCount() == 1){
+                cursor.moveToFirst();
+                descripcion = "[" + cursor.getString(cursor.getColumnIndex(SQLConstantes.CIIU_ID)) + "] "
+                        + cursor.getString(cursor.getColumnIndex(SQLConstantes.CIIU_DESCRIPCION));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return descripcion;
+    }
     //------------------FIN UBIGEO-----------------------------------------------------------------------------------------------------
 
 }
