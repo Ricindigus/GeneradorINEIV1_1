@@ -20,6 +20,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.PCiiuPullPars
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.SPCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.modelo.DataEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.PEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.SPEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.DataEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.pojos.PEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextPullParser;
@@ -93,6 +97,8 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPCheckBox> spCheckBoxes  = new ArrayList<SPCheckBox>();
     ArrayList<PRadio> pRadios = new ArrayList<PRadio>();
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
+    ArrayList<PEditSuma> pEditSumas = new ArrayList<>();
+    ArrayList<SPEditSuma> spEditSumas = new ArrayList<>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
     ArrayList<InfoTabla> infoTablas = new ArrayList<InfoTabla>();
@@ -111,6 +117,7 @@ public class SplashActivity extends AppCompatActivity {
     DataCiiu dataCiiu;
     DataCheckBox dataCheckBox;
     DataRadio dataRadio;
+    DataEditSuma dataEditSuma;
     DataTablas dataTablas;
 
 
@@ -149,6 +156,7 @@ public class SplashActivity extends AppCompatActivity {
             PCiiuPullParser pCiiuPullParser =  new PCiiuPullParser();
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
+            EditSumaPullParser editSumaPullParser = new EditSumaPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
             InfoTablasPullParser infoTablasPullParser = new InfoTablasPullParser();
@@ -177,6 +185,8 @@ public class SplashActivity extends AppCompatActivity {
             spCheckBoxes = checkBoxPullParser.parseXMLSPCheckBox(getApplicationContext());
             pRadios = radioPullParser.parseXMLPRadio(getApplicationContext());
             spRadios = radioPullParser.parseXMLSPRadio(getApplicationContext());
+            pEditSumas = editSumaPullParser.parseXMLPEditSuma(getApplicationContext());
+            spEditSumas = editSumaPullParser.parseXMLSPEditSuma(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
             infoTablas = infoTablasPullParser.parseXML(getApplicationContext());
@@ -236,6 +246,9 @@ public class SplashActivity extends AppCompatActivity {
             dataCheckBox.open();
             dataRadio = new DataRadio(getApplicationContext());
             dataRadio.open();
+            dataEditSuma = new DataEditSuma(getApplicationContext());
+            dataEditSuma.open();
+
 
 
 
@@ -422,6 +435,25 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
+                for (PEditSuma pEditSuma : pEditSumas) {
+                    try {
+                        dataEditSuma.insertarPEditSuma(pEditSuma);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPEditSuma spEditSuma : spEditSumas) {
+                    try {
+                        dataEditSuma.insertarSPEditSuma(spEditSuma);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+
                 for (Pagina pagina : paginas) {
                     try {
                         dataComponentes.insertarPagina(pagina);
@@ -490,6 +522,7 @@ public class SplashActivity extends AppCompatActivity {
             dataCiiu.close();
             dataCheckBox.close();
             dataRadio.close();
+            dataEditSuma.close();
 
             return mensaje;
         }

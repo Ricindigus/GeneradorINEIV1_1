@@ -10,8 +10,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -43,7 +47,7 @@ public class EditSumaFragment extends ComponenteFragment {
     private Context context;
     private String idEmpresa;
 
-    private TextView txtCabeceraPregunta, txtCabeceraRespuesta, txtPregunta;
+    private TextView txtCabeceraPregunta, txtCabeceraRespuesta, txtPregunta, txtSumaTotal;
     private TextView txt1,txt2,txt3,txt4,txt5,txt6,txt7,txt8,txt9,txt10;
     private EditText edt1,edt2,edt3,edt4,edt5,edt6,edt7,edt8,edt9,edt10;
     private CardView cv1, cv2,cv3,cv4,cv5,cv6, cv7, cv8, cv9, cv10;
@@ -73,8 +77,9 @@ public class EditSumaFragment extends ComponenteFragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_edit_suma, container, false);
 
-        txtCabeceraPregunta = rootView.findViewById(R.id.editsuma_cabecera_pregunta);
-        txtCabeceraRespuesta = rootView.findViewById(R.id.editsuma_cabecera_respuesta);
+        txtPregunta = (TextView) rootView.findViewById(R.id.editsuma_pregunta);
+        txtCabeceraPregunta = (TextView) rootView.findViewById(R.id.editsuma_cabecera_pregunta);
+        txtCabeceraRespuesta = (TextView) rootView.findViewById(R.id.editsuma_cabecera_respuesta);
 
         cv1 = (CardView) rootView.findViewById(R.id.editsuma_sp1);
         cv2 = (CardView) rootView.findViewById(R.id.editsuma_sp2);
@@ -98,6 +103,8 @@ public class EditSumaFragment extends ComponenteFragment {
         edt9 = (EditText) cv9.findViewById(R.id.edit_suma_sp_edit);
         edt10 = (EditText) cv10.findViewById(R.id.edit_suma_sp_edit);
 
+        txtSumaTotal = (TextView) rootView.findViewById(R.id.editsuma_cantidadTotal);
+
 
         txt1 = (TextView) cv1.findViewById(R.id.edit_suma_sp_text);
         txt2 = (TextView) cv2.findViewById(R.id.edit_suma_sp_text);
@@ -109,6 +116,8 @@ public class EditSumaFragment extends ComponenteFragment {
         txt8 = (TextView) cv8.findViewById(R.id.edit_suma_sp_text);
         txt9 = (TextView) cv9.findViewById(R.id.edit_suma_sp_text);
         txt10 = (TextView) cv10.findViewById(R.id.edit_suma_sp_text);
+
+
 
         cardViews = new CardView[]{cv1,cv2,cv3,cv4,cv5,cv6,cv7,cv8,cv9,cv10};
         editTexts = new EditText[]{edt1,edt2,edt3,edt4,edt5,edt6,edt7,edt8,edt9,edt10};
@@ -206,13 +215,18 @@ public class EditSumaFragment extends ComponenteFragment {
     public void llenarVista() {
         txtPregunta.setText(pEditSuma.getNUMERO() + ". " + pEditSuma.getPREGUNTA().toUpperCase());
         txtCabeceraPregunta.setText(pEditSuma.getCABPREG());
-        txtCabeceraPregunta.setText(pEditSuma.getCABRES());
+        txtCabeceraRespuesta.setText(pEditSuma.getCABRES());
 
         for (int i = 0; i < subpreguntas.size(); i++) {
             SPEditSuma spEditSuma = subpreguntas.get(i);
             final CardView cardView = cardViews[i];
             final EditText editText = editTexts[i];
             final TextView textView = textViews[i];
+
+            cardView.setVisibility(View.VISIBLE);
+            textView.setText(spEditSuma.getSUBPREGUNTA());
+            editText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+            editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Integer.parseInt(spEditSuma.getLONGITUD()))});
 
             editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override
@@ -225,9 +239,29 @@ public class EditSumaFragment extends ComponenteFragment {
                     return false;
                 }
             });
-            cardView.setVisibility(View.VISIBLE);
-            textView.setText(spEditSuma.getSUBPREGUNTA());
-            editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Integer.parseInt(spEditSuma.getLONGITUD()))});
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if(!charSequence.toString().equals("")){
+                        txtSumaTotal.setText((Integer.parseInt(txtSumaTotal.getText().toString()) - Integer.parseInt(charSequence.toString()))+"");
+                    }
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    int despues = 0;
+                    if(!editable.toString().equals("")) despues = Integer.parseInt(editable.toString());
+                    if(!(Integer.parseInt(txtSumaTotal.getText().toString())== 0)){
+                        txtSumaTotal.setText((Integer.parseInt(txtSumaTotal.getText().toString()) + despues) + "");
+                    }else{
+                        txtSumaTotal.setText(despues + "");
+                    }
+                }
+            });
         }
     }
 

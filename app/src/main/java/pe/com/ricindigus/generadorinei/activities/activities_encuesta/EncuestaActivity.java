@@ -35,6 +35,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.CIIUFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.SPCiiu;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.modelo.DataEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.PEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.SPEditSuma;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
@@ -102,6 +106,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private DataRadio dataRadio;
     private DataCiiu dataCiiu;
     private DataGPS dataGPS;
+    private DataEditSuma dataEditSuma;
     private ContentValues contentPaginador;
     private ContentValues contentControlador;
 
@@ -448,6 +453,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataRadio = new DataRadio(getApplicationContext());
         dataCiiu =  new DataCiiu(getApplicationContext());
         dataGPS = new DataGPS(getApplicationContext());
+        dataEditSuma =  new DataEditSuma(getApplicationContext());
         dataComponentes.open();
         dataUbicacion.open();
         dataFormulario.open();
@@ -456,6 +462,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataRadio.open();
         dataGPS.open();
         dataCiiu.open();
+        dataEditSuma.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
@@ -504,6 +511,12 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                         ArrayList<SPCiiu> spCiius = dataCiiu.getSPCiius(preguntas.get(i).get_id());
                         CIIUFragment ciiuFragment = new CIIUFragment(pCiiu, spCiius, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = ciiuFragment;
+                        break;
+                    case TipoComponente.EDITSUMA:
+                        PEditSuma pEditSuma = dataEditSuma.getPEditSuma(preguntas.get(i).get_id());
+                        ArrayList<SPEditSuma> spEditSumas = dataEditSuma.getSPEditSuma(preguntas.get(i).get_id());
+                        EditSumaFragment editSumaFragment = new EditSumaFragment(pEditSuma, spEditSumas, EncuestaActivity.this, idEmpresa);
+                        fragmentComponente = editSumaFragment;
                         break;
 //                    case TipoComponente.M2P1:
 //                        fragmentComponente = new M2P1Fragment();

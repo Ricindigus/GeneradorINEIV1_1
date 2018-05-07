@@ -13,4 +13,5 @@ public class TipoComponente {
     public static final int CHECKBOX = 6;
     public static final int RADIO = 7;
     public static final int CIIU = 8;
+    public static final int EDITSUMA = 9;
 }
