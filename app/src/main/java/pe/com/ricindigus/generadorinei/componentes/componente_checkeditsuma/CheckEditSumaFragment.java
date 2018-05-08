@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -134,6 +136,13 @@ public class CheckEditSumaFragment extends ComponenteFragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        llenarVista();
+        cargarDatos();
+    }
+
+    @Override
     public void inhabilitar() {
         for (int i = 0; i <subpreguntas.size() ; i++) editTexts[i].setText("");
         rootView.setVisibility(View.GONE);
@@ -154,8 +163,12 @@ public class CheckEditSumaFragment extends ComponenteFragment {
                 String variable = subpreguntas.get(i).getVARIABLE();
                 String valor = editTexts[i].getText().toString();
                 contentValues.put(variable, valor);
+                if(subpreguntas.get(i).getVARESP() != null){
+                    contentValues.put(subpreguntas.get(i).getVARESP(),editEspecifiques[i].getText().toString());
+                }
             }
         }
+        contentValues.put(pCheckEditSuma.getVALSUMA(),txtSumaTotal.getText().toString());
         if(!data.existenDatos(getIdTabla(),idEmpresa)){
             contentValues.put("ID_EMPRESA",idEmpresa);
             data.insertarValores(getIdTabla(),contentValues);
@@ -171,14 +184,23 @@ public class CheckEditSumaFragment extends ComponenteFragment {
             int c = 0;
             while(correcto && c < subpreguntas.size()){
                 if(linearLayouts[c].getVisibility() == View.VISIBLE){
-                    if(editTexts[c].isEnabled()){
+                    if(checkBoxes[c].isChecked()){
                         if(editTexts[c].getText().toString().trim().equals("")){
                             correcto = false;
                             mensaje = "PREGUNTA " + pCheckEditSuma.getNUMERO() + ": COMPLETE LA PREGUNTA";
+                        }else if(subpreguntas.get(c).getVARESP() != null){
+                            if (editEspecifiques[c].getText().toString().trim().equals("")){
+                                correcto = false;
+                                mensaje = "PREGUNTA " + pCheckEditSuma.getNUMERO() + ": ESPECIFIQUE LA INFORMACION SOLICITADA";
+                            }
                         }
                     }
                 }
                 c++;
+            }
+            if (txtSumaTotal.getText().toString().equals("0")){
+                correcto = false;
+                mensaje = "PREGUNTA " + pCheckEditSuma.getNUMERO() + ": DEBE SELECCIONAR UNA O MAS OPCIONES";
             }
         }
         if(!correcto) mostrarMensaje(mensaje);
@@ -204,10 +226,16 @@ public class CheckEditSumaFragment extends ComponenteFragment {
             DataTablas data = new DataTablas(context);
             data.open();
             if(data.existenDatos(getIdTabla(),idEmpresa)){
-                String[] variables = new String[subpreguntas.size()];
-                for (int i = 0; i < subpreguntas.size() ; i++) variables[i] = subpreguntas.get(i).getVARIABLE();
-                String[] valores = data.getValores(getIdTabla(),variables,idEmpresa);
-                for (int i = 0; i < valores.length; i++) {if(valores[i] != null) editTexts[i].setText(valores[i]);}
+                for (int i = 0; i < subpreguntas.size() ; i++) {
+                    String variable = subpreguntas.get(i).getVARIABLE();
+                    String valor = data.getValor(getIdTabla(),variable,idEmpresa);
+                    if(valor != null) editTexts[i].setText(valor);
+                    if(subpreguntas.get(i).getVARESP() != null){
+                        String var = subpreguntas.get(i).getVARESP();
+                        String val = data.getValor(getIdTabla(),variable,idEmpresa);
+                        if(valor != null) editEspecifiques[i].setText(valor);
+                    }
+                }
             }
             data.close();
             cargandoDatos = false;
@@ -223,15 +251,45 @@ public class CheckEditSumaFragment extends ComponenteFragment {
         txtCabeceraRespuesta.setText(pCheckEditSuma.getCABRES());
 
         for (int i = 0; i < subpreguntas.size(); i++) {
-            SPCheckEditSuma spCheckEditSuma = subpreguntas.get(i);
+            final SPCheckEditSuma spCheckEditSuma = subpreguntas.get(i);
             final LinearLayout linearLayout = linearLayouts[i];
             final EditText editText = editTexts[i];
-            final TextView textView = checkBoxes[i];
+            final CheckBox checkBox = checkBoxes[i];
+            final EditText editEspecifique =  editEspecifiques[i];
 
             linearLayout.setVisibility(View.VISIBLE);
-            textView.setText(spCheckEditSuma.getSUBPREGUNTA());
+            checkBox.setText(spCheckEditSuma.getSUBPREGUNTA());
             editText.setTransformationMethod(new NumericKeyBoardTransformationMethod());
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Integer.parseInt(spCheckEditSuma.getLONGITUD()))});
+
+            if (spCheckEditSuma.getVARESP() != null){
+                editEspecifique.setVisibility(View.VISIBLE);
+                editEspecifique.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+            }
+
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        editText.setEnabled(true);
+                        editText.setBackgroundResource(R.drawable.edittext_enabled);
+                        if (spCheckEditSuma.getVARESP() != null){
+                            editEspecifique.setEnabled(true);
+                            editEspecifique.setBackgroundResource(R.drawable.edittext_enabled);
+                        }
+                    }else{
+                        editText.setText("");
+                        editText.setEnabled(false);
+                        editText.setBackgroundResource(R.drawable.edittext_disabled);
+                        if (spCheckEditSuma.getVARESP() != null){
+                            editEspecifique.setText("");
+                            editEspecifique.setEnabled(false);
+                            editEspecifique.setBackgroundResource(R.drawable.edittext_disabled);
+                        }
+                    }
+                }
+            });
 
             editText.setOnKeyListener(new View.OnKeyListener() {
                 @Override

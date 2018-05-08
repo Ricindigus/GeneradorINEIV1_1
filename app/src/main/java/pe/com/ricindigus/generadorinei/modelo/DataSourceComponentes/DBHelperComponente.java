@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.SQLCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.SQLCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.modelo.SQLEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
@@ -42,6 +43,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLRadio.SQL_CREATE_TABLA_SPRADIO);
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_CREATE_TABLA_EDITSUMA);
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_CREATE_TABLA_SPEDITSUMA);
+        sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_CREATE_TABLA_CHECKEDITSUMA);
+        sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_CREATE_TABLA_SPCHECKEDITSUMA);
         sqLiteDatabase.execSQL(SQLUbicacion.SQL_CREATE_TABLA_UBICACION);
         sqLiteDatabase.execSQL(SQLGps.SQL_CREATE_TABLA_GPS);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
@@ -69,6 +72,8 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLRadio.SQL_DELETE_SPRADIO);
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_DELETE_EDITSUMA);
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_DELETE_SPEDITSUMA);
+        sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_DELETE_CHECKEDITSUMA);
+        sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_DELETE_SPCHECKEDITSUMA);
         sqLiteDatabase.execSQL(SQLUbicacion.SQL_DELETE_UBICACION);
         sqLiteDatabase.execSQL(SQLGps.SQL_DELETE_GPS);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_DELETE_FORMULARIO);

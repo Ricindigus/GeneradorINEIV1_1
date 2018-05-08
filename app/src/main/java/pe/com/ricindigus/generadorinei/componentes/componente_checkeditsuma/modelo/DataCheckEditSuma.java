@@ -106,8 +106,8 @@ public class DataCheckEditSuma {
         }
         return pEditSumas;
     }
-    public void insertarSPCheckEditSuma(SPCheckEditSuma spEditSuma){
-        ContentValues contentValues = spEditSuma.toValues();
+    public void insertarSPCheckEditSuma(SPCheckEditSuma spCheckEditSuma){
+        ContentValues contentValues = spCheckEditSuma.toValues();
         sqLiteDatabase.insert(SQLCheckEditSuma.tablaSPCheckEditSuma,null,contentValues);
     }
     public void insertarSPCheckEditSumas(ArrayList<SPCheckEditSuma> spEditSumas){
@@ -124,26 +124,26 @@ public class DataCheckEditSuma {
     }
 
     public ArrayList<SPCheckEditSuma> getSPCheckEditSuma(String idPregunta) {
-        ArrayList<SPCheckEditSuma> spEditSumas = new ArrayList<SPCheckEditSuma>();
+        ArrayList<SPCheckEditSuma> spCheckEditSumas = new ArrayList<SPCheckEditSuma>();
         String[] whereArgs = new String[]{idPregunta};
         Cursor cursor = null;
         try{
             cursor = sqLiteDatabase.query(SQLCheckEditSuma.tablaSPCheckEditSuma,
                     SQLCheckEditSuma.ALL_COLUMNS_SPCHECKEDITSUMA, SQLCheckEditSuma.WHERE_CLAUSE_ID_PREGUNTA, whereArgs, null, null, null);
             while(cursor.moveToNext()){
-                SPCheckEditSuma spEditSuma = new SPCheckEditSuma();
-                spEditSuma.setID(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_ID)));
-                spEditSuma.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_ID_PREGUNTA)));
-                spEditSuma.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_SUBPREGUNTA)));
-                spEditSuma.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_VARIABLE)));
-                spEditSuma.setVARESP(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_VARESP)));
-                spEditSuma.setLONGITUD(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_LONGITUD)));
-                spEditSumas.add(spEditSuma);
+                SPCheckEditSuma spCheckEditSuma = new SPCheckEditSuma();
+                spCheckEditSuma.setID(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_ID)));
+                spCheckEditSuma.setID_PREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_ID_PREGUNTA)));
+                spCheckEditSuma.setSUBPREGUNTA(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_SUBPREGUNTA)));
+                spCheckEditSuma.setVARIABLE(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_VARIABLE)));
+                spCheckEditSuma.setVARESP(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_VARESP)));
+                spCheckEditSuma.setLONGITUD(cursor.getString(cursor.getColumnIndex(SQLCheckEditSuma.SPCHECKEDITSUMA_LONGITUD)));
+                spCheckEditSumas.add(spCheckEditSuma);
             }
         }finally {
             if(cursor != null) cursor.close();
         }
-        return spEditSumas;
+        return spCheckEditSumas;
     }
 
     public ArrayList<SPCheckEditSuma> getAllSPCheckEditSumas() {

@@ -16,6 +16,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.Da
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.PCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.pojos.SPCheckBox;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.CheckEditSumaPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.DataCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.PCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.SPCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.PCiiuPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
@@ -99,6 +103,8 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPRadio> spRadios = new ArrayList<SPRadio>();
     ArrayList<PEditSuma> pEditSumas = new ArrayList<>();
     ArrayList<SPEditSuma> spEditSumas = new ArrayList<>();
+    ArrayList<PCheckEditSuma> pCheckEditSumas = new ArrayList<>();
+    ArrayList<SPCheckEditSuma> spCheckEditSumas = new ArrayList<>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
     ArrayList<InfoTabla> infoTablas = new ArrayList<InfoTabla>();
@@ -118,6 +124,7 @@ public class SplashActivity extends AppCompatActivity {
     DataCheckBox dataCheckBox;
     DataRadio dataRadio;
     DataEditSuma dataEditSuma;
+    DataCheckEditSuma dataCheckEditSuma;
     DataTablas dataTablas;
 
 
@@ -157,6 +164,7 @@ public class SplashActivity extends AppCompatActivity {
             CheckBoxPullParser checkBoxPullParser = new CheckBoxPullParser();
             RadioPullParser radioPullParser = new RadioPullParser();
             EditSumaPullParser editSumaPullParser = new EditSumaPullParser();
+            CheckEditSumaPullParser checkEditSumaPullParser = new CheckEditSumaPullParser();
             PaginaPullParser paginaPullParser = new PaginaPullParser();
             OpcionSpinnerPullParser opcionSpinnerPullParser = new OpcionSpinnerPullParser();
             InfoTablasPullParser infoTablasPullParser = new InfoTablasPullParser();
@@ -187,6 +195,8 @@ public class SplashActivity extends AppCompatActivity {
             spRadios = radioPullParser.parseXMLSPRadio(getApplicationContext());
             pEditSumas = editSumaPullParser.parseXMLPEditSuma(getApplicationContext());
             spEditSumas = editSumaPullParser.parseXMLSPEditSuma(getApplicationContext());
+            pCheckEditSumas = checkEditSumaPullParser.parseXMLPCheckEditSuma(getApplicationContext());
+            spCheckEditSumas = checkEditSumaPullParser.parseXMLSPCheckEditSuma(getApplicationContext());
             paginas = paginaPullParser.parseXML(getApplicationContext());
             opciones = opcionSpinnerPullParser.parseXML(getApplicationContext());
             infoTablas = infoTablasPullParser.parseXML(getApplicationContext());
@@ -200,7 +210,8 @@ public class SplashActivity extends AppCompatActivity {
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + ciius.size()+ modulos.size() + visitas.size()+
                 + ubicaciones.size() + gpsArrayList.size() + formularios.size() + preguntas.size()
                 + pEditTexts.size() + spEditTexts.size() + pCiius.size()+ spCiius.size()
-                + pCheckBoxes.size() + spCheckBoxes.size()
+                + pCheckBoxes.size() + spCheckBoxes.size() +pEditSumas.size() + spEditSumas.size()
+                + pCheckEditSumas.size() + spCheckEditSumas.size() +
                 + pRadios.size() + spRadios.size() + encuestas.size()
                 + paginas.size() + opciones.size() + infoTablas.size() + eventos.size() + variables.size() ;
         carga = (maximo*1.00)/100.00;
@@ -248,8 +259,8 @@ public class SplashActivity extends AppCompatActivity {
             dataRadio.open();
             dataEditSuma = new DataEditSuma(getApplicationContext());
             dataEditSuma.open();
-
-
+            dataCheckEditSuma =  new DataCheckEditSuma(getApplicationContext());
+            dataCheckEditSuma.open();
 
 
             long items = data.getNumeroItemsMarco();
@@ -453,7 +464,24 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
-
+                for (PCheckEditSuma pCheckEditSuma : pCheckEditSumas) {
+                    try {
+                        dataCheckEditSuma.insertarPCheckEditSuma(pCheckEditSuma);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPCheckEditSuma spCheckEditSuma : spCheckEditSumas) {
+                    try {
+                        dataCheckEditSuma.insertarSPCheckEditSuma(spCheckEditSuma);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
                 for (Pagina pagina : paginas) {
                     try {
                         dataComponentes.insertarPagina(pagina);

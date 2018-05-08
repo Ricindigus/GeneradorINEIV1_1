@@ -26,28 +26,25 @@
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/check_edit_suma_sp_especifique"
-                android:layout_width="300dp"
+                android:layout_width="400dp"
                 android:layout_height="30dp"
                 android:inputType="text"
                 android:enabled="false"
                 android:hint="Especifique"
                 android:paddingLeft="@dimen/margin5dp"
+                android:visibility="gone"
                 android:background="@drawable/edittext_disabled"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
+    <EditText
+        android:id="@+id/check_edit_suma_sp_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:minHeight="40dp">
-        <EditText
-            android:id="@+id/check_edit_suma_sp_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:inputType="numberPassword"
-            android:background="@drawable/fondo_blanco"/>
-    </android.support.v7.widget.CardView>
-
+        android:minHeight="40dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:inputType="numberPassword"
+        android:enabled="false"
+        android:background="@drawable/edittext_disabled"/>
 </LinearLayout>

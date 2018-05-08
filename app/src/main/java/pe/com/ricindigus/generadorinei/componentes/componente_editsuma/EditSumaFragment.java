@@ -153,6 +153,7 @@ public class EditSumaFragment extends ComponenteFragment {
             String valor = editTexts[i].getText().toString();
             contentValues.put(variable, valor);
         }
+        contentValues.put(pEditSuma.getVALSUMA(),txtSumaTotal.getText().toString());
         if(!data.existenDatos(getIdTabla(),idEmpresa)){
             contentValues.put("ID_EMPRESA",idEmpresa);
             data.insertarValores(getIdTabla(),contentValues);

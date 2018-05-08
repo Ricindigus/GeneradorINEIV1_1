@@ -31,6 +31,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.CheckEditSumaFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.DataCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.PCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.SPCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.CIIUFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
@@ -107,6 +111,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private DataCiiu dataCiiu;
     private DataGPS dataGPS;
     private DataEditSuma dataEditSuma;
+    private DataCheckEditSuma dataCheckEditSuma;
     private ContentValues contentPaginador;
     private ContentValues contentControlador;
 
@@ -454,6 +459,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataCiiu =  new DataCiiu(getApplicationContext());
         dataGPS = new DataGPS(getApplicationContext());
         dataEditSuma =  new DataEditSuma(getApplicationContext());
+        dataCheckEditSuma = new DataCheckEditSuma(getApplicationContext());
+
         dataComponentes.open();
         dataUbicacion.open();
         dataFormulario.open();
@@ -463,6 +470,7 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataGPS.open();
         dataCiiu.open();
         dataEditSuma.open();
+        dataCheckEditSuma.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
@@ -518,6 +526,13 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                         EditSumaFragment editSumaFragment = new EditSumaFragment(pEditSuma, spEditSumas, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = editSumaFragment;
                         break;
+                    case TipoComponente.CHECKEDITSUMA:
+                        PCheckEditSuma pCheckEditSuma = dataCheckEditSuma.getPCheckEditSuma(preguntas.get(i).get_id());
+                        ArrayList<SPCheckEditSuma> spCheckEditSumas = dataCheckEditSuma.getSPCheckEditSuma(preguntas.get(i).get_id());
+                        CheckEditSumaFragment checkEditSumaFragment = new CheckEditSumaFragment(pCheckEditSuma, spCheckEditSumas, EncuestaActivity.this, idEmpresa);
+                        fragmentComponente = checkEditSumaFragment;
+                        break;
+
 //                    case TipoComponente.M2P1:
 //                        fragmentComponente = new M2P1Fragment();
 //                        break;
@@ -536,6 +551,10 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataCheckBox.close();
         dataRadio.close();
         dataGPS.close();
+        dataCiiu.close();
+        dataEditSuma.close();
+        dataCheckEditSuma.close();
+
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

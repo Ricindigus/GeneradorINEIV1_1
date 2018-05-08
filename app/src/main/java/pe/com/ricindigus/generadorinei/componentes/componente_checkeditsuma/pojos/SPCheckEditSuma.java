@@ -83,6 +83,7 @@ public class SPCheckEditSuma {
         contentValues.put(SQLCheckEditSuma.SPCHECKEDITSUMA_ID_PREGUNTA, ID_PREGUNTA);
         contentValues.put(SQLCheckEditSuma.SPCHECKEDITSUMA_SUBPREGUNTA, SUBPREGUNTA);
         contentValues.put(SQLCheckEditSuma.SPCHECKEDITSUMA_VARIABLE, VARIABLE);
+        contentValues.put(SQLCheckEditSuma.SPCHECKEDITSUMA_VARESP, VARESP);
         contentValues.put(SQLCheckEditSuma.SPCHECKEDITSUMA_LONGITUD, LONGITUD);
         return contentValues;
     }
