@@ -6,12 +6,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.modelo.SQLCheckBox;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.SQLCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.modelo.SQLCheckPrioridad;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.SQLCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.modelo.SQLEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_edittext.modelo.SQLEditText;
 import pe.com.ricindigus.generadorinei.componentes.componente_formulario.modelo.SQLFormulario;
 import pe.com.ricindigus.generadorinei.componentes.componente_gps.modelo.SQLGps;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.SQLRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.modelo.SQLSelectPais;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.SQLUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_visitas.modelo.SQLVisitas;
 
@@ -45,6 +47,9 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_CREATE_TABLA_SPEDITSUMA);
         sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_CREATE_TABLA_CHECKEDITSUMA);
         sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_CREATE_TABLA_SPCHECKEDITSUMA);
+        sqLiteDatabase.execSQL(SQLCheckPrioridad.SQL_CREATE_TABLA_CHECKPRIORIDAD);
+        sqLiteDatabase.execSQL(SQLCheckPrioridad.SQL_CREATE_TABLA_SPCHECKPRIORIDAD);
+        sqLiteDatabase.execSQL(SQLSelectPais.SQL_CREATE_TABLA_SELECTPAIS);
         sqLiteDatabase.execSQL(SQLUbicacion.SQL_CREATE_TABLA_UBICACION);
         sqLiteDatabase.execSQL(SQLGps.SQL_CREATE_TABLA_GPS);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_CREATE_TABLA_FORMULARIO);
@@ -74,6 +79,9 @@ public class DBHelperComponente extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(SQLEditSuma.SQL_DELETE_SPEDITSUMA);
         sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_DELETE_CHECKEDITSUMA);
         sqLiteDatabase.execSQL(SQLCheckEditSuma.SQL_DELETE_SPCHECKEDITSUMA);
+        sqLiteDatabase.execSQL(SQLSelectPais.SQL_DELETE_SELECTPAIS);
+        sqLiteDatabase.execSQL(SQLCheckPrioridad.SQL_DELETE_CHECKPRIORIDAD);
+        sqLiteDatabase.execSQL(SQLCheckPrioridad.SQL_DELETE_SPCHECKPRIORIDAD);
         sqLiteDatabase.execSQL(SQLUbicacion.SQL_DELETE_UBICACION);
         sqLiteDatabase.execSQL(SQLGps.SQL_DELETE_GPS);
         sqLiteDatabase.execSQL(SQLFormulario.SQL_DELETE_FORMULARIO);

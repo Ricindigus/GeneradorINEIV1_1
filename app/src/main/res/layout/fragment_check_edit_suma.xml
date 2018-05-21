@@ -75,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
+                android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
@@ -94,13 +95,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="2dp">
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp">
                     <TextView
                         android:id="@+id/checkeditsuma_cantidadTotal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="@color/colorIcons"
                         android:textColor="@color/greyBluePrimaryDark"
                         android:textStyle="bold"
                         android:text="0"/>

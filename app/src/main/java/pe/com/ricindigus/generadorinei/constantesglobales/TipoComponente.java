@@ -15,5 +15,8 @@ public class TipoComponente {
     public static final int CIIU = 8;
     public static final int EDITSUMA = 9;
     public static final int CHECKEDITSUMA = 10;
+    public static final int SELECTPAIS = 11;
+    public static final int CHECKPRIORIDAD = 12;
+
 
 }

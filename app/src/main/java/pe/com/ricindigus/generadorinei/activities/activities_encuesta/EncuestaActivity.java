@@ -35,6 +35,11 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.Chec
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.DataCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.PCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.SPCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.CheckPrioridadFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.CheckPrioridadPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.modelo.DataCheckPrioridad;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.pojos.PCheckPrioridad;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.pojos.SPCheckPrioridad;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.CIIUFragment;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
@@ -43,6 +48,9 @@ import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.EditSumaF
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.modelo.DataEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.PEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_editsuma.pojos.SPEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.SelectPaisFragment;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.modelo.DataSelectPais;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.pojos.PSelectPais;
 import pe.com.ricindigus.generadorinei.fragments.ComponenteFragment;
 import pe.com.ricindigus.generadorinei.interfaces.ActividadInterfaz;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkbox.CheckBoxFragment;
@@ -112,6 +120,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
     private DataGPS dataGPS;
     private DataEditSuma dataEditSuma;
     private DataCheckEditSuma dataCheckEditSuma;
+    private DataSelectPais dataSelectPais;
+    private DataCheckPrioridad dataCheckPrioridad;
     private ContentValues contentPaginador;
     private ContentValues contentControlador;
 
@@ -460,6 +470,9 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataGPS = new DataGPS(getApplicationContext());
         dataEditSuma =  new DataEditSuma(getApplicationContext());
         dataCheckEditSuma = new DataCheckEditSuma(getApplicationContext());
+        dataSelectPais =  new DataSelectPais(getApplicationContext());
+        dataCheckPrioridad = new DataCheckPrioridad(getApplicationContext());
+
 
         dataComponentes.open();
         dataUbicacion.open();
@@ -471,6 +484,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataCiiu.open();
         dataEditSuma.open();
         dataCheckEditSuma.open();
+        dataSelectPais.open();
+        dataCheckPrioridad.open();
 
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
         ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
@@ -532,6 +547,17 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
                         CheckEditSumaFragment checkEditSumaFragment = new CheckEditSumaFragment(pCheckEditSuma, spCheckEditSumas, EncuestaActivity.this, idEmpresa);
                         fragmentComponente = checkEditSumaFragment;
                         break;
+                    case TipoComponente.SELECTPAIS:
+                        PSelectPais pSelectPais = dataSelectPais.getPSelectPais(preguntas.get(i).get_id());
+                        SelectPaisFragment selectPaisFragment = new SelectPaisFragment(pSelectPais,EncuestaActivity.this, idEmpresa);
+                        fragmentComponente = selectPaisFragment;
+                        break;
+                    case TipoComponente.CHECKPRIORIDAD:
+                        PCheckPrioridad pCheckPrioridad = dataCheckPrioridad.getPCheckPrioridad(preguntas.get(i).get_id());
+                        ArrayList<SPCheckPrioridad> spCheckPrioridads = dataCheckPrioridad.getSPCheckPrioridad(preguntas.get(i).get_id());
+                        CheckPrioridadFragment checkPrioridadFragment = new CheckPrioridadFragment(pCheckPrioridad, spCheckPrioridads, EncuestaActivity.this, idEmpresa);
+                        fragmentComponente = checkPrioridadFragment;
+                        break;
 
 //                    case TipoComponente.M2P1:
 //                        fragmentComponente = new M2P1Fragment();
@@ -554,6 +580,8 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataCiiu.close();
         dataEditSuma.close();
         dataCheckEditSuma.close();
+        dataSelectPais.close();
+        dataCheckPrioridad.close();
 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -565,8 +593,6 @@ public class EncuestaActivity extends AppCompatActivity implements ActividadInte
         dataComponentes = new DataComponentes(getApplicationContext());
         dataComponentes.open();
         Pagina pagina = dataComponentes.getPagina(numeroPagina + "");
-//        String[] ids = {pagina.getIDP1(), pagina.getIDP2(), pagina.getIDP3(), pagina.getIDP4(), pagina.getIDP5(),
-//                pagina.getIDP6(), pagina.getIDP7(), pagina.getIDP8(), pagina.getIDP9(), pagina.getIDP10()};
         ArrayList<Pregunta> preguntas = dataComponentes.getPreguntasXPagina(numeroPagina + "");
         int indice = 0;
         while (indice<preguntas.size() && valido) {

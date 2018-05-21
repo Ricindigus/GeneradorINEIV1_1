@@ -52,6 +52,13 @@
         <item>EMPRESAS</item>
     </string-array>
 
+    <string-array name="prioridad">
+        <item>Seleccione...</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <string-array name="tipos_componentes">
         <item>Seleccione tipo</item>
         <item>VISITAS</item>
@@ -534,4 +541,208 @@
 
     <string name="action_settings">Settings</string>
 
+
+    <string-array name="paises">
+        <item>AFGANISTAN [8]</item>
+        <item>ALBANIA [7]</item>
+        <item>ALEMANIA [7]</item>
+        <item>ANDORRA [7]</item>
+        <item>ANGOLA [8]</item>
+        <item>ANTIGUA Y BARBUDA [8]</item>
+        <item>ARABIA SAUDITA [8]</item>
+        <item>ARGELIA [8]</item>
+        <item>ARGENTINA [6]</item>
+        <item>ARMENIA [8]</item>
+        <item>AUSTRALIA [8]</item>
+        <item>AUSTRIA [7]</item>
+        <item>AZERBAIYAN [8]</item>
+        <item>BAHAMAS [8]</item>
+        <item>BAHREN [8]</item>
+        <item>BANGLADESH [8]</item>
+        <item>BARBADOS [8]</item>
+        <item>BELARUS  [7]</item>
+        <item>BELGICA [7]</item>
+        <item>BELICE [8]</item>
+        <item>BENIN [8]</item>
+        <item>BHUTAN [8]</item>
+        <item>BOLIVIA  [6]</item>
+        <item>BOSNIA Y HERZEGIVINA  [7]</item>
+        <item>BOTSWANA [8]</item>
+        <item>BRASIL [6]</item>
+        <item>BRUNEI [8]</item>
+        <item>BULGARIA [7]</item>
+        <item>BURKINA FASO [8]</item>
+        <item>BURUNDI [8]</item>
+        <item>CABO VERDE [8]</item>
+        <item>CAMBOYA [8]</item>
+        <item>CAMERUN [8]</item>
+        <item>CANADA [8]</item>
+        <item>CHAD [8]</item>
+        <item>CHILE [6]</item>
+        <item>CHINA [3]</item>
+        <item>CHIPRE [8]</item>
+        <item>CHIPRE SEPTENTRIONAL [8]</item>
+        <item>COLOMBIA [6]</item>
+        <item>COMORAS [8]</item>
+        <item>CONGO [8]</item>
+        <item>COSTA RIOCA [8]</item>
+        <item>COTE DIVOIRE [8]</item>
+        <item>CROACIA  [7]</item>
+        <item>CUBA [8]</item>
+        <item>DINAMARCA [7]</item>
+        <item>DJIBOUTI [8]</item>
+        <item>DOMINICA [8]</item>
+        <item>ECUADOR [6]</item>
+        <item>EGIPTO [8]</item>
+        <item>EL SALVADOR [8]</item>
+        <item>EMIRATOS ARABES UNIDOS [8]</item>
+        <item>ERITREA [8]</item>
+        <item>ESLOVAQUIA [7]</item>
+        <item>ESLOVENIA  [7]</item>
+        <item>ESPAÑA [7]</item>
+        <item>ESTADOS UNIDOS [2]</item>
+        <item>ESTONIA  [7]</item>
+        <item>ETIOPIA [8]</item>
+        <item>FIJI [8]</item>
+        <item>FILIPINAS [8]</item>
+        <item>FINLANDIA [7]</item>
+        <item>FRANCIA [7]</item>
+        <item>GABON [8]</item>
+        <item>GAMBIA [8]</item>
+        <item>GEORGIA [8]</item>
+        <item>GHANA [8]</item>
+        <item>GRANADA [8]</item>
+        <item>GRECIA [7]</item>
+        <item>GUATEMALA [8]</item>
+        <item>GUINEA  [8]</item>
+        <item>GUINEA BISSAU [8]</item>
+        <item>GUINEA ECUATORIAL [8]</item>
+        <item>GUYANA [6]</item>
+        <item>GUYANA FRANCESA  [8]</item>
+        <item>HAITI [8]</item>
+        <item>HONDURAS  [8]</item>
+        <item>HUNGRIA [7]</item>
+        <item>INDIA [8]</item>
+        <item>INDONESIA [8]</item>
+        <item>IRAN [8]</item>
+        <item>IRAQ [8]</item>
+        <item>IRLANDA [7]</item>
+        <item>ISLANDIA [7]</item>
+        <item>ISLAS MARSHALL [8]</item>
+        <item>ISLAS SALOMON [8]</item>
+        <item>ISRAEL [8]</item>
+        <item>ITALIA [7]</item>
+        <item>JA LIBIA [8]</item>
+        <item>JAMAICA [8]</item>
+        <item>JAPON [4]</item>
+        <item>JORDANIA [8]</item>
+        <item>KAZAJSTAN [8]</item>
+        <item>KENYA [8]</item>
+        <item>KIRGUISTAN [8]</item>
+        <item>KIRIBATI [8]</item>
+        <item>KUWAIT [8]</item>
+        <item>LESOTHO [8]</item>
+        <item>LETONIA  [7]</item>
+        <item>LIBANO [8]</item>
+        <item>LIBERIA [8]</item>
+        <item>LIECHTENSTEIN [7]</item>
+        <item>LITUANIA [7]</item>
+        <item>LUXEMBURGO [7]</item>
+        <item>MACEDONIA  [7]</item>
+        <item>MADAGASCAR [8]</item>
+        <item>MALASIA, FEDERACION DE [8]</item>
+        <item>MALAWI [8]</item>
+        <item>MALDIVAS [8]</item>
+        <item>MALI [8]</item>
+        <item>MALTA [7]</item>
+        <item>MARRUECOS [8]</item>
+        <item>MAURICIO [8]</item>
+        <item>MAURITANIA [8]</item>
+        <item>MEXICO [8]</item>
+        <item>MICRONESIA [8]</item>
+        <item>MOLDOVA [7]</item>
+        <item>MONACO [7]</item>
+        <item>MONGOLIA [8]</item>
+        <item>MOZAMBIQUE [8]</item>
+        <item>MYANAMAR  [8]</item>
+        <item>NAMIDIA [8]</item>
+        <item>NAURU [8]</item>
+        <item>NEPAL [8]</item>
+        <item>NICARAGUA [8]</item>
+        <item>NIGER [8]</item>
+        <item>NIGERIA [8]</item>
+        <item>NORUEGA [7]</item>
+        <item>NUEVA ZELANDIA [8]</item>
+        <item>OMAN [8]</item>
+        <item>OTROS PAISES DE AFRICA [8]</item>
+        <item>OTROS PAISES DE AMERICA [8]</item>
+        <item>OTROS PAISES DE EUROPA [7]</item>
+        <item>OTROS PAISES DE OCEANIA Y REGIONES POLARES [8]</item>
+        <item>OTROS PAISES DEL ASIA [8]</item>
+        <item>PAISES BAJOS [7]</item>
+        <item>PAKISTAN [8]</item>
+        <item>PALAU [8]</item>
+        <item>PANAMA [8]</item>
+        <item>PAPUA NUEVA GUINEA [8]</item>
+        <item>PARAGUAY [6]</item>
+        <item>PERU [1]</item>
+        <item>POLONIA [7]</item>
+        <item>PORTUGAL [7]</item>
+        <item>PUERTO RICO  [8]</item>
+        <item>QATAR [8]</item>
+        <item>REINO UNIDO [7]</item>
+        <item>REP. CENTRO AFRICANA [8]</item>
+        <item>REP. POP.DEMOCRATICA DE LAO [8]</item>
+        <item>REP.POP.DEMOCRATICA DE COREA  [8]</item>
+        <item>REPUBLICA CHECA [7]</item>
+        <item>REPUBLICA DE COREA  [5]</item>
+        <item>REPUBLICA DOMINICANA [8]</item>
+        <item>RUMANIA [7]</item>
+        <item>RUSIA  [7]</item>
+        <item>RWANDA [8]</item>
+        <item>SAHARA OCCIDENTAL [8]</item>
+        <item>SAMOA OCCIDENTAL [8]</item>
+        <item>SAN CRISTOBAL Y NEVIS [8]</item>
+        <item>SAN MARINO [7]</item>
+        <item>SAN VICENTE Y LAS GRANADINAS [8]</item>
+        <item>SANTA LUCIA [8]</item>
+        <item>SANTA SEDE (VATICANO) [7]</item>
+        <item>SANTO TOME Y PRINCIPE [8]</item>
+        <item>SENEGAL [8]</item>
+        <item>SEYCHELLES [8]</item>
+        <item>SIERRA LEONA [8]</item>
+        <item>SINGAPUR [8]</item>
+        <item>SIRIA [8]</item>
+        <item>SOMALIA [8]</item>
+        <item>SRI LANKA [8]</item>
+        <item>SUDAFRICA  [8]</item>
+        <item>SUDAN [8]</item>
+        <item>SUECIA [7]</item>
+        <item>SUIZA [7]</item>
+        <item>SURINAME [6]</item>
+        <item>SWAZILANDIA [8]</item>
+        <item>TAILANDIA [8]</item>
+        <item>TAIWAN [8]</item>
+        <item>TANZANIA [8]</item>
+        <item>TAYIKISTAN [8]</item>
+        <item>TOGO [8]</item>
+        <item>TONGA [8]</item>
+        <item>TRINIDAD Y TOBAGO [8]</item>
+        <item>TUNEZ [8]</item>
+        <item>TURKMENISTAN [8]</item>
+        <item>TURQUIA [8]</item>
+        <item>TUVALU [8]</item>
+        <item>UCRANIA  [7]</item>
+        <item>UGANDA [8]</item>
+        <item>URUGUAY [6]</item>
+        <item>UZBEKISTAN [8]</item>
+        <item>VANUATU [8]</item>
+        <item>VENEZUELA [6]</item>
+        <item>VIETNAM [8]</item>
+        <item>YEMEN [8]</item>
+        <item>YOGOSLAVIA  [7]</item>
+        <item>ZAIRE [8]</item>
+        <item>ZAMBIA [8]</item>
+        <item>ZIMBABWE [8]</item>
+    </string-array>
 </resources>

@@ -2,7 +2,6 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
@@ -17,17 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
             <CheckBox
-                android:id="@+id/check_edit_suma_sp_ck"
+                android:id="@+id/check_prioridad_sp_ck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="n. Subpregunta n"
                 android:layout_marginRight="@dimen/margin5dp"
                 android:textStyle="bold"/>
             <EditText
-                android:id="@+id/check_edit_suma_sp_especifique"
+                android:id="@+id/check_prioridad_sp_especifique"
                 android:layout_width="400dp"
                 android:layout_height="30dp"
                 android:inputType="text"
@@ -38,15 +39,21 @@
                 android:background="@drawable/edittext_disabled"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    <EditText
-        android:id="@+id/check_edit_suma_sp_edit"
+    <android.support.v7.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:minHeight="40dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:inputType="numberPassword"
-        android:enabled="false"
-        android:background="@drawable/edittext_disabled"/>
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginRight="1dp"
+        >
+        <Spinner
+            android:id="@+id/check_prioridad_sp_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:drawSelectorOnTop="true"/>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

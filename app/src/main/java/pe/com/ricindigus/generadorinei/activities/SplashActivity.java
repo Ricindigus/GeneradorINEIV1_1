@@ -20,6 +20,10 @@ import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.Chec
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.modelo.DataCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.PCheckEditSuma;
 import pe.com.ricindigus.generadorinei.componentes.componente_checkeditsuma.pojos.SPCheckEditSuma;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.CheckPrioridadPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.modelo.DataCheckPrioridad;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.pojos.PCheckPrioridad;
+import pe.com.ricindigus.generadorinei.componentes.componente_checkprioridad.pojos.SPCheckPrioridad;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.PCiiuPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.modelo.DataCiiu;
 import pe.com.ricindigus.generadorinei.componentes.componente_ciiu.pojos.PCiiu;
@@ -43,6 +47,9 @@ import pe.com.ricindigus.generadorinei.componentes.componente_radio.modelo.DataR
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.PRadio;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.RadioPullParser;
 import pe.com.ricindigus.generadorinei.componentes.componente_radio.pojos.SPRadio;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.SelectPaisPullParser;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.modelo.DataSelectPais;
+import pe.com.ricindigus.generadorinei.componentes.componente_selectpais.pojos.PSelectPais;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.modelo.DataUbicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.pojos.Ubicacion;
 import pe.com.ricindigus.generadorinei.componentes.componente_ubicacion.UbicacionPullParser;
@@ -105,6 +112,9 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<SPEditSuma> spEditSumas = new ArrayList<>();
     ArrayList<PCheckEditSuma> pCheckEditSumas = new ArrayList<>();
     ArrayList<SPCheckEditSuma> spCheckEditSumas = new ArrayList<>();
+    ArrayList<PCheckPrioridad> pCheckPrioridads = new ArrayList<>();
+    ArrayList<SPCheckPrioridad> spCheckPrioridads = new ArrayList<>();
+    ArrayList<PSelectPais> pSelectPais = new ArrayList<>();
     ArrayList<Pagina> paginas = new ArrayList<Pagina>();
     ArrayList<OpcionSpinner> opciones = new ArrayList<OpcionSpinner>();
     ArrayList<InfoTabla> infoTablas = new ArrayList<InfoTabla>();
@@ -124,7 +134,9 @@ public class SplashActivity extends AppCompatActivity {
     DataCheckBox dataCheckBox;
     DataRadio dataRadio;
     DataEditSuma dataEditSuma;
+    DataCheckPrioridad dataCheckPrioridad;
     DataCheckEditSuma dataCheckEditSuma;
+    DataSelectPais dataSelectPais;
     DataTablas dataTablas;
 
 
@@ -172,7 +184,8 @@ public class SplashActivity extends AppCompatActivity {
             VariablesPullParser variablesPullParser = new VariablesPullParser();
             EncuestaPullParser encuestaPullParser = new EncuestaPullParser();
             PreguntaPullParser preguntaPullParser =  new PreguntaPullParser();
-
+            SelectPaisPullParser selectPaisPullParser = new SelectPaisPullParser();
+            CheckPrioridadPullParser checkPrioridadPullParser =  new CheckPrioridadPullParser();
 
 
             marcos = marcoPullParser.parseXML(getApplicationContext());
@@ -204,15 +217,17 @@ public class SplashActivity extends AppCompatActivity {
             variables = variablesPullParser.parseXML(getApplicationContext());
             encuestas = encuestaPullParser.parseXML(getApplicationContext());
             preguntas = preguntaPullParser.parseXML(getApplicationContext());
-
+            pSelectPais = selectPaisPullParser.parseXMLPSelectPais(getApplicationContext());
+            pCheckPrioridads = checkPrioridadPullParser.parseXMLPCheckPrioridad(getApplicationContext());
+            spCheckPrioridads = checkPrioridadPullParser.parseXMLSPCheckPrioridad(getApplicationContext());
         }
 
         maximo = marcos.size() + usuarios.size() + ubigeos.size() + ciius.size()+ modulos.size() + visitas.size()+
                 + ubicaciones.size() + gpsArrayList.size() + formularios.size() + preguntas.size()
                 + pEditTexts.size() + spEditTexts.size() + pCiius.size()+ spCiius.size()
                 + pCheckBoxes.size() + spCheckBoxes.size() +pEditSumas.size() + spEditSumas.size()
-                + pCheckEditSumas.size() + spCheckEditSumas.size() +
-                + pRadios.size() + spRadios.size() + encuestas.size()
+                + pCheckEditSumas.size() + spCheckEditSumas.size() + pSelectPais.size()
+                + pRadios.size() + spRadios.size() + encuestas.size() + spCheckPrioridads.size() + pCheckPrioridads.size()
                 + paginas.size() + opciones.size() + infoTablas.size() + eventos.size() + variables.size() ;
         carga = (maximo*1.00)/100.00;
 
@@ -261,6 +276,10 @@ public class SplashActivity extends AppCompatActivity {
             dataEditSuma.open();
             dataCheckEditSuma =  new DataCheckEditSuma(getApplicationContext());
             dataCheckEditSuma.open();
+            dataSelectPais = new DataSelectPais(getApplicationContext());
+            dataSelectPais.open();
+            dataCheckPrioridad =  new DataCheckPrioridad(getApplicationContext());
+            dataCheckPrioridad.open();
 
 
             long items = data.getNumeroItemsMarco();
@@ -446,6 +465,24 @@ public class SplashActivity extends AppCompatActivity {
                     publishProgress(i,(int)Math.floor(i/carga));
                     i++;
                 }
+                for (PCheckPrioridad pCheckPrioridad : pCheckPrioridads) {
+                    try {
+                        dataCheckPrioridad.insertarPCheckPrioridad(pCheckPrioridad);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (SPCheckPrioridad spCheckPrioridad : spCheckPrioridads) {
+                    try {
+                        dataCheckPrioridad.insertarSPCheckPrioridad(spCheckPrioridad);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
                 for (PEditSuma pEditSuma : pEditSumas) {
                     try {
                         dataEditSuma.insertarPEditSuma(pEditSuma);
@@ -476,6 +513,15 @@ public class SplashActivity extends AppCompatActivity {
                 for (SPCheckEditSuma spCheckEditSuma : spCheckEditSumas) {
                     try {
                         dataCheckEditSuma.insertarSPCheckEditSuma(spCheckEditSuma);
+                    }catch (SQLiteException e){
+                        e.printStackTrace();
+                    }
+                    publishProgress(i,(int)Math.floor(i/carga));
+                    i++;
+                }
+                for (PSelectPais pSelectPais : pSelectPais) {
+                    try {
+                        dataSelectPais.insertarPSelectPais(pSelectPais);
                     }catch (SQLiteException e){
                         e.printStackTrace();
                     }

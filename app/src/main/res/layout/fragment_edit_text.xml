@@ -6,7 +6,6 @@
     android:layout_marginLeft="@dimen/margenMaterial"
     android:layout_marginRight="@dimen/margenMaterial"
     android:layout_marginTop="@dimen/margin5dp"
-
     tools:context="pe.com.ricindigus.generadorinei.componentes.componente_edittext.EditTextFragment">
     <LinearLayout
         android:layout_width="match_parent"
