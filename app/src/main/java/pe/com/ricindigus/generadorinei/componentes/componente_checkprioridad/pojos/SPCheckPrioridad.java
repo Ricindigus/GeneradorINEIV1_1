@@ -15,17 +15,19 @@ public class SPCheckPrioridad {
     private String VARCK;
     private String VARESP;
     private String VARSP;
+    private String DESHAB;
 
     public SPCheckPrioridad() {
     }
 
-    public SPCheckPrioridad(String ID, String ID_PREGUNTA, String SUBPREGUNTA, String VARCK, String VARESP, String VARSP) {
+    public SPCheckPrioridad(String ID, String ID_PREGUNTA, String SUBPREGUNTA, String VARCK, String VARESP, String VARSP, String DESHAB) {
         this.ID = ID;
         this.ID_PREGUNTA = ID_PREGUNTA;
         this.SUBPREGUNTA = SUBPREGUNTA;
         this.VARCK = VARCK;
         this.VARESP = VARESP;
         this.VARSP = VARSP;
+        this.DESHAB = DESHAB;
     }
 
     public String getID() {
@@ -76,6 +78,14 @@ public class SPCheckPrioridad {
         this.VARSP = VARSP;
     }
 
+    public String getDESHAB() {
+        return DESHAB;
+    }
+
+    public void setDESHAB(String DESHAB) {
+        this.DESHAB = DESHAB;
+    }
+
     public ContentValues toValues(){
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLCheckPrioridad.SPCHECKPRIORIDAD_ID,ID);
@@ -84,6 +94,7 @@ public class SPCheckPrioridad {
         contentValues.put(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARCK, VARCK);
         contentValues.put(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARESP, VARESP);
         contentValues.put(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARSP, VARSP);
+        contentValues.put(SQLCheckPrioridad.SPCHECKPRIORIDAD_DESHAB, DESHAB);
         return contentValues;
     }
 }

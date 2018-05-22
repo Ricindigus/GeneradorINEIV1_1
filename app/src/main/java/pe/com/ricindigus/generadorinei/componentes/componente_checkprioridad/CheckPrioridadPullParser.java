@@ -41,6 +41,8 @@ CheckPrioridadPullParser {
     public static final String SPCHECKPRIORIDAD_VARCK = "VARCK";
     public static final String SPCHECKPRIORIDAD_VARESP = "VARESP";
     public static final String SPCHECKPRIORIDAD_VARSP = "VARSP";
+    public static final String SPCHECKPRIORIDAD_DESHAB = "DESHAB";
+
 
 
 
@@ -222,6 +224,7 @@ CheckPrioridadPullParser {
                 case SPCHECKPRIORIDAD_VARCK: currentSPCheckPrioridad.setVARCK(xmlText);break;
                 case SPCHECKPRIORIDAD_VARESP: currentSPCheckPrioridad.setVARESP(xmlText);break;
                 case SPCHECKPRIORIDAD_VARSP: currentSPCheckPrioridad.setVARSP(xmlText);break;
+                case SPCHECKPRIORIDAD_DESHAB: currentSPCheckPrioridad.setDESHAB(xmlText);break;
             }
         }
     }

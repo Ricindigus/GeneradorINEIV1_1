@@ -25,6 +25,8 @@ public class SQLCheckPrioridad {
     public static final String SPCHECKPRIORIDAD_VARCK = "VARCK";
     public static final String SPCHECKPRIORIDAD_VARESP = "VARESP";
     public static final String SPCHECKPRIORIDAD_VARSP = "VARSP";
+    public static final String SPCHECKPRIORIDAD_DESHAB = "DESHAB";
+
 
 
     public static final String SQL_CREATE_TABLA_CHECKPRIORIDAD =
@@ -45,7 +47,8 @@ public class SQLCheckPrioridad {
                     SPCHECKPRIORIDAD_SUBPREGUNTA + " TEXT," +
                     SPCHECKPRIORIDAD_VARCK + " TEXT," +
                     SPCHECKPRIORIDAD_VARESP + " TEXT," +
-                    SPCHECKPRIORIDAD_VARSP + " TEXT" + ");"
+                    SPCHECKPRIORIDAD_VARSP + " TEXT," +
+                    SPCHECKPRIORIDAD_DESHAB + " TEXT" + ");"
             ;
     
     public static final String SQL_DELETE_CHECKPRIORIDAD = "DROP TABLE " + tablaCheckPrioridad;
@@ -62,7 +65,7 @@ public class SQLCheckPrioridad {
 
     public static final String[] ALL_COLUMNS_SPCHECKPRIORIDAD = {
             SPCHECKPRIORIDAD_ID , SPCHECKPRIORIDAD_ID_PREGUNTA , SPCHECKPRIORIDAD_SUBPREGUNTA ,
-            SPCHECKPRIORIDAD_VARESP , SPCHECKPRIORIDAD_VARCK , SPCHECKPRIORIDAD_VARSP
+            SPCHECKPRIORIDAD_VARESP , SPCHECKPRIORIDAD_VARCK , SPCHECKPRIORIDAD_VARSP, SPCHECKPRIORIDAD_DESHAB
     };
 
 

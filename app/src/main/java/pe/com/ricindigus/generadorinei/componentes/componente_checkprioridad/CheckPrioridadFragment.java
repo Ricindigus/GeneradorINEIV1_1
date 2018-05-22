@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,15 +18,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pe.com.ricindigus.generadorinei.NumericKeyBoardTransformationMethod;
 import pe.com.ricindigus.generadorinei.R;
@@ -55,6 +60,9 @@ public class CheckPrioridadFragment extends ComponenteFragment {
     private EditText[] editEspecifiques;
     private CheckBox[] checkBoxes;
     private View rootView;
+    private int prioridades[];
+    private int controladorSpinners[];
+
 
     private boolean cargandoDatos = false;
 
@@ -135,6 +143,8 @@ public class CheckPrioridadFragment extends ComponenteFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        prioridades =  new int[Integer.parseInt(pCheckPrioridad.getPRIORIDAD()) + 1];
+        controladorSpinners = new int[subpreguntas.size()];
         llenarVista();
         cargarDatos();
     }
@@ -248,6 +258,7 @@ public class CheckPrioridadFragment extends ComponenteFragment {
         txtCabecera2.setText(pCheckPrioridad.getCAB2());
 
         for (int i = 0; i < subpreguntas.size(); i++) {
+            final int posicionSubpregunta =  i;
             final SPCheckPrioridad spCheckPrioridad = subpreguntas.get(i);
             final LinearLayout linearLayout = linearLayouts[i];
             final Spinner spinner = spinners[i];
@@ -256,7 +267,11 @@ public class CheckPrioridadFragment extends ComponenteFragment {
 
             linearLayout.setVisibility(View.VISIBLE);
             checkBox.setText(spCheckPrioridad.getSUBPREGUNTA());
-            spinner.setEnabled(false);
+            if (spCheckPrioridad.getVARSP() != null){
+                spinner.setVisibility(View.VISIBLE);
+                spinner.setEnabled(false);
+            }
+
 
             if (spCheckPrioridad.getVARESP() != null){
                 editEspecifique.setVisibility(View.VISIBLE);
@@ -267,23 +282,88 @@ public class CheckPrioridadFragment extends ComponenteFragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked){
-                        spinner.setEnabled(true);
+                        if (spCheckPrioridad.getVARSP() != null){
+                            if(prioridades[0] != Integer.parseInt(pCheckPrioridad.getPRIORIDAD())) spinner.setEnabled(true);
+                        }
+
                         if (spCheckPrioridad.getVARESP() != null){
                             editEspecifique.setEnabled(true);
                             editEspecifique.setBackgroundResource(R.drawable.edittext_enabled);
                         }
+
+                        if(spCheckPrioridad.getDESHAB() != null){
+                            for (int j = 0; j <subpreguntas.size() ; j++) {
+                                if (j != posicionSubpregunta){
+                                    checkBoxes[j].setChecked(false);
+                                    checkBoxes[j].setEnabled(false);
+                                }
+                            }
+                        }
                     }else{
-                        spinner.setSelection(0);
-                        spinner.setEnabled(false);
+                        if (spCheckPrioridad.getVARSP() != null){
+                            spinner.setSelection(0);
+                            spinner.setEnabled(false);
+                        }
+
                         if (spCheckPrioridad.getVARESP() != null){
                             editEspecifique.setText("");
                             editEspecifique.setEnabled(false);
                             editEspecifique.setBackgroundResource(R.drawable.edittext_disabled);
                         }
+                        if(spCheckPrioridad.getDESHAB() != null){
+                            for (int j = 0; j <subpreguntas.size() ; j++) {
+                                if (j != posicionSubpregunta){
+                                    checkBoxes[j].setEnabled(true);
+                                }
+                            }
+                        }
                     }
                 }
             });
 
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    int seleccion =  spinner.getSelectedItemPosition();
+                    if(seleccion != 0){
+                        if (prioridades[seleccion] != 1){
+                            if(controladorSpinners[posicionSubpregunta] != 0){
+                                int auxPrioridad = controladorSpinners[posicionSubpregunta];
+                                prioridades[auxPrioridad] = 0;
+                                prioridades[0]--;
+                                controladorSpinners[posicionSubpregunta] = 0;
+                            }
+                            controladorSpinners[posicionSubpregunta] = seleccion;
+                            prioridades[seleccion] =  1;
+                            prioridades[0] ++;
+                            if(prioridades[0] == Integer.parseInt(pCheckPrioridad.getPRIORIDAD())){
+                                for (int j = 0; j < subpreguntas.size() ; j++) {
+                                    if (spinners[j].getSelectedItemPosition() == 0) spinners[j].setEnabled(false);
+                                }
+                            }
+
+                        }else{
+                            Toast.makeText(context, "No puede existir dos opciones con prioridad " + seleccion, Toast.LENGTH_SHORT).show();
+                            spinner.setSelection(0);
+                        }
+                    }else {
+                        if(controladorSpinners[posicionSubpregunta] != 0){
+                            int auxPrioridad = controladorSpinners[posicionSubpregunta];
+                            prioridades[auxPrioridad] = 0;
+                            prioridades[0]--;
+                            controladorSpinners[posicionSubpregunta] = 0;
+                        }
+                        for (int j = 0; j <subpreguntas.size() ; j++) {
+                            if (checkBoxes[j].isChecked()) spinners[j].setEnabled(true);
+                        }
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             ArrayList<String> prioridades = new ArrayList<String>();
             prioridades.add("Seleccione");

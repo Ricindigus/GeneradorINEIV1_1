@@ -138,6 +138,7 @@ public class DataCheckPrioridad {
                 spCheckPrioridad.setVARCK(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARCK)));
                 spCheckPrioridad.setVARESP(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARESP)));
                 spCheckPrioridad.setVARSP(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARSP)));
+                spCheckPrioridad.setDESHAB(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_DESHAB)));
                 spCheckPrioridads.add(spCheckPrioridad);
             }
         }finally {
@@ -160,6 +161,7 @@ public class DataCheckPrioridad {
                 spEditSuma.setVARCK(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARCK)));
                 spEditSuma.setVARESP(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARESP)));
                 spEditSuma.setVARSP(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_VARSP)));
+                spEditSuma.setDESHAB(cursor.getString(cursor.getColumnIndex(SQLCheckPrioridad.SPCHECKPRIORIDAD_DESHAB)));
                 spEditSumas.add(spEditSuma);
             }
         }finally {
