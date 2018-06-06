@@ -186,31 +186,50 @@ public class CheckPrioridadFragment extends ComponenteFragment {
     @Override
     public boolean validarDatos() {
         boolean correcto = true;
-//        String mensaje = "";
-//        if(estaHabilitado()){
-//            int c = 0;
-//            while(correcto && c < subpreguntas.size()){
-//                if(linearLayouts[c].getVisibility() == View.VISIBLE){
-//                    if(checkBoxes[c].isChecked()){
-//                        if(editTexts[c].getText().toString().trim().equals("")){
-//                            correcto = false;
-//                            mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() + ": COMPLETE LA PREGUNTA";
-//                        }else if(subpreguntas.get(c).getVARESP() != null){
-//                            if (editEspecifiques[c].getText().toString().trim().equals("")){
-//                                correcto = false;
-//                                mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() + ": ESPECIFIQUE LA INFORMACION SOLICITADA";
-//                            }
-//                        }
-//                    }
-//                }
-//                c++;
-//            }
-//            if (txtSumaTotal.getText().toString().equals("0")){
-//                correcto = false;
-//                mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() + ": DEBE SELECCIONAR UNA O MAS OPCIONES";
-//            }
-//        }
-//        if(!correcto) mostrarMensaje(mensaje);
+        boolean checkeado = false;
+        String mensaje = "";
+        int prioridad = Integer.parseInt(pCheckPrioridad.getPRIORIDAD());
+        int sumaEsperada = prioridad * (prioridad + 1) / 2;
+        int sumaPrioridad = 0;
+        for (Spinner spinner : spinners) {
+            if (spinner.getVisibility() == View.VISIBLE) sumaPrioridad = sumaPrioridad + spinner.getSelectedItemPosition();
+        }
+        if(estaHabilitado()){
+            int c = 0;
+            while(correcto && c < subpreguntas.size()){
+                if(linearLayouts[c].getVisibility() == View.VISIBLE){
+                    if(checkBoxes[c].isChecked()){
+                        checkeado = true;
+                        if(subpreguntas.get(c).getVARSP() != null){
+                            if(spinners[c].getSelectedItemPosition() == 0){
+
+                                if(sumaPrioridad != sumaEsperada){
+                                    correcto = false;
+                                    mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() +": SELECCIONE LAS PRIORIDADES QUE CORRESPONDAN";
+                                }
+                            }
+
+                            if (correcto){
+                                if(subpreguntas.get(c).getVARESP() != null){
+                                    if (editEspecifiques[c].getText().toString().trim().equals("")){
+                                        correcto = false;
+                                        mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() + ": ESPECIFIQUE LA INFORMACION SOLICITADA";
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+                c++;
+            }
+            if (!checkeado){
+                correcto = false;
+                mensaje = "PREGUNTA " + pCheckPrioridad.getNUMERO() + ": DEBE SELECCIONAR UNA O MAS OPCIONES";
+            }
+        }
+        if(!correcto) mostrarMensaje(mensaje);
         return correcto;
     }
 
